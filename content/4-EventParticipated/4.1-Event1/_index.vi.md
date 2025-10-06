@@ -1,125 +1,84 @@
 ---
 title: "Event 1"
-# date: "`r Sys.Date()`"
 weight: 1
 chapter: false
 pre: " <b> 4.1. </b> "
 ---
 
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
+# Bài thu hoạch: “AI-Driven Development Life Cycle: Reimagining Software Engineering”
 
-# Bài thu hoạch “GenAI-powered App-DB Modernization workshop”
+### Mục đích của sự kiện
 
-### Mục Đích Của Sự Kiện
+- Khám phá AI-Driven Development với Amazon Q Developer  
+- Khám phá Spec-Driven Development với Kiro  
 
-- Chia sẻ best practices trong thiết kế ứng dụng hiện đại
-- Giới thiệu phương pháp DDD và event-driven architecture
-- Hướng dẫn lựa chọn compute services phù hợp
-- Giới thiệu công cụ AI hỗ trợ development lifecycle
+### Danh sách diễn giả
 
-### Danh Sách Diễn Giả
+- **Toan Huynh** – SA  
+- **My Nguyen** – ISV Account Director  
 
-- **Jignesh Shah** - Director, Open Source Databases
-- **Erica Liu** - Sr. GTM Specialist, AppMod
-- **Fabrianne Effendi** - Assc. Specialist SA, Serverless Amazon Web Services
+### Nội dung nổi bật
 
-### Nội Dung Nổi Bật
+#### Vai trò của AI trong IT
 
-#### Đưa ra các ảnh hưởng tiêu cực của kiến trúc ứng dụng cũ
+- **2023**: AI đóng vai trò như người hỗ trợ, giúp developer giảm tải công việc, gợi ý code và kiểm tra lỗi  
+- **2024**: AI được tích hợp trong IDE, hỗ trợ thiết kế hệ thống và tự động hóa workflow  
+- **2025**: Kỹ sư phần mềm thành thạo AI có thể phát triển sản phẩm trong thời gian tối thiểu  
 
-- Thời gian release sản phẩm lâu → Mất doanh thu/bỏ lỡ cơ hội
-- Hoạt động kém hiệu quả → Mất năng suất, tốn kém chi phí
-- Không tuân thủ các quy định về bảo mật → Mất an ninh, uy tín
+#### Phát triển sản phẩm với AI nhưng vẫn đặt con người ở trung tâm
 
-#### Chuyển đổi sang kiến trúc ứng dụng mới - Microservice Architecture
+- Developer có thể dùng AI để tạo ra code, nhưng vẫn phải kiểm tra tính đúng đắn và hiệu quả  
+- Chủ sở hữu code do AI sinh ra chính là developer, vì họ chịu trách nhiệm kiểm tra nó trước khi triển khai  
+- Coding với AI thường đi theo hai hướng:  
+  * **AI-Assistant**: AI như đồng nghiệp, gợi ý code và giải pháp  
+  * **AI-Manager**: AI đảm nhiệm toàn bộ quy trình từ thiết kế, tạo, triển khai đến bảo trì sản phẩm  
 
-Chuyển đổi thành hệ thống modular – từng chức năng là một **dịch vụ độc lập** giao tiếp với nhau qua **sự kiện** với 3 trụ cột cốt lõi:
+#### AI-Driven Development Lifecycle (AI-DLC)
 
-- **Queue Management**: Xử lý tác vụ bất đồng bộ
-- **Caching Strategy:** Tối ưu performance
-- **Message Handling:** Giao tiếp linh hoạt giữa services
+- AI đóng vai trò người hỗ trợ giúp phát triển requirements và specifications  
+- Viết code theo từng unit nhỏ step-by-step, chờ kiểm tra trước khi làm sang bước kế tiếp
+- Developer cần thu hẹp scope và đưa ra prompt cụ thể  
+- **Mob programming** được khuyến nghị để rút ngắn thời gian phát triển  
 
-#### Domain-Driven Design (DDD)
+#### Spec-Driven Development Lifecycle (SDD) với Kiro
 
-- **Phương pháp 4 bước**: Xác định domain events → sắp xếp timeline → identify actors → xác định bounded contexts
-- **Case study bookstore**: Minh họa cách áp dụng DDD thực tế
-- **Context mapping**: 7 patterns tích hợp bounded contexts
+- **Kiro** là IDE hỗ trợ developer bằng cách nhận specifications rồi tạo ra step-by-step tasks để triển khai thành code  
+- Ghi log toàn bộ actions và prompts để dễ theo dõi  
+- Phù hợp cho dự án cần specifications chính xác trước khi viết code  
 
-#### Event-Driven Architecture
+### Bài học rút ra
 
-- **3 patterns tích hợp**: Publish/Subscribe, Point-to-point, Streaming
-- **Lợi ích**: Loose coupling, scalability, resilience
-- **So sánh sync vs async**: Hiểu rõ trade-offs (sự đánh đổi)
+#### Tư duy của developer
 
-#### Compute Evolution
+- **Con người là trung tâm**: AI có thể thiết kế hệ thống và generate code, nhưng developer vẫn phải chịu trách nhiệm kiểm tra kết quả  
+- **Sẵn sàng cho thay đổi**: Với sự xuất hiện của các công cụ mạnh như Amazon Q Developer và Kiro, developer cần liên tục cập nhật và thích ứng  
 
-- **Shared Responsibility Model**: Từ EC2 → ECS → Fargate → Lambda
-- **Serverless benefits**: No server management, auto-scaling, pay-for-value
-- **Functions vs Containers**: Criteria lựa chọn phù hợp
+#### Ưu điểm và nhược điểm
 
-#### Amazon Q Developer
+- Việc chọn AI-Driven hay Spec-Driven phụ thuộc vào scope và mục tiêu dự án  
+- Mỗi phương pháp có ưu và nhược điểm riêng, ảnh hưởng đến nhóm phát triển cũng như sản phẩm  
+- **Ưu điểm**  
+  * **AI-Driven Development Lifecycle**: phát triển nhanh, có thể tái sử dụng, tiết kiệm chi phí và dễ mở rộng  
+  * **Spec-Driven Development Lifecycle**: đảm bảo chất lượng nhất quán, có tính hệ thống và dễ dự đoán  
+- **Nhược điểm**  
+  * **AI-Driven Development Lifecycle**: có thể dẫn đến chất lượng không đồng đều, lo ngại về bản quyền/đạo đức, khó bảo trì  
+  * **Spec-Driven Development Lifecycle**: chu kỳ phát triển chậm hơn, chi phí cao hơn và nội dung bị hạn chế  
 
-- **SDLC automation**: Từ planning đến maintenance
-- **Code transformation**: Java upgrade, .NET modernization
-- **AWS Transform agents**: VMware, Mainframe, .NET migration
+### Ứng dụng vào công việc
 
-### Những Gì Học Được
+- **Áp dụng AI-DLC hoặc SDD** cho dự án hiện tại  
+- **Học công nghệ mới** như Amazon Q Developer hoặc Kiro  
 
-#### Tư Duy Thiết Kế
+### Trải nghiệm tại sự kiện
 
-- **Business-first approach**: Luôn bắt đầu từ business domain, không phải technology
-- **Ubiquitous language**: Importance của common vocabulary giữa business và tech teams
-- **Bounded contexts**: Cách identify và manage complexity trong large systems
+Tham gia workshop **“AI-Driven Development Life Cycle: Reimagining Software Engineering”** là một trải nghiệm giá trị. Có cơ hội tìm hiểu các phương pháp mới và kết nối với các chuyên gia IT. Một số trải nghiệm đáng nhớ:
 
-#### Kiến Trúc Kỹ Thuật
+#### Học hỏi từ các diễn giả giàu chuyên môn
+- Hiểu cách chuyên gia xử lý lỗi khi code và trong quá trình phát triển sản phẩm  
+- Tiếp cận những use cases thực tế về AI-DLC và SDD  
 
-- **Event storming technique**: Phương pháp thực tế để mô hình hóa quy trình kinh doanh
-- Sử dụng **Event-driven communication** thay vì synchronous calls
-- **Integration patterns**: Hiểu khi nào dùng sync, async, pub/sub, streaming
-- **Compute spectrum**: Criteria chọn từ VM → containers → serverless
+#### Trải nghiệm công cụ hiện đại
+- Tìm hiểu **Amazon Q Developer**, công cụ AI hỗ trợ AI-DLC  
+- Quan sát demo cách **Kiro** được sử dụng trong Spec-Driven Development Lifecycle  
 
-#### Chiến Lược Hiện Đại Hóa
-
-- **Phased approach**: Không rush, phải có roadmap rõ ràng
-- **7Rs framework**: Nhiều con đường khác nhau tùy thuộc vào đặc điểm của mỗi ứng dụng
-- **ROI measurement**: Cost reduction + business agility
-
-### Ứng Dụng Vào Công Việc
-
-- **Áp dụng DDD** cho project hiện tại: Event storming sessions với business team
-- **Refactor microservices**: Sử dụng bounded contexts để identify service boundaries
-- **Implement event-driven patterns**: Thay thế một số sync calls bằng async messaging
-- **Serverless adoption**: Pilot AWS Lambda cho một số use cases phù hợp
-- **Try Amazon Q Developer**: Integrate vào development workflow để boost productivity
-
-### Trải nghiệm trong event
-
-Tham gia workshop **“GenAI-powered App-DB Modernization”** là một trải nghiệm rất bổ ích, giúp tôi có cái nhìn toàn diện về cách hiện đại hóa ứng dụng và cơ sở dữ liệu bằng các phương pháp và công cụ hiện đại. Một số trải nghiệm nổi bật:
-
-#### Học hỏi từ các diễn giả có chuyên môn cao
-- Các diễn giả đến từ AWS và các tổ chức công nghệ lớn đã chia sẻ **best practices** trong thiết kế ứng dụng hiện đại.
-- Qua các case study thực tế, tôi hiểu rõ hơn cách áp dụng **Domain-Driven Design (DDD)** và **Event-Driven Architecture** vào các project lớn.
-
-#### Trải nghiệm kỹ thuật thực tế
-- Tham gia các phiên trình bày về **event storming** giúp tôi hình dung cách **mô hình hóa quy trình kinh doanh** thành các domain events.
-- Học cách **phân tách microservices** và xác định **bounded contexts** để quản lý sự phức tạp của hệ thống lớn.
-- Hiểu rõ trade-offs giữa **synchronous và asynchronous communication** cũng như các pattern tích hợp như **pub/sub, point-to-point, streaming**.
-
-#### Ứng dụng công cụ hiện đại
-- Trực tiếp tìm hiểu về **Amazon Q Developer**, công cụ AI hỗ trợ SDLC từ lập kế hoạch đến maintenance.
-- Học cách **tự động hóa code transformation** và pilot serverless với **AWS Lambda**, từ đó nâng cao năng suất phát triển.
-
-#### Kết nối và trao đổi
-- Workshop tạo cơ hội trao đổi trực tiếp với các chuyên gia, đồng nghiệp và team business, giúp **nâng cao ngôn ngữ chung (ubiquitous language)** giữa business và tech.
-- Qua các ví dụ thực tế, tôi nhận ra tầm quan trọng của **business-first approach**, luôn bắt đầu từ nhu cầu kinh doanh thay vì chỉ tập trung vào công nghệ.
-
-#### Bài học rút ra
-- Việc áp dụng DDD và event-driven patterns giúp giảm **coupling**, tăng **scalability** và **resilience** cho hệ thống.
-- Chiến lược hiện đại hóa cần **phased approach** và đo lường **ROI**, không nên vội vàng chuyển đổi toàn bộ hệ thống.
-- Các công cụ AI như Amazon Q Developer có thể **boost productivity** nếu được tích hợp vào workflow phát triển hiện tại.
-
-#### Một số hình ảnh khi tham gia sự kiện
-* Thêm các hình ảnh của các bạn tại đây
-> Tổng thể, sự kiện không chỉ cung cấp kiến thức kỹ thuật mà còn giúp tôi thay đổi cách tư duy về thiết kế ứng dụng, hiện đại hóa hệ thống và phối hợp hiệu quả hơn giữa các team.
+> Tổng thể, sự kiện không chỉ cung cấp kiến thức kỹ thuật mà còn giới thiệu những công cụ mới có thể hỗ trợ development lifecycle

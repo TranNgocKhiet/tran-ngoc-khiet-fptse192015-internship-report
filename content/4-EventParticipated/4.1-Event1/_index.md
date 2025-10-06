@@ -1,126 +1,84 @@
 ---
 title: "Event 1"
-# date: "`r Sys.Date()`"
 weight: 1
 chapter: false
 pre: " <b> 4.1. </b> "
 ---
 
-{{% notice warning %}}
-⚠️ **Note:** The information below is for reference purposes only. Please **do not copy it verbatim** into your report, including this warning.
-{{% /notice %}}
-
-# Summary Report: “GenAI-powered App-DB Modernization workshop”
+# Summary Report: “AI-Driven Development Life Cycle: Reimagining Software Engineering”
 
 ### Event Objectives
 
-- Share best practices in modern application design
-- Introduce Domain-Driven Design (DDD) and event-driven architecture
-- Provide guidance on selecting the right compute services
-- Present AI tools to support the development lifecycle
+- Explores AI-Driven Development using Amazon Q Developer
+- Explores Spec-Driven Development using Kiro
 
 ### Speakers
 
-- **Jignesh Shah** – Director, Open Source Databases
-- **Erica Liu** – Sr. GTM Specialist, AppMod
-- **Fabrianne Effendi** – Assc. Specialist SA, Serverless Amazon Web Services
+- **Toan Huynh** – SA
+- **My Nguyen** – ISV Account Director
 
 ### Key Highlights
 
-#### Identifying the drawbacks of legacy application architecture
+#### The Role of AI in IT
 
-- Long product release cycles → Lost revenue/missed opportunities  
-- Inefficient operations → Reduced productivity, higher costs  
-- Non-compliance with security regulations → Security breaches, loss of reputation  
+- **2023**: AI acted as an assistant, helping developers minimize workload, recommend code, and check errors
+- **2024**: AI became embedded in IDEs, enabling system design and automated workflows
+- **2025**: Software engineers with strong AI skills can develop products in minimal time
 
-#### Transitioning to modern application architecture – Microservices
+#### Developing Products with AI While Keeping Humans at the Center
 
-Migrating to a modular system — each function is an **independent service** communicating via **events**, built on three core pillars:
+- Developers can use AI to generate code but they still must validate its correctness and effectiveness
+- The owner of AI-generated code is the developer, since they are responsible for validating it before implementation
+- Coding with AI usually leads to two paths:
+  * **AI-Assistant**: Developers see AI as a co-worker who suggests code and solutions
+  * **AI-Manager**: AI takes full responsibility for designing systems, generating and implementing code, and maintaining the product
+  
+#### AI-Driven Development Lifecycle (AI-DLC)
 
-- **Queue Management**: Handle asynchronous tasks  
-- **Caching Strategy**: Optimize performance  
-- **Message Handling**: Flexible inter-service communication  
+- AI acts as an assistant that helps to develop the requirements and specifications
+- AI supports developers by writing code in small units step-by-step, waiting for validation before moving on to the next task
+- It requires developers to minimize the scope and provide a specified prompt for AI  
+- Mob programming is recommended for this methodology since it reduces product development time
 
-#### Domain-Driven Design (DDD)
+#### Spec-Driven Development Lifecycle with Kiro
 
-- **Four-step method**: Identify domain events → arrange timeline → identify actors → define bounded contexts  
-- **Bookstore case study**: Demonstrates real-world DDD application  
-- **Context mapping**: 7 patterns for integrating bounded contexts  
-
-#### Event-Driven Architecture
-
-- **3 integration patterns**: Publish/Subscribe, Point-to-point, Streaming  
-- **Benefits**: Loose coupling, scalability, resilience  
-- **Sync vs async comparison**: Understanding the trade-offs  
-
-#### Compute Evolution
-
-- **Shared Responsibility Model**: EC2 → ECS → Fargate → Lambda  
-- **Serverless benefits**: No server management, auto-scaling, pay-for-value  
-- **Functions vs Containers**: Criteria for appropriate choice  
-
-#### Amazon Q Developer
-
-- **SDLC automation**: From planning to maintenance  
-- **Code transformation**: Java upgrade, .NET modernization  
-- **AWS Transform agents**: VMware, Mainframe, .NET migration  
-
+- Kiro is an IDE that supports developers by taking specifications and developing step-by-step tasks to implement them into code
+- Kiro provides a log of all the actions and prompts, allowing developers to track progress
+- Kiro is suitable for projects that need to have accurate specifications before starting to write code
+ 
 ### Key Takeaways
 
-#### Design Mindset
+#### Developer Mindset
 
-- **Business-first approach**: Always start from the business domain, not the technology  
-- **Ubiquitous language**: Importance of a shared vocabulary between business and tech teams  
-- **Bounded contexts**: Identifying and managing complexity in large systems  
+- **Human-centric**: AI can design systems and write code, but developers remain responsible for validating the results
+- **Ready for changes**: With powerful AI tools like Amazon Q Developer and Kiro emerging, developers should continuously prepare for new technologies
 
-#### Technical Architecture
+#### Pros and Cons
 
-- **Event storming technique**: Practical method for modeling business processes  
-- Use **event-driven communication** instead of synchronous calls  
-- **Integration patterns**: When to use sync, async, pub/sub, streaming  
-- **Compute spectrum**: Criteria for choosing between VM, containers, and serverless  
-
-#### Modernization Strategy
-
-- **Phased approach**: No rushing — follow a clear roadmap  
-- **7Rs framework**: Multiple modernization paths depending on the application  
-- **ROI measurement**: Cost reduction + business agility  
+- Using Ai-Driven or Spec-Driven Development Lifecycle depends on the scope and purpose of the project
+- Each method has pros and cons that affect the development team as well as the product
+- **Pros**
+  * **AI-Driven Development Lifecycle** is good for projects that need the speed, reusability, cost efficiency, and scalability
+  * **Spec-Driven Development Lifecycle** is good for projects that need narrative quality, consistency, and predictability
+- **Cons**
+  * **AI-Driven Development Lifecycle** may result in inconsistent quality, ethical/IP concerns, or maintenance challenges
+  * **Spec-Driven Development Lifecycle** may result in slower production cycles, higher costs, or limited content
 
 ### Applying to Work
 
-- **Apply DDD** to current projects: Event storming sessions with business teams  
-- **Refactor microservices**: Use bounded contexts to define service boundaries  
-- **Implement event-driven patterns**: Replace some sync calls with async messaging  
-- **Adopt serverless**: Pilot AWS Lambda for suitable use cases  
-- **Try Amazon Q Developer**: Integrate into the dev workflow to boost productivity  
+- **Apply AI-DLC or SDD** to current projects
+- **Learn new technologies** like Amazon Q Developer or Kiro
 
 ### Event Experience
 
-Attending the **“GenAI-powered App-DB Modernization”** workshop was extremely valuable, giving me a comprehensive view of modernizing applications and databases using advanced methods and tools. Key experiences included:
+Attending the **“AI-Driven Development Life Cycle: Reimagining Software Engineering”** workshop was extremely valuable. I had the opportunity to learn new methodologies and connect with IT professionals. Key experiences included:
 
 #### Learning from highly skilled speakers
-- Experts from AWS and major tech organizations shared **best practices** in modern application design.  
-- Through real-world case studies, I gained a deeper understanding of applying **DDD** and **Event-Driven Architecture** to large projects.  
-
-#### Hands-on technical exposure
-- Participating in **event storming** sessions helped me visualize how to **model business processes** into domain events.  
-- Learned how to **split microservices** and define **bounded contexts** to manage large-system complexity.  
-- Understood trade-offs between **synchronous and asynchronous communication** and integration patterns like **pub/sub, point-to-point, streaming**.  
+- Learning from experts how they handle errors in coding and product development
+- Experiencing real-world use cases of the methodologies
 
 #### Leveraging modern tools
-- Explored **Amazon Q Developer**, an AI tool for SDLC support from planning to maintenance.  
-- Learned to **automate code transformation** and pilot serverless with **AWS Lambda** to improve productivity.  
+- Explored **Amazon Q Developer**, an AI tool that supports AI-DLC
+- Observed a demonstration of how Kiro is used in the Spec-Driven Development Lifecycle
 
-#### Networking and discussions
-- The workshop offered opportunities to exchange ideas with experts, peers, and business teams, enhancing the **ubiquitous language** between business and tech.  
-- Real-world examples reinforced the importance of the **business-first approach** rather than focusing solely on technology.  
-
-#### Lessons learned
-- Applying DDD and event-driven patterns reduces **coupling** while improving **scalability** and **resilience**.  
-- Modernization requires a **phased approach** with **ROI measurement**; rushing the process can be risky.  
-- AI tools like Amazon Q Developer can significantly **boost productivity** when integrated into the current workflow.  
-
-#### Some event photos
-*Add your event photos here*  
-
-> Overall, the event not only provided technical knowledge but also helped me reshape my thinking about application design, system modernization, and cross-team collaboration.
+> Overall, the event not only provided technical knowledge but also introduced to new tools that can support development lifecycle
