@@ -2,10 +2,10 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>On-premises DNS Simulation on Internship Report</title>
-    <link>https://tranngockhiet.github.io/workshop-template/5-workshop/5.4-s3-onprem/5.4.4-dns-simulation/</link>
+    <link>https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/5-workshop/5.4-s3-onprem/5.4.4-dns-simulation/</link>
     <description>Recent content in On-premises DNS Simulation on Internship Report</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <atom:link href="https://tranngockhiet.github.io/workshop-template/5-workshop/5.4-s3-onprem/5.4.4-dns-simulation/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/5-workshop/5.4-s3-onprem/5.4.4-dns-simulation/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>
