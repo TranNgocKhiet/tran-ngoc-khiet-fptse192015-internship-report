@@ -15,21 +15,21 @@
     <title>Blog 3 :: Internship Report</title>
 
     
-    <link href="../../css/nucleus.css?1759742729" rel="stylesheet">
-    <link href="../../css/fontawesome-all.min.css?1759742729" rel="stylesheet">
-    <link href="../../css/hybrid.css?1759742729" rel="stylesheet">
-    <link href="../../css/featherlight.min.css?1759742729" rel="stylesheet">
-    <link href="../../css/perfect-scrollbar.min.css?1759742729" rel="stylesheet">
-    <link href="../../css/auto-complete.css?1759742729" rel="stylesheet">
-    <link href="../../css/atom-one-dark-reasonable.css?1759742729" rel="stylesheet">
-    <link href="../../css/theme.css?1759742729" rel="stylesheet">
-    <link href="../../css/hugo-theme.css?1759742729" rel="stylesheet">
+    <link href="../../css/nucleus.css?1761400450" rel="stylesheet">
+    <link href="../../css/fontawesome-all.min.css?1761400450" rel="stylesheet">
+    <link href="../../css/hybrid.css?1761400450" rel="stylesheet">
+    <link href="../../css/featherlight.min.css?1761400450" rel="stylesheet">
+    <link href="../../css/perfect-scrollbar.min.css?1761400450" rel="stylesheet">
+    <link href="../../css/auto-complete.css?1761400450" rel="stylesheet">
+    <link href="../../css/atom-one-dark-reasonable.css?1761400450" rel="stylesheet">
+    <link href="../../css/theme.css?1761400450" rel="stylesheet">
+    <link href="../../css/hugo-theme.css?1761400450" rel="stylesheet">
     
-    <link href="../../css/theme-workshop.css?1759742729" rel="stylesheet">
+    <link href="../../css/theme-workshop.css?1761400450" rel="stylesheet">
     
     
 
-    <script src="../../js/jquery-3.3.1.min.js?1759742729"></script>
+    <script src="../../js/jquery-3.3.1.min.js?1761400450"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -88,14 +88,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="../../js/lunr.min.js?1759742729"></script>
-<script type="text/javascript" src="../../js/auto-complete.js?1759742729"></script>
+<script type="text/javascript" src="../../js/lunr.min.js?1761400450"></script>
+<script type="text/javascript" src="../../js/auto-complete.js?1761400450"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/tranngockhiet.github.io\/tran-ngoc-khiet-fptse192015-internship-report\/";
     
 </script>
-<script type="text/javascript" src="../../js/search.js?1759742729"></script>
+<script type="text/javascript" src="../../js/search.js?1761400450"></script>
  
   </div>
 
@@ -421,60 +421,6 @@
 >
   <a href="../../3-blogstranslated/3.3-blog3/">
      <b> 3.3. </b> Blog 3 
-    <i class="fas fa-check read-icon"></i>
-    
-  </a>
-   
-</li>
-    
-            
-<li
-  data-nav-id="/3-blogstranslated/3.4-blog4/"
-  title="Blog 4"
-  class="dd-item 
-        
-        
-        
-        "
->
-  <a href="../../3-blogstranslated/3.4-blog4/">
-     <b> 3.4. </b> Blog 4 
-    <i class="fas fa-check read-icon"></i>
-    
-  </a>
-   
-</li>
-    
-            
-<li
-  data-nav-id="/3-blogstranslated/3.5-blog5/"
-  title="Blog 5"
-  class="dd-item 
-        
-        
-        
-        "
->
-  <a href="../../3-blogstranslated/3.5-blog5/">
-     <b> 3.5. </b> Blog 5 
-    <i class="fas fa-check read-icon"></i>
-    
-  </a>
-   
-</li>
-    
-            
-<li
-  data-nav-id="/3-blogstranslated/3.6-blog6/"
-  title="Blog 6"
-  class="dd-item 
-        
-        
-        
-        "
->
-  <a href="../../3-blogstranslated/3.6-blog6/">
-     <b> 3.6. </b> Blog 6 
     <i class="fas fa-check read-icon"></i>
     
   </a>
@@ -986,17 +932,13 @@
                     <div class="progress">
   <div class="wrapper"><nav id="TableOfContents">
   <ul>
-    <li><a href="#architecture-guidance">Architecture Guidance</a></li>
-    <li><a href="#technology-choices-and-communication-scope">Technology Choices and Communication Scope</a></li>
-    <li><a href="#the-pubsub-hub">The Pub/Sub Hub</a></li>
-    <li><a href="#core-microservice">Core Microservice</a></li>
-    <li><a href="#front-door-microservice">Front Door Microservice</a></li>
-    <li><a href="#staging-er7-microservice">Staging ER7 Microservice</a></li>
-    <li><a href="#new-features-in-the-solution">New Features in the Solution</a>
-      <ul>
-        <li><a href="#1-aws-cloudformation-cross-stack-references">1. AWS CloudFormation Cross-Stack References</a></li>
-      </ul>
-    </li>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#byol-for-windows-on-aws">BYOL for Windows on AWS</a></li>
+    <li><a href="#preparing-your-images-for-byol">Preparing your images for BYOL</a></li>
+    <li><a href="#managing-license-conversion-properly">Managing license conversion properly</a></li>
+    <li><a href="#detecting-configuration-issues-with-aws-config">Detecting configuration issues with AWS Config</a></li>
+    <li><a href="#understanding-cur-data-for-byol-instances">Understanding CUR data for BYOL instances</a></li>
+    <li><a href="#conclusion">Conclusion</a></li>
   </ul>
 </nav></div>
 </div>
@@ -1021,136 +963,140 @@
 
 
 
-	
-<div
-  class="notices warning"
-  
->
-  <p>⚠️ <strong>Note:</strong> The information below is for reference purposes only. Please <strong>do not copy verbatim</strong> for your report, including this warning.</p>
-
+	<h1 id="operating-byol-windows-server-workloads-effectively-on-aws">Operating BYOL Windows Server Workloads Effectively on AWS</h1>
+<p>by Ali Alzand, Jon Madison, and Mike Gupta | on 01 JUL 2025 | in <a href="https://aws.amazon.com/blogs/modernizing-with-aws/category/compute/amazon-ec2/">Amazon EC2</a>, <a href="https://aws.amazon.com/blogs/modernizing-with-aws/category/management-tools/aws-config/">AWS Config</a>, <a href="https://aws.amazon.com/blogs/modernizing-with-aws/category/aws-cloud-financial-management/aws-cost-and-usage-report/">AWS Cost and Usage Report</a>, <a href="https://aws.amazon.com/blogs/modernizing-with-aws/category/management-tools/aws-license-manager/">AWS License Manager</a>, <a href="https://aws.amazon.com/blogs/modernizing-with-aws/category/migration/aws-migration-hub/">AWS Migration Hub</a>, <a href="https://aws.amazon.com/blogs/modernizing-with-aws/category/post-types/technical-how-to/">Technical How-to</a>, <a href="https://aws.amazon.com/blogs/modernizing-with-aws/category/aws-on-windows/">Windows on AWS</a> | <a href="https://aws.amazon.com/blogs/modernizing-with-aws/operating-byol-windows-server-workloads-effectively-on-aws/">Permalink</a> | Share</p>
+<p>One way that customers running <a href="https://aws.amazon.com/microsoft/">Microsoft Workloads on Amazon Web Services (AWS)</a> may reduce costs is taking advantage of <strong>Bring Your Own License</strong> (BYOL) for eligible licenses they own. In this blog post, we are going to share a few practices to help you optimize your operation of BYOL Windows Server workloads on AWS.</p>
+<h2 id="introduction">Introduction</h2>
+<p>A common way to run your Windows Server workloads on <a href="https://aws.amazon.com/ec2/">Amazon Elastic Compute Cloud (Amazon EC2)</a> is to use the “license included” option. This has the benefit of not having to purchase or manage your own licenses and the flexibility of per-second billing. However, if you have already purchased licenses and they are eligible for use on AWS, then it makes sense to bring them and reduce your costs accordingly.</p>
+<p>We will review several specific techniques to help you when running BYOL Windows Server workloads on AWS. They are:</p>
+<ul>
+<li>Preparing your on-premises servers for import to AWS as <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html">Amazon Machine Images (AMIs)</a>.</li>
+<li>Transition and manage your Windows licenses from BYOL to license included when appropriate.</li>
+<li>Detecting configuration issues using an <a href="https://aws.amazon.com/config/">AWS Config</a> custom rule.</li>
+<li>Understanding data related to your BYOL Windows instances in the <a href="https://aws.amazon.com/aws-cost-management/aws-cost-and-usage-reporting/">AWS Cost and Usage Report</a> (AWS CUR).</li>
+</ul>
+<h2 id="byol-for-windows-on-aws">BYOL for Windows on AWS</h2>
+<p>To take advantage of BYOL, you need to confirm that they are eligible. AWS provides <a href="https://aws.amazon.com/windows/resources/licensing/">guidance for Microsoft Licensing on AWS</a>. When determining if your Windows licenses are eligible for BYOL on AWS, consider:</p>
+<ul>
+<li>Licenses must be perpetual, and purchased before October 1, 2019, or as a true-up on an Enterprise Agreement (EA) that was active at that time.</li>
+<li>The Windows version must be Windows Server 2019 or earlier.</li>
+</ul>
+<p>If your licenses are eligible, then you can use them on AWS. Regardless of whether or not you have Software Assurance on your licenses, Windows Server is not eligible for <a href="https://aws.amazon.com/windows/resources/licensemobility/">License Mobility</a>. This means that the licenses will need to apply to hardware dedicated to you alone. <a href="https://aws.amazon.com/ec2/dedicated-hosts/">Amazon EC2 Dedicated Hosts</a> are a solution that fulfills this requirement. Dedicated Hosts provide you with a familiar experience for running your Amazon EC2 instances, without the need to manage hardware or a hypervisor. <a href="https://aws.amazon.com/license-manager/">AWS License Manager</a> is a service used to manage licenses in AWS, and it is key to an effective BYOL Windows strategy.</p>
+<p>The billing for your Amazon EC2 Windows instances is determined from the <a href="https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/billing-info-fields.html#billing-info">usage operation</a> field that the instance inherits from its source AMI. Windows instances that run with the license included, regardless of tenancy, use the usage operation of <strong>RunInstances:0002</strong>. However, when you use your own license for a Windows instance on dedicated hosts, the usage operation of <strong>RunInstances:0800</strong> is required. The <a href="https://aws.amazon.com/blogs/modernizing-with-aws/how-to-create-an-amazon-ec2-ami-usage-and-billing-information-report/">how to create an Amazon EC2 AMI usage and billing information report</a> blog post will help you generate the usage operation for the instances in your organization.</p>
+<h2 id="preparing-your-images-for-byol">Preparing your images for BYOL</h2>
+<p>One requirement for using your own Windows licenses on AWS is to supply your own AMI, rather than using one created by AWS. When bringing your own image to AWS, you have different options to produce them. If the destination for your Windows server is BYOL on dedicated hosts, these tools will help you ensure your AMI is ready for use.</p>
+<p><a href="https://aws.amazon.com/ec2/vm-import/">VM Import/Export</a> (VMIE) is a tool that helps you to import virtual machine images from your existing virtualization platform as Amazon Machine Images. The first step is to export your virtual machine using a standard <a href="https://docs.aws.amazon.com/vm-import/latest/userguide/prerequisites.html#vmimport-image-formats">format</a> such as Open Virtual Appliance (OVA), ESX Virtual Machine Disk (VMDK), or Virtual Hard Disk (VHD/VHDX). Then, upload the image to an <a href="https://aws.amazon.com/s3/">Amazon Simple Storage Service</a> (S3) bucket in anticipation of the conversion process.</p>
+<p>To use VMIE, use <a href="https://docs.aws.amazon.com/vm-import/latest/userguide/required-permissions.html#vmimport-role">these instructions</a> to create an <a href="https://aws.amazon.com/iam/">AWS Identity and Access Management</a> (IAM) role named “vmimport” that the service will use to perform operations on your behalf.</p>
+<p>When using the <a href="https://aws.amazon.com/cli/">AWS Command Line Interface</a> (AWS CLI) to <a href="https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_ImportImage.html">import a Windows image</a> that you are planning on using for BYOL on dedicated hosts, it is necessary to specify the license type to set the usage operation correctly on the resultant AMI. To import an image, a command such as the following can be used (in this case for an OVA image in an S3 bucket):</p>
+<pre tabindex="0"><code>aws ec2 import-image –usage-operation RunInstances:0800 –disk-containers Format=OVA,Url=s3://&lt;&lt;my-bucket&gt;&gt;/&lt;&lt;my-image-name&gt;&gt;.ova
+</code></pre><p>This will start an import job that, once completed, will yield an AMI with the proper usage code for Windows BYOL.</p>
+<p><a href="https://docs.aws.amazon.com/migrationhub/latest/ug/gs-orchestrator.html">Migration Hub Orchestrator</a> is a tool that lets you create workflows to automate tasks and simplify the migration process. One of the workflow templates that Orchestrator provides is “Import virtual machine images to AWS”. Use this workflow to import an image for Windows BYOL.</p>
+<ol>
+<li>Open the AWS console and navigate to the <a href="https://console.aws.amazon.com/migrationhub/home">Migration Hub Console</a>.</li>
+<li>Choose <strong>Workflows</strong> in the <strong>Orchestrate</strong> side menu.</li>
+<li>Choose <strong>Create Workflow</strong> (Figure 1)</li>
+</ol>
+<p><img src="../../images/blog-3/Picture1v2.png" alt="A screenshot to create a workflow for the Migration hub console"></p>
+<div style="text-align:center;">Figure 1: Create Workflow</div>
+<ol start="4">
+<li>Select the <strong>Import virtual machine images to AWS</strong> template (Figure 2) and choose <strong>Next</strong></li>
+</ol>
+<p><img src="../../images/blog-3/Picture2-18.png" alt="A screenshot to select the template that import a virtual machine image to AWS"></p>
+<div style="text-align:center;">Figure 2: Select the import virtual machine template</div>
+<ol start="5">
+<li>On the <strong>Configure your workflow</strong> page, enter a <strong>Name</strong> for the workflow, and optionally enter a <strong>Description</strong>.</li>
+<li>In the <strong>Source environment configuration</strong> section, populate the <strong>Disk container</strong> field, which is the S3 bucket where you stored your image from on premises. The name must conform to the requirements from the <a href="https://docs.aws.amazon.com/migrationhub-orchestrator/latest/userguide/import-vm-images.html#source-env-config-import-vm-images">Migration Hub Orchestrator documentation</a>.</li>
+</ol>
+<p><img src="../../images/blog-3/Picture3v2.png" alt="A screenshot to populate the Disk container field"></p>
+<div style="text-align:center;">Figure 3: Configure source environment</div>
+<ol start="7">
+<li>In the <strong>Target environment configuration</strong> section, select the operating system and license for the virtual machines created with the resultant AMI. Choose <strong>Windows Server BYOL without SQL Server</strong>.</li>
+</ol>
+<p><img src="../../images/blog-3/Picture4-14.png" alt="A screenshot to select the target Operating system and application license"></p>
+<div style="text-align:center;">Figure 4: Choose the licensing model</div>
+<ol start="8">
+<li>Use the rest of the fields to further customize your AMI based on your requirements. These include the boot mode, <a href="https://aws.amazon.com/kms/">AWS Key Management Service</a> (KMS) encryption key, tags and license specification (for business case analysis). You also have the option to leave these with their default values. Choose</li>
+<li>On the <strong>Review and submit</strong> page, choose</li>
+</ol>
+<p>After uploading an image and creating your workflow, it is ready to run by choosing <strong>Run workflow</strong>.</p>
+<p><img src="../../images/blog-3/Picture5-15.png" alt="A screenshot to run the  workflow for the Migration hub console"></p>
+<div style="text-align:center;">Figure 5: Run Workflow</div>
+<h2 id="managing-license-conversion-properly">Managing license conversion properly</h2>
+<p>There are scenarios in which you will need to switch Amazon EC2 instances from the BYOL licensing model to license included and vice versa. These include (but are not limited to):</p>
+<ul>
+<li>Upgrading the operating system of the Amazon EC2 instance to Windows Server 2022, which is not eligible for BYOL, regardless of tenancy.</li>
+<li>Moving an Amazon EC2 instance off a dedicated host to run it on shared tenancy EC2, which is not eligible for BYOL.</li>
+<li>Moving an Amazon EC2 instance that is eligible for BYOL from shared tenancy to a dedicated host.</li>
+</ul>
+<p>When you need to switch the licensing model of an Amazon EC2 instance, use the <a href="https://docs.aws.amazon.com/license-manager/latest/userguide/license-conversion.html">License type conversion</a> feature in AWS License Manager. License type conversion lets you change the usage operation. See our guide for <a href="https://docs.aws.amazon.com/license-manager/latest/userguide/conversion-types-windows.html">eligible license types for Windows and SQL Server in License Manager</a>.</p>
+<h2 id="detecting-configuration-issues-with-aws-config">Detecting configuration issues with AWS Config</h2>
+<p><a href="https://aws.amazon.com/config/">AWS Config</a> is a service that helps you assess, audit, and evaluate the configuration of your AWS resources. By leveraging a custom AWS Config Rule, you can detect potential license misconfiguration in instances running on dedicated hosts, saving unnecessary licensing costs.</p>
+<p>The <a href="https://github.com/awslabs/aws-config-rules">aws-config-rules repository</a> contains custom AWS Config Rules to deploy to your AWS account using the <a href="https://github.com/awslabs/aws-config-rdk">AWS Config Rules Development Kit (RDK)</a>. Use the custom AWS Config Rule called <a href="https://github.com/awslabs/aws-config-rules/tree/master/python/EC2_INSTANCE_LICENSE_INCLUDED_DEDICATED_HOST">EC2_INSTANCE_LICENSE_INCLUDED_DEDICATED_HOST</a> to detect instances with license-included Windows Server (usage operation RunInstances:0002) running on Dedicated Hosts.</p>
+<p>Use <a href="https://aws.amazon.com/cloudshell/">AWS CloudShell</a> to run the RDK and test the AWS Config rules deployment. To install the custom rule, open CloudShell in the <a href="https://aws.amazon.com/console/">AWS Console</a> in the desired AWS Region, and run the following commands:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-Bash" data-lang="Bash"><span style="display:flex;"><span>pip install rdk
+</span></span><span style="display:flex;"><span>rdk init
+</span></span><span style="display:flex;"><span>git clone https://github.com/awslabs/aws-config-rules
+</span></span><span style="display:flex;"><span>cd aws-config-rules/python
+</span></span><span style="display:flex;"><span>rdk deploy EC2_INSTANCE_LICENSE_INCLUDED_DEDICATED_HOST
+</span></span></code></pre></div><p>Once the rule has completed deployment, view the rule in the <a href="https://console.aws.amazon.com/config/home">AWS Config console</a>. For instances with mis-configured licenses, either move them to Shared tenancy or follow the <a href="https://aws.amazon.com/vi/blogs/modernizing-with-aws/operating-byol-windows-server-workloads-effectively-on-aws/#manage-license">License Conversion process</a> accordingly.</p>
+<p><img src="../../images/blog-3/Picture6-10.png" alt="A screenshot for the custom AWS config rule"></p>
+<div style="text-align:center;">Figure 6: Custom Config rule</div>
+<h2 id="understanding-cur-data-for-byol-instances">Understanding CUR data for BYOL instances</h2>
+<p><a href="https://docs.aws.amazon.com/cur/latest/userguide/what-is-cur.html">AWS Cost and Usage Reports (CUR)</a> contains the most comprehensive set of cost and usage data available. Use <a href="https://aws.amazon.com/athena/">Amazon Athena</a> to <a href="https://docs.aws.amazon.com/cur/latest/userguide/cur-query-athena.html">query your CUR data</a>. The following query shows the licenses your instances are being billed for:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-SQL" data-lang="SQL"><span style="display:flex;"><span><span style="color:#66d9ef">select</span>
+</span></span><span style="display:flex;"><span>    line_item_resource_id,
+</span></span><span style="display:flex;"><span>    line_item_operation,
+</span></span><span style="display:flex;"><span>    line_item_line_item_type,
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">month</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">year</span>,
+</span></span><span style="display:flex;"><span>    line_item_unblended_cost,
+</span></span><span style="display:flex;"><span>    line_item_blended_cost,
+</span></span><span style="display:flex;"><span>    line_item_usage_type,
+</span></span><span style="display:flex;"><span>    line_item_usage_account_id,
+</span></span><span style="display:flex;"><span>    line_item_line_item_description
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">from</span>
+</span></span><span style="display:flex;"><span>    customer_all
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">where</span>
+</span></span><span style="display:flex;"><span>        line_item_usage_account_id <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;[ACCOUNT NUMBER]&#39;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">and</span> line_item_line_item_type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Usage&#39;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">and</span> line_item_operation <span style="color:#66d9ef">like</span> <span style="color:#e6db74">&#39;%RunInstances:%&#39;</span>
+</span></span></code></pre></div><p>Based on the results of the above Query, the line_item_operation field shows what you’re being <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/billing-info-fields.html#billing-info">billed</a> for.</p>
+<p><img src="../../images/blog-3/Image-from-iOS.jpg" alt="A screenshot for the output of the AWS CUR query"></p>
+<div style="text-align:center;">Figure 7: AWS CUR output</div>
+<h2 id="conclusion">Conclusion</h2>
+<p>Implementing BYOL for Windows Server workloads on AWS successfully, requires careful attention to license eligibility, configuration, and ongoing management. By understanding the key requirements – from license purchase dates and Windows Server versions to proper usage operation codes on dedicated hosts – organizations can effectively reduce their cloud infrastructure costs while maintaining compliance. Success depends on three key elements:</p>
+<ol>
+<li>Proper license evaluation – identifying eligible licenses based on purchase date and Windows Server version</li>
+<li>Accurate configuration – ensuring correct usage operation codes to avoid double-billing on dedicated hosts</li>
+<li>Ongoing monitoring – maintaining regular assessment of usage and costs</li>
+</ol>
+<p>By following these practices, organizations can optimize their Windows Server deployment costs while maintaining licensing compliance on AWS.</p>
+<p>Ready to start optimizing your Windows Server costs on AWS? Request an <a href="https://aws.amazon.com/optimization-and-licensing-assessment/">AWS Optimization and Licensing Assessment</a> to begin evaluating your licensing opportunities and potential cost savings.</p>
+<hr>
+<p>AWS has significantly more services, and more features within those services, than any other cloud provider, making it faster, easier, and more cost effective to move your existing applications to the cloud and build nearly anything you can imagine. Give your Microsoft applications the infrastructure they need to drive the business outcomes you want. Visit our <a href="https://aws.amazon.com/blogs/dotnet/">.NET on AWS</a> and <a href="https://aws.amazon.com/blogs/database/">AWS Database</a> blogs for additional guidance and options for your Microsoft workloads. <a href="https://pages.awscloud.com/MAP-windows-contact-us.html">Contact us</a> to start your migration and modernization journey today.</p>
+<p>TAGS: <a href="https://aws.amazon.com/blogs/modernizing-with-aws/tag/amazon-ec2/">Amazon EC2</a>, <a href="https://aws.amazon.com/blogs/modernizing-with-aws/tag/aws-license-manager/">AWS License Manager</a>, <a href="https://aws.amazon.com/blogs/modernizing-with-aws/tag/cost-savings/">Cost Savings</a>, <a href="https://aws.amazon.com/blogs/modernizing-with-aws/tag/microsoft/">Microsoft</a>, <a href="https://aws.amazon.com/blogs/modernizing-with-aws/tag/windows-on-aws/">Windows On AWS</a>, <a href="https://aws.amazon.com/blogs/modernizing-with-aws/tag/windows-server/">Windows Server</a></p>
+<div style="display: flex; align-items: center;">
+  <img src="../../images/blog-3/aaalzand-400.jpg" alt="Ali Alzand" style="width:120px; border-radius:8px; margin-right:16px;">
+  <p>
+    <strong>Ali Alzand</strong><br>
+    Ali is a Microsoft Specialist Solutions Architect at Amazon Web Services who helps global customers unlock the power of the cloud by migrating, modernizing, and optimizing their Microsoft workloads. He specializes in cloud operations — leveraging AWS services like Systems Manager, Amazon EC2 Windows, and EC2 Image Builder to drive cloud transformation. Outside of work, Ali enjoys exploring the outdoors, firing up the grill on weekends for barbecue with friends, and sampling all the eclectic food has to offer.
+  </p>
+</div>
+<div style="display: flex; align-items: center; margin-bottom: 24px;">
+  <img src="../../images/blog-3/Screenshot-2025-06-30-at-8.26.18-AM.png" alt="Jon Madison" style="width:120px; border-radius:8px; margin-right:16px;">
+  <p>
+    <strong>Jon Madison</strong><br>
+    Jon Madison is a Pr. Delivery Consultant on the AWS Professional Services (ProServe) Energy Team. He has a background in Cloud Infrastructure, Security, and DevOps, and is passionate about helping customers with cloud adoption and building scalable solutions and processes. In his free time Jon enjoys cooking, gaming, and spending time with his family and friends.
+  </p>
+</div>
+<div style="display: flex; align-items: center;">
+  <img src="../../images/blog-3/MikeGupta.jpg" alt="Mike Gupta" style="width:120px; border-radius:8px; margin-right:16px;">
+  <p>
+    <strong>Mike Gupta</strong><br>
+    Mike Gupta is a Senior Technical Account Manager at AWS based out of New York City. In his role, he provides strategic technical guidance to help customers use AWS best practices to plan and build solutions. He’s dedicated to empower customers to develop scalable, resilient, and cost-effective architectures. In his free time, Mike enjoys spending time with his wife and family, exploring local history and trying new restaurants.
+  </p>
 </div>
 
-<h1 id="getting-started-with-healthcare-data-lakes-using-microservices">Getting Started with Healthcare Data Lakes: Using Microservices</h1>
-<p>Data lakes can help hospitals and healthcare facilities turn data into business insights, maintain business continuity, and protect patient privacy. A <strong>data lake</strong> is a centralized, managed, and secure repository to store all your data, both in its raw and processed forms for analysis. Data lakes allow you to break down data silos and combine different types of analytics to gain insights and make better business decisions.</p>
-<p>This blog post is part of a larger series on getting started with setting up a healthcare data lake. In my final post of the series, <em>“Getting Started with Healthcare Data Lakes: Diving into Amazon Cognito”</em>, I focused on the specifics of using Amazon Cognito and Attribute Based Access Control (ABAC) to authenticate and authorize users in the healthcare data lake solution. In this blog, I detail how the solution evolved at a foundational level, including the design decisions I made and the additional features used. You can access the code samples for the solution in this Git repo for reference.</p>
-<hr>
-<h2 id="architecture-guidance">Architecture Guidance</h2>
-<p>The main change since the last presentation of the overall architecture is the decomposition of a single service into a set of smaller services to improve maintainability and flexibility. Integrating a large volume of diverse healthcare data often requires specialized connectors for each format; by keeping them encapsulated separately as microservices, we can add, remove, and modify each connector without affecting the others. The microservices are loosely coupled via publish/subscribe messaging centered in what I call the “pub/sub hub.”</p>
-<p>This solution represents what I would consider another reasonable sprint iteration from my last post. The scope is still limited to the ingestion and basic parsing of <strong>HL7v2 messages</strong> formatted in <strong>Encoding Rules 7 (ER7)</strong> through a REST interface.</p>
-<p><strong>The solution architecture is now as follows:</strong></p>
-<blockquote>
-<p><em>Figure 1. Overall architecture; colored boxes represent distinct services.</em></p></blockquote>
-<hr>
-<p>While the term <em>microservices</em> has some inherent ambiguity, certain traits are common:</p>
-<ul>
-<li>Small, autonomous, loosely coupled</li>
-<li>Reusable, communicating through well-defined interfaces</li>
-<li>Specialized to do one thing well</li>
-<li>Often implemented in an <strong>event-driven architecture</strong></li>
-</ul>
-<p>When determining where to draw boundaries between microservices, consider:</p>
-<ul>
-<li><strong>Intrinsic</strong>: technology used, performance, reliability, scalability</li>
-<li><strong>Extrinsic</strong>: dependent functionality, rate of change, reusability</li>
-<li><strong>Human</strong>: team ownership, managing <em>cognitive load</em></li>
-</ul>
-<hr>
-<h2 id="technology-choices-and-communication-scope">Technology Choices and Communication Scope</h2>
-<table>
-  <thead>
-      <tr>
-          <th>Communication scope</th>
-          <th>Technologies / patterns to consider</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>Within a single microservice</td>
-          <td>Amazon Simple Queue Service (Amazon SQS), AWS Step Functions</td>
-      </tr>
-      <tr>
-          <td>Between microservices in a single service</td>
-          <td>AWS CloudFormation cross-stack references, Amazon Simple Notification Service (Amazon SNS)</td>
-      </tr>
-      <tr>
-          <td>Between services</td>
-          <td>Amazon EventBridge, AWS Cloud Map, Amazon API Gateway</td>
-      </tr>
-  </tbody>
-</table>
-<hr>
-<h2 id="the-pubsub-hub">The Pub/Sub Hub</h2>
-<p>Using a <strong>hub-and-spoke</strong> architecture (or message broker) works well with a small number of tightly related microservices.</p>
-<ul>
-<li>Each microservice depends only on the <em>hub</em></li>
-<li>Inter-microservice connections are limited to the contents of the published message</li>
-<li>Reduces the number of synchronous calls since pub/sub is a one-way asynchronous <em>push</em></li>
-</ul>
-<p>Drawback: <strong>coordination and monitoring</strong> are needed to avoid microservices processing the wrong message.</p>
-<hr>
-<h2 id="core-microservice">Core Microservice</h2>
-<p>Provides foundational data and communication layer, including:</p>
-<ul>
-<li><strong>Amazon S3</strong> bucket for data</li>
-<li><strong>Amazon DynamoDB</strong> for data catalog</li>
-<li><strong>AWS Lambda</strong> to write messages into the data lake and catalog</li>
-<li><strong>Amazon SNS</strong> topic as the <em>hub</em></li>
-<li><strong>Amazon S3</strong> bucket for artifacts such as Lambda code</li>
-</ul>
-<blockquote>
-<p>Only allow indirect write access to the data lake through a Lambda function → ensures consistency.</p></blockquote>
-<hr>
-<h2 id="front-door-microservice">Front Door Microservice</h2>
-<ul>
-<li>Provides an API Gateway for external REST interaction</li>
-<li>Authentication &amp; authorization based on <strong>OIDC</strong> via <strong>Amazon Cognito</strong></li>
-<li>Self-managed <em>deduplication</em> mechanism using DynamoDB instead of SNS FIFO because:
-<ol>
-<li>SNS deduplication TTL is only 5 minutes</li>
-<li>SNS FIFO requires SQS FIFO</li>
-<li>Ability to proactively notify the sender that the message is a duplicate</li>
-</ol>
-</li>
-</ul>
-<hr>
-<h2 id="staging-er7-microservice">Staging ER7 Microservice</h2>
-<ul>
-<li>Lambda “trigger” subscribed to the pub/sub hub, filtering messages by attribute</li>
-<li>Step Functions Express Workflow to convert ER7 → JSON</li>
-<li>Two Lambdas:
-<ol>
-<li>Fix ER7 formatting (newline, carriage return)</li>
-<li>Parsing logic</li>
-</ol>
-</li>
-<li>Result or error is pushed back into the pub/sub hub</li>
-</ul>
-<hr>
-<h2 id="new-features-in-the-solution">New Features in the Solution</h2>
-<h3 id="1-aws-cloudformation-cross-stack-references">1. AWS CloudFormation Cross-Stack References</h3>
-<p>Example <em>outputs</em> in the core microservice:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">Outputs</span>:
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">Bucket</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">Value</span>: !<span style="color:#ae81ff">Ref Bucket</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">Export</span>:
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">Name</span>: !<span style="color:#ae81ff">Sub ${AWS::StackName}-Bucket</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">ArtifactBucket</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">Value</span>: !<span style="color:#ae81ff">Ref ArtifactBucket</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">Export</span>:
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">Name</span>: !<span style="color:#ae81ff">Sub ${AWS::StackName}-ArtifactBucket</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">Topic</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">Value</span>: !<span style="color:#ae81ff">Ref Topic</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">Export</span>:
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">Name</span>: !<span style="color:#ae81ff">Sub ${AWS::StackName}-Topic</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">Catalog</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">Value</span>: !<span style="color:#ae81ff">Ref Catalog</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">Export</span>:
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">Name</span>: !<span style="color:#ae81ff">Sub ${AWS::StackName}-Catalog</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">CatalogArn</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">Value</span>: !<span style="color:#ae81ff">GetAtt Catalog.Arn</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">Export</span>:
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">Name</span>: !<span style="color:#ae81ff">Sub ${AWS::StackName}-CatalogArn</span>
-</span></span></code></pre></div>
 
 
 
@@ -1482,22 +1428,6 @@
             
         
                     
-                        
-            
-            
-                
-                    
-                        
-                        
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
             
         
                     
@@ -1506,40 +1436,8 @@
             
                 
                     
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
                         
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
                         
-            
-            
-                
                     
                 
                 
@@ -1844,7 +1742,7 @@
 			<a class="nav nav-prev" href="../../3-blogstranslated/3.2-blog2/" title="Blog 2"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="../../3-blogstranslated/3.4-blog4/" title="Blog 4" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="../../4-eventparticipated/" title="Events Participated" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -1854,19 +1752,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="../../js/clipboard.min.js?1759742729"></script>
-    <script src="../../js/perfect-scrollbar.min.js?1759742729"></script>
-    <script src="../../js/perfect-scrollbar.jquery.min.js?1759742729"></script>
-    <script src="../../js/jquery.sticky.js?1759742729"></script>
-    <script src="../../js/featherlight.min.js?1759742729"></script>
-    <script src="../../js/highlight.pack.js?1759742729"></script>
+    <script src="../../js/clipboard.min.js?1761400451"></script>
+    <script src="../../js/perfect-scrollbar.min.js?1761400451"></script>
+    <script src="../../js/perfect-scrollbar.jquery.min.js?1761400451"></script>
+    <script src="../../js/jquery.sticky.js?1761400451"></script>
+    <script src="../../js/featherlight.min.js?1761400451"></script>
+    <script src="../../js/highlight.pack.js?1761400451"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="../../js/modernizr.custom-3.6.0.js?1759742729"></script>
-    <script src="../../js/learn.js?1759742729"></script>
-    <script src="../../js/hugo-learn.js?1759742729"></script>
+    <script src="../../js/modernizr.custom-3.6.0.js?1761400451"></script>
+    <script src="../../js/learn.js?1761400451"></script>
+    <script src="../../js/hugo-learn.js?1761400451"></script>
 
-    <link href="../../mermaid/mermaid.css?1759742729" rel="stylesheet" />
-    <script src="../../mermaid/mermaid.js?1759742729"></script>
+    <link href="../../mermaid/mermaid.css?1761400451" rel="stylesheet" />
+    <script src="../../mermaid/mermaid.js?1761400451"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

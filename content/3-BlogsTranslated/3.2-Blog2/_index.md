@@ -1,126 +1,116 @@
 ---
 title: "Blog 2"
-# date: "`r Sys.Date()`"
 weight: 1
 chapter: false
 pre: " <b> 3.2. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Note:** The information below is for reference purposes only. Please **do not copy verbatim** for your report, including this warning.
-{{% /notice %}}
 
-# Getting Started with Healthcare Data Lakes: Using Microservices
+# How to Set Up Automated Alerts for Newly Purchased AWS Savings Plans
 
-Data lakes can help hospitals and healthcare facilities turn data into business insights, maintain business continuity, and protect patient privacy. A **data lake** is a centralized, managed, and secure repository to store all your data, both in its raw and processed forms for analysis. Data lakes allow you to break down data silos and combine different types of analytics to gain insights and make better business decisions.
+by Syed Muhammad Tawha and Dan Johns | on 26 JUN 2025 | in [Amazon Simple Notification Service (SNS)](https://aws.amazon.com/blogs/aws-cloud-financial-management/category/messaging/amazon-simple-notification-service-sns/), [AWS Cloud Financial Management](https://aws.amazon.com/blogs/aws-cloud-financial-management/category/aws-cloud-financial-management/), [AWS CloudFormation](https://aws.amazon.com/blogs/aws-cloud-financial-management/category/management-tools/aws-cloudformation/), [Cloud Cost Optimization](https://aws.amazon.com/blogs/aws-cloud-financial-management/category/business-intelligence/cloud-cost-optimization/) | [Permalink](https://aws.amazon.com/blogs/aws-cloud-financial-management/how-to-set-up-automated-alerts-for-newly-purchased-aws-savings-plans/) | Share
 
-This blog post is part of a larger series on getting started with setting up a healthcare data lake. In my final post of the series, *“Getting Started with Healthcare Data Lakes: Diving into Amazon Cognito”*, I focused on the specifics of using Amazon Cognito and Attribute Based Access Control (ABAC) to authenticate and authorize users in the healthcare data lake solution. In this blog, I detail how the solution evolved at a foundational level, including the design decisions I made and the additional features used. You can access the code samples for the solution in this Git repo for reference.
+As organizations expand, FinOps teams require a comprehensive overview of [AWS Savings Plans](https://aws.amazon.com/savingsplans/) commitments to maximize utilization efficiency. This solution involves implementing monitoring systems and automated alerts to identify underutilized Savings Plans within the eligible return period.
 
----
+When you purchase a Savings Plan, you make a commitment for one or three years. Savings Plans with an hourly commitment of $100 or less can be returned if they were purchased within the last seven days and in the same calendar month, provided you haven’t reached your return limit. Once the calendar month ends (UTC time), these purchased Savings Plans cannot be returned.
 
-## Architecture Guidance
+In this blog post, we provide [AWS CloudFormation](https://aws.amazon.com/cloudformation/) templates that create [AWS Step Functions](https://aws.amazon.com/step-functions/) state machine, [Amazon Simple Notification Service](https://aws.amazon.com/sns/) (SNS) topic, [Amazon EventBridge](https://aws.amazon.com/eventbridge/) scheduler, and necessary [AWS Identity and Access Management](https://aws.amazon.com/iam/) (IAM) roles to automate the monitoring of newly purchased Savings Plans and highlight those that are underutilized.
 
-The main change since the last presentation of the overall architecture is the decomposition of a single service into a set of smaller services to improve maintainability and flexibility. Integrating a large volume of diverse healthcare data often requires specialized connectors for each format; by keeping them encapsulated separately as microservices, we can add, remove, and modify each connector without affecting the others. The microservices are loosely coupled via publish/subscribe messaging centered in what I call the “pub/sub hub.”
+## Overview of Solution:
 
-This solution represents what I would consider another reasonable sprint iteration from my last post. The scope is still limited to the ingestion and basic parsing of **HL7v2 messages** formatted in **Encoding Rules 7 (ER7)** through a REST interface.
+This solution follows AWS security best practices by separating the deployment across two accounts. One CloudFormation stack will be created in the [Management account](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_getting-started_concepts.html#management-account) to establish necessary IAM roles for fetching Savings Plans utilization. Another CloudFormation stack will be deployed in your chosen [Member Account](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_getting-started_concepts.html#member-account) within your [AWS Organization](https://aws.amazon.com/organizations/).
 
-**The solution architecture is now as follows:**
+The CloudFormation stack in a member account creates a state machine that assumes a role in your management account and analyzes all Savings Plans in your management account, including those purchased across your organization. The workflow filters active Savings Plans based on their purchase date, focusing specifically on plans acquired within the last 7 days and the current calendar month. It then evaluates their utilization rates and identifies plans falling below the defined threshold.
 
-> *Figure 1. Overall architecture; colored boxes represent distinct services.*
+The state machine executes at your specified frequency and uses Amazon SNS to send email alerts to addresses you provide during CloudFormation stack creation. These alerts contain detailed information about low-utilization Savings Plans and instructions for the return process.
 
----
+![AWS architecture diagram](/images/blog-2/AWS-architecture-diagram.png)
 
-While the term *microservices* has some inherent ambiguity, certain traits are common:  
-- Small, autonomous, loosely coupled  
-- Reusable, communicating through well-defined interfaces  
-- Specialized to do one thing well  
-- Often implemented in an **event-driven architecture**
+<div style="text-align:center;">Figure 1: AWS architecture diagram – Member account assumes a role to read Savings Plans data from the management account and triggers a Step Function, which sends email alerts via SNS.</div>
 
-When determining where to draw boundaries between microservices, consider:  
-- **Intrinsic**: technology used, performance, reliability, scalability  
-- **Extrinsic**: dependent functionality, rate of change, reusability  
-- **Human**: team ownership, managing *cognitive load*
+## Solution Walk Through:
 
----
+### Prerequisites
 
-## Technology Choices and Communication Scope
+- An AWS account
+- IAM permissions to create a CloudFormation Stack and deploy an IAM role in the management Account
+- IAM permissions to create a CloudFormation Stack and deploy Step Functions, IAM roles, SNS, and EventBridge scheduler in your chosen member Account
+  
+### Deploy the solution
 
-| Communication scope                       | Technologies / patterns to consider                                                        |
-| ----------------------------------------- | ------------------------------------------------------------------------------------------ |
-| Within a single microservice              | Amazon Simple Queue Service (Amazon SQS), AWS Step Functions                               |
-| Between microservices in a single service | AWS CloudFormation cross-stack references, Amazon Simple Notification Service (Amazon SNS) |
-| Between services                          | Amazon EventBridge, AWS Cloud Map, Amazon API Gateway                                      |
+In this section we will deploy resources for this solution in your accounts:
 
----
+#### Part 1 – Member Account Deployment
 
-## The Pub/Sub Hub
+In this section, we will deploy resources for this solution in your chosen member account.
 
-Using a **hub-and-spoke** architecture (or message broker) works well with a small number of tightly related microservices.  
-- Each microservice depends only on the *hub*  
-- Inter-microservice connections are limited to the contents of the published message  
-- Reduces the number of synchronous calls since pub/sub is a one-way asynchronous *push*
+1. Login to your AWS Management Console of the member account where you want this solution to run
+2. Deploy this CloudFormation Stack [![Launch Stack](/images/blog-2/SC-2_button.jpg)](https://us-west-2.console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/create/review?templateURL=https://aws-well-architected-labs.s3.us-west-2.amazonaws.com/Cost/Blogs/sample-aws-new-savings-plan-utilization-alert/sample-aws-new-savings-plan-utilization-alert_member.yaml&stackName=new-savings-plan-utilization-alert-member)
+3. Provide the Stack Name as new-sp-utilization-alert-member
+4. In the AlertEmails parameter, enter a comma-separated list of email addresses that will receive notifications about underutilized Savings Plans.
+5. In the ManagementAccountId parameter, enter the 12 digit AWS Account Id of your AWS management account.
+6. In the ScheduleExpression parameter, specify the execution frequency for the Step Functions state machine using cron format (default is daily at 9 AM UTC).
+7. In the UtilizationThreshold parameter, specify the minimum utilization percentage for your Savings Plans. You receive alerts when utilization falls below this threshold.
+8. Click Next, select the acknowledgment box, and create the stack
+9. Wait until the stack has finished deploying and is showing as CREATE-COMPLETE
+10. You will receive an email to confirm your subscription to the SNS topic created by this stack. Please confirm the subscription to begin receiving notifications.
+11. Visit the Outputs tab of the stack you just created and make a note of the values of the ExecutionRoleArn and StateMachineArn Keys, you will need these in the next part.
 
-Drawback: **coordination and monitoring** are needed to avoid microservices processing the wrong message.
+#### Part 2 – Management Account Deployment
 
----
+1. Log in to your AWS Management Console. Note: This must be the same account as the one entered in the ManagementAccountId parameter in the previous part.
+2. Deploy this CloudFormation stack [![Launch Stack](/images/blog-2/SC-2_button.jpg)](https://us-west-2.console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/create/review?templateURL=https://aws-well-architected-labs.s3.us-west-2.amazonaws.com/Cost/Blogs/sample-aws-new-savings-plan-utilization-alert/sample-aws-new-savings-plan-utilization-alert_management.yaml&stackName=aws-new-savings-plan-utilization-alert-management)
+3. Provide the Stack Name as new-sp-utilization-alert-management
+4. In the ExecutionRoleArn parameter, provide the value copied from the stack outputs of the stack deployed in the member account.
+5. In the StateMachineArn parameter, provide the value copied from the stack outputs of the stack deployed in the member account.
+6. Click Next, select the acknowledgment box, and create the stack
+7. Wait until the stack has finished deploying and is showing as **CREATE-COMPLETE**
+   
+#### Test the Solution
 
-## Core Microservice
+Now that the Step Functions state machine and associated resources are deployed in your member account, let’s test the deployment:
 
-Provides foundational data and communication layer, including:  
-- **Amazon S3** bucket for data  
-- **Amazon DynamoDB** for data catalog  
-- **AWS Lambda** to write messages into the data lake and catalog  
-- **Amazon SNS** topic as the *hub*  
-- **Amazon S3** bucket for artifacts such as Lambda code
+- Login back in to your AWS Management Console of the member account where you deployed part 1 of this solution.
+- Navigate to the Resources tab in your CloudFormation stack and locate the SavingsPlansAlerts Step Functions state machine. Click the blue hyperlink.
+- You will be redirected to the Step Functions console. Click the Start execution button on the right.
+- View the execution details in the Events section to monitor the state machine’s progress. If you have any Savings Plans purchased within the last 7 days and the current calendar month, you will receive email notifications.
+- A successful execution is indicated by a green box in the Graph view. If any Savings Plans fall below your specified utilization threshold, you will receive an email at your provided address.
 
-> Only allow indirect write access to the data lake through a Lambda function → ensures consistency.
+##  Clean Up
 
----
+All resources deployed for this solution can be removed by deleting the CloudFormation stacks. You can delete the stack through either the AWS Management Console or the AWS CLI.
 
-## Front Door Microservice
+To delete the management account stack (CLI):
 
-- Provides an API Gateway for external REST interaction  
-- Authentication & authorization based on **OIDC** via **Amazon Cognito**  
-- Self-managed *deduplication* mechanism using DynamoDB instead of SNS FIFO because:  
-  1. SNS deduplication TTL is only 5 minutes  
-  2. SNS FIFO requires SQS FIFO  
-  3. Ability to proactively notify the sender that the message is a duplicate  
+```
+aws cloudformation delete-stack –stack-name new-sp-utilization-alert_management
+```
 
----
+To delete the member account stack (CLI):
 
-## Staging ER7 Microservice
+```
+aws cloudformation delete-stack –stack-name new-sp-utilization-alert_member
+```
 
-- Lambda “trigger” subscribed to the pub/sub hub, filtering messages by attribute  
-- Step Functions Express Workflow to convert ER7 → JSON  
-- Two Lambdas:  
-  1. Fix ER7 formatting (newline, carriage return)  
-  2. Parsing logic  
-- Result or error is pushed back into the pub/sub hub  
+## Understanding Alerts and Taking Action
 
----
+When you receive an alert about underutilized Savings Plans, you should review the utilization details provided in the email notification. Analyze your utilization metrics against the original commitment you made when purchasing the Savings Plan, and investigate whether the low utilization is an expected or due to other factors such as workload migration, architectural changes, or miscalculated capacity needs. Consider returning the Savings Plan if the utilization remains consistently below your threshold, the plan was purchased within the last 7 days, the purchase occurred in the current calendar month, and the hourly commitment is $100 or less. Document the return reason for future reference and planning.
 
-## New Features in the Solution
+## Conclusion
 
-### 1. AWS CloudFormation Cross-Stack References
-Example *outputs* in the core microservice:
-```yaml
-Outputs:
-  Bucket:
-    Value: !Ref Bucket
-    Export:
-      Name: !Sub ${AWS::StackName}-Bucket
-  ArtifactBucket:
-    Value: !Ref ArtifactBucket
-    Export:
-      Name: !Sub ${AWS::StackName}-ArtifactBucket
-  Topic:
-    Value: !Ref Topic
-    Export:
-      Name: !Sub ${AWS::StackName}-Topic
-  Catalog:
-    Value: !Ref Catalog
-    Export:
-      Name: !Sub ${AWS::StackName}-Catalog
-  CatalogArn:
-    Value: !GetAtt Catalog.Arn
-    Export:
-      Name: !Sub ${AWS::StackName}-CatalogArn
+In this post, we explored how to use the Savings Plan and Cost Explorer APIs to identify underutilized Savings Plans in your organization. We then demonstrated how to use a Step Functions State Machine to filter Savings Plans purchased within the last 7 days and the current calendar month. This timing is crucial because you can return Savings Plans within the return window if they were purchased inadvertently or aren’t being utilized effectively. For guidance on returning a purchased Savings Plan, please refer to the [Returning a Purchased Savings Plan](https://docs.aws.amazon.com/savingsplans/latest/userguide/return-sp.html) documentation.
+
+<div style="display: flex; align-items: center;">
+  <img src="/images/blog-2/syed.png" alt="Syed Muhammad Tawha" style="width:120px; border-radius:8px; margin-right:16px;">
+  <p>
+    <strong>Syed Muhammad Tawha</strong><br>
+    Syed Muhammad Tawha is a Principal Technical Account Manager at AWS based in Dublin, Ireland. Tawha specializes in Storage, Resilience and Cloud Cost Optimization. He is passionate about helping AWS customers. Tawha also loves spending time with his friends and family.
+  </p>
+</div>
+
+<div style="display: flex; align-items: center;">
+  <img src="/images/blog-2/Dan-Johns.jpg" alt="Dan Johns" style="width:120px; border-radius:8px; margin-right:16px;">
+  <p>
+    <strong>Dan Johns</strong><br>
+    Dan Johns is a Senior Solutions Architect Engineer, supporting his customers to build on AWS and deliver on business requirements. Away from professional life, he loves reading, spending time with his family and automating tasks within their home.
+  </p>
+</div>

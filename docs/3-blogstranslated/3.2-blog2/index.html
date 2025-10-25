@@ -15,21 +15,21 @@
     <title>Blog 2 :: Internship Report</title>
 
     
-    <link href="../../css/nucleus.css?1759742729" rel="stylesheet">
-    <link href="../../css/fontawesome-all.min.css?1759742729" rel="stylesheet">
-    <link href="../../css/hybrid.css?1759742729" rel="stylesheet">
-    <link href="../../css/featherlight.min.css?1759742729" rel="stylesheet">
-    <link href="../../css/perfect-scrollbar.min.css?1759742729" rel="stylesheet">
-    <link href="../../css/auto-complete.css?1759742729" rel="stylesheet">
-    <link href="../../css/atom-one-dark-reasonable.css?1759742729" rel="stylesheet">
-    <link href="../../css/theme.css?1759742729" rel="stylesheet">
-    <link href="../../css/hugo-theme.css?1759742729" rel="stylesheet">
+    <link href="../../css/nucleus.css?1761400450" rel="stylesheet">
+    <link href="../../css/fontawesome-all.min.css?1761400450" rel="stylesheet">
+    <link href="../../css/hybrid.css?1761400450" rel="stylesheet">
+    <link href="../../css/featherlight.min.css?1761400450" rel="stylesheet">
+    <link href="../../css/perfect-scrollbar.min.css?1761400450" rel="stylesheet">
+    <link href="../../css/auto-complete.css?1761400450" rel="stylesheet">
+    <link href="../../css/atom-one-dark-reasonable.css?1761400450" rel="stylesheet">
+    <link href="../../css/theme.css?1761400450" rel="stylesheet">
+    <link href="../../css/hugo-theme.css?1761400450" rel="stylesheet">
     
-    <link href="../../css/theme-workshop.css?1759742729" rel="stylesheet">
+    <link href="../../css/theme-workshop.css?1761400450" rel="stylesheet">
     
     
 
-    <script src="../../js/jquery-3.3.1.min.js?1759742729"></script>
+    <script src="../../js/jquery-3.3.1.min.js?1761400450"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -88,14 +88,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="../../js/lunr.min.js?1759742729"></script>
-<script type="text/javascript" src="../../js/auto-complete.js?1759742729"></script>
+<script type="text/javascript" src="../../js/lunr.min.js?1761400450"></script>
+<script type="text/javascript" src="../../js/auto-complete.js?1761400450"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/tranngockhiet.github.io\/tran-ngoc-khiet-fptse192015-internship-report\/";
     
 </script>
-<script type="text/javascript" src="../../js/search.js?1759742729"></script>
+<script type="text/javascript" src="../../js/search.js?1761400450"></script>
  
   </div>
 
@@ -421,60 +421,6 @@
 >
   <a href="../../3-blogstranslated/3.3-blog3/">
      <b> 3.3. </b> Blog 3 
-    <i class="fas fa-check read-icon"></i>
-    
-  </a>
-   
-</li>
-    
-            
-<li
-  data-nav-id="/3-blogstranslated/3.4-blog4/"
-  title="Blog 4"
-  class="dd-item 
-        
-        
-        
-        "
->
-  <a href="../../3-blogstranslated/3.4-blog4/">
-     <b> 3.4. </b> Blog 4 
-    <i class="fas fa-check read-icon"></i>
-    
-  </a>
-   
-</li>
-    
-            
-<li
-  data-nav-id="/3-blogstranslated/3.5-blog5/"
-  title="Blog 5"
-  class="dd-item 
-        
-        
-        
-        "
->
-  <a href="../../3-blogstranslated/3.5-blog5/">
-     <b> 3.5. </b> Blog 5 
-    <i class="fas fa-check read-icon"></i>
-    
-  </a>
-   
-</li>
-    
-            
-<li
-  data-nav-id="/3-blogstranslated/3.6-blog6/"
-  title="Blog 6"
-  class="dd-item 
-        
-        
-        
-        "
->
-  <a href="../../3-blogstranslated/3.6-blog6/">
-     <b> 3.6. </b> Blog 6 
     <i class="fas fa-check read-icon"></i>
     
   </a>
@@ -986,17 +932,16 @@
                     <div class="progress">
   <div class="wrapper"><nav id="TableOfContents">
   <ul>
-    <li><a href="#architecture-guidance">Architecture Guidance</a></li>
-    <li><a href="#technology-choices-and-communication-scope">Technology Choices and Communication Scope</a></li>
-    <li><a href="#the-pubsub-hub">The Pub/Sub Hub</a></li>
-    <li><a href="#core-microservice">Core Microservice</a></li>
-    <li><a href="#front-door-microservice">Front Door Microservice</a></li>
-    <li><a href="#staging-er7-microservice">Staging ER7 Microservice</a></li>
-    <li><a href="#new-features-in-the-solution">New Features in the Solution</a>
+    <li><a href="#overview-of-solution">Overview of Solution:</a></li>
+    <li><a href="#solution-walk-through">Solution Walk Through:</a>
       <ul>
-        <li><a href="#1-aws-cloudformation-cross-stack-references">1. AWS CloudFormation Cross-Stack References</a></li>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#deploy-the-solution">Deploy the solution</a></li>
       </ul>
     </li>
+    <li><a href="#clean-up">Clean Up</a></li>
+    <li><a href="#understanding-alerts-and-taking-action">Understanding Alerts and Taking Action</a></li>
+    <li><a href="#conclusion">Conclusion</a></li>
   </ul>
 </nav></div>
 </div>
@@ -1021,136 +966,85 @@
 
 
 
-	
-<div
-  class="notices warning"
-  
->
-  <p>⚠️ <strong>Note:</strong> The information below is for reference purposes only. Please <strong>do not copy verbatim</strong> for your report, including this warning.</p>
-
+	<h1 id="how-to-set-up-automated-alerts-for-newly-purchased-aws-savings-plans">How to Set Up Automated Alerts for Newly Purchased AWS Savings Plans</h1>
+<p>by Syed Muhammad Tawha and Dan Johns | on 26 JUN 2025 | in <a href="https://aws.amazon.com/blogs/aws-cloud-financial-management/category/messaging/amazon-simple-notification-service-sns/">Amazon Simple Notification Service (SNS)</a>, <a href="https://aws.amazon.com/blogs/aws-cloud-financial-management/category/aws-cloud-financial-management/">AWS Cloud Financial Management</a>, <a href="https://aws.amazon.com/blogs/aws-cloud-financial-management/category/management-tools/aws-cloudformation/">AWS CloudFormation</a>, <a href="https://aws.amazon.com/blogs/aws-cloud-financial-management/category/business-intelligence/cloud-cost-optimization/">Cloud Cost Optimization</a> | <a href="https://aws.amazon.com/blogs/aws-cloud-financial-management/how-to-set-up-automated-alerts-for-newly-purchased-aws-savings-plans/">Permalink</a> | Share</p>
+<p>As organizations expand, FinOps teams require a comprehensive overview of <a href="https://aws.amazon.com/savingsplans/">AWS Savings Plans</a> commitments to maximize utilization efficiency. This solution involves implementing monitoring systems and automated alerts to identify underutilized Savings Plans within the eligible return period.</p>
+<p>When you purchase a Savings Plan, you make a commitment for one or three years. Savings Plans with an hourly commitment of $100 or less can be returned if they were purchased within the last seven days and in the same calendar month, provided you haven’t reached your return limit. Once the calendar month ends (UTC time), these purchased Savings Plans cannot be returned.</p>
+<p>In this blog post, we provide <a href="https://aws.amazon.com/cloudformation/">AWS CloudFormation</a> templates that create <a href="https://aws.amazon.com/step-functions/">AWS Step Functions</a> state machine, <a href="https://aws.amazon.com/sns/">Amazon Simple Notification Service</a> (SNS) topic, <a href="https://aws.amazon.com/eventbridge/">Amazon EventBridge</a> scheduler, and necessary <a href="https://aws.amazon.com/iam/">AWS Identity and Access Management</a> (IAM) roles to automate the monitoring of newly purchased Savings Plans and highlight those that are underutilized.</p>
+<h2 id="overview-of-solution">Overview of Solution:</h2>
+<p>This solution follows AWS security best practices by separating the deployment across two accounts. One CloudFormation stack will be created in the <a href="https://docs.aws.amazon.com/organizations/latest/userguide/orgs_getting-started_concepts.html#management-account">Management account</a> to establish necessary IAM roles for fetching Savings Plans utilization. Another CloudFormation stack will be deployed in your chosen <a href="https://docs.aws.amazon.com/organizations/latest/userguide/orgs_getting-started_concepts.html#member-account">Member Account</a> within your <a href="https://aws.amazon.com/organizations/">AWS Organization</a>.</p>
+<p>The CloudFormation stack in a member account creates a state machine that assumes a role in your management account and analyzes all Savings Plans in your management account, including those purchased across your organization. The workflow filters active Savings Plans based on their purchase date, focusing specifically on plans acquired within the last 7 days and the current calendar month. It then evaluates their utilization rates and identifies plans falling below the defined threshold.</p>
+<p>The state machine executes at your specified frequency and uses Amazon SNS to send email alerts to addresses you provide during CloudFormation stack creation. These alerts contain detailed information about low-utilization Savings Plans and instructions for the return process.</p>
+<p><img src="../../images/blog-2/AWS-architecture-diagram.png" alt="AWS architecture diagram"></p>
+<div style="text-align:center;">Figure 1: AWS architecture diagram – Member account assumes a role to read Savings Plans data from the management account and triggers a Step Function, which sends email alerts via SNS.</div>
+<h2 id="solution-walk-through">Solution Walk Through:</h2>
+<h3 id="prerequisites">Prerequisites</h3>
+<ul>
+<li>An AWS account</li>
+<li>IAM permissions to create a CloudFormation Stack and deploy an IAM role in the management Account</li>
+<li>IAM permissions to create a CloudFormation Stack and deploy Step Functions, IAM roles, SNS, and EventBridge scheduler in your chosen member Account</li>
+</ul>
+<h3 id="deploy-the-solution">Deploy the solution</h3>
+<p>In this section we will deploy resources for this solution in your accounts:</p>
+<h4 id="part-1--member-account-deployment">Part 1 – Member Account Deployment</h4>
+<p>In this section, we will deploy resources for this solution in your chosen member account.</p>
+<ol>
+<li>Login to your AWS Management Console of the member account where you want this solution to run</li>
+<li>Deploy this CloudFormation Stack <a href="https://us-west-2.console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/create/review?templateURL=https://aws-well-architected-labs.s3.us-west-2.amazonaws.com/Cost/Blogs/sample-aws-new-savings-plan-utilization-alert/sample-aws-new-savings-plan-utilization-alert_member.yaml&amp;stackName=new-savings-plan-utilization-alert-member"><img src="../../images/blog-2/SC-2_button.jpg" alt="Launch Stack"></a></li>
+<li>Provide the Stack Name as new-sp-utilization-alert-member</li>
+<li>In the AlertEmails parameter, enter a comma-separated list of email addresses that will receive notifications about underutilized Savings Plans.</li>
+<li>In the ManagementAccountId parameter, enter the 12 digit AWS Account Id of your AWS management account.</li>
+<li>In the ScheduleExpression parameter, specify the execution frequency for the Step Functions state machine using cron format (default is daily at 9 AM UTC).</li>
+<li>In the UtilizationThreshold parameter, specify the minimum utilization percentage for your Savings Plans. You receive alerts when utilization falls below this threshold.</li>
+<li>Click Next, select the acknowledgment box, and create the stack</li>
+<li>Wait until the stack has finished deploying and is showing as CREATE-COMPLETE</li>
+<li>You will receive an email to confirm your subscription to the SNS topic created by this stack. Please confirm the subscription to begin receiving notifications.</li>
+<li>Visit the Outputs tab of the stack you just created and make a note of the values of the ExecutionRoleArn and StateMachineArn Keys, you will need these in the next part.</li>
+</ol>
+<h4 id="part-2--management-account-deployment">Part 2 – Management Account Deployment</h4>
+<ol>
+<li>Log in to your AWS Management Console. Note: This must be the same account as the one entered in the ManagementAccountId parameter in the previous part.</li>
+<li>Deploy this CloudFormation stack <a href="https://us-west-2.console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/create/review?templateURL=https://aws-well-architected-labs.s3.us-west-2.amazonaws.com/Cost/Blogs/sample-aws-new-savings-plan-utilization-alert/sample-aws-new-savings-plan-utilization-alert_management.yaml&amp;stackName=aws-new-savings-plan-utilization-alert-management"><img src="../../images/blog-2/SC-2_button.jpg" alt="Launch Stack"></a></li>
+<li>Provide the Stack Name as new-sp-utilization-alert-management</li>
+<li>In the ExecutionRoleArn parameter, provide the value copied from the stack outputs of the stack deployed in the member account.</li>
+<li>In the StateMachineArn parameter, provide the value copied from the stack outputs of the stack deployed in the member account.</li>
+<li>Click Next, select the acknowledgment box, and create the stack</li>
+<li>Wait until the stack has finished deploying and is showing as <strong>CREATE-COMPLETE</strong></li>
+</ol>
+<h4 id="test-the-solution">Test the Solution</h4>
+<p>Now that the Step Functions state machine and associated resources are deployed in your member account, let’s test the deployment:</p>
+<ul>
+<li>Login back in to your AWS Management Console of the member account where you deployed part 1 of this solution.</li>
+<li>Navigate to the Resources tab in your CloudFormation stack and locate the SavingsPlansAlerts Step Functions state machine. Click the blue hyperlink.</li>
+<li>You will be redirected to the Step Functions console. Click the Start execution button on the right.</li>
+<li>View the execution details in the Events section to monitor the state machine’s progress. If you have any Savings Plans purchased within the last 7 days and the current calendar month, you will receive email notifications.</li>
+<li>A successful execution is indicated by a green box in the Graph view. If any Savings Plans fall below your specified utilization threshold, you will receive an email at your provided address.</li>
+</ul>
+<h2 id="clean-up">Clean Up</h2>
+<p>All resources deployed for this solution can be removed by deleting the CloudFormation stacks. You can delete the stack through either the AWS Management Console or the AWS CLI.</p>
+<p>To delete the management account stack (CLI):</p>
+<pre tabindex="0"><code>aws cloudformation delete-stack –stack-name new-sp-utilization-alert_management
+</code></pre><p>To delete the member account stack (CLI):</p>
+<pre tabindex="0"><code>aws cloudformation delete-stack –stack-name new-sp-utilization-alert_member
+</code></pre><h2 id="understanding-alerts-and-taking-action">Understanding Alerts and Taking Action</h2>
+<p>When you receive an alert about underutilized Savings Plans, you should review the utilization details provided in the email notification. Analyze your utilization metrics against the original commitment you made when purchasing the Savings Plan, and investigate whether the low utilization is an expected or due to other factors such as workload migration, architectural changes, or miscalculated capacity needs. Consider returning the Savings Plan if the utilization remains consistently below your threshold, the plan was purchased within the last 7 days, the purchase occurred in the current calendar month, and the hourly commitment is $100 or less. Document the return reason for future reference and planning.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>In this post, we explored how to use the Savings Plan and Cost Explorer APIs to identify underutilized Savings Plans in your organization. We then demonstrated how to use a Step Functions State Machine to filter Savings Plans purchased within the last 7 days and the current calendar month. This timing is crucial because you can return Savings Plans within the return window if they were purchased inadvertently or aren’t being utilized effectively. For guidance on returning a purchased Savings Plan, please refer to the <a href="https://docs.aws.amazon.com/savingsplans/latest/userguide/return-sp.html">Returning a Purchased Savings Plan</a> documentation.</p>
+<div style="display: flex; align-items: center;">
+  <img src="../../images/blog-2/syed.png" alt="Syed Muhammad Tawha" style="width:120px; border-radius:8px; margin-right:16px;">
+  <p>
+    <strong>Syed Muhammad Tawha</strong><br>
+    Syed Muhammad Tawha is a Principal Technical Account Manager at AWS based in Dublin, Ireland. Tawha specializes in Storage, Resilience and Cloud Cost Optimization. He is passionate about helping AWS customers. Tawha also loves spending time with his friends and family.
+  </p>
+</div>
+<div style="display: flex; align-items: center;">
+  <img src="../../images/blog-2/Dan-Johns.jpg" alt="Dan Johns" style="width:120px; border-radius:8px; margin-right:16px;">
+  <p>
+    <strong>Dan Johns</strong><br>
+    Dan Johns is a Senior Solutions Architect Engineer, supporting his customers to build on AWS and deliver on business requirements. Away from professional life, he loves reading, spending time with his family and automating tasks within their home.
+  </p>
 </div>
 
-<h1 id="getting-started-with-healthcare-data-lakes-using-microservices">Getting Started with Healthcare Data Lakes: Using Microservices</h1>
-<p>Data lakes can help hospitals and healthcare facilities turn data into business insights, maintain business continuity, and protect patient privacy. A <strong>data lake</strong> is a centralized, managed, and secure repository to store all your data, both in its raw and processed forms for analysis. Data lakes allow you to break down data silos and combine different types of analytics to gain insights and make better business decisions.</p>
-<p>This blog post is part of a larger series on getting started with setting up a healthcare data lake. In my final post of the series, <em>“Getting Started with Healthcare Data Lakes: Diving into Amazon Cognito”</em>, I focused on the specifics of using Amazon Cognito and Attribute Based Access Control (ABAC) to authenticate and authorize users in the healthcare data lake solution. In this blog, I detail how the solution evolved at a foundational level, including the design decisions I made and the additional features used. You can access the code samples for the solution in this Git repo for reference.</p>
-<hr>
-<h2 id="architecture-guidance">Architecture Guidance</h2>
-<p>The main change since the last presentation of the overall architecture is the decomposition of a single service into a set of smaller services to improve maintainability and flexibility. Integrating a large volume of diverse healthcare data often requires specialized connectors for each format; by keeping them encapsulated separately as microservices, we can add, remove, and modify each connector without affecting the others. The microservices are loosely coupled via publish/subscribe messaging centered in what I call the “pub/sub hub.”</p>
-<p>This solution represents what I would consider another reasonable sprint iteration from my last post. The scope is still limited to the ingestion and basic parsing of <strong>HL7v2 messages</strong> formatted in <strong>Encoding Rules 7 (ER7)</strong> through a REST interface.</p>
-<p><strong>The solution architecture is now as follows:</strong></p>
-<blockquote>
-<p><em>Figure 1. Overall architecture; colored boxes represent distinct services.</em></p></blockquote>
-<hr>
-<p>While the term <em>microservices</em> has some inherent ambiguity, certain traits are common:</p>
-<ul>
-<li>Small, autonomous, loosely coupled</li>
-<li>Reusable, communicating through well-defined interfaces</li>
-<li>Specialized to do one thing well</li>
-<li>Often implemented in an <strong>event-driven architecture</strong></li>
-</ul>
-<p>When determining where to draw boundaries between microservices, consider:</p>
-<ul>
-<li><strong>Intrinsic</strong>: technology used, performance, reliability, scalability</li>
-<li><strong>Extrinsic</strong>: dependent functionality, rate of change, reusability</li>
-<li><strong>Human</strong>: team ownership, managing <em>cognitive load</em></li>
-</ul>
-<hr>
-<h2 id="technology-choices-and-communication-scope">Technology Choices and Communication Scope</h2>
-<table>
-  <thead>
-      <tr>
-          <th>Communication scope</th>
-          <th>Technologies / patterns to consider</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>Within a single microservice</td>
-          <td>Amazon Simple Queue Service (Amazon SQS), AWS Step Functions</td>
-      </tr>
-      <tr>
-          <td>Between microservices in a single service</td>
-          <td>AWS CloudFormation cross-stack references, Amazon Simple Notification Service (Amazon SNS)</td>
-      </tr>
-      <tr>
-          <td>Between services</td>
-          <td>Amazon EventBridge, AWS Cloud Map, Amazon API Gateway</td>
-      </tr>
-  </tbody>
-</table>
-<hr>
-<h2 id="the-pubsub-hub">The Pub/Sub Hub</h2>
-<p>Using a <strong>hub-and-spoke</strong> architecture (or message broker) works well with a small number of tightly related microservices.</p>
-<ul>
-<li>Each microservice depends only on the <em>hub</em></li>
-<li>Inter-microservice connections are limited to the contents of the published message</li>
-<li>Reduces the number of synchronous calls since pub/sub is a one-way asynchronous <em>push</em></li>
-</ul>
-<p>Drawback: <strong>coordination and monitoring</strong> are needed to avoid microservices processing the wrong message.</p>
-<hr>
-<h2 id="core-microservice">Core Microservice</h2>
-<p>Provides foundational data and communication layer, including:</p>
-<ul>
-<li><strong>Amazon S3</strong> bucket for data</li>
-<li><strong>Amazon DynamoDB</strong> for data catalog</li>
-<li><strong>AWS Lambda</strong> to write messages into the data lake and catalog</li>
-<li><strong>Amazon SNS</strong> topic as the <em>hub</em></li>
-<li><strong>Amazon S3</strong> bucket for artifacts such as Lambda code</li>
-</ul>
-<blockquote>
-<p>Only allow indirect write access to the data lake through a Lambda function → ensures consistency.</p></blockquote>
-<hr>
-<h2 id="front-door-microservice">Front Door Microservice</h2>
-<ul>
-<li>Provides an API Gateway for external REST interaction</li>
-<li>Authentication &amp; authorization based on <strong>OIDC</strong> via <strong>Amazon Cognito</strong></li>
-<li>Self-managed <em>deduplication</em> mechanism using DynamoDB instead of SNS FIFO because:
-<ol>
-<li>SNS deduplication TTL is only 5 minutes</li>
-<li>SNS FIFO requires SQS FIFO</li>
-<li>Ability to proactively notify the sender that the message is a duplicate</li>
-</ol>
-</li>
-</ul>
-<hr>
-<h2 id="staging-er7-microservice">Staging ER7 Microservice</h2>
-<ul>
-<li>Lambda “trigger” subscribed to the pub/sub hub, filtering messages by attribute</li>
-<li>Step Functions Express Workflow to convert ER7 → JSON</li>
-<li>Two Lambdas:
-<ol>
-<li>Fix ER7 formatting (newline, carriage return)</li>
-<li>Parsing logic</li>
-</ol>
-</li>
-<li>Result or error is pushed back into the pub/sub hub</li>
-</ul>
-<hr>
-<h2 id="new-features-in-the-solution">New Features in the Solution</h2>
-<h3 id="1-aws-cloudformation-cross-stack-references">1. AWS CloudFormation Cross-Stack References</h3>
-<p>Example <em>outputs</em> in the core microservice:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">Outputs</span>:
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">Bucket</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">Value</span>: !<span style="color:#ae81ff">Ref Bucket</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">Export</span>:
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">Name</span>: !<span style="color:#ae81ff">Sub ${AWS::StackName}-Bucket</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">ArtifactBucket</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">Value</span>: !<span style="color:#ae81ff">Ref ArtifactBucket</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">Export</span>:
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">Name</span>: !<span style="color:#ae81ff">Sub ${AWS::StackName}-ArtifactBucket</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">Topic</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">Value</span>: !<span style="color:#ae81ff">Ref Topic</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">Export</span>:
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">Name</span>: !<span style="color:#ae81ff">Sub ${AWS::StackName}-Topic</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">Catalog</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">Value</span>: !<span style="color:#ae81ff">Ref Catalog</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">Export</span>:
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">Name</span>: !<span style="color:#ae81ff">Sub ${AWS::StackName}-Catalog</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">CatalogArn</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">Value</span>: !<span style="color:#ae81ff">GetAtt Catalog.Arn</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">Export</span>:
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">Name</span>: !<span style="color:#ae81ff">Sub ${AWS::StackName}-CatalogArn</span>
-</span></span></code></pre></div>
 
 
 
@@ -1485,54 +1379,6 @@
             
         
                     
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
             
         
                     
@@ -1854,19 +1700,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="../../js/clipboard.min.js?1759742729"></script>
-    <script src="../../js/perfect-scrollbar.min.js?1759742729"></script>
-    <script src="../../js/perfect-scrollbar.jquery.min.js?1759742729"></script>
-    <script src="../../js/jquery.sticky.js?1759742729"></script>
-    <script src="../../js/featherlight.min.js?1759742729"></script>
-    <script src="../../js/highlight.pack.js?1759742729"></script>
+    <script src="../../js/clipboard.min.js?1761400450"></script>
+    <script src="../../js/perfect-scrollbar.min.js?1761400450"></script>
+    <script src="../../js/perfect-scrollbar.jquery.min.js?1761400450"></script>
+    <script src="../../js/jquery.sticky.js?1761400450"></script>
+    <script src="../../js/featherlight.min.js?1761400450"></script>
+    <script src="../../js/highlight.pack.js?1761400450"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="../../js/modernizr.custom-3.6.0.js?1759742729"></script>
-    <script src="../../js/learn.js?1759742729"></script>
-    <script src="../../js/hugo-learn.js?1759742729"></script>
+    <script src="../../js/modernizr.custom-3.6.0.js?1761400450"></script>
+    <script src="../../js/learn.js?1761400450"></script>
+    <script src="../../js/hugo-learn.js?1761400450"></script>
 
-    <link href="../../mermaid/mermaid.css?1759742729" rel="stylesheet" />
-    <script src="../../mermaid/mermaid.js?1759742729"></script>
+    <link href="../../mermaid/mermaid.css?1761400450" rel="stylesheet" />
+    <script src="../../mermaid/mermaid.js?1761400450"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

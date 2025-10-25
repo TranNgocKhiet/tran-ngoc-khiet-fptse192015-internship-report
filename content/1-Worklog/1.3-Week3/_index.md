@@ -7,7 +7,7 @@ pre: " <b> 1.3. </b> "
 
 ### Week 3 Objectives:
 
-* Watch video from series First Cloud Journey Bootcamp - 2025 in Youtube Module 5.
+* Watch videos from series First Cloud Journey Bootcamp - 2025 in Youtube Module 5.
 
 ### Tasks to be carried out this week:
 | Day | Task                                                                                                                                                                                                                                        | Start Date | Completion Date | Reference Material                                                                                                                                         |

@@ -1,126 +1,56 @@
 ---
 title: "Blog 1"
-# date: "`r Sys.Date()`"
 weight: 1
 chapter: false
 pre: " <b> 3.1. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
 
-# Bắt đầu với healthcare data lakes: Sử dụng microservices
+# Khởi đầu sự nghiệp đám mây của bạn với AWS SimuLearn
 
-Các data lake có thể giúp các bệnh viện và cơ sở y tế chuyển dữ liệu thành những thông tin chi tiết về doanh nghiệp và duy trì hoạt động kinh doanh liên tục, đồng thời bảo vệ quyền riêng tư của bệnh nhân. **Data lake** là một kho lưu trữ tập trung, được quản lý và bảo mật để lưu trữ tất cả dữ liệu của bạn, cả ở dạng ban đầu và đã xử lý để phân tích. data lake cho phép bạn chia nhỏ các kho chứa dữ liệu và kết hợp các loại phân tích khác nhau để có được thông tin chi tiết và đưa ra các quyết định kinh doanh tốt hơn.
+Tác giả: Denee McCloud, Hetvi Parsana, Karishma Damania, và Kattie Sepehri | ngày 25 tháng 6, 2025 | trong [Amazon API Gateway](https://aws.amazon.com/blogs/training-and-certification/category/application-services/amazon-api-gateway-application-services/), [Amazon Bedrock](https://aws.amazon.com/blogs/training-and-certification/category/artificial-intelligence/amazon-machine-learning/amazon-bedrock/), [Amazon DynamoDB](https://aws.amazon.com/blogs/training-and-certification/category/database/amazon-dynamodb/), [Amazon SageMaker](https://aws.amazon.com/blogs/training-and-certification/category/artificial-intelligence/sagemaker/), [AWS Config](https://aws.amazon.com/blogs/training-and-certification/category/management-tools/aws-config/), [AWS Lambda](https://aws.amazon.com/blogs/training-and-certification/category/compute/aws-lambda/), [Best Practices](https://aws.amazon.com/blogs/training-and-certification/category/post-types/best-practices/), [Generative AI](https://aws.amazon.com/blogs/training-and-certification/category/artificial-intelligence/generative-ai/), [Healthcare](https://aws.amazon.com/blogs/training-and-certification/category/industries/healthcare/) | Permalink
 
-Bài đăng trên blog này là một phần của loạt bài lớn hơn về việc bắt đầu cài đặt data lake dành cho lĩnh vực y tế. Trong bài đăng blog cuối cùng của tôi trong loạt bài, *“Bắt đầu với data lake dành cho lĩnh vực y tế: Đào sâu vào Amazon Cognito”*, tôi tập trung vào các chi tiết cụ thể của việc sử dụng Amazon Cognito và Attribute Based Access Control (ABAC) để xác thực và ủy quyền người dùng trong giải pháp data lake y tế. Trong blog này, tôi trình bày chi tiết cách giải pháp đã phát triển ở cấp độ cơ bản, bao gồm các quyết định thiết kế mà tôi đã đưa ra và các tính năng bổ sung được sử dụng. Bạn có thể truy cập các code samples cho giải pháp tại Git repo này để tham khảo.
+Đối với các chuyên gia đám mây ở giai đoạn đầu sự nghiệp, việc có được kinh nghiệm thực tế với các dự án khách hàng thật sự có thể là một thách thức. Ngay cả khi có cơ hội “học lỏm”, tính chất nhanh của các tương tác này hiếm khi cho phép ta tạm dừng, suy ngẫm và thực sự hiểu sâu các khái niệm phức tạp.
 
----
+[AWS SimuLearn](https://aws.amazon.com/training/digital/aws-simulearn/) giải quyết khoảng trống này bằng cách kết hợp các mô phỏng khách hàng được điều khiển bởi AI tạo sinh với các khóa đào tạo kỹ thuật thực hành. Được hỗ trợ bởi [Amazon Bedrock](https://aws.amazon.com/bedrock/), AWS SimuLearn mang đến một môi trường nhập vai, không rủi ro, nơi bạn có thể phát triển cả kỹ năng kỹ thuật và kỹ năng mềm thông qua các cuộc hội thoại khách hàng tương tác, video khái niệm giải pháp, phòng lab thực hành và các bài tập ứng dụng — tất cả đều theo tốc độ của riêng bạn.
 
-## Hướng dẫn kiến trúc
+Trong bài viết này, chúng ta sẽ theo chân ba Kiến trúc sư Giải pháp AWS ở giai đoạn đầu sự nghiệp, những người đã sử dụng các kế hoạch học tập và mô phỏng theo vai trò để nâng cao chuyên môn đám mây và khả năng sẵn sàng tiếp xúc với khách hàng. Trải nghiệm của họ cho thấy cách thực hành có cấu trúc trong một môi trường được kiểm soát có thể thúc đẩy sự phát triển nghề nghiệp nhanh chóng.
 
-Thay đổi chính kể từ lần trình bày cuối cùng của kiến trúc tổng thể là việc tách dịch vụ đơn lẻ thành một tập hợp các dịch vụ nhỏ để cải thiện khả năng bảo trì và tính linh hoạt. Việc tích hợp một lượng lớn dữ liệu y tế khác nhau thường yêu cầu các trình kết nối chuyên biệt cho từng định dạng; bằng cách giữ chúng được đóng gói riêng biệt với microservices, chúng ta có thể thêm, xóa và sửa đổi từng trình kết nối mà không ảnh hưởng đến những kết nối khác. Các microservices được kết nối rời thông qua tin nhắn publish/subscribe tập trung trong cái mà tôi gọi là “pub/sub hub”.
+## Câu chuyện của Hetvi: Học theo vai trò, tập trung vào AI tạo sinh
 
-Giải pháp này đại diện cho những gì tôi sẽ coi là một lần lặp nước rút hợp lý khác từ last post của tôi. Phạm vi vẫn được giới hạn trong việc nhập và phân tích cú pháp đơn giản của các **HL7v2 messages** được định dạng theo **Quy tắc mã hóa 7 (ER7)** thông qua giao diện REST.
+Là một Kiến trúc sư Giải pháp mới, tôi đối mặt với một thách thức phổ biến: làm thế nào để truyền đạt hiệu quả các giải pháp kỹ thuật phức tạp đến các lãnh đạo doanh nghiệp. Dù tôi tự tin với kiến thức kỹ thuật của mình, việc chuyển đổi các khái niệm đám mây thành giá trị kinh doanh lại là một kỹ năng hoàn toàn khác.
 
-**Kiến trúc giải pháp bây giờ như sau:**
+AWS SimuLearn đã thay đổi cách tôi tiếp cận các cuộc trò chuyện với khách hàng. Thông qua các mô phỏng tương tác, tôi thực hành giao tiếp với khách hàng ảo cần các giải pháp AI tạo sinh cho những thách thức kinh doanh của họ.
 
-> *Hình 1. Kiến trúc tổng thể; những ô màu thể hiện những dịch vụ riêng biệt.*
+Một tình huống đáng nhớ là khi tôi giúp một khách hàng bán lẻ hiểu cách AI có thể cải thiện trải nghiệm của họ thông qua các đề xuất mua sắm được cá nhân hóa. Tôi nhận được phản hồi ngay lập tức về cả các khuyến nghị kỹ thuật và phong cách giao tiếp của mình. Tôi học cách thay thế biệt ngữ kỹ thuật bằng kết quả kinh doanh, tập trung vào ROI và cải thiện vận hành thay vì các chi tiết kiến trúc.
 
----
+Điều khiến trải nghiệm này trở nên vô giá là khả năng lặp lại các cuộc hội thoại và thử nghiệm nhiều phương pháp khác nhau. Mỗi lần thử giúp tôi tinh chỉnh thông điệp và nâng cao sự tự tin trong việc xử lý các tương tác khách hàng phức tạp.
 
-Mặc dù thuật ngữ *microservices* có một số sự mơ hồ cố hữu, một số đặc điểm là chung:  
-- Chúng nhỏ, tự chủ, kết hợp rời rạc  
-- Có thể tái sử dụng, giao tiếp thông qua giao diện được xác định rõ  
-- Chuyên biệt để giải quyết một việc  
-- Thường được triển khai trong **event-driven architecture**
+Ngày nay, tôi có thể tự tin kết nối giữa giải pháp kỹ thuật và giá trị kinh doanh — một kỹ năng đã chứng minh là thiết yếu trong vai trò Solutions Architect của tôi. Với bất kỳ ai muốn nâng cao kỹ năng giao tiếp khách hàng trong vai trò kỹ thuật, AWS SimuLearn mang lại một môi trường không rủi ro để thực hành và phát triển.
 
-Khi xác định vị trí tạo ranh giới giữa các microservices, cần cân nhắc:  
-- **Nội tại**: công nghệ được sử dụng, hiệu suất, độ tin cậy, khả năng mở rộng  
-- **Bên ngoài**: chức năng phụ thuộc, tần suất thay đổi, khả năng tái sử dụng  
-- **Con người**: quyền sở hữu nhóm, quản lý *cognitive load*
+## Câu chuyện của Karishma: Xây dựng chiều sâu kỹ thuật
 
----
+Là một Solutions Architect, tôi nhận ra rằng chuyên môn kỹ thuật sâu là điều thiết yếu để thiết kế các giải pháp hiệu quả cho khách hàng. Để mở rộng chiều sâu kỹ thuật của mình, tôi đã kết hợp các chủ đề đào tạo riêng lẻ trong AWS SimuLearn để tạo nên một hành trình học tập có cấu trúc, phù hợp với các thách thức kỹ thuật thực tế.
 
-## Lựa chọn công nghệ và phạm vi giao tiếp
+Tôi bắt đầu với chủ đề bảo mật ở biên, sau đó tiếp tục qua các mô-đun về bảo mật mạng, mã hóa, quản lý danh tính và truy cập (IAM), và cuối cùng là các công nghệ serverless như [Amazon API Gateway](https://aws.amazon.com/api-gateway/), [AWS Lambda](https://aws.amazon.com/lambda/), và [Amazon DynamoDB](https://aws.amazon.com/dynamodb/). Mỗi mô-đun bao gồm các mô phỏng tương tác với khách hàng, nơi tôi thực hành thu thập yêu cầu và đề xuất giải pháp, tiếp theo là các lab thực hành để củng cố hiểu biết.
 
-| Phạm vi giao tiếp                        | Các công nghệ / mô hình cần xem xét                                                        |
-| ---------------------------------------- | ------------------------------------------------------------------------------------------ |
-| Trong một microservice                   | Amazon Simple Queue Service (Amazon SQS), AWS Step Functions                               |
-| Giữa các microservices trong một dịch vụ | AWS CloudFormation cross-stack references, Amazon Simple Notification Service (Amazon SNS) |
-| Giữa các dịch vụ                         | Amazon EventBridge, AWS Cloud Map, Amazon API Gateway                                      |
+Bằng cách kết hợp [các mô-đun đào tạo](https://skillbuilder.aws/search?searchText=%22AWS+SimuLearn%22&page=1&isValidSearchText=true), tôi có thể mô phỏng các quy trình làm việc cụ thể của khách hàng, giúp tôi hiểu sâu hơn về các thách thức của họ. Cách tiếp cận cá nhân hóa này không chỉ giúp tôi chuẩn bị cho các buổi trình bày trước khách hàng mà còn mang lại một khung học tập để liên tục nâng cao năng lực kỹ thuật của mình. Với AWS SimuLearn, tôi có thể nhanh chóng nâng cao kỹ năng trong các lĩnh vực chưa quen thuộc và tự tin thiết kế các giải pháp phù hợp với mục tiêu kinh doanh, khiến tôi trở thành một Kiến trúc sư Giải pháp hiệu quả hơn.
 
----
+## Câu chuyện của Kattie: Học theo ngành nghề
 
-## The pub/sub hub
+Tôi có nền tảng trong việc thiết kế và phát triển các công cụ phần mềm cho các nhóm nghiên cứu trong lĩnh vực Y tế và Khoa học Đời sống (HCLS). Mặc dù tôi quen thuộc với nhiều ngôn ngữ lập trình, kiến thức của tôi về điện toán đám mây chỉ ở mức của [AWS Certified Solutions Architect – Associate](https://aws.amazon.com/certification/certified-solutions-architect-associate/). Tôi muốn mở rộng kiến thức về cách AWS có thể được áp dụng trong ngành HCLS, đồng thời có hiểu biết sâu hơn về các dịch vụ AWS, trường hợp sử dụng, và tích hợp với phần mềm bên thứ ba.
 
-Việc sử dụng kiến trúc **hub-and-spoke** (hay message broker) hoạt động tốt với một số lượng nhỏ các microservices liên quan chặt chẽ.  
-- Mỗi microservice chỉ phụ thuộc vào *hub*  
-- Kết nối giữa các microservice chỉ giới hạn ở nội dung của message được xuất  
-- Giảm số lượng synchronous calls vì pub/sub là *push* không đồng bộ một chiều
+Kế hoạch học tập [AWS SimuLearn: Healthcare Learning Plan](https://explore.skillbuilder.aws/learn/public/learning_plan/view/2239/aws-simulearn-Healthcare) cung cấp một loạt các vấn đề kinh doanh giúp tôi có cơ hội thử nghiệm nhiều dịch vụ AWS khác nhau để tìm ra các giải pháp kỹ thuật phù hợp. Ví dụ, tôi đã thử nghiệm các dịch vụ liên quan đến tuân thủ HIPAA với [AWS Config](https://aws.amazon.com/config/) và [AWS Systems Manager](https://aws.amazon.com/systems-manager/), cùng với AI bằng [Amazon SageMaker](https://aws.amazon.com/sagemaker/). Ngoài ra, tôi cũng khám phá xử lý theo lô, phân tích, cơ sở dữ liệu và lưu trữ, bảng điều khiển với dữ liệu thời gian thực, IoT, và nhiều hơn nữa.
 
-Nhược điểm: cần **phối hợp và giám sát** để tránh microservice xử lý nhầm message.
+Mỗi kế hoạch học tập có thể được bắt đầu bằng chế độ Open Dialogue hoặc chế độ Scripted. Ban đầu, tôi chọn Scripted vì nó ít thử thách hơn, nhưng sau khi xem qua một số cuộc hội thoại mô phỏng khác nhau, tôi cảm thấy tự tin hơn với chế độ Open Dialogue. Chế độ này cho phép tôi rèn luyện kỹ năng mềm thông qua các cuộc hội thoại khách hàng tương tác thời gian thực.
 
----
+Trong quá trình đó, AWS SimuLearn cung cấp các gợi ý hữu ích để định hướng cuộc trò chuyện, cũng như một sơ đồ kiến trúc chưa hoàn thiện để tôi mở rộng trong cuộc thảo luận với khách hàng. Ngoài ra, tôi còn được đặt các câu hỏi về những dịch vụ khác nhau để nâng cao trải nghiệm học tập.
 
-## Core microservice
+## Bắt đầu với AWS SimuLearn
 
-Cung cấp dữ liệu nền tảng và lớp truyền thông, gồm:  
-- **Amazon S3** bucket cho dữ liệu  
-- **Amazon DynamoDB** cho danh mục dữ liệu  
-- **AWS Lambda** để ghi message vào data lake và danh mục  
-- **Amazon SNS** topic làm *hub*  
-- **Amazon S3** bucket cho artifacts như mã Lambda
+Thông qua các cuộc hội thoại mô phỏng với khách hàng và học tập thực hành, AWS SimuLearn đã giúp ba chuyên gia giai đoạn đầu này trong hành trình phát triển của họ. Họ nhận được phản hồi theo thời gian thực để cải thiện kỹ năng mềm và kỹ năng kỹ thuật, đồng thời có kinh nghiệm trong môi trường console trực tiếp.
 
-> Chỉ cho phép truy cập ghi gián tiếp vào data lake qua hàm Lambda → đảm bảo nhất quán.
+Với hơn 200 khóa đào tạo, bao gồm các lựa chọn học tập theo vai trò hoặc theo ngành, AWS SimuLearn cung cấp cho bạn một trải nghiệm học tập cá nhân hóa. Hình thức đào tạo theo hướng trò chơi với các mô phỏng giúp các chuyên gia mới xây dựng đồng thời chuyên môn kỹ thuật và kỹ năng giao tiếp khách hàng trong môi trường không rủi ro.
 
----
+Sẵn sàng bắt đầu sự nghiệp đám mây của bạn? Hãy bắt đầu với [AWS SimuLearn: Cloud Practitioner Learning Plan](https://explore.skillbuilder.aws/learn/public/learning_plan/view/2226/aws-simulearn-cloud-practitioner) miễn phí và khám phá [thư viện đầy đủ các mô phỏng theo chủ đề](https://skillbuilder.aws/simulearn).
 
-## Front door microservice
-
-- Cung cấp API Gateway để tương tác REST bên ngoài  
-- Xác thực & ủy quyền dựa trên **OIDC** thông qua **Amazon Cognito**  
-- Cơ chế *deduplication* tự quản lý bằng DynamoDB thay vì SNS FIFO vì:
-  1. SNS deduplication TTL chỉ 5 phút
-  2. SNS FIFO yêu cầu SQS FIFO
-  3. Chủ động báo cho sender biết message là bản sao
-
----
-
-## Staging ER7 microservice
-
-- Lambda “trigger” đăng ký với pub/sub hub, lọc message theo attribute  
-- Step Functions Express Workflow để chuyển ER7 → JSON  
-- Hai Lambda:
-  1. Sửa format ER7 (newline, carriage return)
-  2. Parsing logic  
-- Kết quả hoặc lỗi được đẩy lại vào pub/sub hub
-
----
-
-## Tính năng mới trong giải pháp
-
-### 1. AWS CloudFormation cross-stack references
-Ví dụ *outputs* trong core microservice:
-```yaml
-Outputs:
-  Bucket:
-    Value: !Ref Bucket
-    Export:
-      Name: !Sub ${AWS::StackName}-Bucket
-  ArtifactBucket:
-    Value: !Ref ArtifactBucket
-    Export:
-      Name: !Sub ${AWS::StackName}-ArtifactBucket
-  Topic:
-    Value: !Ref Topic
-    Export:
-      Name: !Sub ${AWS::StackName}-Topic
-  Catalog:
-    Value: !Ref Catalog
-    Export:
-      Name: !Sub ${AWS::StackName}-Catalog
-  CatalogArn:
-    Value: !GetAtt Catalog.Arn
-    Export:
-      Name: !Sub ${AWS::StackName}-CatalogArn
+Để tìm hiểu thêm về những cập nhật mới nhất trong AWS SimuLearn, hãy xem bài viết: [Introducing AWS SimuLearn: Generative AI Practitioner](https://aws.amazon.com/blogs/training-and-certification/introducing-aws-simulearn-generative-ai-practitioner/).

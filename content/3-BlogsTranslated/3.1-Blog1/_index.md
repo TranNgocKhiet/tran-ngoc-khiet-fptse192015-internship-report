@@ -1,126 +1,56 @@
 ---
 title: "Blog 1"
-# date: "`r Sys.Date()`"
 weight: 1
 chapter: false
 pre: " <b> 3.1. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Note:** The information below is for reference purposes only. Please **do not copy verbatim** for your report, including this warning.
-{{% /notice %}}
 
-# Getting Started with Healthcare Data Lakes: Using Microservices
+# Jumpstart your cloud career with AWS SimuLearn
 
-Data lakes can help hospitals and healthcare facilities turn data into business insights, maintain business continuity, and protect patient privacy. A **data lake** is a centralized, managed, and secure repository to store all your data, both in its raw and processed forms for analysis. Data lakes allow you to break down data silos and combine different types of analytics to gain insights and make better business decisions.
+by Denee McCloud, Hetvi Parsana, Karishma Damania, and Kattie Sepehri | on 25 JUN 2025 | in [Amazon API Gateway](https://aws.amazon.com/blogs/training-and-certification/category/application-services/amazon-api-gateway-application-services/), [Amazon Bedrock](https://aws.amazon.com/blogs/training-and-certification/category/artificial-intelligence/amazon-machine-learning/amazon-bedrock/), [Amazon DynamoDB](https://aws.amazon.com/blogs/training-and-certification/category/database/amazon-dynamodb/), [Amazon SageMaker](https://aws.amazon.com/blogs/training-and-certification/category/artificial-intelligence/sagemaker/), [AWS Config](https://aws.amazon.com/blogs/training-and-certification/category/management-tools/aws-config/), [AWS Lambda](https://aws.amazon.com/blogs/training-and-certification/category/compute/aws-lambda/), [Best Practices](https://aws.amazon.com/blogs/training-and-certification/category/post-types/best-practices/), [Generative AI](https://aws.amazon.com/blogs/training-and-certification/category/artificial-intelligence/generative-ai/), [Healthcare](https://aws.amazon.com/blogs/training-and-certification/category/industries/healthcare/) | [Permalink](https://aws.amazon.com/blogs/training-and-certification/jumpstart-your-cloud-career-with-aws-simulearn/) | Share
 
-This blog post is part of a larger series on getting started with setting up a healthcare data lake. In my final post of the series, *“Getting Started with Healthcare Data Lakes: Diving into Amazon Cognito”*, I focused on the specifics of using Amazon Cognito and Attribute Based Access Control (ABAC) to authenticate and authorize users in the healthcare data lake solution. In this blog, I detail how the solution evolved at a foundational level, including the design decisions I made and the additional features used. You can access the code samples for the solution in this Git repo for reference.
+For early-career cloud professionals, gaining hands-on experience with real customer engagements can be challenging. Even when shadowing opportunities exist, the fast-paced nature of these interactions rarely allows time to pause, reflect, and truly understand complex concepts.
 
----
+[AWS SimuLearn](https://aws.amazon.com/training/digital/aws-simulearn/) addresses this gap by combining generative AI-driven customer simulations with practical technical training. Powered by [Amazon Bedrock](https://aws.amazon.com/bedrock/), AWS SimuLearn provides an immersive, risk-free environment where you can develop both technical and soft skills through interactive customer conversations, solution concept videos, hands-on labs, and practical exercises—all at your own pace.
 
-## Architecture Guidance
+In this post, we’ll follow three early-career AWS Solutions Architects who used these role-based learning plans and simulations to enhance their cloud expertise and customer-facing readiness. Their experiences demonstrate how structured practice in a controlled environment can accelerate professional development.
 
-The main change since the last presentation of the overall architecture is the decomposition of a single service into a set of smaller services to improve maintainability and flexibility. Integrating a large volume of diverse healthcare data often requires specialized connectors for each format; by keeping them encapsulated separately as microservices, we can add, remove, and modify each connector without affecting the others. The microservices are loosely coupled via publish/subscribe messaging centered in what I call the “pub/sub hub.”
+## Hetvi’s story: Role-based learning focused on generative AI
 
-This solution represents what I would consider another reasonable sprint iteration from my last post. The scope is still limited to the ingestion and basic parsing of **HL7v2 messages** formatted in **Encoding Rules 7 (ER7)** through a REST interface.
+As a new Solutions Architect, I faced a common challenge: how to effectively communicate complex technical solutions to business leaders. While I was confident in my technical knowledge, translating cloud concepts into business value proved to be a different skill altogether.
 
-**The solution architecture is now as follows:**
+AWS SimuLearn transformed my approach to customer conversations. Through interactive simulations, I practiced engaging with virtual customers who needed generative AI solutions for their business challenges.
 
-> *Figure 1. Overall architecture; colored boxes represent distinct services.*
+One memorable scenario involved helping a retail client understand how AI could enhance their customer experience through personalized shopping recommendations. I was provided with immediate feedback on both my technical recommendations and communication style. I learned to replace technical jargon with business outcomes, focusing on ROI and operational improvements rather than architectural specifications.
 
----
+What made the experience invaluable was the ability to retry conversations and experiment with different approaches. Each iteration helped me refine my message and build confidence in handling complex customer interactions.
 
-While the term *microservices* has some inherent ambiguity, certain traits are common:  
-- Small, autonomous, loosely coupled  
-- Reusable, communicating through well-defined interfaces  
-- Specialized to do one thing well  
-- Often implemented in an **event-driven architecture**
+Today, I can confidently bridge the gap between technical solutions and business value, a skill that’s proven essential in my role as a Solutions Architect. For anyone looking to enhance their customer communication skills in technical roles, AWS SimuLearn offers a risk-free environment to practice and grow.
 
-When determining where to draw boundaries between microservices, consider:  
-- **Intrinsic**: technology used, performance, reliability, scalability  
-- **Extrinsic**: dependent functionality, rate of change, reusability  
-- **Human**: team ownership, managing *cognitive load*
+## Karishma’s story: Building technical depth
 
----
+As a Solutions Architect, I’ve found that deep technical expertise is essential for designing effective customer solutions. To expand my technical depth, I’ve combined individual training topics in AWS SimuLearn to create a structured learning experience tailored to real-world technical challenges.
 
-## Technology Choices and Communication Scope
+I started with security at the edge, progressing through modules on network security, encryption, identity and access management, and finally serverless technologies like [Amazon API Gateway](https://aws.amazon.com/api-gateway/), [AWS Lambda](https://aws.amazon.com/lambda/), and [Amazon DynamoDB](https://aws.amazon.com/dynamodb/). Each module included simulated customer interactions where I practiced gathering requirements and proposing solutions, followed by hands-on labs to solidify my understanding.
 
-| Communication scope                       | Technologies / patterns to consider                                                        |
-| ----------------------------------------- | ------------------------------------------------------------------------------------------ |
-| Within a single microservice              | Amazon Simple Queue Service (Amazon SQS), AWS Step Functions                               |
-| Between microservices in a single service | AWS CloudFormation cross-stack references, Amazon Simple Notification Service (Amazon SNS) |
-| Between services                          | Amazon EventBridge, AWS Cloud Map, Amazon API Gateway                                      |
+By combining [training modules](https://skillbuilder.aws/search?searchText=%22AWS+SimuLearn%22&page=1&isValidSearchText=true), I was able to simulate customer-specific workflows, ensuring a deeper grasp of their challenges. This personalized approach didn’t just prepare me for customer presentations, it gave me a framework to continuously refine my technical depth. With AWS SimuLearn, I can now rapidly upskill in unfamiliar areas and confidently architect solutions that align with business objectives, making me a more effective Solutions Architect.
 
----
+## Kattie’s story: Industry-based learning
 
-## The Pub/Sub Hub
+My background is in designing and developing software tools for Health Care and Life Sciences (HCLS) research teams. While I’m familiar with several programming languages, I had limited cloud knowledge at the level of an [AWS Certified Solutions Architect – Associate](https://aws.amazon.com/certification/certified-solutions-architect-associate/) and wanted to expand my knowledge about how AWS can be utilized in the HCLS industry. Additionally, I wanted to gain in-depth knowledge about various AWS services, use cases, and integration with third-party software.
 
-Using a **hub-and-spoke** architecture (or message broker) works well with a small number of tightly related microservices.  
-- Each microservice depends only on the *hub*  
-- Inter-microservice connections are limited to the contents of the published message  
-- Reduces the number of synchronous calls since pub/sub is a one-way asynchronous *push*
+The [AWS SimuLearn: Healthcare Learning Plan](https://explore.skillbuilder.aws/learn/public/learning_plan/view/2239/aws-simulearn-Healthcare) provided a wide range of business problems that gave me the opportunity to experiment with various AWS services to find technical solutions for the business problems. For example, I experimented with services relevant to HIPAA compliance with [AWS Config](https://aws.amazon.com/config/) and [AWS Systems Manager](https://aws.amazon.com/systems-manager/) and AI with [Amazon SageMaker](https://aws.amazon.com/sagemaker/), as well as batch processing, analytics, database and storage, dashboards with real-time data processing, IoT, and more.
 
-Drawback: **coordination and monitoring** are needed to avoid microservices processing the wrong message.
+Each learning plan can be started using the Open Dialogue mode or the Scripted mode. Initially, I chose the Scripted mode because it was less challenging, but once I observed a few different simulated conversations, I felt comfortable using the Open Dialogue mode. Open Dialogue mode offers an opportunity to hone your soft skills through an interactive, real-time customer conversation.
 
----
+Along the way, AWS SimuLearn provides helpful hints to guide the conversation, as well as an incomplete architecture diagram for you to expand upon during the dialogue with the customer. You also get asked questions regarding different services to further enhance the learning experience.
 
-## Core Microservice
+## Get started with AWS SimuLearn
 
-Provides foundational data and communication layer, including:  
-- **Amazon S3** bucket for data  
-- **Amazon DynamoDB** for data catalog  
-- **AWS Lambda** to write messages into the data lake and catalog  
-- **Amazon SNS** topic as the *hub*  
-- **Amazon S3** bucket for artifacts such as Lambda code
+Through simulated customer conversations and hands-on learning, AWS SimuLearn helped these three early-career professionals on their learning journeys. They received real-time feedback to improve their soft and technical skills while gaining experience in a live console environment.
 
-> Only allow indirect write access to the data lake through a Lambda function → ensures consistency.
+With 200+ trainings, including learning options available by cloud role or industry, AWS SimuLearn offers you a personalized learning experience. Game-based training with simulations empowers early-career professionals to build both technical expertise and customer engagement skills in a risk-free environment.
 
----
+Ready to launch your cloud career? Begin with the free [AWS SimuLearn: Cloud Practitioner Learning Plan](https://explore.skillbuilder.aws/learn/public/learning_plan/view/2226/aws-simulearn-cloud-practitioner) and explore the [full library of topic-based simulations](https://skillbuilder.aws/simulearn).
 
-## Front Door Microservice
-
-- Provides an API Gateway for external REST interaction  
-- Authentication & authorization based on **OIDC** via **Amazon Cognito**  
-- Self-managed *deduplication* mechanism using DynamoDB instead of SNS FIFO because:  
-  1. SNS deduplication TTL is only 5 minutes  
-  2. SNS FIFO requires SQS FIFO  
-  3. Ability to proactively notify the sender that the message is a duplicate  
-
----
-
-## Staging ER7 Microservice
-
-- Lambda “trigger” subscribed to the pub/sub hub, filtering messages by attribute  
-- Step Functions Express Workflow to convert ER7 → JSON  
-- Two Lambdas:  
-  1. Fix ER7 formatting (newline, carriage return)  
-  2. Parsing logic  
-- Result or error is pushed back into the pub/sub hub  
-
----
-
-## New Features in the Solution
-
-### 1. AWS CloudFormation Cross-Stack References
-Example *outputs* in the core microservice:
-```yaml
-Outputs:
-  Bucket:
-    Value: !Ref Bucket
-    Export:
-      Name: !Sub ${AWS::StackName}-Bucket
-  ArtifactBucket:
-    Value: !Ref ArtifactBucket
-    Export:
-      Name: !Sub ${AWS::StackName}-ArtifactBucket
-  Topic:
-    Value: !Ref Topic
-    Export:
-      Name: !Sub ${AWS::StackName}-Topic
-  Catalog:
-    Value: !Ref Catalog
-    Export:
-      Name: !Sub ${AWS::StackName}-Catalog
-  CatalogArn:
-    Value: !GetAtt Catalog.Arn
-    Export:
-      Name: !Sub ${AWS::StackName}-CatalogArn
+To learn more about what’s new with AWS SimuLearn, check out this recent blog post: [Introducing AWS SimuLearn: Generative AI Practitioner](https://aws.amazon.com/blogs/training-and-certification/introducing-aws-simulearn-generative-ai-practitioner/).

@@ -8,7 +8,7 @@ pre: " <b> 1.1. </b> "
 ### Week 1 Objectives:
 
 * Team up for the project, get acquainted with FCJ mentor team.
-* Watch video from series First Cloud Journey Bootcamp - 2025 in Youtube from the begining to the end of module 2.
+* Watch videos from series First Cloud Journey Bootcamp - 2025 in Youtube from the begining to the end of module 2.
 * Learn about AWS services and how to use them.
 
 ### Tasks to be carried out this week:

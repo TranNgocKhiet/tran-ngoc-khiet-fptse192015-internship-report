@@ -1,57 +1,30 @@
 ---
 title: "Week 5 Worklog"
-# date: "`r Sys.Date()`"
 weight: 1
 chapter: false
 pre: " <b> 1.5. </b> "
 ---
-{{% notice warning %}} 
-⚠️ **Note:** The following information is for reference purposes only. Please **do not copy verbatim** for your own report, including this warning.
-{{% /notice %}}
-
 
 ### Week 5 Objectives:
 
-* Connect and get acquainted with members of First Cloud Journey.
-* Understand basic AWS services, how to use the console & CLI.
+* Watch videos from series First Cloud Journey Bootcamp - 2025 in Youtube Module 7.
 
 ### Tasks to be carried out this week:
-| Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
-| 2   | - Get acquainted with FCJ members <br> - Read and take note of internship unit rules and regulations                                                                                                   | 08/11/2025 | 08/11/2025      |
-| 3   | - Learn about AWS and its types of services <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                              | 08/12/2025 | 08/12/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Create AWS Free Tier account <br> - Learn about AWS Console & AWS CLI <br> - **Practice:** <br>&emsp; + Create AWS account <br>&emsp; + Install & configure AWS CLI <br> &emsp; + How to use AWS CLI | 08/13/2025 | 08/13/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP   <br>                            | 08/14/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 08/15/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
+| Day | Task                                                                                                                                                                                                                                                                                                                                                                                                                                  | Start Date | Completion Date | Reference Material                                                                                                    |
+| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- | --------------- | --------------------------------------------------------------------------------------------------------------------- |
+| 2   | - Watch videos, read documents of **<i>Lab 39</i>** <br> - **Practice:** <br>&emsp; + Create DyanamoDB database <br>&emsp; + Operate some query of DynamoDB in AWS Cloudshell                                                                                                                                                                                                                                                         | 10/06/2025 | 10/06/2025      | <https://www.youtube.com/playlist?list=PLahN4TLWtox2a3vElknwzU_urND8hLn1i> <br> <https://000039.awsstudygroup.com/vi> |
+| 3   | - Watch videos, read documents of **<i>Lab 40</i>** <br> - **Practice:** <br>&emsp; + Build database from S3 Bucket and Glue Crawler <br>&emsp; + Analysis cost and usage performance                                                                                                                                                                                                                                                 | 10/07/2025 | 10/07/2025      | <https://www.youtube.com/playlist?list=PLahN4TLWtox2a3vElknwzU_urND8hLn1i> <br> <https://000040.awsstudygroup.com/vi> |
+| 4   | - Watch videos, read documents of **<i>Lab 60</i>** <br> - **Practice:** <br>&emsp; + Create DyanamoDB database <br>&emsp; + Operate some DynamoDB functions on management console and AWS SDK: <br>&emsp;&emsp; * Create <br>&emsp;&emsp; * Write <br>&emsp;&emsp; * Read <br>&emsp;&emsp; * Update <br>&emsp;&emsp; * Query <br>&emsp;&emsp; * Create Global Secondary Index <br>&emsp;&emsp; * Query Global Secondary Index        | 10/08/2025 | 10/08/2025      | <https://www.youtube.com/playlist?list=PLahN4TLWtox2a3vElknwzU_urND8hLn1i> <br> <https://000060.awsstudygroup.com/vi> |
+| 5   | - Watch videos, read documents of **<i>Lab 72</i>** <br> - **Practice:** <br>&emsp; + Create Firehose, IAM Role, Glue Crawler <br>&emsp; + Transform data with notebook and Glue DataBrew <br>&emsp; + Analysis data with Athena, Kinesis Data Analytics <br>&emsp; + Visualize data with QuickSight <br>&emsp; + Run Lambda Function on data <br>&emsp; + Create and connect Redshift cluster with S3 Bucket through Glue Connection | 10/09/2025 | 10/10/2025      | <https://www.youtube.com/playlist?list=PLahN4TLWtox2a3vElknwzU_urND8hLn1i> <br> <https://000072.awsstudygroup.com/vi> |
+| 6   | - Watch videos, read documents of **<i>Lab 73</i>** <br> - **Practice:** <br>&emsp; + Upload dataset <br>&emsp; + Create visual chart and table from data <br>&emsp; + Create backup dashboard <br>&emsp; + Publish dashboard                                                                                                                                                                                                         | 10/10/2025 | 10/10/2025      | <https://www.youtube.com/playlist?list=PLahN4TLWtox2a3vElknwzU_urND8hLn1i> <br> <https://000073.awsstudygroup.com/vi> |
 
 
 ### Week 5 Achievements:
 
-* Understood what AWS is and mastered the basic service groups: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Successfully created and configured an AWS Free Tier account.
-
-* Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
-
-* Installed and configured AWS CLI on the computer, including:
-  * Access Key
-  * Secret Key
-  * Default Region
-  * ...
-
-* Used AWS CLI to perform basic operations such as:
-
-  * Check account & configuration information
-  * Retrieve the list of regions
-  * View EC2 service
-  * Create and manage key pairs
-  * Check information about running services
-  * ...
-
-* Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* ...
+* Know how to create DynamoDB database 
+* know how to query data using AWS CloudShell, AWS SDK or management console
+* Know how to build database from S3 Bucket and Glue Crawler 
+* Know how to analysis cost and usage performance of Glue database using Athena
+* Apply knowlegde of Kinesis, IAM, Glue, Athena, QuickSight, Lambda, Redshift to do a workshop
+* Know how to create visual chart and table from data with Quicksight
+* Know how to create and publish dashboard with QuickSight

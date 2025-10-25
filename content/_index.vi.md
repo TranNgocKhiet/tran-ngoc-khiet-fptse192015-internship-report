@@ -1,6 +1,5 @@
 ---
 title: "Báo cáo thực tập"
-# date: "`r Sys.Date()`"
 weight: 1
 chapter: false
 ---

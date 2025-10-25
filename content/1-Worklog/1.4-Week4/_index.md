@@ -7,7 +7,7 @@ pre: " <b> 1.4. </b> "
 
 ### Week 4 Objectives:
 
-* Watch video from series First Cloud Journey Bootcamp - 2025 in Youtube Module 6.
+* Watch videos from series First Cloud Journey Bootcamp - 2025 in Youtube Module 6.
 * Participate in AI-Driven Development Life Cycle: Reimagining Software Engineering event.
 
 ### Tasks to be carried out this week:
