@@ -15,21 +15,21 @@
     <title>Bản đề xuất :: Báo cáo thực tập</title>
 
     
-    <link href="../../css/nucleus.css?1761400452" rel="stylesheet">
-    <link href="../../css/fontawesome-all.min.css?1761400452" rel="stylesheet">
-    <link href="../../css/hybrid.css?1761400452" rel="stylesheet">
-    <link href="../../css/featherlight.min.css?1761400452" rel="stylesheet">
-    <link href="../../css/perfect-scrollbar.min.css?1761400452" rel="stylesheet">
-    <link href="../../css/auto-complete.css?1761400452" rel="stylesheet">
-    <link href="../../css/atom-one-dark-reasonable.css?1761400452" rel="stylesheet">
-    <link href="../../css/theme.css?1761400452" rel="stylesheet">
-    <link href="../../css/hugo-theme.css?1761400452" rel="stylesheet">
+    <link href="../../css/nucleus.css?1761408069" rel="stylesheet">
+    <link href="../../css/fontawesome-all.min.css?1761408069" rel="stylesheet">
+    <link href="../../css/hybrid.css?1761408069" rel="stylesheet">
+    <link href="../../css/featherlight.min.css?1761408069" rel="stylesheet">
+    <link href="../../css/perfect-scrollbar.min.css?1761408069" rel="stylesheet">
+    <link href="../../css/auto-complete.css?1761408069" rel="stylesheet">
+    <link href="../../css/atom-one-dark-reasonable.css?1761408069" rel="stylesheet">
+    <link href="../../css/theme.css?1761408069" rel="stylesheet">
+    <link href="../../css/hugo-theme.css?1761408069" rel="stylesheet">
     
-    <link href="../../css/theme-workshop.css?1761400452" rel="stylesheet">
+    <link href="../../css/theme-workshop.css?1761408069" rel="stylesheet">
     
     
 
-    <script src="../../js/jquery-3.3.1.min.js?1761400452"></script>
+    <script src="../../js/jquery-3.3.1.min.js?1761408069"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -88,14 +88,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="../../js/lunr.min.js?1761400452"></script>
-<script type="text/javascript" src="../../js/auto-complete.js?1761400452"></script>
+<script type="text/javascript" src="../../js/lunr.min.js?1761408069"></script>
+<script type="text/javascript" src="../../js/auto-complete.js?1761408069"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/tranngockhiet.github.io\/tran-ngoc-khiet-fptse192015-internship-report\/\/vi";
     
 </script>
-<script type="text/javascript" src="../../js/search.js?1761400452"></script>
+<script type="text/javascript" src="../../js/search.js?1761408069"></script>
  
   </div>
 
@@ -926,7 +926,7 @@
                     <div class="progress">
   <div class="wrapper"><nav id="TableOfContents">
   <ul>
-    <li><a href="#giải-pháp-aws-serverless-hợp-nhất-cho-giám-sát-thời-tiết-thời-gian-thực">Giải pháp AWS Serverless hợp nhất cho giám sát thời tiết thời gian thực</a>
+    <li><a href="#giải-pháp-aws-serverless-hợp-nhất-cho-giám-sát-và-điều-khiển-văn-phòng-thông-minh-theo-thời-gian-thực">Giải pháp AWS Serverless hợp nhất cho giám sát và điều khiển văn phòng thông minh theo thời gian thực</a>
       <ul>
         <li><a href="#1-tóm-tắt-điều-hành">1. Tóm tắt điều hành</a></li>
         <li><a href="#2-tuyên-bố-vấn-đề">2. Tuyên bố vấn đề</a></li>
@@ -962,115 +962,114 @@
 
 
 
-	
-<div
-  class="notices warning"
-  
->
-  <p>⚠️ <strong>Lưu ý:</strong> Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng <strong>không sao chép nguyên văn</strong> cho bài báo cáo của bạn kể cả warning này.</p>
-
-</div>
-
-<p>Tại phần này, bạn cần tóm tắt các nội dung trong workshop mà bạn <strong>dự tính</strong> sẽ làm.</p>
-<h1 id="iot-weather-platform-for-lab-research">IoT Weather Platform for Lab Research</h1>
-<h2 id="giải-pháp-aws-serverless-hợp-nhất-cho-giám-sát-thời-tiết-thời-gian-thực">Giải pháp AWS Serverless hợp nhất cho giám sát thời tiết thời gian thực</h2>
+	<h1 id="smart-office-management-console">Smart Office Management Console</h1>
+<h2 id="giải-pháp-aws-serverless-hợp-nhất-cho-giám-sát-và-điều-khiển-văn-phòng-thông-minh-theo-thời-gian-thực">Giải pháp AWS Serverless hợp nhất cho giám sát và điều khiển văn phòng thông minh theo thời gian thực</h2>
 <h3 id="1-tóm-tắt-điều-hành">1. Tóm tắt điều hành</h3>
-<p>IoT Weather Platform được thiết kế dành cho nhóm <em>ITea Lab</em> tại TP. Hồ Chí Minh nhằm nâng cao khả năng thu thập và phân tích dữ liệu thời tiết. Nền tảng hỗ trợ tối đa 5 trạm thời tiết, có khả năng mở rộng lên 10–15 trạm, sử dụng thiết bị biên Raspberry Pi kết hợp cảm biến ESP32 để truyền dữ liệu qua MQTT. Nền tảng tận dụng các dịch vụ AWS Serverless để cung cấp giám sát thời gian thực, phân tích dự đoán và tiết kiệm chi phí, với quyền truy cập giới hạn cho 5 thành viên phòng lab thông qua Amazon Cognito.</p>
+<p>Hệ thống Smart Office Management Console được phát triển dựa trên ý tưởng từ những chuyến thăm định kỳ đến văn phòng AWS tại TP. Hồ Chí Minh. Giải pháp hỗ trợ tự động hóa văn phòng thông qua các thiết bị thông minh như đèn, cửa sổ cảm biến, và máy điều hòa, bằng cách thu thập, truyền và xử lý dữ liệu từ cảm biến IoT. Hệ thống sử dụng kiến trúc AWS Serverless, cho phép truyền dữ liệu qua MQTT và xử lý định kỳ mỗi 5 phút để cung cấp giám sát thời gian thực, điều khiển dựa trên dự đoán thời tiết, tiết kiệm chi phí điện năng, đồng thời giới hạn truy cập cho người dùng được xác thực qua Amazon Cognito.</p>
 <h3 id="2-tuyên-bố-vấn-đề">2. Tuyên bố vấn đề</h3>
-<p><em>Vấn đề hiện tại</em><br>
-Các trạm thời tiết hiện tại yêu cầu thu thập dữ liệu thủ công, khó quản lý khi có nhiều trạm. Không có hệ thống tập trung cho dữ liệu hoặc phân tích thời gian thực, và các nền tảng bên thứ ba thường tốn kém và quá phức tạp.</p>
-<p><em>Giải pháp</em><br>
-Nền tảng sử dụng AWS IoT Core để tiếp nhận dữ liệu MQTT, AWS Lambda và API Gateway để xử lý, Amazon S3 để lưu trữ (bao gồm data lake), và AWS Glue Crawlers cùng các tác vụ ETL để trích xuất, chuyển đổi, tải dữ liệu từ S3 data lake sang một S3 bucket khác để phân tích. AWS Amplify với Next.js cung cấp giao diện web, và Amazon Cognito đảm bảo quyền truy cập an toàn. Tương tự như Thingsboard và CoreIoT, người dùng có thể đăng ký thiết bị mới và quản lý kết nối, nhưng nền tảng này hoạt động ở quy mô nhỏ hơn và phục vụ mục đích sử dụng nội bộ. Các tính năng chính bao gồm bảng điều khiển thời gian thực, phân tích xu hướng và chi phí vận hành thấp.</p>
-<p><em>Lợi ích và hoàn vốn đầu tư (ROI)</em><br>
-Giải pháp tạo nền tảng cơ bản để các thành viên phòng lab phát triển một nền tảng IoT lớn hơn, đồng thời cung cấp nguồn dữ liệu cho những người nghiên cứu AI phục vụ huấn luyện mô hình hoặc phân tích. Nền tảng giảm bớt báo cáo thủ công cho từng trạm thông qua hệ thống tập trung, đơn giản hóa quản lý và bảo trì, đồng thời cải thiện độ tin cậy dữ liệu. Chi phí hàng tháng ước tính 0,66 USD (theo AWS Pricing Calculator), tổng cộng 7,92 USD cho 12 tháng. Tất cả thiết bị IoT đã được trang bị từ hệ thống trạm thời tiết hiện tại, không phát sinh chi phí phát triển thêm. Thời gian hoàn vốn 6–12 tháng nhờ tiết kiệm đáng kể thời gian thao tác thủ công.</p>
+<h4 id="vấn-đề-hiện-tại">Vấn đề hiện tại</h4>
+<p>Phần lớn các văn phòng hiện nay vẫn phải điều khiển thủ công các thiết bị như đèn, cửa sổ, và máy lạnh. Các thiết bị thường được bật liên tục trong giờ làm việc (8:00–17:00), ngay cả khi không cần thiết. Ví dụ, ánh sáng tự nhiên từ 10:00–15:00 có thể đủ sáng để không cần đèn, hoặc độ ẩm cao trong mùa mưa có thể tạo môi trường mát mẻ tương tự điều hòa. Việc điều khiển tự động dựa trên điều kiện môi trường giúp tiết kiệm năng lượng và chi phí vận hành.</p>
+<h4 id="giải-pháp">Giải pháp</h4>
+<p>Nền tảng sử dụng AWS IoT Core để tiếp nhận dữ liệu MQTT, AWS Lambda và API Gateway để xử lý, DynamoDB để lưu trữ dữ liệu, Amazon S3 để lưu trữ và cung cấp giao diện web, Amazon Cognito để xác thực truy cập, và AWS SNS để gửi thông báo khi phát hiện bất thường hoặc điều kiện thời tiết đặc biệt. Giống như Thingsboard và CoreIoT, hệ thống cho phép đăng ký thiết bị mới và quản lý kết nối, nhưng hoạt động ở quy mô nhỏ hơn, phục vụ cho môi trường nội bộ. Các tính năng chính bao gồm giám sát thời gian thực, dự báo thời tiết, điều khiển tự động và chi phí vận hành thấp.</p>
+<h4 id="lợi-ích-và-hoàn-vốn-đầu-tư-roi">Lợi ích và hoàn vốn đầu tư (ROI)</h4>
+<p>Giải pháp giúp nâng cao tự động hóa, giám sát, và hiệu quả năng lượng trong môi trường văn phòng, đồng thời là nền tảng nghiên cứu và mở rộng ứng dụng IoT thực tế. Hệ thống cung cấp nền tảng tập trung, giảm cấu hình thủ công, cải thiện độ tin cậy dữ liệu và đơn giản hóa bảo trì.</p>
+<p>Chi phí vận hành hàng tháng ước tính 11,81 USD (bao gồm DynamoDB, IoT Core, CloudFront, CloudWatch và SNS), tương đương 21,72 USD mỗi năm. Do các thiết bị IoT đã được triển khai, không phát sinh chi phí phần cứng. Thời gian hoàn vốn từ 6–12 tháng, nhờ tiết kiệm thời gian và chi phí vận hành, đảm bảo khả năng mở rộng và hiệu quả lâu dài.</p>
 <h3 id="3-kiến-trúc-giải-pháp">3. Kiến trúc giải pháp</h3>
-<p>Nền tảng áp dụng kiến trúc AWS Serverless để quản lý dữ liệu từ 5 trạm dựa trên Raspberry Pi, có thể mở rộng lên 15 trạm. Dữ liệu được tiếp nhận qua AWS IoT Core, lưu trữ trong S3 data lake và xử lý bởi AWS Glue Crawlers và ETL jobs để chuyển đổi và tải vào một S3 bucket khác cho mục đích phân tích. Lambda và API Gateway xử lý bổ sung, trong khi Amplify với Next.js cung cấp bảng điều khiển được bảo mật bởi Cognito.</p>
-<p><img src="../../images/2-Proposal/edge_architecture.jpeg" alt="IoT Weather Station Architecture"></p>
-<p><img src="../../images/2-Proposal/platform_architecture.jpeg" alt="IoT Weather Platform Architecture"></p>
-<p><em>Dịch vụ AWS sử dụng</em></p>
+<p>Hệ thống áp dụng kiến trúc AWS Serverless tối ưu chi phí và khả năng mở rộng. Dữ liệu từ nhiều trạm cảm biến được gửi đến AWS IoT Core, xử lý bằng Lambda, và lưu trữ trong DynamoDB để giám sát thời gian thực. EventBridge tự động kích hoạt các tác vụ định kỳ và phát hiện bất thường, trong khi SNS gửi thông báo. Giao diện web được lưu trữ trên S3 và phân phối qua CloudFront, được bảo mật bởi Cognito.</p>
+<p><img src="../../images/2-Proposal/Smart-Office-Architect-Diagram.drawio.png" alt="Sơ đồ kiến trúc"></p>
+<h4 id="dịch-vụ-aws-sử-dụng">Dịch vụ AWS sử dụng</h4>
 <ul>
-<li><em>AWS IoT Core</em>: Tiếp nhận dữ liệu MQTT từ 5 trạm, mở rộng lên 15.</li>
-<li><em>AWS Lambda</em>: Xử lý dữ liệu và kích hoạt Glue jobs (2 hàm).</li>
-<li><em>Amazon API Gateway</em>: Giao tiếp với ứng dụng web.</li>
-<li><em>Amazon S3</em>: Lưu trữ dữ liệu thô (data lake) và dữ liệu đã xử lý (2 bucket).</li>
-<li><em>AWS Glue</em>: Crawlers lập chỉ mục dữ liệu, ETL jobs chuyển đổi và tải dữ liệu.</li>
-<li><em>AWS Amplify</em>: Lưu trữ giao diện web Next.js.</li>
-<li><em>Amazon Cognito</em>: Quản lý quyền truy cập cho người dùng phòng lab.</li>
+<li><strong>AWS IoT Core</strong>: Tiếp nhận và quản lý dữ liệu MQTT từ 8 trạm cảm biến.</li>
+<li><strong>AWS Lambda</strong>: Xử lý dữ liệu, cập nhật cấu hình, và điều khiển tự động.</li>
+<li><strong>Amazon API Gateway</strong>: Kết nối frontend và backend qua RESTful API.</li>
+<li><strong>Amazon DynamoDB</strong>: Lưu trữ hồ sơ người dùng, cấu hình phòng, và nhật ký cảm biến.</li>
+<li><strong>Amazon EventBridge</strong>: Kích hoạt các tác vụ định kỳ và phát hiện bất thường.</li>
+<li><strong>Amazon SNS</strong>: Gửi thông báo khi phát hiện sự kiện bất thường.</li>
+<li><strong>Amazon S3</strong>: Lưu trữ bảng điều khiển web và các tài nguyên tĩnh.</li>
+<li><strong>Amazon CloudFront</strong>: Phân phối nội dung toàn cầu qua HTTPS với độ trễ thấp.</li>
+<li><strong>Amazon Cognito</strong>: Quản lý xác thực người dùng.</li>
+<li><strong>Amazon CloudWatch</strong>: Theo dõi và ghi nhật ký hoạt động.</li>
 </ul>
-<p><em>Thiết kế thành phần</em></p>
+<h4 id="thiết-kế-thành-phần">Thiết kế thành phần</h4>
 <ul>
-<li><em>Thiết bị biên</em>: Raspberry Pi thu thập và lọc dữ liệu cảm biến, gửi tới IoT Core.</li>
-<li><em>Tiếp nhận dữ liệu</em>: AWS IoT Core nhận tin nhắn MQTT từ thiết bị biên.</li>
-<li><em>Lưu trữ dữ liệu</em>: Dữ liệu thô lưu trong S3 data lake; dữ liệu đã xử lý lưu ở một S3 bucket khác.</li>
-<li><em>Xử lý dữ liệu</em>: AWS Glue Crawlers lập chỉ mục dữ liệu; ETL jobs chuyển đổi để phân tích.</li>
-<li><em>Giao diện web</em>: AWS Amplify lưu trữ ứng dụng Next.js cho bảng điều khiển và phân tích thời gian thực.</li>
-<li><em>Quản lý người dùng</em>: Amazon Cognito giới hạn 5 tài khoản hoạt động.</li>
+<li><strong>Sensor Hubs</strong>: Each IoT-enabled room device collects environmental data (temperature, humidity, light, etc.) and sends it to <strong>AWS IoT Core</strong> every two minutes.</li>
+<li><strong>Data Ingestion</strong>: <strong>AWS IoT Core</strong> routes incoming MQTT messages to the <strong>SensorProcessor Lambda</strong>, which validates and logs the data into <strong>Amazon DynamoDB</strong>.</li>
+<li><strong>Configuration Management</strong>: The <strong>RoomConfigHandler Lambda</strong> updates room settings (auto/manual modes, thresholds, timers) in <strong>DynamoDB</strong> when users make changes through the dashboard.</li>
+<li><strong>Automation Control</strong>: <strong>AutomationSetup Lambda</strong> listens to <strong>DynamoDB Streams</strong> for configuration updates and registers automation events in <strong>Amazon EventBridge</strong>.</li>
+<li><strong>Event Handling</strong>: <strong>EventBridge</strong> triggers <strong>AutomationHandler Lambda</strong> at scheduled times or when anomalies are detected, sending alerts via <strong>Amazon SNS</strong> if needed.</li>
+<li><strong>User Interaction</strong>: The <strong>web dashboard</strong> (hosted on <strong>Amazon S3</strong> and delivered via <strong>CloudFront</strong>) allows users to view sensor data and manage configurations.</li>
+<li><strong>User Authentication</strong>: <strong>Amazon Cognito</strong> secures user access with sign-up, sign-in, and token-based authorization integrated through <strong>API Gateway</strong>.</li>
+<li><strong>Monitoring &amp; Reliability</strong>: <strong>Amazon CloudWatch</strong> collects logs and metrics from all <strong>Lambda functions</strong>, with <strong>SQS</strong> queues as <strong>DLQs</strong> to capture failed executions for debugging.</li>
 </ul>
 <h3 id="4-triển-khai-kỹ-thuật">4. Triển khai kỹ thuật</h3>
-<p><em>Các giai đoạn triển khai</em><br>
-Dự án gồm 2 phần — thiết lập trạm thời tiết biên và xây dựng nền tảng thời tiết — mỗi phần trải qua 4 giai đoạn:</p>
-<ol>
-<li><em>Nghiên cứu và vẽ kiến trúc</em>: Nghiên cứu Raspberry Pi với cảm biến ESP32 và thiết kế kiến trúc AWS Serverless (1 tháng trước kỳ thực tập).</li>
-<li><em>Tính toán chi phí và kiểm tra tính khả thi</em>: Sử dụng AWS Pricing Calculator để ước tính và điều chỉnh (Tháng 1).</li>
-<li><em>Điều chỉnh kiến trúc để tối ưu chi phí/giải pháp</em>: Tinh chỉnh (ví dụ tối ưu Lambda với Next.js) để đảm bảo hiệu quả (Tháng 2).</li>
-<li><em>Phát triển, kiểm thử, triển khai</em>: Lập trình Raspberry Pi, AWS services với CDK/SDK và ứng dụng Next.js, sau đó kiểm thử và đưa vào vận hành (Tháng 2–3).</li>
-</ol>
-<p><em>Yêu cầu kỹ thuật</em></p>
+<h4 id="giai-đoạn-triển-khai">Giai đoạn triển khai</h4>
 <ul>
-<li><em>Trạm thời tiết biên</em>: Cảm biến (nhiệt độ, độ ẩm, lượng mưa, tốc độ gió), vi điều khiển ESP32, Raspberry Pi làm thiết bị biên. Raspberry Pi chạy Raspbian, sử dụng Docker để lọc dữ liệu và gửi 1 MB/ngày/trạm qua MQTT qua Wi-Fi.</li>
-<li><em>Nền tảng thời tiết</em>: Kiến thức thực tế về AWS Amplify (lưu trữ Next.js), Lambda (giảm thiểu do Next.js xử lý), AWS Glue (ETL), S3 (2 bucket), IoT Core (gateway và rules), và Cognito (5 người dùng). Sử dụng AWS CDK/SDK để lập trình (ví dụ IoT Core rules tới S3). Next.js giúp giảm tải Lambda cho ứng dụng web fullstack.</li>
+<li>Nghiên cứu và thử nghiệm dịch vụ AWS: IoT Core, Lambda, S3, API Gateway, EventBridge, CloudFront, Cognito (7 tuần).
+Thiết kế kiến trúc và ước tính chi phí: Dựng sơ đồ cho văn phòng 8 phòng, tính toán bằng AWS Pricing Calculator (1 tuần).</li>
+<li>Phát triển và tối ưu: Viết script mô phỏng dữ liệu cảm biến, phát triển Lambda, kết nối API Gateway và DynamoDB (3 tuần).</li>
+<li>Kiểm thử và triển khai: Kiểm thử hệ thống, xác nhận quy trình dữ liệu và giám sát kết quả trên dashboard (1 tuần).</li>
+</ul>
+<h4 id="yêu-cầu-kỹ-thuật">Yêu cầu kỹ thuật</h4>
+<ul>
+<li>Thiết bị cảm biến: ESP32 hoặc tương đương, gửi dữ liệu qua MQTT mỗi 2 phút.</li>
+<li>Hệ thống AWS: IoT Core, Lambda, DynamoDB, S3, API Gateway, EventBridge, SNS, CloudFront, Cognito.</li>
+<li>Triển khai: Dùng AWS CDK/SDK; giao diện Next.js triển khai trên S3 + CloudFront; xác thực bằng Cognito.</li>
 </ul>
 <h3 id="5-lộ-trình--mốc-triển-khai">5. Lộ trình &amp; Mốc triển khai</h3>
+<h4 id="lộ-trình">Lộ trình</h4>
 <ul>
-<li><em>Trước thực tập (Tháng 0)</em>: 1 tháng lên kế hoạch và đánh giá trạm cũ.</li>
-<li><em>Thực tập (Tháng 1–3)</em>:
-<ul>
-<li>Tháng 1: Học AWS và nâng cấp phần cứng.</li>
-<li>Tháng 2: Thiết kế và điều chỉnh kiến trúc.</li>
-<li>Tháng 3: Triển khai, kiểm thử, đưa vào sử dụng.</li>
-</ul>
-</li>
-<li><em>Sau triển khai</em>: Nghiên cứu thêm trong vòng 1 năm.</li>
+<li>Tuần 1–7: Nghiên cứu dịch vụ AWS.</li>
+<li>Tuần 8: Thiết kế kiến trúc, ước tính chi phí.</li>
+<li>Tuần 9–11: Phát triển, tích hợp, cấu hình hệ thống.</li>
+<li>Tuần 12: Kiểm thử, khắc phục lỗi, triển khai chính thức.</li>
 </ul>
 <h3 id="6-ước-tính-ngân-sách">6. Ước tính ngân sách</h3>
-<p>Có thể xem chi phí trên <a href="https://calculator.aws/#/estimate?id=621f38b12a1ef026842ba2ddfe46ff936ed4ab01">AWS Pricing Calculator</a><br>
-Hoặc tải <a href="../attachments/budget_estimation.pdf">tệp ước tính ngân sách</a>.</p>
-<p><em>Chi phí hạ tầng</em></p>
+<p>Có thể xem chi phí trên <a href="https://calculator.aws/#/estimate?id=0db12150c448b012356e475becefd549c37094d8">AWS Pricing Calculator</a><br>
+Hoặc tải <a href="../../file/f8e2d281-aba2-48c2-adf8-d8ec828d2ec9.pdf">tệp ước tính ngân sách</a>.</p>
+<h4 id="chi-phí-hạ-tầng">Chi phí hạ tầng</h4>
 <ul>
-<li>AWS Lambda: 0,00 USD/tháng (1.000 request, 512 MB lưu trữ).</li>
-<li>S3 Standard: 0,15 USD/tháng (6 GB, 2.100 request, 1 GB quét).</li>
-<li>Truyền dữ liệu: 0,02 USD/tháng (1 GB vào, 1 GB ra).</li>
-<li>AWS Amplify: 0,35 USD/tháng (256 MB, request 500 ms).</li>
-<li>Amazon API Gateway: 0,01 USD/tháng (2.000 request).</li>
-<li>AWS Glue ETL Jobs: 0,02 USD/tháng (2 DPU).</li>
-<li>AWS Glue Crawlers: 0,07 USD/tháng (1 crawler).</li>
-<li>MQTT (IoT Core): 0,08 USD/tháng (5 thiết bị, 45.000 tin nhắn).</li>
-</ul>
-<p><em>Tổng</em>: 0,7 USD/tháng, 8,40 USD/12 tháng</p>
-<ul>
-<li><em>Phần cứng</em>: 265 USD một lần (Raspberry Pi 5 và cảm biến).</li>
+<li>DynamoDB: 0,09 USD/tháng.</li>
+<li>IoT Core: 0,18 USD/tháng.</li>
+<li>CloudFront: 1,27 USD/tháng.</li>
+<li>CloudWatch: 0,25 USD/tháng.</li>
+<li>SNS: 0,02 USD/tháng.</li>
+<li>Các dịch vụ khác: Miễn phí (trong Free Tier).
+Tổng cộng: ≈ 1,81 USD/tháng, tương đương 21,72 USD/năm.</li>
 </ul>
 <h3 id="7-đánh-giá-rủi-ro">7. Đánh giá rủi ro</h3>
-<p><em>Ma trận rủi ro</em></p>
+<h4 id="ma-trận-rủi-ro">Ma trận rủi ro</h4>
 <ul>
-<li>Mất mạng: Ảnh hưởng trung bình, xác suất trung bình.</li>
-<li>Hỏng cảm biến: Ảnh hưởng cao, xác suất thấp.</li>
-<li>Vượt ngân sách: Ảnh hưởng trung bình, xác suất thấp.</li>
+<li>Mất kết nối IoT: Ảnh hưởng trung bình, xác suất trung bình.</li>
+<li>Lỗi phần cứng cảm biến: Ảnh hưởng cao, xác suất thấp.</li>
+<li>Phát sinh chi phí AWS bất ngờ: Ảnh hưởng trung bình, xác suất thấp.</li>
+<li>Dữ liệu sai lệch hoặc chậm trễ: Ảnh hưởng trung bình, xác suất trung bình.</li>
 </ul>
-<p><em>Chiến lược giảm thiểu</em></p>
+<h4 id="chiến-lược-giảm-thiểu">Chiến lược giảm thiểu</h4>
 <ul>
-<li>Mạng: Lưu trữ cục bộ trên Raspberry Pi với Docker.</li>
-<li>Cảm biến: Kiểm tra định kỳ, dự phòng linh kiện.</li>
-<li>Chi phí: Cảnh báo ngân sách AWS, tối ưu dịch vụ.</li>
+<li>Lưu trữ tạm tại cảm biến khi mất kết nối.</li>
+<li>Duy trì thiết bị dự phòng, kiểm tra định kỳ.</li>
+<li>Theo dõi chi phí bằng AWS Budgets.</li>
+<li>Xác minh dữ liệu tại Lambda trước khi lưu vào DynamoDB.</li>
 </ul>
-<p><em>Kế hoạch dự phòng</em></p>
+<h4 id="kế-hoạch-dự-phòng">Kế hoạch dự phòng</h4>
 <ul>
-<li>Quay lại thu thập thủ công nếu AWS gặp sự cố.</li>
-<li>Sử dụng CloudFormation để khôi phục cấu hình liên quan đến chi phí.</li>
+<li>Chuyển sang chế độ thủ công nếu hệ thống IoT ngừng hoạt động.</li>
+<li>Kích hoạt cảnh báo qua CloudWatch khi lỗi xảy ra.</li>
+<li>Sử dụng CloudFormation/CDK rollback để khôi phục nhanh cấu hình.</li>
 </ul>
 <h3 id="8-kết-quả-kỳ-vọng">8. Kết quả kỳ vọng</h3>
-<p><em>Cải tiến kỹ thuật</em>: Dữ liệu và phân tích thời gian thực thay thế quy trình thủ công. Có thể mở rộng tới 10–15 trạm.<br>
-<em>Giá trị dài hạn</em>: Nền tảng dữ liệu 1 năm cho nghiên cứu AI, có thể tái sử dụng cho các dự án tương lai.</p>
+<h4 id="cải-tiến-kỹ-thuật">Cải tiến kỹ thuật:</h4>
+<ul>
+<li>Giám sát và điều khiển thời gian thực thay thế hoàn toàn việc vận hành thủ công trong từng phòng.</li>
+<li>Nền tảng tập trung giúp nâng cao độ chính xác và tính nhất quán của dữ liệu.</li>
+<li>Kiến trúc linh hoạt, có khả năng mở rộng để tích hợp thêm nhiều phòng hoặc thiết bị IoT khác trong tương lai.</li>
+</ul>
+<h4 id="giá-trị-dài-hạn">Giá trị dài hạn:</h4>
+<ul>
+<li>Cung cấp nền tảng có thể tái sử dụng cho nghiên cứu và phát triển các giải pháp tòa nhà thông minh và tự động hóa IoT.</li>
+<li>Cho phép phân tích dữ liệu để tối ưu hiệu suất năng lượng và điều kiện môi trường.</li>
+<li>Minh chứng cho một kiến trúc AWS serverless hoàn chỉnh, chi phí thấp (dưới 2 USD mỗi tháng).</li>
+</ul>
 
 
 
@@ -1723,19 +1722,19 @@ Hoặc tải <a href="../attachments/budget_estimation.pdf">tệp ước tính n
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="../../js/clipboard.min.js?1761400452"></script>
-    <script src="../../js/perfect-scrollbar.min.js?1761400452"></script>
-    <script src="../../js/perfect-scrollbar.jquery.min.js?1761400452"></script>
-    <script src="../../js/jquery.sticky.js?1761400452"></script>
-    <script src="../../js/featherlight.min.js?1761400452"></script>
-    <script src="../../js/highlight.pack.js?1761400452"></script>
+    <script src="../../js/clipboard.min.js?1761408069"></script>
+    <script src="../../js/perfect-scrollbar.min.js?1761408069"></script>
+    <script src="../../js/perfect-scrollbar.jquery.min.js?1761408069"></script>
+    <script src="../../js/jquery.sticky.js?1761408069"></script>
+    <script src="../../js/featherlight.min.js?1761408069"></script>
+    <script src="../../js/highlight.pack.js?1761408069"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="../../js/modernizr.custom-3.6.0.js?1761400452"></script>
-    <script src="../../js/learn.js?1761400452"></script>
-    <script src="../../js/hugo-learn.js?1761400452"></script>
+    <script src="../../js/modernizr.custom-3.6.0.js?1761408069"></script>
+    <script src="../../js/learn.js?1761408069"></script>
+    <script src="../../js/hugo-learn.js?1761408069"></script>
 
-    <link href="../../mermaid/mermaid.css?1761400452" rel="stylesheet" />
-    <script src="../../mermaid/mermaid.js?1761400452"></script>
+    <link href="../../mermaid/mermaid.css?1761408069" rel="stylesheet" />
+    <script src="../../mermaid/mermaid.js?1761408069"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

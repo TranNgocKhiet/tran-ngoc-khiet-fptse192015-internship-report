@@ -15,21 +15,21 @@
     <title>Proposal :: Internship Report</title>
 
     
-    <link href="../css/nucleus.css?1761400450" rel="stylesheet">
-    <link href="../css/fontawesome-all.min.css?1761400450" rel="stylesheet">
-    <link href="../css/hybrid.css?1761400450" rel="stylesheet">
-    <link href="../css/featherlight.min.css?1761400450" rel="stylesheet">
-    <link href="../css/perfect-scrollbar.min.css?1761400450" rel="stylesheet">
-    <link href="../css/auto-complete.css?1761400450" rel="stylesheet">
-    <link href="../css/atom-one-dark-reasonable.css?1761400450" rel="stylesheet">
-    <link href="../css/theme.css?1761400450" rel="stylesheet">
-    <link href="../css/hugo-theme.css?1761400450" rel="stylesheet">
+    <link href="../css/nucleus.css?1761408068" rel="stylesheet">
+    <link href="../css/fontawesome-all.min.css?1761408068" rel="stylesheet">
+    <link href="../css/hybrid.css?1761408068" rel="stylesheet">
+    <link href="../css/featherlight.min.css?1761408068" rel="stylesheet">
+    <link href="../css/perfect-scrollbar.min.css?1761408068" rel="stylesheet">
+    <link href="../css/auto-complete.css?1761408068" rel="stylesheet">
+    <link href="../css/atom-one-dark-reasonable.css?1761408068" rel="stylesheet">
+    <link href="../css/theme.css?1761408068" rel="stylesheet">
+    <link href="../css/hugo-theme.css?1761408068" rel="stylesheet">
     
-    <link href="../css/theme-workshop.css?1761400450" rel="stylesheet">
+    <link href="../css/theme-workshop.css?1761408068" rel="stylesheet">
     
     
 
-    <script src="../js/jquery-3.3.1.min.js?1761400450"></script>
+    <script src="../js/jquery-3.3.1.min.js?1761408068"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -88,14 +88,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="../js/lunr.min.js?1761400450"></script>
-<script type="text/javascript" src="../js/auto-complete.js?1761400450"></script>
+<script type="text/javascript" src="../js/lunr.min.js?1761408068"></script>
+<script type="text/javascript" src="../js/auto-complete.js?1761408068"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/tranngockhiet.github.io\/tran-ngoc-khiet-fptse192015-internship-report\/";
     
 </script>
-<script type="text/javascript" src="../js/search.js?1761400450"></script>
+<script type="text/javascript" src="../js/search.js?1761408068"></script>
  
   </div>
 
@@ -930,12 +930,7 @@
       <ul>
         <li><a href="#1-executive-summary">1. Executive Summary</a></li>
         <li><a href="#2-problem-statement">2. Problem Statement</a></li>
-        <li><a href="#whats-the-problem">What’s the Problem?</a></li>
-        <li><a href="#the-solution">The Solution</a></li>
-        <li><a href="#benefits-and-return-on-investment">Benefits and Return on Investment</a></li>
         <li><a href="#3-solution-architecture">3. Solution Architecture</a></li>
-        <li><a href="#aws-services-used">AWS Services Used</a></li>
-        <li><a href="#component-design">Component Design</a></li>
         <li><a href="#4-technical-implementation">4. Technical Implementation</a></li>
         <li><a href="#5-timeline--milestones">5. Timeline &amp; Milestones</a></li>
         <li><a href="#6-budget-estimation">6. Budget Estimation</a></li>
@@ -968,35 +963,36 @@
 
 
 
-	<p>In this section, you need to summarize the contents of the workshop that you <strong>plan</strong> to conduct.</p>
-<h1 id="iot-weather-platform-for-lab-research">IoT Weather Platform for Lab Research</h1>
+	<h1 id="iot-weather-platform-for-lab-research">IoT Weather Platform for Lab Research</h1>
 <h2 id="a-unified-aws-serverless-solution-for-real-time-weather-monitoring">A Unified AWS Serverless Solution for Real-Time Weather Monitoring</h2>
 <h3 id="1-executive-summary">1. Executive Summary</h3>
 <p>The Smart Office Management Console is designed base on the idea of weekly trip to AWS office at Ho Chi Minh city. It supports office with smart device like auto light, auto scensor window, auto air conditioner by collect, transmit and process data from IoT Sensor. By utilizing AWS Serverless services, data can transmit via MQTT and process every 5 minutes to support real-time monitoring, acting base on predictive weather and saving cost from unused devicesm with restricted to athenticated members via Amazon Cognito</p>
 <h3 id="2-problem-statement">2. Problem Statement</h3>
-<h3 id="whats-the-problem">What’s the Problem?</h3>
+<h4 id="whats-the-problem">What’s the Problem?</h4>
 <p>Nowadays, offices require manual control for light, window, air conditioner, .etc. Most office turn on light and air conditioner thoughout there work hour (usually 8 a.m to 5 p.m), but this
 may not be necessary. For example, sunlight at 8 a.m may not be bright enough for worker to see clearly, but if the office is not very big, sunlight from 10 a.m to 3.pm can support light up very much. Additionally, in rainy season, some places have high humidity which can provide a cool environment similar to air conditioner environment. If we can control devices base on these condition, it will save energy for the world as well as money for organization.</p>
-<h3 id="the-solution">The Solution</h3>
+<h4 id="the-solution">The Solution</h4>
 <p>The platform uses AWS IoT Core to ingest MQTT data, AWS Lambda and API Gateway for processing, DynamoDB for data storage, Amazon S3 for static website hosting and Amazon Cognito ensures secure access, AWS SNS to send notifications when system monitoring device or when supisious weather condition detect. Similar to Thingsboard and CoreIoT, users can register new devices and manage connections, though this platform operates on a smaller scale and is designed for private use. Key features include real-time monitoring, weather prediction, auto controlling and low operational costs.</p>
-<h3 id="benefits-and-return-on-investment">Benefits and Return on Investment</h3>
+<h4 id="benefits-and-return-on-investment">Benefits and Return on Investment</h4>
 <p>The Smart Office system enhances automation, monitoring, and energy efficiency across office environments, providing a reliable platform for research, expansion, and real-world IoT application development. It serves as a foundational resource for lab members and developers to build advanced smart environment solutions, while offering a centralized system that reduces manual configuration, improves data reliability, and simplifies maintenance.</p>
 <p>Monthly operating costs are estimated at $11.81 USD, including DynamoDB ($0.09), IoT Core ($0.18), CloudFront ($1.27), CloudWatch ($0.25) and SNS ($0.02), totaling $21.72 USD per year. As IoT hardware is already deployed, there are no additional equipment expenses. The system achieves a break-even period of 6–12 months through significant time savings and reduced manual operation, offering long-term scalability and cost efficiency.</p>
 <h3 id="3-solution-architecture">3. Solution Architecture</h3>
 <p>The Smart Office system adopts a fully serverless AWS architecture optimized for cost efficiency and scalability. Data from multiple sensor hubs is transmitted to AWS IoT Core, processed by Lambda functions, and stored in DynamoDB for real-time monitoring and configuration management. EventBridge automates scheduled device actions and anomaly detection, while SNS handles system notifications. The web dashboard is hosted on S3 and delivered securely via CloudFront, with user authentication managed through Amazon Cognito. This architecture minimizes operational overhead and ensures high reliability for smart environment control.</p>
-<p><img src="../images/2-Proposal/Smart-Office-Architect-Diagram.drawio" alt="Smart Office Architecture"></p>
-<h3 id="aws-services-used">AWS Services Used</h3>
+<p><img src="../images/2-Proposal/Smart-Office-Architect-Diagram.drawio.png" alt="Smart Office Architecture"></p>
+<h4 id="aws-services-used">AWS Services Used</h4>
 <ul>
 <li><strong>AWS IoT Core</strong>: Ingests and manages MQTT data from eight smart room hubs, enabling near real-time monitoring and automation.</li>
 <li><strong>AWS Lambda</strong>: Handles sensor data processing, configuration updates, and automation triggers (four primary functions).</li>
-<li><strong>Amazon API Gateway</strong>: Connects the web client to backend services through secure RESTful APIs. - <strong>Amazon DynamoDB</strong>: Stores user profiles, office and room configurations, and recent sensor logs for fast access.</li>
+<li><strong>Amazon API Gateway</strong>: Connects the web client to backend services through secure RESTful APIs.</li>
+<li><strong>Amazon DynamoDB</strong>: Stores user profiles, office and room configurations, and recent sensor logs for fast access.</li>
 <li><strong>Amazon EventBridge</strong>: Triggers scheduled automation events and anomaly detection workflows.</li>
 <li><strong>Amazon SNS</strong>: Delivers alerts and notifications when anomalies or threshold events occur.</li>
-<li><strong>Amazon S3</strong>: Hosts the web dashboard and static assets for the Smart Office application. - <strong>Amazon CloudFront</strong>: Distributes the web dashboard globally with secure HTTPS access and low latency.</li>
+<li><strong>Amazon S3</strong>: Hosts the web dashboard and static assets for the Smart Office application.</li>
+<li><strong>Amazon CloudFront</strong>: Distributes the web dashboard globally with secure HTTPS access and low latency.</li>
 <li><strong>Amazon Cognito</strong>: Manages authentication and authorization for users interacting with the system.</li>
 <li><strong>Amazon CloudWatch</strong>: Monitors metrics and stores operational logs for debugging and performance optimization.</li>
 </ul>
-<h3 id="component-design">Component Design</h3>
+<h4 id="component-design">Component Design</h4>
 <ul>
 <li><strong>Sensor Hubs</strong>: Each IoT-enabled room device collects environmental data (temperature, humidity, light, etc.) and sends it to <strong>AWS IoT Core</strong> every two minutes.</li>
 <li><strong>Data Ingestion</strong>: <strong>AWS IoT Core</strong> routes incoming MQTT messages to the <strong>SensorProcessor Lambda</strong>, which validates and logs the data into <strong>Amazon DynamoDB</strong>.</li>
@@ -1735,19 +1731,19 @@ Total: ≈ $1.81/month, or $21.72/year (within AWS Free Tier limits).</li>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="../js/clipboard.min.js?1761400450"></script>
-    <script src="../js/perfect-scrollbar.min.js?1761400450"></script>
-    <script src="../js/perfect-scrollbar.jquery.min.js?1761400450"></script>
-    <script src="../js/jquery.sticky.js?1761400450"></script>
-    <script src="../js/featherlight.min.js?1761400450"></script>
-    <script src="../js/highlight.pack.js?1761400450"></script>
+    <script src="../js/clipboard.min.js?1761408068"></script>
+    <script src="../js/perfect-scrollbar.min.js?1761408068"></script>
+    <script src="../js/perfect-scrollbar.jquery.min.js?1761408068"></script>
+    <script src="../js/jquery.sticky.js?1761408068"></script>
+    <script src="../js/featherlight.min.js?1761408068"></script>
+    <script src="../js/highlight.pack.js?1761408068"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="../js/modernizr.custom-3.6.0.js?1761400450"></script>
-    <script src="../js/learn.js?1761400450"></script>
-    <script src="../js/hugo-learn.js?1761400450"></script>
+    <script src="../js/modernizr.custom-3.6.0.js?1761408068"></script>
+    <script src="../js/learn.js?1761408068"></script>
+    <script src="../js/hugo-learn.js?1761408068"></script>
 
-    <link href="../mermaid/mermaid.css?1761400450" rel="stylesheet" />
-    <script src="../mermaid/mermaid.js?1761400450"></script>
+    <link href="../mermaid/mermaid.css?1761408068" rel="stylesheet" />
+    <script src="../mermaid/mermaid.js?1761408068"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
