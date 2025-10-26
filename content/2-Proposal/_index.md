@@ -22,7 +22,7 @@ The platform uses AWS IoT Core to ingest MQTT data, AWS Lambda and API Gateway f
 #### Benefits and Return on Investment
 The Smart Office system enhances automation, monitoring, and energy efficiency across office environments, providing a reliable platform for research, expansion, and real-world IoT application development. It serves as a foundational resource for lab members and developers to build advanced smart environment solutions, while offering a centralized system that reduces manual configuration, improves data reliability, and simplifies maintenance.
 
-Monthly operating costs are estimated at $11.81 USD, including DynamoDB ($0.09), IoT Core ($0.18), CloudFront ($1.27), CloudWatch ($0.25) and SNS ($0.02), totaling $21.72 USD per year. As IoT hardware is already deployed, there are no additional equipment expenses. The system achieves a break-even period of 6–12 months through significant time savings and reduced manual operation, offering long-term scalability and cost efficiency.
+Monthly operating costs are estimated at $1.81 USD, including DynamoDB ($0.09), IoT Core ($0.18), CloudFront ($1.27), CloudWatch ($0.25) and SNS ($0.02), totaling $21.72 USD per year. As IoT hardware is already deployed, there are no additional equipment expenses. The system achieves a break-even period of 6–12 months through significant time savings and reduced manual operation, offering long-term scalability and cost efficiency.
 
 ### 3. Solution Architecture
 
