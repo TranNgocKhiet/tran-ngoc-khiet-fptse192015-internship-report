@@ -77,18 +77,18 @@ Or you can download the [Budget Estimation File](/file/f8e2d281-aba2-48c2-adf8-d
 
 ### Infrastructure Costs
 AWS Services:
-- AWS DynamoDB: Free (0.00208 GB/month)
+- Amazon DynamoDB: Free (0.00208 GB/month)
 - AWS Lambda: Free (119,000 requests/month, 13,386.25 GB/s)
 - AWS IoT Core: $0.18/month (8 devices, 13,000 messages/month)
 - AWS API Gateway: Free (720 requests/month)
-- Amazon S3: Free (0.01 GB)
+- Amazon Simple Storage Service (S3): Free (0.01 GB)
 - Amazon CloudFront: $1.27/month (10,000 requests/month)
-- AWS EventBridge: Free (2600 events/month)
-- AWS SQS: Free (2600 requests/month)
-- AWS CloudWatch: $0.25/month (0,3612736 GB/month) (set retention 3 days)
-- Amazon SNS: $0.02/month (2100 requests/month, 2100 emails/month)
-- AWS Cognito: Free (3 MAU/month)
-- Hardware: Existing smart office sensors and hubs — no additional cost.
+- Amazon EventBridge: Free (2600 events/month)
+- Amazon Simple Queue Service (SQS): Free (2600 requests/month)
+- Amazon CloudWatch: $0.25/month (0,3612736 GB/month) (set retention 3 days)
+- Amazon Amazon Simple Notification Service (SNS): $0.02/month (2100 requests/month, 2100 emails/month)
+- Amazon Cognito: Free (3 MAU/month)
+Hardware: Existing smart office sensors and hubs — no additional cost.
 Total: ≈ $1.81/month, or $21.72/year (within AWS Free Tier limits).
 
 ### 7. Risk Assessment

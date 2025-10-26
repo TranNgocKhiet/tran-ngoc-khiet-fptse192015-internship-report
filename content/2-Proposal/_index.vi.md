@@ -74,13 +74,20 @@ Có thể xem chi phí trên [AWS Pricing Calculator](https://calculator.aws/#/e
 Hoặc tải [tệp ước tính ngân sách](/file/f8e2d281-aba2-48c2-adf8-d8ec828d2ec9.pdf).  
 
 #### Chi phí hạ tầng
-- DynamoDB: 0,09 USD/tháng.
-- IoT Core: 0,18 USD/tháng.
-- CloudFront: 1,27 USD/tháng.
-- CloudWatch: 0,25 USD/tháng.
-- SNS: 0,02 USD/tháng.
-- Các dịch vụ khác: Miễn phí (trong Free Tier).
-Tổng cộng: ≈ 1,81 USD/tháng, tương đương 21,72 USD/năm.
+Dịch vụ AWS:
+- Amazon DynamoDB: Miễn phí (0,00208 GB/tháng)
+- AWS Lambda: Miễn phí (119.000 yêu cầu/tháng, 13.386,25 GB/giây)
+- AWS IoT Core: $0,18/tháng (8 thiết bị, 13.000 tin nhắn/tháng)
+- AWS API Gateway: Miễn phí (720 yêu cầu/tháng)
+- Amazon Simple Storage Service (S3): Miễn phí (0,01 GB)
+- Amazon CloudFront: $1,27/tháng (10.000 yêu cầu/tháng)
+- Amazon EventBridge: Miễn phí (2.600 sự kiện/tháng)
+- Amazon Simple Queue Service (SQS): Miễn phí (2.600 yêu cầu/tháng)
+- Amazon CloudWatch: $0,25/tháng (0,3612736 GB/tháng) (thiết lập thời gian lưu trữ 3 ngày)
+- Amazon Simple Notification Service (SNS): $0,02/tháng (2.100 yêu cầu/tháng, 2.100 email/tháng)
+- Amazon Cognito: Miễn phí (3 người dùng hoạt động hàng tháng)
+Phần cứng: Các cảm biến và trung tâm điều khiển văn phòng thông minh sẵn có — không tốn thêm chi phí.
+Tổng cộng: ≈ $1,81/tháng, hoặc $21,72/năm (trong giới hạn miễn phí của AWS Free Tier).
 
 ### 7. Đánh giá rủi ro  
 #### Ma trận rủi ro
