@@ -7,11 +7,11 @@ pre : " <b> 5.3.3 </b> "
 
 1. Trong tab **Tables**, chọn **SmartOffice_User_Prod**
 
-![DynamoDB 5](/images/5-workshop/5.3-DynamoDB/DynamoDB-5.png)
+![DynamoDB 5](/images/5-Workshop/5.3-DynamoDB/DynamoDB-5.png)
 
 2. Chọn **Action**, **Create item**
 
-![DynamoDB 10](/images/5-workshop/5.3-DynamoDB/DynamoDB-10.png)
+![DynamoDB 10](/images/5-Workshop/5.3-DynamoDB/DynamoDB-10.png)
 
 3. Chọn **JSON view**, tắt **View DynamoDB JSON**  
 4. Nhập  
@@ -27,7 +27,7 @@ pre : " <b> 5.3.3 </b> "
 ]
 }
 
-![DynamoDB 11](/images/5-workshop/5.3-DynamoDB/DynamoDB-11.png)
+![DynamoDB 11](/images/5-Workshop/5.3-DynamoDB/DynamoDB-11.png)
 
 5. Nhấn **Create item**
 

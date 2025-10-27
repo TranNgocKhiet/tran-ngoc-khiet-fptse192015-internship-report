@@ -7,11 +7,11 @@ pre : " <b> 5.3.3 </b> "
 
 1. In tab **Tables**, choose **SmartOffice_User_Prod**
 
-![DynamoDB 5](/images/5-workshop/5.3-DynamoDB/DynamoDB-5.png)
+![DynamoDB 5](/images/5-Workshop/5.3-DynamoDB/DynamoDB-5.png)
 
 2. Choose **Action**, **Create item**
 
-![DynamoDB 10](/images/5-workshop/5.3-DynamoDB/DynamoDB-10.png)
+![DynamoDB 10](/images/5-Workshop/5.3-DynamoDB/DynamoDB-10.png)
 
 3. Choose **JSON view**, turn off **View DynamoDB JSON**
 4. Enter 
@@ -29,7 +29,7 @@ pre : " <b> 5.3.3 </b> "
 }
 ```
 
-![DynamoDB 11](/images/5-workshop/5.3-DynamoDB/DynamoDB-11.png)
+![DynamoDB 11](/images/5-Workshop/5.3-DynamoDB/DynamoDB-11.png)
 
 5. Click **Create item**
 

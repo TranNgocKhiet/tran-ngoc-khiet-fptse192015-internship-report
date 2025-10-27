@@ -32,7 +32,7 @@
 	"title": "Create user pool",
 	"tags": [],
 	"description": "",
-	"content": " Open Management Console, search and choose Cognito. In tab User pool, click Create user pool For Name your application, enter SmartOffice For Application type, choose Single-page application (SPA) For Options for sign-in identifiers, check Email For Self-registration, uncheck Enable self-registration For Required attributes for sign-up, check email "
+	"content": " Open Management Console, search and choose Cognito. In tab User pool, click Create user pool /static/images/5-Workshop/5.4-Cognito/Cognito-1.png\nFor Name your application, enter SmartOffice For Application type, choose Single-page application (SPA) For Options for sign-in identifiers, check Email For Self-registration, uncheck Enable self-registration For Required attributes for sign-up, check email "
 },
 {
 	"uri": "https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/4-eventparticipated/4.1-event1/",
@@ -133,18 +133,18 @@
 	"content": "Week 1: Team up for project, learn Module 1 and 2\nWeek 2: Learn Module 3 and 4\nWeek 3: Learn Module 5\nWeek 4: Learn Module 6 and participate in an event\nWeek 5: Learn Module 7\nWeek 6: Create a mindmap to summarize knowleadge, brainstorm idea for workshop and draw architect diagram\nWeek 7: Caculate pricing and adjust architect diagram\nWeek 8: Week 9: Week 10: Week 11: Week 12: "
 },
 {
+	"uri": "https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/5-workshop/5.4-amazon-cognito/5.4.2-config-app-client/",
+	"title": "Config app client",
+	"tags": [],
+	"description": "",
+	"content": " In tab User pools, choose the pool you have created Navigate to tab App Clients, choose SmartOffice Click Edit For Authentication flows: - Uncheck Choice-based sign-in: ALLOW_USER_AUTH - Uncheck Sign in with username and password: ALLOW_USER_PASSWORD_AUTH - Uncheck Sign in with secure remote password (SRP): ALLOW_USER_SRP_AUTH - Check Sign in with server-side administrative credentials: ALLOW_ADMIN_USER_PASSWORD_AUTH - Uncheck Sign in with custom authentication flows from Lambda triggers: ALLOW_CUSTOM_AUTH - Check Get new user tokens from existing authenticated sessions: ALLOW_REFRESH_TOKEN_AUTH Leave other settings at default Click Save changes "
+},
+{
 	"uri": "https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/5-workshop/5.3-amazon-dynamodb/5.3.2-config-tables/",
 	"title": "Config tables",
 	"tags": [],
 	"description": "",
 	"content": "Config TTL for table SmartOffice_RoomLog_Prod In tab Tables, choose SmartOffice_RoomLog_Prod Navigate to tab Settings, in the field Time to Live (TTL) click Turn on For TTL attribute name, enter expireAt For Simulated date and time, choose Epoch time value, enter 1770000000 Click turn on TTL Config Point-in-time recovery (PITR) for table SmartOffice_User_Prod, SmartOffice_Office_Prod and SmartOffice_RoomConfig_Prod In tab Tables, choose SmartOffice_User_Prod Navigate to tab Backups, in the field Point-in-time recovery (PITR), click Edit Check Turn on point-in-time recovery For Backup recovery period choose 35 days Click Save changes Do the same for table SmartOffice_Office_Prod and SmartOffice_RoomConfig_Prod Config DynamoDB stream for table SmartOffice_RoomConfig_Prod In tab Tables, choose SmartOffice_RoomConfig_Prod Navigate to tab Exports and streams, in the field DynamoDB stream details, click Turn on For View type, choose New and old images Click Turn on stream "
-},
-{
-	"uri": "https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/5-workshop/5.4-amazon-cognito/5.4.2-config-app-client/",
-	"title": "Congfig app client",
-	"tags": [],
-	"description": "",
-	"content": " In tab User pools, choose the pool you have created Navigate to tab App Clients, choose SmartOffice Click Edit For Authentication flows: - Uncheck Choice-based sign-in: ALLOW_USER_AUTH - Uncheck Sign in with username and password: ALLOW_USER_PASSWORD_AUTH - Uncheck Sign in with secure remote password (SRP): ALLOW_USER_SRP_AUTH - Check Sign in with server-side administrative credentials: ALLOW_ADMIN_USER_PASSWORD_AUTH - Uncheck Sign in with custom authentication flows from Lambda triggers: ALLOW_CUSTOM_AUTH - Check Get new user tokens from existing authenticated sessions: ALLOW_REFRESH_TOKEN_AUTH Leave other settings at default Click Save changes "
 },
 {
 	"uri": "https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/5-workshop/5.2-prerequiste/",
