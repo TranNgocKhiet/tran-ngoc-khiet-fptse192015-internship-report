@@ -9,7 +9,7 @@ pre : " <b> 5.3.1 </b> "
 
 ![DynamoDB 1](/images/5-workshop/5.3-DynamoDB/DynamoDB-1.png)
 
-2. Navigate to tab **Tables**, click **Create table**
+1. Navigate to tab **Tables**, click **Create table**
 
 ![DynamoDB 2](/images/5-workshop/5.3-DynamoDB/DynamoDB-2.png)
 
