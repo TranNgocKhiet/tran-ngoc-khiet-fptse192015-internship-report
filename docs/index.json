@@ -32,7 +32,7 @@
 	"title": "Create user pool",
 	"tags": [],
 	"description": "",
-	"content": " Open Management Console, search and choose Cognito. In tab User pool, click Create user pool /static/images/5-Workshop/5.4-Cognito/Cognito-1.png\nFor Name your application, enter SmartOffice For Application type, choose Single-page application (SPA) For Options for sign-in identifiers, check Email For Self-registration, uncheck Enable self-registration For Required attributes for sign-up, check email "
+	"content": " Open Management Console, search and choose Cognito. In tab User pool, click Create user pool For Name your application, enter SmartOffice For Application type, choose Single-page application (SPA) For Options for sign-in identifiers, check Email For Self-registration, uncheck Enable self-registration For Required attributes for sign-up, check email "
 },
 {
 	"uri": "https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/4-eventparticipated/4.1-event1/",
