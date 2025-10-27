@@ -50,18 +50,6 @@
                 href="https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/vi/3-blogstranslated/3.3-blog3/"
                 />
   </url><url>
-    <loc>https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/vi/5-workshop/5.4-s3-onprem/5.4.1-prepare/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/5-workshop/5.4-s3-onprem/5.4.1-prepare/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="vi"
-                href="https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/vi/5-workshop/5.4-s3-onprem/5.4.1-prepare/"
-                />
-  </url><url>
     <loc>https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/vi/4-eventparticipated/4.1-event1/</loc>
     <xhtml:link
                 rel="alternate"
@@ -120,6 +108,18 @@
                 rel="alternate"
                 hreflang="vi"
                 href="https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/vi/5-workshop/5.3-amazon-dynamodb/5.3.1-create-tables/"
+                />
+  </url><url>
+    <loc>https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/vi/5-workshop/5.4-amazon-cognito/5.4.1-create-user-pool/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/5-workshop/5.4-amazon-cognito/5.4.1-create-user-pool/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/vi/5-workshop/5.4-amazon-cognito/5.4.1-create-user-pool/"
                 />
   </url><url>
     <loc>https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/vi/1-worklog/1.1-week1/</loc>
@@ -254,6 +254,18 @@
                 href="https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/vi/5-workshop/5.2-prerequiste/"
                 />
   </url><url>
+    <loc>https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/vi/5-workshop/5.4-amazon-cognito/5.4.2-config-app-client/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/5-workshop/5.4-amazon-cognito/5.4.2-config-app-client/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/vi/5-workshop/5.4-amazon-cognito/5.4.2-config-app-client/"
+                />
+  </url><url>
     <loc>https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/vi/5-workshop/5.3-amazon-dynamodb/5.3.2-config-tables/</loc>
     <xhtml:link
                 rel="alternate"
@@ -264,18 +276,6 @@
                 rel="alternate"
                 hreflang="vi"
                 href="https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/vi/5-workshop/5.3-amazon-dynamodb/5.3.2-config-tables/"
-                />
-  </url><url>
-    <loc>https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/vi/5-workshop/5.4-s3-onprem/5.4.2-create-interface-enpoint/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/5-workshop/5.4-s3-onprem/5.4.2-create-interface-enpoint/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="vi"
-                href="https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/vi/5-workshop/5.4-s3-onprem/5.4.2-create-interface-enpoint/"
                 />
   </url><url>
     <loc>https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/vi/1-worklog/1.10-week10/</loc>
@@ -314,18 +314,6 @@
                 href="https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/vi/1-worklog/1.12-week12/"
                 />
   </url><url>
-    <loc>https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/vi/3-blogstranslated/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/3-blogstranslated/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="vi"
-                href="https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/vi/3-blogstranslated/"
-                />
-  </url><url>
     <loc>https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/vi/5-workshop/5.3-amazon-dynamodb/</loc>
     <xhtml:link
                 rel="alternate"
@@ -338,16 +326,28 @@
                 href="https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/vi/5-workshop/5.3-amazon-dynamodb/"
                 />
   </url><url>
-    <loc>https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/vi/5-workshop/5.4-s3-onprem/5.4.3-test-endpoint/</loc>
+    <loc>https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/vi/3-blogstranslated/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/5-workshop/5.4-s3-onprem/5.4.3-test-endpoint/"
+                href="https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/3-blogstranslated/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/vi/5-workshop/5.4-s3-onprem/5.4.3-test-endpoint/"
+                href="https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/vi/3-blogstranslated/"
+                />
+  </url><url>
+    <loc>https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/vi/5-workshop/5.4-amazon-cognito/5.4.3-create-user/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/5-workshop/5.4-amazon-cognito/5.4.3-create-user/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/vi/5-workshop/5.4-amazon-cognito/5.4.3-create-user/"
                 />
   </url><url>
     <loc>https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/vi/5-workshop/5.3-amazon-dynamodb/5.3.3-add-items/</loc>
@@ -362,6 +362,18 @@
                 href="https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/vi/5-workshop/5.3-amazon-dynamodb/5.3.3-add-items/"
                 />
   </url><url>
+    <loc>https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/vi/5-workshop/5.4-amazon-cognito/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/5-workshop/5.4-amazon-cognito/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/vi/5-workshop/5.4-amazon-cognito/"
+                />
+  </url><url>
     <loc>https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/vi/4-eventparticipated/</loc>
     <xhtml:link
                 rel="alternate"
@@ -372,30 +384,6 @@
                 rel="alternate"
                 hreflang="vi"
                 href="https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/vi/4-eventparticipated/"
-                />
-  </url><url>
-    <loc>https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/vi/5-workshop/5.4-s3-onprem/5.4.4-dns-simulation/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/5-workshop/5.4-s3-onprem/5.4.4-dns-simulation/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="vi"
-                href="https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/vi/5-workshop/5.4-s3-onprem/5.4.4-dns-simulation/"
-                />
-  </url><url>
-    <loc>https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/vi/5-workshop/5.4-s3-onprem/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/5-workshop/5.4-s3-onprem/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="vi"
-                href="https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/vi/5-workshop/5.4-s3-onprem/"
                 />
   </url><url>
     <loc>https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/vi/5-workshop/5.5-policy/</loc>
