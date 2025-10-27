@@ -110,16 +110,16 @@
                 href="https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/vi/1-worklog/"
                 />
   </url><url>
-    <loc>https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/vi/5-workshop/5.3-s3-vpc/5.3.1-create-gwe/</loc>
+    <loc>https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/vi/5-workshop/5.3-amazon-dynamodb/5.3.1-create-tables/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/5-workshop/5.3-s3-vpc/5.3.1-create-gwe/"
+                href="https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/5-workshop/5.3-amazon-dynamodb/5.3.1-create-tables/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/vi/5-workshop/5.3-s3-vpc/5.3.1-create-gwe/"
+                href="https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/vi/5-workshop/5.3-amazon-dynamodb/5.3.1-create-tables/"
                 />
   </url><url>
     <loc>https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/vi/1-worklog/1.1-week1/</loc>
@@ -254,16 +254,16 @@
                 href="https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/vi/5-workshop/5.2-prerequiste/"
                 />
   </url><url>
-    <loc>https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/vi/5-workshop/5.3-s3-vpc/5.3.2-test-gwe/</loc>
+    <loc>https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/vi/5-workshop/5.3-amazon-dynamodb/5.3.2-config-tables/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/5-workshop/5.3-s3-vpc/5.3.2-test-gwe/"
+                href="https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/5-workshop/5.3-amazon-dynamodb/5.3.2-config-tables/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/vi/5-workshop/5.3-s3-vpc/5.3.2-test-gwe/"
+                href="https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/vi/5-workshop/5.3-amazon-dynamodb/5.3.2-config-tables/"
                 />
   </url><url>
     <loc>https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/vi/5-workshop/5.4-s3-onprem/5.4.2-create-interface-enpoint/</loc>
@@ -326,6 +326,18 @@
                 href="https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/vi/3-blogstranslated/"
                 />
   </url><url>
+    <loc>https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/vi/5-workshop/5.3-amazon-dynamodb/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/5-workshop/5.3-amazon-dynamodb/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/vi/5-workshop/5.3-amazon-dynamodb/"
+                />
+  </url><url>
     <loc>https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/vi/5-workshop/5.4-s3-onprem/5.4.3-test-endpoint/</loc>
     <xhtml:link
                 rel="alternate"
@@ -338,16 +350,16 @@
                 href="https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/vi/5-workshop/5.4-s3-onprem/5.4.3-test-endpoint/"
                 />
   </url><url>
-    <loc>https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/vi/5-workshop/5.3-s3-vpc/</loc>
+    <loc>https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/vi/5-workshop/5.3-amazon-dynamodb/5.3.3-add-items/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/5-workshop/5.3-s3-vpc/"
+                href="https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/5-workshop/5.3-amazon-dynamodb/5.3.3-add-items/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/vi/5-workshop/5.3-s3-vpc/"
+                href="https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/vi/5-workshop/5.3-amazon-dynamodb/5.3.3-add-items/"
                 />
   </url><url>
     <loc>https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/vi/4-eventparticipated/</loc>
