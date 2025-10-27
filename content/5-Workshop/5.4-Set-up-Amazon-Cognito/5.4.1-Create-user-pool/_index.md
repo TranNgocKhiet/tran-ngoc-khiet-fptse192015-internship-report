@@ -17,6 +17,6 @@ pre : " <b> 5.4.1 </b> "
 2. For **Application type**, choose **Single-page application (SPA)**
 3. For **Options for sign-in identifiers**, check **Email**
 4. For **Self-registration**, uncheck **Enable self-registration**
-5. For Required attributes for sign-up, check **email**
+5. For **Required attributes for sign-up**, check **email**
 
 ![Cognito 3](/images/5-Workshop/5.4-Cognito/Cognito-3.png)
