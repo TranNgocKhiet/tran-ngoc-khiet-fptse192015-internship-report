@@ -9,7 +9,7 @@ pre : " <b> 5.3.1 </b> "
 
 ![DynamoDB 1](/images/5-Workshop/5.3-DynamoDB/DynamoDB-1.png)
 
-1. Navigate to tab **Tables**, click **Create table**
+2. Navigate to tab **Tables**, click **Create table**
 
 ![DynamoDB 2](/images/5-Workshop/5.3-DynamoDB/DynamoDB-2.png)
 
@@ -35,21 +35,21 @@ Log sensor with less access, need to optimize storage pricing.
 ---
  
 ## Do the same for table:
-#### SmartOffice_User_Prod
+### SmartOffice_User_Prod
 - **Name**: ```SmartOffice_User_Prod```
 - **Partition key**: ```userId```
 - **Table settings**: **Customize settings**
 - **Deletion protection**: Check **Turn on deletion protection**
 - **Tag** : **Key**: ```Project```, **Value**: ```SmartOffice```; **Key**: ```Environment```, **Value**: ```Dev```
 
-#### SmartOffice_Office_Prod
+### SmartOffice_Office_Prod
 - **Name**: ```SmartOffice_Office_Prod```
 - **Partition key**: ```officeId```
 - **Table settings**: **Customize settings**
 - **Deletion protection**: Check **Turn on deletion protection**
 - **Tag** : **Key**: ```Project```, **Value**: ```SmartOffice```; **Key**: ```Environment```, **Value**: ```Dev```
 
-#### SmartOffice_RoomConfig_Prod
+### SmartOffice_RoomConfig_Prod
 - **Name**: ```SmartOffice_RoomConfig_Prod```
 - **Partition key**: ```roomId```
 - **Table settings**: **Customize settings**

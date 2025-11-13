@@ -35,21 +35,21 @@ Log sensor có tần suất truy cập thấp, cần tối ưu chi phí lưu tr�
 ---
 
 ## Làm tương tự cho bảng:
-#### SmartOffice_User_Prod
+### SmartOffice_User_Prod
 - **Name**: ```SmartOffice_User_Prod```
 - **Partition key**: ```userId```
 - **Table settings**: **Customize settings**
 - **Deletion protection**: chọn **Turn on deletion protection**
 - **Tag** : **Key**: ```Project```, **Value**: ```SmartOffice```; **Key**: ```Environment```, **Value**: ```Dev```
 
-#### SmartOffice_Office_Prod
+### SmartOffice_Office_Prod
 - **Name**: ```SmartOffice_Office_Prod```
 - **Partition key**: ```officeId```
 - **Table settings**: **Customize settings**
 - **Deletion protection**: chọn **Turn on deletion protection**
 - **Tag** : **Key**: ```Project```, **Value**: ```SmartOffice```; **Key**: ```Environment```, **Value**: ```Dev```
 
-#### SmartOffice_RoomConfig_Prod
+### SmartOffice_RoomConfig_Prod
 - **Name**: ```SmartOffice_RoomConfig_Prod```
 - **Partition key**: ```roomId```
 - **Table settings**: **Customize settings**

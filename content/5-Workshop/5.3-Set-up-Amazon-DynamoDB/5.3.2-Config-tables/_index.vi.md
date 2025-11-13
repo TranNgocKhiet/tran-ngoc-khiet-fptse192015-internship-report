@@ -5,7 +5,7 @@ chapter : false
 pre : " <b> 5.3.2 </b> "
 ---
 
-### Cấu hình Time to Live (TTL) cho bảng SmartOffice_RoomLog_Prod
+## Cấu hình Time to Live (TTL) cho bảng SmartOffice_RoomLog_Prod
 
 1. Trong tab **Tables**, chọn **SmartOffice_RoomLog_Prod**
 
@@ -24,7 +24,7 @@ pre : " <b> 5.3.2 </b> "
 
 ---
 
-### Cấu hình Point-in-time recovery (PITR) cho các bảng SmartOffice_User_Prod, SmartOffice_Office_Prod và SmartOffice_RoomConfig_Prod
+## Cấu hình Point-in-time recovery (PITR) cho các bảng SmartOffice_User_Prod, SmartOffice_Office_Prod và SmartOffice_RoomConfig_Prod
 
 1. Trong tab **Tables**, chọn **SmartOffice_User_Prod**
    
@@ -44,7 +44,7 @@ pre : " <b> 5.3.2 </b> "
 
 ---
 
-### Cấu hình DynamoDB stream cho bảng SmartOffice_RoomConfig_Prod
+## Cấu hình DynamoDB stream cho bảng SmartOffice_RoomConfig_Prod
 
 1. Trong tab **Tables**, chọn **SmartOffice_RoomConfig_Prod**
 

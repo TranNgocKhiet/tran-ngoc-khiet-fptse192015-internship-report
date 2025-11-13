@@ -34,7 +34,7 @@ pre : " <b> 5.3.3 </b> "
 ---
 
 ## Làm tương tự cho bảng:
-#### SmartOffice_Office_Prod
+### SmartOffice_Office_Prod
 {
 "officeId": "office-hcm",
 "companyId": "comp-abc",
@@ -47,7 +47,7 @@ pre : " <b> 5.3.3 </b> "
 }
 
 
-#### SmartOffice_RoomConfig_Prod
+### SmartOffice_RoomConfig_Prod
 {
 "roomId": "A101",
 "officeId": "office-hcm",
@@ -62,7 +62,7 @@ pre : " <b> 5.3.3 </b> "
 "autoOffTime": "22:00"
 }
 
-#### SmartOffice_RoomLog_Prod
+### SmartOffice_RoomLog_Prod
 {
 "roomId": "A101",
 "timestamp": "1734355200",

@@ -110,6 +110,30 @@
                 href="https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/5-workshop/5.1-workshop-overview/"
                 />
   </url><url>
+    <loc>https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/5-workshop/5.6-set-up-aws-lambda-function/5.6.1-set-up-client-aws-lambda-function/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/vi/5-workshop/5.6-set-up-aws-lambda-function/5.6.1-set-up-client-aws-lambda-function/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/5-workshop/5.6-set-up-aws-lambda-function/5.6.1-set-up-client-aws-lambda-function/"
+                />
+  </url><url>
+    <loc>https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/5-workshop/5.5-set-up-role-for-aws-lambda-function/5.5.1-set-up-role-for-client-aws-lambda-function/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/vi/5-workshop/5.5-set-up-role-for-aws-lambda-function/5.5.1-set-up-role-for-client-aws-lambda-function/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/5-workshop/5.5-set-up-role-for-aws-lambda-function/5.5.1-set-up-role-for-client-aws-lambda-function/"
+                />
+  </url><url>
     <loc>https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/1-worklog/1.1-week1/</loc>
     <xhtml:link
                 rel="alternate"
@@ -362,6 +386,18 @@
                 href="https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/3-blogstranslated/"
                 />
   </url><url>
+    <loc>https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/5-workshop/5.4-set-up-amazon-cognito/5.4.4-add-user-to-database/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/vi/5-workshop/5.4-set-up-amazon-cognito/5.4.4-add-user-to-database/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/5-workshop/5.4-set-up-amazon-cognito/5.4.4-add-user-to-database/"
+                />
+  </url><url>
     <loc>https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/4-eventparticipated/</loc>
     <xhtml:link
                 rel="alternate"
@@ -386,16 +422,16 @@
                 href="https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/5-workshop/5.4-set-up-amazon-cognito/"
                 />
   </url><url>
-    <loc>https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/5-workshop/5.5-policy/</loc>
+    <loc>https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/5-workshop/5.5-set-up-role-for-aws-lambda-function/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="vi"
-                href="https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/vi/5-workshop/5.5-policy/"
+                href="https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/vi/5-workshop/5.5-set-up-role-for-aws-lambda-function/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/5-workshop/5.5-policy/"
+                href="https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/5-workshop/5.5-set-up-role-for-aws-lambda-function/"
                 />
   </url><url>
     <loc>https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/5-workshop/</loc>
@@ -410,18 +446,6 @@
                 href="https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/5-workshop/"
                 />
   </url><url>
-    <loc>https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/5-workshop/5.6-cleanup/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="vi"
-                href="https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/vi/5-workshop/5.6-cleanup/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/5-workshop/5.6-cleanup/"
-                />
-  </url><url>
     <loc>https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/6-self-evaluation/</loc>
     <xhtml:link
                 rel="alternate"
@@ -432,6 +456,18 @@
                 rel="alternate"
                 hreflang="en"
                 href="https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/6-self-evaluation/"
+                />
+  </url><url>
+    <loc>https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/5-workshop/5.6-set-up-aws-lambda-function/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/vi/5-workshop/5.6-set-up-aws-lambda-function/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/5-workshop/5.6-set-up-aws-lambda-function/"
                 />
   </url><url>
     <loc>https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/7-feedback/</loc>

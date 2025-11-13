@@ -5,7 +5,7 @@ chapter : false
 pre : " <b> 5.3.2 </b> "
 ---
 
-### Config TTL for table SmartOffice_RoomLog_Prod
+## Config TTL for table SmartOffice_RoomLog_Prod
 
 1. In tab **Tables**, choose **SmartOffice_RoomLog_Prod**
 
@@ -24,7 +24,7 @@ pre : " <b> 5.3.2 </b> "
 
 ---
 
-### Config Point-in-time recovery (PITR) for table SmartOffice_User_Prod, SmartOffice_Office_Prod and SmartOffice_RoomConfig_Prod
+## Config Point-in-time recovery (PITR) for table SmartOffice_User_Prod, SmartOffice_Office_Prod and SmartOffice_RoomConfig_Prod
 
 1. In tab **Tables**, choose **SmartOffice_User_Prod**
    
@@ -44,7 +44,7 @@ pre : " <b> 5.3.2 </b> "
 
 ---
 
-### Config DynamoDB stream for table SmartOffice_RoomConfig_Prod
+## Config DynamoDB stream for table SmartOffice_RoomConfig_Prod
 
 1. In tab **Tables**, choose **SmartOffice_RoomConfig_Prod**
 

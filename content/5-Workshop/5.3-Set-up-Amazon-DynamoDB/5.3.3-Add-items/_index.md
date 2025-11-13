@@ -36,7 +36,7 @@ pre : " <b> 5.3.3 </b> "
 ---
 
 ## Do the same for table:
-#### SmartOffice_Office_Prod
+### SmartOffice_Office_Prod
 ```
 {
   "officeId": "office-hcm",
@@ -50,7 +50,7 @@ pre : " <b> 5.3.3 </b> "
 }
 ```
 
-#### SmartOffice_RoomConfig_Prod
+### SmartOffice_RoomConfig_Prod
 ```
 {
 "roomId": "A101",
@@ -67,7 +67,7 @@ pre : " <b> 5.3.3 </b> "
 }
 ```
 
-#### SmartOffice_RoomLog_Prod
+### SmartOffice_RoomLog_Prod
 ```
 {
   "roomId": "A101",
