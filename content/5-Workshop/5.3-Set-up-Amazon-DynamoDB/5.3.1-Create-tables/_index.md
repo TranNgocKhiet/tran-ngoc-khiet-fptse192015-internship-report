@@ -52,6 +52,7 @@ Log sensor with less access, need to optimize storage pricing.
 ### SmartOffice_RoomConfig_Prod
 - **Name**: ```SmartOffice_RoomConfig_Prod```
 - **Partition key**: ```roomId```
+- **Sort key**: ```officeId```
 - **Table settings**: **Customize settings**
 - **Deletion protection**: Check **Turn on deletion protection**
 - **Tag** : **Key**: ```Project```, **Value**: ```SmartOffice```; **Key**: ```Environment```, **Value**: ```Dev```

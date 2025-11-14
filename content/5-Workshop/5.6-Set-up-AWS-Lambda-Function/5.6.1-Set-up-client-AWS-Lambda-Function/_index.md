@@ -157,9 +157,9 @@ def lambda_handler(event, context):
 ### Test Function
 
 1. Navigate to tab **Test**
-2. For **Event name**, enter ```test-update-name```
-3. For **Event JSON**, copy and paste this test json
-
+2. For **Event name**, enter ```test-update-profile```
+3. For **Invocation type**, choose **Synchronous**
+4. For **Event JSON**, enter
 ```json
 {
   "userId": "692a45fc-0091-7055-703b-49b4db5cbe0c",
@@ -178,21 +178,33 @@ Get **userId** from **User** in **Amazon Cognito User Pool** (Go to **Cognito** 
 
 ![Lambda Function 7](/images/5-Workshop/5.6-Lambda-Function/Lambda-Function-7.png)
 
-## Do the same for 
+## Do the same for Lambda Function RoomConfigHandler
 
+- **Name**: ```SmartOfficeRoomConfigHandler```
+- **Role**: ```SmartOfficeRoomConfigHandler```
+- **Code source**:
 ```python
 import boto3
 import os
 import json
 from datetime import datetime, timezone
+from decimal import Decimal
 
-# Khởi tạo client
+class DecimalEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, Decimal):
+            if obj % 1 == 0:
+                return int(obj)
+            else:
+                return float(obj)
+        return super(DecimalEncoder, self).default(obj)
+
+# Create client
 dynamodb = boto3.resource('dynamodb')
 TABLE_NAME = os.environ.get('TABLE_NAME')
 table = dynamodb.Table(TABLE_NAME)
 
-# Danh sách các trường ĐƯỢC PHÉP cập nhật
-# (Để ngăn người dùng vô tình cập nhật roomId, officeId)
+# List of field to update
 ALLOWED_UPDATE_FIELDS = [
     "temperatureMode",
     "humidityMode",
@@ -205,92 +217,87 @@ ALLOWED_UPDATE_FIELDS = [
 ]
 
 def lambda_handler(event, context):
-    """
-    Cập nhật cấu hình phòng dựa trên officeId và roomId.
-    Tự động cập nhật trường "lastUpdate".
-
-    Event JSON mong đợi:
-    {
-      "officeId": "office-hcm",
-      "roomId": "A101",
-      "updates": {
-        "temperatureMode": "manual",
-        "targetTemperature": 24
-      }
-    }
-    """
     try:
-        # 1. Lấy thông tin từ event
-        # (Giả sử event là JSON body, nếu dùng API Gateway, bạn có thể cần json.loads(event['body']))
-        body = event 
+        if "body" in event:
+            body = json.loads(event["body"])
+        else:
+            body = event
         
         office_id = body.get('officeId')
         room_id = body.get('roomId')
         updates = body.get('updates')
 
         if not office_id or not room_id or not updates:
-            return {'statusCode': 400, 'body': 'Lỗi: Thiếu "officeId", "roomId", hoặc "updates"'}
+            return {'statusCode': 400, 'body': 'Error: Missing "officeId", "roomId", or "updates"'}
 
-        # 2. Xây dựng các biểu thức (expressions) cho DynamoDB
         update_expression = "SET "
         expression_names = {}
         expression_values = {}
 
-        # Lọc các trường hợp lệ
         valid_updates = False
         for key, value in updates.items():
             if key in ALLOWED_UPDATE_FIELDS:
                 valid_updates = True
-                placeholder_name = f"#{key}"  # Ví dụ: #temperatureMode
-                placeholder_value = f":{key}" # Ví dụ: :temperatureMode
+                placeholder_name = f"#{key}" 
+                placeholder_value = f":{key}"
                 
                 update_expression += f"{placeholder_name} = {placeholder_value}, "
                 expression_names[placeholder_name] = key
                 expression_values[placeholder_value] = value
 
         if not valid_updates:
-            return {'statusCode': 400, 'body': 'Không có trường hợp lệ nào trong "updates"'}
+            return {'statusCode': 400, 'body': 'No valid field in "updates"'}
 
-        # 3. Tự động thêm "lastUpdate"
+        # Auto add lastUpdate field
         current_time_iso = datetime.now(timezone.utc).isoformat()
         
-        update_expression += "#lastUpdate = :lastUpdate" # Thêm vào cuối, không có dấu phẩy
+        update_expression += "#lastUpdate = :lastUpdate"
         expression_names["#lastUpdate"] = "lastUpdate"
         expression_values[":lastUpdate"] = current_time_iso
 
-        # 4. Định nghĩa Khóa chính (Primary Key)
-        # *** Giả định: (officeId là Khóa Phân vùng, roomId là Khóa Sắp xếp) ***
         key_to_update = {
             'officeId': office_id,
             'roomId': room_id
         }
 
-        # 5. Gọi DynamoDB
         response = table.update_item(
             Key=key_to_update,
             UpdateExpression=update_expression,
             ExpressionAttributeNames=expression_names,
             ExpressionAttributeValues=expression_values,
-            ReturnValues="UPDATED_NEW" # Trả về các giá trị vừa được cập nhật
+            ReturnValues="UPDATED_NEW"
         )
 
         success_body = {
-            "message": "Cập nhật cấu hình phòng thành công",
+            "message": "Room config update successfully",
             "updatedAttributes": response.get('Attributes')
         }
         return {
             'statusCode': 200,
-            'body': json.dumps(success_body)
+            'body': json.dumps(success_body, cls=DecimalEncoder)
         }
 
     except Exception as e:
         print(f"Lỗi: {e}")
-        # Xử lý lỗi nếu không tìm thấy item
         if "ConditionalCheckFailedException" in str(e):
-             return {'statusCode': 404, 'body': 'Không tìm thấy phòng với officeId và roomId đã cho'}
+             return {'statusCode': 404, 'body': 'No room found with given officeId and roomId'}
         
         return {
             'statusCode': 500,
-            'body': f'Lỗi khi xử lý yêu cầu: {str(e)}'
+            'body': f'Error while handling: {str(e)}'
         }
+```
+
+- Test **Event name**:``` test-config-room```
+- Test **Event JSON**:
+```json
+{
+  "officeId": "office-hcm",
+  "roomId": "A101",
+  "updates": {
+    "temperatureMode": "manual",
+    "targetTemperature": 24,
+    "autoOnTime": "17:00"
+  }
+}
 ```

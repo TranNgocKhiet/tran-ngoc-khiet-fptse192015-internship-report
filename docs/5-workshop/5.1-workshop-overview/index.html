@@ -15,21 +15,21 @@
     <title>Introduction :: Internship Report</title>
 
     
-    <link href="../../css/nucleus.css?1763051433" rel="stylesheet">
-    <link href="../../css/fontawesome-all.min.css?1763051433" rel="stylesheet">
-    <link href="../../css/hybrid.css?1763051433" rel="stylesheet">
-    <link href="../../css/featherlight.min.css?1763051433" rel="stylesheet">
-    <link href="../../css/perfect-scrollbar.min.css?1763051433" rel="stylesheet">
-    <link href="../../css/auto-complete.css?1763051433" rel="stylesheet">
-    <link href="../../css/atom-one-dark-reasonable.css?1763051433" rel="stylesheet">
-    <link href="../../css/theme.css?1763051433" rel="stylesheet">
-    <link href="../../css/hugo-theme.css?1763051433" rel="stylesheet">
+    <link href="../../css/nucleus.css?1763108149" rel="stylesheet">
+    <link href="../../css/fontawesome-all.min.css?1763108149" rel="stylesheet">
+    <link href="../../css/hybrid.css?1763108149" rel="stylesheet">
+    <link href="../../css/featherlight.min.css?1763108149" rel="stylesheet">
+    <link href="../../css/perfect-scrollbar.min.css?1763108149" rel="stylesheet">
+    <link href="../../css/auto-complete.css?1763108149" rel="stylesheet">
+    <link href="../../css/atom-one-dark-reasonable.css?1763108149" rel="stylesheet">
+    <link href="../../css/theme.css?1763108149" rel="stylesheet">
+    <link href="../../css/hugo-theme.css?1763108149" rel="stylesheet">
     
-    <link href="../../css/theme-workshop.css?1763051433" rel="stylesheet">
+    <link href="../../css/theme-workshop.css?1763108149" rel="stylesheet">
     
     
 
-    <script src="../../js/jquery-3.3.1.min.js?1763051433"></script>
+    <script src="../../js/jquery-3.3.1.min.js?1763108149"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -88,14 +88,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="../../js/lunr.min.js?1763051433"></script>
-<script type="text/javascript" src="../../js/auto-complete.js?1763051433"></script>
+<script type="text/javascript" src="../../js/lunr.min.js?1763108149"></script>
+<script type="text/javascript" src="../../js/auto-complete.js?1763108149"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/tranngockhiet.github.io\/tran-ngoc-khiet-fptse192015-internship-report\/";
     
 </script>
-<script type="text/javascript" src="../../js/search.js?1763051433"></script>
+<script type="text/javascript" src="../../js/search.js?1763108149"></script>
  
   </div>
 
@@ -1023,18 +1023,14 @@
 
 
 
-	<h4 id="vpc-endpoints">VPC endpoints</h4>
+	<h4 id="serverless--event-driven-architecture">Serverless &amp; Event-Driven Architecture</h4>
 <ul>
-<li><strong>VPC endpoints</strong> are virtual devices. They are horizontally scaled, redundant, and highly available VPC components. They allow communication between your compute resources and AWS services without imposing availability risks.</li>
-<li>Compute resources running in VPC can access  <strong>Amazon S3</strong>  using a Gateway endpoint. PrivateLink interface endpoints can be used by compute resources running in VPC or on-premises.</li>
+<li><strong>Serverless Architecture</strong>: This project uses cloud services like <strong>AWS Lambda</strong>, <strong>API Gateway</strong>, and <strong>DynamoDB</strong>. This model allows code to run in response to events without managing or provisioning servers, as AWS handles all scaling and infrastructure.</li>
+<li><strong>Event-Driven Architecture</strong>: The core of the system is event-driven. Instead of services polling each other, events (like a sensor reading or a user request) trigger downstream processes. This is managed by services like <strong>Amazon EventBridge</strong>, <strong>SQS</strong>, and <strong>AWS IoT Core</strong>, creating a flexible and scalable system.</li>
 </ul>
 <h4 id="workshop-overview">Workshop overview</h4>
-<p>In this workshop, you will use two VPCs.</p>
-<ul>
-<li><strong>&ldquo;VPC Cloud&rdquo;</strong> is for cloud resources such as a  <strong>Gateway endpoint</strong> and an EC2 instance to test with.</li>
-<li><strong>&ldquo;VPC On-Prem&rdquo;</strong> simulates an on-premises environment such as a factory or corporate datacenter. An EC2 instance running strongSwan VPN software has been deployed in &ldquo;VPC On-prem&rdquo; and automatically configured to establish a Site-to-Site VPN tunnel with AWS Transit Gateway. This VPN simulates connectivity from an on-premises location to the AWS cloud. To minimize costs, only one VPN instance is provisioned to support this workshop. When planning VPN connectivity for your production workloads, AWS recommends using multiple VPN devices for high availability.</li>
-</ul>
-<p><img src="../../images/5-Workshop/5.1-Workshop-overview/diagram1.png" alt="overview"></p>
+<p>In this workshop, you will deploy a serverless data platform on AWS to process real-time environmental data from 8 rooms. The system uses IoT Core, Lambda, DynamoDB, S3, EventBridge, and SNS. Sensor data is forwarded from edge devices or simulated scripts, ingested into AWS, stored in DynamoDB tables, processed by Lambda, and routed through EventBridge for alerting or downstream automation. This architecture provides high availability, low cost, and seamless scalability as more rooms or sensors are added.</p>
+<p><img src="../../images/5-Workshop/5.1-Workshop-overview/Smart-Office-Architect-Diagram.drawio.png" alt="overview"></p>
 
 
 
@@ -1740,19 +1736,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="../../js/clipboard.min.js?1763051433"></script>
-    <script src="../../js/perfect-scrollbar.min.js?1763051433"></script>
-    <script src="../../js/perfect-scrollbar.jquery.min.js?1763051433"></script>
-    <script src="../../js/jquery.sticky.js?1763051433"></script>
-    <script src="../../js/featherlight.min.js?1763051433"></script>
-    <script src="../../js/highlight.pack.js?1763051433"></script>
+    <script src="../../js/clipboard.min.js?1763108149"></script>
+    <script src="../../js/perfect-scrollbar.min.js?1763108149"></script>
+    <script src="../../js/perfect-scrollbar.jquery.min.js?1763108149"></script>
+    <script src="../../js/jquery.sticky.js?1763108149"></script>
+    <script src="../../js/featherlight.min.js?1763108149"></script>
+    <script src="../../js/highlight.pack.js?1763108149"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="../../js/modernizr.custom-3.6.0.js?1763051433"></script>
-    <script src="../../js/learn.js?1763051433"></script>
-    <script src="../../js/hugo-learn.js?1763051433"></script>
+    <script src="../../js/modernizr.custom-3.6.0.js?1763108149"></script>
+    <script src="../../js/learn.js?1763108149"></script>
+    <script src="../../js/hugo-learn.js?1763108149"></script>
 
-    <link href="../../mermaid/mermaid.css?1763051433" rel="stylesheet" />
-    <script src="../../mermaid/mermaid.js?1763051433"></script>
+    <link href="../../mermaid/mermaid.css?1763108149" rel="stylesheet" />
+    <script src="../../mermaid/mermaid.js?1763108149"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
