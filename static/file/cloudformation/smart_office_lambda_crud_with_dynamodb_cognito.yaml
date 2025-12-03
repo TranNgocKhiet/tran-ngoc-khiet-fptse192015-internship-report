@@ -52,6 +52,7 @@ Resources:
                   - cognito-idp:AdminAddUserToGroup
                   - cognito-idp:AdminUpdateUserAttributes
                   - cognito-idp:AdminDeleteUser
+                  - cognito-idp:AdminGetUser
                 Resource:
                   - Fn::ImportValue: !Sub "${AuthStackName}-UserPoolArn"
               # Quyền Logs
