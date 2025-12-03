@@ -74,10 +74,12 @@ pre: " <b> 4.1. </b> "
 Attending the **“AI-Driven Development Life Cycle: Reimagining Software Engineering”** workshop was extremely valuable. I had the opportunity to learn new methodologies and connect with IT professionals. Key experiences included:
 
 #### Learning from highly skilled speakers
+
 - Learning from experts how they handle errors in coding and product development
 - Experiencing real-world use cases of the methodologies
 
 #### Leveraging modern tools
+
 - Explored **Amazon Q Developer**, an AI tool that supports AI-DLC
 - Observed a demonstration of how Kiro is used in the Spec-Driven Development Lifecycle
 

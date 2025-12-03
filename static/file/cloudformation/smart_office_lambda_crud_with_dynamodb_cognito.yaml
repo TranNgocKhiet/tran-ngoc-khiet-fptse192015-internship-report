@@ -1,0 +1,203 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: Lambda functions for Smart Office (Office & Manager Only)
+
+Parameters:
+  EnvironmentName:
+    Type: String
+    Default: Dev
+    AllowedValues: [Dev, Prod]
+  DatabaseStackName:
+    Type: String
+    Description: "SmartOffice-DynamoDB-Dev"
+    Default: "SmartOffice-DynamoDB-Dev"
+  AuthStackName:
+    Type: String
+    Description: "SmartOffice-Cognito-Dev"
+    Default: "SmartOffice-Cognito-Dev"
+
+Resources:
+  # IAM ROLE for crud resource
+  SmartOfficeCrudRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: !Sub "${AWS::StackName}-CrudRole"
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+            Action: sts:AssumeRole
+      Policies:
+        - PolicyName: DynamoDB-CrudPolicy
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              # Quyền DynamoDB
+              - Effect: Allow
+                Action:
+                  - dynamodb:PutItem
+                  - dynamodb:GetItem
+                  - dynamodb:UpdateItem
+                  - dynamodb:DeleteItem
+                  - dynamodb:Query
+                  - dynamodb:Scan
+                Resource:
+                  - Fn::ImportValue: !Sub "${DatabaseStackName}-ManagerTableArn1"
+                  - Fn::ImportValue: !Sub "${DatabaseStackName}-OfficeTableArn"
+              # Quyền Cognito (AdminCreateUser, AdminUpdateUserAttributes...)
+              - Effect: Allow
+                Action:
+                  - cognito-idp:AdminCreateUser
+                  - cognito-idp:AdminAddUserToGroup
+                  - cognito-idp:AdminUpdateUserAttributes
+                  - cognito-idp:AdminDeleteUser
+                Resource:
+                  - Fn::ImportValue: !Sub "${AuthStackName}-UserPoolArn"
+              # Quyền Logs
+              - Effect: Allow
+                Action:
+                  - logs:CreateLogGroup
+                  - logs:CreateLogStream
+                  - logs:PutLogEvents
+                Resource: "*"
+
+  # LAMBDA FUNCTION
+
+  # --- Create Office And Manager ---
+  CreateOfficeAndManagerFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: !Sub "${AWS::StackName}-CreateOfficeAndManager"
+      Description: "Handle Creation of Office and Manager"
+      Runtime: python3.14
+      Handler: CreateOfficeAndManager.lambda_handler
+      MemorySize: 128
+      Timeout: 10
+      Role: !GetAtt SmartOfficeCrudRole.Arn
+      Environment:
+        Variables:
+          OFFICE_TABLE:
+            Fn::ImportValue: !Sub "${DatabaseStackName}-OfficeTableName"
+          MANAGER_TABLE:
+            Fn::ImportValue: !Sub "${DatabaseStackName}-ManagerTableName1"
+          # Cần ID này để tạo user manager trong Cognito
+          USER_POOL_ID:
+            Fn::ImportValue: !Sub "${AuthStackName}-UserPoolId"
+      Code:
+        ZipFile: |
+          def lambda_handler(event, context):
+              return "CreateOfficeAndManager Infrastructure created..."
+
+  CreateOfficeAndManagerLogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: !Sub "/aws/lambda/${AWS::StackName}-CreateOfficeAndManager"
+      RetentionInDays: 3
+
+  # --- Update Office And Manager ---
+  UpdateOfficeAndManagerFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: !Sub "${AWS::StackName}-UpdateOfficeAndManager"
+      Description: "Handle Update of Office and Manager"
+      Runtime: python3.14
+      Handler: UpdateOfficeAndManager.lambda_handler
+      MemorySize: 128
+      Timeout: 10
+      Role: !GetAtt SmartOfficeCrudRole.Arn
+      Environment:
+        Variables:
+          OFFICE_TABLE:
+            Fn::ImportValue: !Sub "${DatabaseStackName}-OfficeTableName"
+          MANAGER_TABLE:
+            Fn::ImportValue: !Sub "${DatabaseStackName}-ManagerTableName1"
+      Code:
+        ZipFile: |
+          def lambda_handler(event, context):
+              return "UpdateOfficeAndManager Infrastructure created..."
+
+  UpdateOfficeAndManagerLogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: !Sub "/aws/lambda/${AWS::StackName}-UpdateOfficeAndManager"
+      RetentionInDays: 3
+
+  # --- Delete Office And Manager ---
+  DeleteOfficeAndManagerFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: !Sub "${AWS::StackName}-DeleteOfficeAndManager"
+      Description: "Handle Deletion of Office and Manager"
+      Runtime: python3.14
+      Handler: DeleteOfficeAndManager.lambda_handler
+      MemorySize: 128
+      Timeout: 10
+      Role: !GetAtt SmartOfficeCrudRole.Arn
+      Environment:
+        Variables:
+          OFFICE_TABLE:
+            Fn::ImportValue: !Sub "${DatabaseStackName}-OfficeTableName"
+          MANAGER_TABLE:
+            Fn::ImportValue: !Sub "${DatabaseStackName}-ManagerTableName1"
+      Code:
+        ZipFile: |
+          def lambda_handler(event, context):
+              return "DeleteOfficeAndManager Infrastructure created..."
+
+  DeleteOfficeAndManagerLogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: !Sub "/aws/lambda/${AWS::StackName}-DeleteOfficeAndManager"
+      RetentionInDays: 3
+
+  # --- Update Profile (Admin) ---
+  UpdateProfileFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: !Sub "${AWS::StackName}-UpdateProfile"
+      Description: "Handle Admin Profile Update"
+      Runtime: python3.14
+      Handler: UpdateProfile.lambda_handler
+      MemorySize: 128
+      Timeout: 10
+      Role: !GetAtt SmartOfficeCrudRole.Arn
+      Environment:
+        Variables:
+          # Đổi sang OFFICE_TABLE để update Admin
+          OFFICE_TABLE:
+            Fn::ImportValue: !Sub "${DatabaseStackName}-OfficeTableName"
+          # Cần ID này để update thông tin trong Cognito
+          USER_POOL_ID:
+            Fn::ImportValue: !Sub "${AuthStackName}-UserPoolId"
+      Code:
+        ZipFile: |
+          def lambda_handler(event, context):
+              return "Infrastructure created. Waiting for code deployment..."
+
+  UpdateProfileLogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: !Sub "/aws/lambda/${AWS::StackName}-UpdateProfile"
+      RetentionInDays: 3
+
+Outputs:
+  CreateOfficeAndManagerFunctionArn:
+    Value: !GetAtt CreateOfficeAndManagerFunction.Arn
+    Export:
+      Name: !Sub "${AWS::StackName}-CreateOfficeAndManagerFunctionArn"
+
+  UpdateOfficeAndManagerFunctionArn:
+    Value: !GetAtt UpdateOfficeAndManagerFunction.Arn
+    Export:
+      Name: !Sub "${AWS::StackName}-UpdateOfficeAndManagerFunctionArn"
+
+  DeleteOfficeAndManagerFunctionArn:
+    Value: !GetAtt DeleteOfficeAndManagerFunction.Arn
+    Export:
+      Name: !Sub "${AWS::StackName}-DeleteOfficeAndManagerFunctionArn"
+
+  UpdateProfileFunctionArn:
+    Value: !GetAtt UpdateProfileFunction.Arn
+    Export:
+      Name: !Sub "${AWS::StackName}-UpdateProfileFunctionArn"

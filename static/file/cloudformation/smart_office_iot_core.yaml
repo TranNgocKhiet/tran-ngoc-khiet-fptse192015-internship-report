@@ -1,0 +1,74 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: AWS IoT Core Resources (Policy & Rules)
+
+Parameters:
+  EnvironmentName:
+    Type: String
+    Default: Dev
+    AllowedValues: [Dev, Prod]
+
+  # To get HandleTelemetry ARN
+  IoTLambdaStackName:
+    Type: String
+    Description: "Name of the stack containing IoT Lambdas (smart_office_lambda_crud_with_dynamodb_iot)"
+    Default: "SmartOffice-IoT-Lambda-Dev"
+
+Resources:
+  # --- IOT POLICY (Security) ---
+  # Only allow to Pub/Sub to right topic of Office/Room
+  SmartOfficeDevicePolicy:
+    Type: AWS::IoT::Policy
+    Properties:
+      PolicyName: !Sub "${AWS::StackName}-DevicePolicy"
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Action: iot:Connect
+            Resource: !Sub "arn:aws:iot:${AWS::Region}:${AWS::AccountId}:client/${!iot:Connection.Thing.ThingName}"
+
+          # Allow Publish Telemetry
+          # Topic format: smart-office/{officeId}/{roomId}/telemetry
+          - Effect: Allow
+            Action: iot:Publish
+            Resource: !Sub "arn:aws:iot:${AWS::Region}:${AWS::AccountId}:topic/smart-office/*/*/telemetry"
+
+          # Allow Subscribe/Receive command
+          # Topic format: smart-office/{officeId}/{roomId}/command
+          - Effect: Allow
+            Action:
+              - iot:Subscribe
+              - iot:Receive
+            Resource: !Sub "arn:aws:iot:${AWS::Region}:${AWS::AccountId}:topicfilter/smart-office/*/*/command"
+
+  # --- IOT TOPIC RULE ---
+  # Get data from topic telemetry and send to Lambda
+  TelemetryRule:
+    Type: AWS::IoT::TopicRule
+    Properties:
+      RuleName: !Sub "SmartOffice_Telemetry_Rule_${EnvironmentName}"
+      TopicRulePayload:
+        RuleDisabled: false
+        AwsIotSqlVersion: "2016-03-23"
+        # SQL: Get all data from topic telemetry and topic() information
+        Sql: "SELECT *, topic(2) as officeId, topic(3) as roomId FROM 'smart-office/+/+/telemetry'"
+        Actions:
+          - Lambda:
+              FunctionArn:
+                Fn::ImportValue: !Sub "${IoTLambdaStackName}-HandleTelemetryFunctionArn"
+
+  # --- PERMISSION (Authorization) ---
+  LambdaInvokePermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      FunctionName:
+        Fn::ImportValue: !Sub "${IoTLambdaStackName}-HandleTelemetryFunctionArn"
+      Action: lambda:InvokeFunction
+      Principal: iot.amazonaws.com
+      SourceArn: !GetAtt TelemetryRule.Arn
+
+Outputs:
+  IoTPolicyName:
+    Value: !Ref SmartOfficeDevicePolicy
+    Export:
+      Name: !Sub "${AWS::StackName}-IoTPolicyName"

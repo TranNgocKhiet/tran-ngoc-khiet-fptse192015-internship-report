@@ -1,0 +1,178 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: Lambda functions for Smart Office IoT (Room Config & Telemetry)
+
+Parameters:
+  EnvironmentName:
+    Type: String
+    Default: Dev
+    AllowedValues: [Dev, Prod]
+  DatabaseStackName:
+    Type: String
+    Description: "SmartOffice-DynamoDB-Dev"
+    Default: "SmartOffice-DynamoDB-Dev"
+
+Resources:
+  SmartOfficeIoTRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: !Sub "${AWS::StackName}-IoTRole"
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+            Action: sts:AssumeRole
+      Policies:
+        - PolicyName: IoT-DynamoDB-Access
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action:
+                  - dynamodb:PutItem
+                  - dynamodb:GetItem
+                  - dynamodb:UpdateItem
+                  - dynamodb:DeleteItem
+                  - dynamodb:Query
+                  - dynamodb:Scan
+                Resource:
+                  - Fn::ImportValue: !Sub "${DatabaseStackName}-RoomConfigTableArn"
+                  - Fn::ImportValue: !Sub "${DatabaseStackName}-RoomLogTableArn"
+              - Effect: Allow
+                Action:
+                  - iot:CreateThing
+                  - iot:DeleteThing
+                  - iot:UpdateThing
+                  - iot:CreateKeysAndCertificate
+                  - iot:UpdateCertificate
+                  - iot:AttachPolicy
+                  - iot:DetachPolicy
+                  - iot:AttachThingPrincipal
+                  - iot:DetachThingPrincipal
+                  - iot:ListThingPrincipals
+                Resource: "*"
+              - Effect: Allow
+                Action:
+                  - logs:CreateLogGroup
+                  - logs:CreateLogStream
+                  - logs:PutLogEvents
+                Resource: "*"
+
+  CreateRoomConfigFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: !Sub "${AWS::StackName}-CreateRoomConfig"
+      Description: "Handle Smart Office Room Config Creation & Register IoT Thing"
+      Runtime: python3.14
+      Handler: CreateRoomConfig.lambda_handler
+      MemorySize: 128
+      Timeout: 15
+      Role: !GetAtt SmartOfficeIoTRole.Arn
+      Environment:
+        Variables:
+          ROOM_CONFIG_TABLE:
+            Fn::ImportValue: !Sub "${DatabaseStackName}-RoomConfigTableName"
+      Code:
+        ZipFile: |
+          def lambda_handler(event, context):
+              return "CreateRoomConfig Infrastructure created..."
+
+  CreateRoomConfigLogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: !Sub "/aws/lambda/${AWS::StackName}-CreateRoomConfig"
+      RetentionInDays: 3
+
+  UpdateRoomConfigFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: !Sub "${AWS::StackName}-UpdateRoomConfig"
+      Description: "Handle Smart Office Room Config Update"
+      Runtime: python3.14
+      Handler: UpdateRoomConfig.lambda_handler
+      MemorySize: 128
+      Timeout: 10
+      Role: !GetAtt SmartOfficeIoTRole.Arn
+      Environment:
+        Variables:
+          ROOM_CONFIG_TABLE:
+            Fn::ImportValue: !Sub "${DatabaseStackName}-RoomConfigTableName"
+      Code:
+        ZipFile: |
+          def lambda_handler(event, context):
+              return "UpdateRoomConfig Infrastructure created..."
+
+  UpdateRoomConfigLogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: !Sub "/aws/lambda/${AWS::StackName}-UpdateRoomConfig"
+      RetentionInDays: 3
+
+  DeleteRoomConfigFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: !Sub "${AWS::StackName}-DeleteRoomConfig"
+      Description: "Handle Smart Office Room Config Deletion"
+      Runtime: python3.14
+      Handler: DeleteRoomConfig.lambda_handler
+      MemorySize: 128
+      Timeout: 10
+      Role: !GetAtt SmartOfficeIoTRole.Arn
+      Environment:
+        Variables:
+          ROOM_CONFIG_TABLE:
+            Fn::ImportValue: !Sub "${DatabaseStackName}-RoomConfigTableName"
+      Code:
+        ZipFile: |
+          def lambda_handler(event, context):
+              return "DeleteRoomConfig Infrastructure created..."
+
+  DeleteRoomConfigLogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: !Sub "/aws/lambda/${AWS::StackName}-DeleteRoomConfig"
+      RetentionInDays: 3
+
+  HandleTelemetryFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: !Sub "${AWS::StackName}-HandleTelemetry"
+      Description: "Process MQTT messages and save to DynamoDB"
+      Runtime: python3.14
+      Handler: HandleTelemetry.lambda_handler
+      MemorySize: 128
+      Timeout: 5
+      Role: !GetAtt SmartOfficeIoTRole.Arn
+      Environment:
+        Variables:
+          ROOM_LOG_TABLE:
+            Fn::ImportValue: !Sub "${DatabaseStackName}-RoomLogTableName"
+      Code:
+        ZipFile: |
+          def lambda_handler(event, context):
+              return "HandleTelemetry Infrastructure created..."
+
+  HandleTelemetryLogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: !Sub "/aws/lambda/${AWS::StackName}-HandleTelemetry"
+      RetentionInDays: 3
+
+Outputs:
+  CreateRoomConfigFunctionArn:
+    Value: !GetAtt CreateRoomConfigFunction.Arn
+    Export:
+      Name: !Sub "${AWS::StackName}-CreateRoomConfigFunctionArn"
+  UpdateRoomConfigFunctionArn:
+    Value: !GetAtt UpdateRoomConfigFunction.Arn
+    Export:
+      Name: !Sub "${AWS::StackName}-UpdateRoomConfigFunctionArn"
+  DeleteRoomConfigFunctionArn:
+    Value: !GetAtt DeleteRoomConfigFunction.Arn
+    Export:
+      Name: !Sub "${AWS::StackName}-DeleteRoomConfigFunctionArn"
+  HandleTelemetryFunctionArn:
+    Value: !GetAtt HandleTelemetryFunction.Arn
+    Export:
+      Name: !Sub "${AWS::StackName}-HandleTelemetryFunctionArn"

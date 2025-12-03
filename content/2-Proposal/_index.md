@@ -73,7 +73,7 @@ The Smart Office system adopts a fully serverless AWS architecture optimized for
 
 ### 6. Budget Estimation
 You can find the budget estimation on the [AWS Pricing Calculator](https://calculator.aws/#/estimate?id=0db12150c448b012356e475becefd549c37094d8).  
-Or you can download the [Budget Estimation File](/file/f8e2d281-aba2-48c2-adf8-d8ec828d2ec9.pdf).
+Or you can download the [Budget Estimation File](/file/pricing/f8e2d281-aba2-48c2-adf8-d8ec828d2ec9.pdf).
 
 ### Infrastructure Costs
 AWS Services:

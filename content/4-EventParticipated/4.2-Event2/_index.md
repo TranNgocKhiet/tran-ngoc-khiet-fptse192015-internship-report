@@ -1,126 +1,99 @@
 ---
 title: "Event 2"
-# date: "`r Sys.Date()`"
-weight: 1
+weight: 2
 chapter: false
 pre: " <b> 4.2. </b> "
 ---
 
-{{% notice warning %}}
-⚠️ **Note:** The information below is for reference purposes only. Please **do not copy it verbatim** into your report, including this warning.
-{{% /notice %}}
-
-# Summary Report: “GenAI-powered App-DB Modernization workshop”
+# Summary Report: "AWS Cloud Mastery Series #1: AI/ML/GenAI on AWS"
 
 ### Event Objectives
 
-- Share best practices in modern application design
-- Introduce Domain-Driven Design (DDD) and event-driven architecture
-- Provide guidance on selecting the right compute services
-- Present AI tools to support the development lifecycle
+- Introduce to Foundation Model
+- ​Prompting techniques guide
+- Explore Generative AI with Amazon Bedrock
+- ​Retrieval-Augmented Generation (RAG): Architecture & Knowledge Base integration
 
 ### Speakers
 
-- **Jignesh Shah** – Director, Open Source Databases
-- **Erica Liu** – Sr. GTM Specialist, AppMod
-- **Fabrianne Effendi** – Assc. Specialist SA, Serverless Amazon Web Services
+- Danh Hoang Hieu Nghi 
+- Lam Truong Kiet
+- Dinh Le Hoang Anh
 
 ### Key Highlights
 
-#### Identifying the drawbacks of legacy application architecture
+#### Prompting Techniques
 
-- Long product release cycles → Lost revenue/missed opportunities  
-- Inefficient operations → Reduced productivity, higher costs  
-- Non-compliance with security regulations → Security breaches, loss of reputation  
+- Effective prompting techniques for better and accurate result
 
-#### Transitioning to modern application architecture – Microservices
+#### RAG (Retrieval-Augmented Generation)
 
-Migrating to a modular system — each function is an **independent service** communicating via **events**, built on three core pillars:
+- AI with embedded data source to response with more accurate, real-time and included internal data result
+  
+#### Embedding
 
-- **Queue Management**: Handle asynchronous tasks  
-- **Caching Strategy**: Optimize performance  
-- **Message Handling**: Flexible inter-service communication  
+- Numerical representation of text (vectors) that captures semantics and relationships betwwen words
+- Embedding models capture features and nuances of the text
+- Rich embedding models can be used to compare text similarity
+- Multilingual Text Embeddings can identify mearing in different languages
 
-#### Domain-Driven Design (DDD)
+#### Some AWS AI Service
 
-- **Four-step method**: Identify domain events → arrange timeline → identify actors → define bounded contexts  
-- **Bookstore case study**: Demonstrates real-world DDD application  
-- **Context mapping**: 7 patterns for integrating bounded contexts  
-
-#### Event-Driven Architecture
-
-- **3 integration patterns**: Publish/Subscribe, Point-to-point, Streaming  
-- **Benefits**: Loose coupling, scalability, resilience  
-- **Sync vs async comparison**: Understanding the trade-offs  
-
-#### Compute Evolution
-
-- **Shared Responsibility Model**: EC2 → ECS → Fargate → Lambda  
-- **Serverless benefits**: No server management, auto-scaling, pay-for-value  
-- **Functions vs Containers**: Criteria for appropriate choice  
-
-#### Amazon Q Developer
-
-- **SDLC automation**: From planning to maintenance  
-- **Code transformation**: Java upgrade, .NET modernization  
-- **AWS Transform agents**: VMware, Mainframe, .NET migration  
+- Amazon Rekognition
+- Amazon Translate
+- Amazon Textract
+- Amazon Transcribe
+- Amazon Polly
+- Amazon Comprehend
+- Amazon Kendra
+- Amazon Lookout
+- Aamzon Personalize
 
 ### Key Takeaways
 
-#### Design Mindset
+#### Prompting Techniques - Chain of thought
 
-- **Business-first approach**: Always start from the business domain, not the technology  
-- **Ubiquitous language**: Importance of a shared vocabulary between business and tech teams  
-- **Bounded contexts**: Identifying and managing complexity in large systems  
+- Providing AI with an example case
+- Explain for AI step-by-step to handle your problem
 
-#### Technical Architecture
+#### RAG use cases
 
-- **Event storming technique**: Practical method for modeling business processes  
-- Use **event-driven communication** instead of synchronous calls  
-- **Integration patterns**: When to use sync, async, pub/sub, streaming  
-- **Compute spectrum**: Criteria for choosing between VM, containers, and serverless  
+- Reducing hallucinations and connecting with recent knowledge including enterprise data
+- Enchance chatbox capabilities by integrating with real-time data
+- Searching base on user previous search history and persona
+- Retrieving and summarizing transactional data from data 
 
-#### Modernization Strategy
+#### Amazon Titan Embedding
 
-- **Phased approach**: No rushing — follow a clear roadmap  
-- **7Rs framework**: Multiple modernization paths depending on the application  
-- **ROI measurement**: Cost reduction + business agility  
+- Translate text inputs (words, phrases) into numerical representations (embeddings)
+- Comparing embeddings produces more relevant and contextual responses than word matching
+- Max Tokens: 8000
+- Output Vectors: 256,512,1024
+- Language: Multilingual (100+ languages in preview)
 
 ### Applying to Work
 
-- **Apply DDD** to current projects: Event storming sessions with business teams  
-- **Refactor microservices**: Use bounded contexts to define service boundaries  
-- **Implement event-driven patterns**: Replace some sync calls with async messaging  
-- **Adopt serverless**: Pilot AWS Lambda for suitable use cases  
-- **Try Amazon Q Developer**: Integrate into the dev workflow to boost productivity  
+- Explore more AI Services to apply for future project
 
 ### Event Experience
 
-Attending the **“GenAI-powered App-DB Modernization”** workshop was extremely valuable, giving me a comprehensive view of modernizing applications and databases using advanced methods and tools. Key experiences included:
+Attending the **“AI/ML/GenAI on AWS”** workshop was extremely valuable. I had the opportunity to learn new knowlegde and connect with IT professionals. Key experiences included:
 
 #### Learning from highly skilled speakers
-- Experts from AWS and major tech organizations shared **best practices** in modern application design.  
-- Through real-world case studies, I gained a deeper understanding of applying **DDD** and **Event-Driven Architecture** to large projects.  
 
-#### Hands-on technical exposure
-- Participating in **event storming** sessions helped me visualize how to **model business processes** into domain events.  
-- Learned how to **split microservices** and define **bounded contexts** to manage large-system complexity.  
-- Understood trade-offs between **synchronous and asynchronous communication** and integration patterns like **pub/sub, point-to-point, streaming**.  
+- Experts from FACJ shared **best practices** in applying AI in real project
+- Through real-world case studies, I gained a deeper understanding of applying prompting techniques
 
-#### Leveraging modern tools
-- Explored **Amazon Q Developer**, an AI tool for SDLC support from planning to maintenance.  
-- Learned to **automate code transformation** and pilot serverless with **AWS Lambda** to improve productivity.  
+#### Explores AWS AI Service
 
-#### Networking and discussions
-- The workshop offered opportunities to exchange ideas with experts, peers, and business teams, enhancing the **ubiquitous language** between business and tech.  
-- Real-world examples reinforced the importance of the **business-first approach** rather than focusing solely on technology.  
+- Through the demo of speakers, I learn how AWS AI service work and their real life use case
 
-#### Lessons learned
-- Applying DDD and event-driven patterns reduces **coupling** while improving **scalability** and **resilience**.  
-- Modernization requires a **phased approach** with **ROI measurement**; rushing the process can be risky.  
-- AI tools like Amazon Q Developer can significantly **boost productivity** when integrated into the current workflow.  
+#### Building agents guide
+
+- Receiving experience and knowlege when start to build AI Agent
 
 #### Some event photos
-*Add your event photos here*  
 
-> Overall, the event not only provided technical knowledge but also helped me reshape my thinking about application design, system modernization, and cross-team collaboration.
+
+
+> Overall, the event have give me a lot of knowlegde about AI to apply for real life project.
