@@ -1,0 +1,335 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: Auth Lambda functions for Smart Office (Login, Logout, Password Reset, Signup)
+
+Parameters:
+  EnvironmentName:
+    Type: String
+    Default: Dev
+    AllowedValues: [Dev, Prod]
+  AuthStackName:
+    Type: String
+    Description: "Stack name for authentication"
+    Default: "SmartOffice-Cognito-Dev"
+  DatabaseStackName:
+    Type: String
+    Description: "Stack name for database"
+    Default: "SmartOffice-DynamoDB-Dev"
+
+Resources:
+  # --- IAM ROLE ---
+  SmartOfficeAuthRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: !Sub "${AWS::StackName}-AuthRole"
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+            Action: sts:AssumeRole
+      Policies:
+        - PolicyName: CognitoAccessPolicy
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              # Permission to perform crud on DynamoDB
+              - Effect: Allow
+                Action:
+                  - dynamodb:PutItem
+                  - dynamodb:GetItem
+                  - dynamodb:UpdateItem
+                  - dynamodb:DeleteItem
+                  - dynamodb:Query
+                  - dynamodb:Scan
+                Resource:
+                  - Fn::ImportValue: !Sub "${DatabaseStackName}-RoomConfigTableArn"
+                  - Fn::ImportValue: !Sub "${DatabaseStackName}-OfficeTableArn"
+                  - Fn::ImportValue: !Sub "${DatabaseStackName}-ManagerTableArn1"
+
+              # Permission to interact Cognito User Pool
+              - Effect: Allow
+                Action:
+                  - cognito-idp:InitiateAuth
+                  - cognito-idp:AdminInitiateAuth
+                  - cognito-idp:GlobalSignOut
+                  - cognito-idp:ForgotPassword
+                  - cognito-idp:ConfirmForgotPassword
+                  - cognito-idp:GetUser
+                  - cognito-idp:SignUp
+                  - cognito-idp:ConfirmSignUp
+                  - cognito-idp:ResendConfirmationCode
+                  - cognito-idp:AdminGetUser
+                  - cognito-idp:AdminAddUserToGroup
+                  - cognito-idp:CreateGroup
+                  - cognito-idp:RespondToAuthChallenge
+                Resource:
+                  - Fn::ImportValue: !Sub "${AuthStackName}-UserPoolArn"
+
+              - Effect: Allow
+                Action:
+                  - logs:CreateLogGroup
+                  - logs:CreateLogStream
+                  - logs:PutLogEvents
+                Resource: "*"
+
+  # LAMBDA FUNCTIONS
+
+  # --- Login ---
+  LoginFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: !Sub "${AWS::StackName}-Login"
+      Runtime: python3.14
+      Handler: Login.lambda_handler
+      MemorySize: 128
+      Timeout: 10
+      Role: !GetAtt SmartOfficeAuthRole.Arn
+      Environment:
+        Variables:
+          MANAGER_TABLE_NAME:
+            Fn::ImportValue: !Sub "${DatabaseStackName}-ManagerTableName1"
+          OFFICE_TABLE_NAME:
+            Fn::ImportValue: !Sub "${DatabaseStackName}-OfficeTableName"
+          COGNITO_CLIENT_ID:
+            Fn::ImportValue: !Sub "${AuthStackName}-WebClientId"
+          USER_POOL_ID:
+            Fn::ImportValue: !Sub "${AuthStackName}-UserPoolId"
+      Code:
+        ZipFile: |
+          def lambda_handler(event, context):
+              return "Login Infrastructure created..."
+
+  LoginLogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: !Sub "/aws/lambda/${AWS::StackName}-Login"
+      RetentionInDays: 3
+
+  # --- Logout ---
+  LogoutFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: !Sub "${AWS::StackName}-Logout"
+      Runtime: python3.14
+      Handler: Logout.lambda_handler
+      MemorySize: 128
+      Timeout: 10
+      Role: !GetAtt SmartOfficeAuthRole.Arn
+      Environment:
+        Variables:
+          USER_POOL_ID:
+            Fn::ImportValue: !Sub "${AuthStackName}-UserPoolId"
+      Code:
+        ZipFile: |
+          def lambda_handler(event, context):
+              return "Logout Infrastructure created..."
+
+  LogoutLogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: !Sub "/aws/lambda/${AWS::StackName}-Logout"
+      RetentionInDays: 3
+
+  # --- Forgot Password ---
+  ForgotPasswordFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: !Sub "${AWS::StackName}-ForgotPassword"
+      Runtime: python3.14
+      Handler: ForgotPassword.lambda_handler
+      MemorySize: 128
+      Timeout: 10
+      Role: !GetAtt SmartOfficeAuthRole.Arn
+      Environment:
+        Variables:
+          COGNITO_CLIENT_ID:
+            Fn::ImportValue: !Sub "${AuthStackName}-WebClientId"
+      Code:
+        ZipFile: |
+          def lambda_handler(event, context):
+              return "ForgotPassword Infrastructure created..."
+
+  ForgotPasswordLogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: !Sub "/aws/lambda/${AWS::StackName}-ForgotPassword"
+      RetentionInDays: 3
+
+  # --- Confirm Password ---
+  ConfirmPasswordFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: !Sub "${AWS::StackName}-ConfirmPassword"
+      Runtime: python3.14
+      Handler: ConfirmPassword.lambda_handler
+      MemorySize: 128
+      Timeout: 10
+      Role: !GetAtt SmartOfficeAuthRole.Arn
+      Environment:
+        Variables:
+          COGNITO_CLIENT_ID:
+            Fn::ImportValue: !Sub "${AuthStackName}-WebClientId"
+      Code:
+        ZipFile: |
+          def lambda_handler(event, context):
+              return "ConfirmPassword Infrastructure created..."
+
+  ConfirmPasswordLogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: !Sub "/aws/lambda/${AWS::StackName}-ConfirmPassword"
+      RetentionInDays: 3
+
+  # --- Signup (Previously RegisterAdmin) ---
+  SignupFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: !Sub "${AWS::StackName}-Signup"
+      Description: "Register new Organization and Admin Account"
+      Runtime: python3.14
+      Handler: Signup.lambda_handler
+      MemorySize: 128
+      Timeout: 15
+      Role: !GetAtt SmartOfficeAuthRole.Arn
+      Environment:
+        Variables:
+          TABLE_NAME: # Code uses TABLE_NAME for organization check
+            Fn::ImportValue: !Sub "${DatabaseStackName}-OfficeTableName"
+          CLIENT_ID: # Code uses CLIENT_ID
+            Fn::ImportValue: !Sub "${AuthStackName}-WebClientId"
+          USER_POOL_ID: # Code uses USER_POOL_ID
+            Fn::ImportValue: !Sub "${AuthStackName}-UserPoolId"
+      Code:
+        ZipFile: |
+          def lambda_handler(event, context):
+              return "SignupFunction Infrastructure created..."
+
+  SignupLogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: !Sub "/aws/lambda/${AWS::StackName}-Signup"
+      RetentionInDays: 3
+
+  # --- Verify Signup (Confirm Registration) ---
+  VerifySignupFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: !Sub "${AWS::StackName}-VerifySignup"
+      Description: "Confirm Admin Registration via OTP"
+      Runtime: python3.14
+      Handler: VerifySignup.lambda_handler
+      MemorySize: 128
+      Timeout: 15
+      Role: !GetAtt SmartOfficeAuthRole.Arn
+      Environment:
+        Variables:
+          TABLE_NAME: # Code uses TABLE_NAME to create org record
+            Fn::ImportValue: !Sub "${DatabaseStackName}-OfficeTableName"
+          CLIENT_ID: # Code uses CLIENT_ID
+            Fn::ImportValue: !Sub "${AuthStackName}-WebClientId"
+          USER_POOL_ID: # Code uses USER_POOL_ID
+            Fn::ImportValue: !Sub "${AuthStackName}-UserPoolId"
+      Code:
+        ZipFile: |
+          def lambda_handler(event, context):
+              return "VerifySignupFunction Infrastructure created..."
+
+  VerifySignupLogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: !Sub "/aws/lambda/${AWS::StackName}-VerifySignup"
+      RetentionInDays: 3
+
+  # --- Resend Code ---
+  ResendCodeFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: !Sub "${AWS::StackName}-ResendCode"
+      Description: "Resend confirmation code"
+      Runtime: python3.14
+      Handler: ResendCode.lambda_handler
+      MemorySize: 128
+      Timeout: 10
+      Role: !GetAtt SmartOfficeAuthRole.Arn
+      Environment:
+        Variables:
+          CLIENT_ID: # Code uses CLIENT_ID
+            Fn::ImportValue: !Sub "${AuthStackName}-WebClientId"
+      Code:
+        ZipFile: |
+          def lambda_handler(event, context):
+              return "ResendCodeFunction Infrastructure created..."
+
+  ResendCodeLogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: !Sub "/aws/lambda/${AWS::StackName}-ResendCode"
+      RetentionInDays: 3
+
+  # --- Change Temporary Password ---
+  ChangeTemporaryPasswordFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: !Sub "${AWS::StackName}-ChangeTemporaryPassword"
+      Description: "Handle NEW_PASSWORD_REQUIRED challenge for first time login"
+      Runtime: python3.12
+      Handler: index.lambda_handler
+      MemorySize: 128
+      Timeout: 10
+      Role: !GetAtt SmartOfficeAuthRole.Arn
+      Environment:
+        Variables:
+          COGNITO_CLIENT_ID:
+            Fn::ImportValue: !Sub "${AuthStackName}-WebClientId"
+      Code:
+        ZipFile: |
+          def lambda_handler(event, context):
+              return "ChangeTemporaryPasswordFunction Infrastructure created..."
+
+  ChangeTemporaryPasswordLogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: !Sub "/aws/lambda/${AWS::StackName}-ChangeTemporaryPassword"
+      RetentionInDays: 3
+
+Outputs:
+  LoginFunctionArn:
+    Value: !GetAtt LoginFunction.Arn
+    Export:
+      Name: !Sub "${AWS::StackName}-LoginFunctionArn"
+
+  LogoutFunctionArn:
+    Value: !GetAtt LogoutFunction.Arn
+    Export:
+      Name: !Sub "${AWS::StackName}-LogoutFunctionArn"
+
+  ForgotPasswordFunctionArn:
+    Value: !GetAtt ForgotPasswordFunction.Arn
+    Export:
+      Name: !Sub "${AWS::StackName}-ForgotPasswordFunctionArn"
+
+  ConfirmPasswordFunctionArn:
+    Value: !GetAtt ConfirmPasswordFunction.Arn
+    Export:
+      Name: !Sub "${AWS::StackName}-ConfirmPasswordFunctionArn"
+
+  SignupFunctionArn:
+    Value: !GetAtt SignupFunction.Arn
+    Export:
+      Name: !Sub "${AWS::StackName}-SignupFunctionArn"
+
+  VerifySignupFunctionArn:
+    Value: !GetAtt VerifySignupFunction.Arn
+    Export:
+      Name: !Sub "${AWS::StackName}-VerifySignupFunctionArn"
+
+  ResendCodeFunctionArn:
+    Value: !GetAtt ResendCodeFunction.Arn
+    Export:
+      Name: !Sub "${AWS::StackName}-ResendCodeFunctionArn"
+
+  ChangeTemporaryPasswordFunctionArn:
+    Value: !GetAtt ChangeTemporaryPasswordFunction.Arn
+    Export:
+      Name: !Sub "${AWS::StackName}-ChangeTemporaryPasswordFunctionArn"

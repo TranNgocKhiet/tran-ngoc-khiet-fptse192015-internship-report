@@ -1,0 +1,61 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: Cognito User Pool with Groups and Initial Users
+
+Parameters:
+  EnvironmentName:
+    Type: String
+    Default: Dev
+    AllowedValues: [Dev, Prod]
+
+Resources:
+  # --- USER POOL ---
+  SmartOfficeUserPool:
+    Type: AWS::Cognito::UserPool
+    Properties:
+      UserPoolName: !Sub "${AWS::StackName}-UserPool"
+      UsernameAttributes: [email]
+      AutoVerifiedAttributes: [email]
+      Policies:
+        PasswordPolicy:
+          MinimumLength: 6
+          RequireLowercase: false
+          RequireNumbers: false
+          RequireSymbols: false
+          RequireUppercase: false
+
+      Schema:
+        - Name: email
+          Required: true
+          Mutable: true
+        - Name: name
+          Required: true
+          Mutable: true
+
+  # --- APP CLIENT ---
+  SmartOfficeWebClient:
+    Type: AWS::Cognito::UserPoolClient
+    Properties:
+      ClientName: !Sub "${AWS::StackName}-WebClient"
+      UserPoolId: !Ref SmartOfficeUserPool
+      # Web App run on site SHOULD NOT have secret
+      GenerateSecret: false
+      ExplicitAuthFlows:
+        - ALLOW_USER_PASSWORD_AUTH
+        - ALLOW_REFRESH_TOKEN_AUTH
+        - ALLOW_USER_SRP_AUTH
+
+Outputs:
+  UserPoolId:
+    Value: !Ref SmartOfficeUserPool
+    Export:
+      Name: !Sub "${AWS::StackName}-UserPoolId"
+
+  WebClientId:
+    Value: !Ref SmartOfficeWebClient
+    Export:
+      Name: !Sub "${AWS::StackName}-WebClientId"
+
+  UserPoolArn:
+    Value: !GetAtt SmartOfficeUserPool.Arn
+    Export:
+      Name: !Sub "${AWS::StackName}-UserPoolArn"

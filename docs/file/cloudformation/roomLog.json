@@ -1,0 +1,9 @@
+{
+  "roomId": "202",
+  "officeId": "6c92bc28-45d5-4475-af7e-e34590cc4d6c",
+  "temperature": 30,
+  "humidity": 70,
+  "light": 400,
+  "timestamp": 1734355200,
+  "expireAt": 1734528000
+}
