@@ -1,0 +1,1295 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: API Gateway for Smart Office (RPC Style - Admin & Manager separated)
+
+Parameters:
+  EnvironmentName:
+    Type: String
+    Default: prod
+    AllowedValues: [dev, prod]
+  AuthStackName:
+    Type: String
+    Default: "SmartOffice-Cognito-Dev"
+  AuthLambdaStackName:
+    Type: String
+    Default: "SmartOffice-Authenticate-Lambda-Dev"
+  CrudLambdaStackName:
+    Type: String
+    Default: "SmartOffice-Crud-Lambda-Dev"
+  IoTLambdaStackName:
+    Type: String
+    Default: "SmartOffice-IoT-Lambda-Dev"
+  ReadOnlyLambdaStackName:
+    Type: String
+    Default: "SmartOffice-ReadOnly-Lambda-Dev"
+
+Resources:
+  # --- API GATEWAY ROOT ---
+  SmartOfficeApi:
+    Type: AWS::ApiGateway::RestApi
+    Properties:
+      Name: !Sub "${AWS::StackName}-Api"
+      EndpointConfiguration: { Types: ["REGIONAL"] }
+
+  # --- AUTHORIZER ---
+  CognitoAuthorizer:
+    Type: AWS::ApiGateway::Authorizer
+    Properties:
+      Name: !Sub "${AWS::StackName}-CognitoAuthorizer"
+      Type: COGNITO_USER_POOLS
+      IdentitySource: method.request.header.Authorization
+      RestApiId: !Ref SmartOfficeApi
+      ProviderARNs:
+        - Fn::ImportValue: !Sub "${AuthStackName}-UserPoolArn"
+
+  # ====================================================================
+  # GATEWAY RESPONSES (FIX CORS FOR 401/403/500 ERRORS)
+  # ====================================================================
+
+  GatewayResponseDefault4XX:
+    Type: AWS::ApiGateway::GatewayResponse
+    Properties:
+      ResponseParameters:
+        gatewayresponse.header.Access-Control-Allow-Origin: "'*'"
+        gatewayresponse.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,Accept,Origin,Referer,User-Agent'"
+        gatewayresponse.header.Access-Control-Allow-Methods: "'GET,POST,PUT,DELETE,OPTIONS'"
+      ResponseType: DEFAULT_4XX
+      RestApiId: !Ref SmartOfficeApi
+
+  GatewayResponseDefault5XX:
+    Type: AWS::ApiGateway::GatewayResponse
+    Properties:
+      ResponseParameters:
+        gatewayresponse.header.Access-Control-Allow-Origin: "'*'"
+        gatewayresponse.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,Accept,Origin,Referer,User-Agent'"
+        gatewayresponse.header.Access-Control-Allow-Methods: "'GET,POST,PUT,DELETE,OPTIONS'"
+      ResponseType: DEFAULT_5XX
+      RestApiId: !Ref SmartOfficeApi
+
+  # ====================================================================
+  # 1. RESOURCES (PATHS)
+  # ====================================================================
+
+  # --------------------------------------------------------------------
+  # A. AUTH GROUP (/auth) - Giữ nguyên
+  # --------------------------------------------------------------------
+  AuthResource:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      RestApiId: !Ref SmartOfficeApi
+      ParentId: !GetAtt SmartOfficeApi.RootResourceId
+      PathPart: "auth"
+
+  LoginResource: # /auth/login
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      RestApiId: !Ref SmartOfficeApi
+      ParentId: !Ref AuthResource
+      PathPart: "login"
+
+  LogoutResource: # /auth/logout
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      RestApiId: !Ref SmartOfficeApi
+      ParentId: !Ref AuthResource
+      PathPart: "logout"
+
+  SignupResource: # /auth/signup
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      RestApiId: !Ref SmartOfficeApi
+      ParentId: !Ref AuthResource
+      PathPart: "signup"
+
+  VerifySignupResource: # /auth/verify
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      RestApiId: !Ref SmartOfficeApi
+      ParentId: !Ref AuthResource
+      PathPart: "verify"
+
+  ResendCodeResource: # /auth/resend-code
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      RestApiId: !Ref SmartOfficeApi
+      ParentId: !Ref AuthResource
+      PathPart: "resend-code"
+
+  ForgotPasswordResource: # /auth/forgot-password
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      RestApiId: !Ref SmartOfficeApi
+      ParentId: !Ref AuthResource
+      PathPart: "forgot-password"
+
+  ConfirmForgotPasswordResource: # /auth/confirm-forgot-password
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      RestApiId: !Ref SmartOfficeApi
+      ParentId: !Ref AuthResource
+      PathPart: "confirm-forgot-password"
+
+  ChangeTemporaryPasswordResource: # /auth/change-temporary-password
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      RestApiId: !Ref SmartOfficeApi
+      ParentId: !Ref AuthResource
+      PathPart: "change-temporary-password"
+
+  # --------------------------------------------------------------------
+  # B. ADMIN GROUP (/admin) - Cấu trúc RPC mới
+  # --------------------------------------------------------------------
+  AdminResource:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      RestApiId: !Ref SmartOfficeApi
+      ParentId: !GetAtt SmartOfficeApi.RootResourceId
+      PathPart: "admin"
+
+  # 1. Create Office (/admin/office-with-manager)
+  OfficeWithManagerResource:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      RestApiId: !Ref SmartOfficeApi
+      ParentId: !Ref AdminResource
+      PathPart: "office-with-manager"
+
+  # 2. List Office (/admin/list-office-and-manager)
+  ListOfficeResource:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      RestApiId: !Ref SmartOfficeApi
+      ParentId: !Ref AdminResource
+      PathPart: "list-office-and-manager"
+
+  # 3. Office Detail (/admin/office-detail)
+  OfficeDetailResource:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      RestApiId: !Ref SmartOfficeApi
+      ParentId: !Ref AdminResource
+      PathPart: "office-detail"
+
+  # 4. Update Office (/admin/update-office-and-manager)
+  UpdateOfficeResource:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      RestApiId: !Ref SmartOfficeApi
+      ParentId: !Ref AdminResource
+      PathPart: "update-office-and-manager"
+
+  # 5. Delete Office (/admin/delete-office-and-manager)
+  DeleteOfficeResource:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      RestApiId: !Ref SmartOfficeApi
+      ParentId: !Ref AdminResource
+      PathPart: "delete-office-and-manager"
+
+  # 6. Profile Update (/admin/profile-update) - Di chuyển từ Manager sang đây
+  AdminProfileUpdateResource:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      RestApiId: !Ref SmartOfficeApi
+      ParentId: !Ref AdminResource
+      PathPart: "profile-update"
+
+  # --------------------------------------------------------------------
+  # C. MANAGER GROUP (/manager) - Cấu trúc RPC mới
+  # --------------------------------------------------------------------
+  ManagerResource:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      RestApiId: !Ref SmartOfficeApi
+      ParentId: !GetAtt SmartOfficeApi.RootResourceId
+      PathPart: "manager"
+
+  # 1. Config Room (/manager/config-room) - GET & POST
+  ManagerConfigRoomResource:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      RestApiId: !Ref SmartOfficeApi
+      ParentId: !Ref ManagerResource
+      PathPart: "config-room"
+
+  # 2. Create Room Config (/manager/create-room-config) - POST
+  ManagerCreateRoomResource:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      RestApiId: !Ref SmartOfficeApi
+      ParentId: !Ref ManagerResource
+      PathPart: "create-room-config"
+
+  # 3. List Room (/manager/list-room) - GET
+  ManagerListRoomResource:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      RestApiId: !Ref SmartOfficeApi
+      ParentId: !Ref ManagerResource
+      PathPart: "list-room"
+
+  # 4. Sensor Data (/manager/sensor-data) - GET
+  ManagerSensorDataResource:
+    Type: AWS::ApiGateway::Resource
+    Properties:
+      RestApiId: !Ref SmartOfficeApi
+      ParentId: !Ref ManagerResource
+      PathPart: "sensor-data"
+
+  # ====================================================================
+  # 2. METHODS (LOGIC + OPTIONS)
+  # ====================================================================
+
+  # --------------------------------------------------------------------
+  # A. AUTHENTICATION METHODS
+  # --------------------------------------------------------------------
+
+  # 1. LOGIN
+  LoginPost:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      RestApiId: !Ref SmartOfficeApi
+      ResourceId: !Ref LoginResource
+      HttpMethod: POST
+      AuthorizationType: NONE
+      Integration:
+        Type: AWS_PROXY
+        IntegrationHttpMethod: POST
+        Uri: !Sub
+          - "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${LambdaArn}/invocations"
+          - LambdaArn:
+              Fn::ImportValue: !Sub "${AuthLambdaStackName}-LoginFunctionArn"
+
+  LoginOptions:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      AuthorizationType: NONE
+      RestApiId: !Ref SmartOfficeApi
+      ResourceId: !Ref LoginResource
+      HttpMethod: OPTIONS
+      Integration:
+        Type: MOCK
+        RequestTemplates:
+          application/json: '{"statusCode": 200}'
+        PassthroughBehavior: WHEN_NO_MATCH
+        IntegrationResponses:
+          - StatusCode: 200
+            ResponseParameters:
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,Accept,Origin,Referer,User-Agent'"
+              method.response.header.Access-Control-Allow-Methods: "'POST,OPTIONS'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+            ResponseTemplates:
+              application/json: "{}"
+      MethodResponses:
+        - StatusCode: 200
+          ResponseParameters:
+            method.response.header.Access-Control-Allow-Headers: true
+            method.response.header.Access-Control-Allow-Methods: true
+            method.response.header.Access-Control-Allow-Origin: true
+
+  # 2. LOGOUT
+  LogoutPost:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      RestApiId: !Ref SmartOfficeApi
+      ResourceId: !Ref LogoutResource
+      HttpMethod: POST
+      AuthorizationType: NONE
+      Integration:
+        Type: AWS_PROXY
+        IntegrationHttpMethod: POST
+        Uri: !Sub
+          - "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${LambdaArn}/invocations"
+          - LambdaArn:
+              Fn::ImportValue: !Sub "${AuthLambdaStackName}-LogoutFunctionArn"
+
+  LogoutOptions:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      AuthorizationType: NONE
+      RestApiId: !Ref SmartOfficeApi
+      ResourceId: !Ref LogoutResource
+      HttpMethod: OPTIONS
+      Integration:
+        Type: MOCK
+        RequestTemplates:
+          application/json: '{"statusCode": 200}'
+        PassthroughBehavior: WHEN_NO_MATCH
+        IntegrationResponses:
+          - StatusCode: 200
+            ResponseParameters:
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,Accept,Origin,Referer,User-Agent'"
+              method.response.header.Access-Control-Allow-Methods: "'POST,OPTIONS'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+            ResponseTemplates:
+              application/json: "{}"
+      MethodResponses:
+        - StatusCode: 200
+          ResponseParameters:
+            method.response.header.Access-Control-Allow-Headers: true
+            method.response.header.Access-Control-Allow-Methods: true
+            method.response.header.Access-Control-Allow-Origin: true
+
+  # 3. SIGNUP
+  SignupPost:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      RestApiId: !Ref SmartOfficeApi
+      ResourceId: !Ref SignupResource
+      HttpMethod: POST
+      AuthorizationType: NONE
+      Integration:
+        Type: AWS_PROXY
+        IntegrationHttpMethod: POST
+        Uri: !Sub
+          - "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${LambdaArn}/invocations"
+          - LambdaArn:
+              Fn::ImportValue: !Sub "${AuthLambdaStackName}-SignupFunctionArn"
+
+  SignupOptions:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      AuthorizationType: NONE
+      RestApiId: !Ref SmartOfficeApi
+      ResourceId: !Ref SignupResource
+      HttpMethod: OPTIONS
+      Integration:
+        Type: MOCK
+        RequestTemplates:
+          application/json: '{"statusCode": 200}'
+        PassthroughBehavior: WHEN_NO_MATCH
+        IntegrationResponses:
+          - StatusCode: 200
+            ResponseParameters:
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,Accept,Origin,Referer,User-Agent'"
+              method.response.header.Access-Control-Allow-Methods: "'POST,OPTIONS'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+            ResponseTemplates:
+              application/json: "{}"
+      MethodResponses:
+        - StatusCode: 200
+          ResponseParameters:
+            method.response.header.Access-Control-Allow-Headers: true
+            method.response.header.Access-Control-Allow-Methods: true
+            method.response.header.Access-Control-Allow-Origin: true
+
+  # 4. VERIFY SIGNUP
+  VerifySignupPost:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      RestApiId: !Ref SmartOfficeApi
+      ResourceId: !Ref VerifySignupResource
+      HttpMethod: POST
+      AuthorizationType: NONE
+      Integration:
+        Type: AWS_PROXY
+        IntegrationHttpMethod: POST
+        Uri: !Sub
+          - "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${LambdaArn}/invocations"
+          - LambdaArn:
+              Fn::ImportValue: !Sub "${AuthLambdaStackName}-VerifySignupFunctionArn"
+
+  VerifySignupOptions:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      AuthorizationType: NONE
+      RestApiId: !Ref SmartOfficeApi
+      ResourceId: !Ref VerifySignupResource
+      HttpMethod: OPTIONS
+      Integration:
+        Type: MOCK
+        RequestTemplates:
+          application/json: '{"statusCode": 200}'
+        PassthroughBehavior: WHEN_NO_MATCH
+        IntegrationResponses:
+          - StatusCode: 200
+            ResponseParameters:
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,Accept,Origin,Referer,User-Agent'"
+              method.response.header.Access-Control-Allow-Methods: "'POST,OPTIONS'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+            ResponseTemplates:
+              application/json: "{}"
+      MethodResponses:
+        - StatusCode: 200
+          ResponseParameters:
+            method.response.header.Access-Control-Allow-Headers: true
+            method.response.header.Access-Control-Allow-Methods: true
+            method.response.header.Access-Control-Allow-Origin: true
+
+  # 5. RESEND CODE
+  ResendCodePost:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      RestApiId: !Ref SmartOfficeApi
+      ResourceId: !Ref ResendCodeResource
+      HttpMethod: POST
+      AuthorizationType: NONE
+      Integration:
+        Type: AWS_PROXY
+        IntegrationHttpMethod: POST
+        Uri: !Sub
+          - "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${LambdaArn}/invocations"
+          - LambdaArn:
+              Fn::ImportValue: !Sub "${AuthLambdaStackName}-ResendCodeFunctionArn"
+
+  ResendCodeOptions:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      AuthorizationType: NONE
+      RestApiId: !Ref SmartOfficeApi
+      ResourceId: !Ref ResendCodeResource
+      HttpMethod: OPTIONS
+      Integration:
+        Type: MOCK
+        RequestTemplates:
+          application/json: '{"statusCode": 200}'
+        PassthroughBehavior: WHEN_NO_MATCH
+        IntegrationResponses:
+          - StatusCode: 200
+            ResponseParameters:
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,Accept,Origin,Referer,User-Agent'"
+              method.response.header.Access-Control-Allow-Methods: "'POST,OPTIONS'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+            ResponseTemplates:
+              application/json: "{}"
+      MethodResponses:
+        - StatusCode: 200
+          ResponseParameters:
+            method.response.header.Access-Control-Allow-Headers: true
+            method.response.header.Access-Control-Allow-Methods: true
+            method.response.header.Access-Control-Allow-Origin: true
+
+  # 6. FORGOT PASSWORD
+  ForgotPasswordPost:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      RestApiId: !Ref SmartOfficeApi
+      ResourceId: !Ref ForgotPasswordResource
+      HttpMethod: POST
+      AuthorizationType: NONE
+      Integration:
+        Type: AWS_PROXY
+        IntegrationHttpMethod: POST
+        Uri: !Sub
+          - "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${LambdaArn}/invocations"
+          - LambdaArn:
+              Fn::ImportValue: !Sub "${AuthLambdaStackName}-ForgotPasswordFunctionArn"
+
+  ForgotPasswordOptions:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      AuthorizationType: NONE
+      RestApiId: !Ref SmartOfficeApi
+      ResourceId: !Ref ForgotPasswordResource
+      HttpMethod: OPTIONS
+      Integration:
+        Type: MOCK
+        RequestTemplates:
+          application/json: '{"statusCode": 200}'
+        PassthroughBehavior: WHEN_NO_MATCH
+        IntegrationResponses:
+          - StatusCode: 200
+            ResponseParameters:
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,Accept,Origin,Referer,User-Agent'"
+              method.response.header.Access-Control-Allow-Methods: "'POST,OPTIONS'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+            ResponseTemplates:
+              application/json: "{}"
+      MethodResponses:
+        - StatusCode: 200
+          ResponseParameters:
+            method.response.header.Access-Control-Allow-Headers: true
+            method.response.header.Access-Control-Allow-Methods: true
+            method.response.header.Access-Control-Allow-Origin: true
+
+  # 7. CONFIRM FORGOT PASSWORD
+  ConfirmForgotPasswordPost:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      RestApiId: !Ref SmartOfficeApi
+      ResourceId: !Ref ConfirmForgotPasswordResource
+      HttpMethod: POST
+      AuthorizationType: NONE
+      Integration:
+        Type: AWS_PROXY
+        IntegrationHttpMethod: POST
+        Uri: !Sub
+          - "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${LambdaArn}/invocations"
+          - LambdaArn:
+              Fn::ImportValue: !Sub "${AuthLambdaStackName}-ConfirmPasswordFunctionArn"
+
+  ConfirmForgotPasswordOptions:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      AuthorizationType: NONE
+      RestApiId: !Ref SmartOfficeApi
+      ResourceId: !Ref ConfirmForgotPasswordResource
+      HttpMethod: OPTIONS
+      Integration:
+        Type: MOCK
+        RequestTemplates:
+          application/json: '{"statusCode": 200}'
+        PassthroughBehavior: WHEN_NO_MATCH
+        IntegrationResponses:
+          - StatusCode: 200
+            ResponseParameters:
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,Accept,Origin,Referer,User-Agent'"
+              method.response.header.Access-Control-Allow-Methods: "'POST,OPTIONS'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+            ResponseTemplates:
+              application/json: "{}"
+      MethodResponses:
+        - StatusCode: 200
+          ResponseParameters:
+            method.response.header.Access-Control-Allow-Headers: true
+            method.response.header.Access-Control-Allow-Methods: true
+            method.response.header.Access-Control-Allow-Origin: true
+
+  # 8. CHANGE TEMPORARY PASSWORD
+  ChangeTemporaryPasswordPost:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      RestApiId: !Ref SmartOfficeApi
+      ResourceId: !Ref ChangeTemporaryPasswordResource
+      HttpMethod: POST
+      AuthorizationType: NONE
+      Integration:
+        Type: AWS_PROXY
+        IntegrationHttpMethod: POST
+        Uri: !Sub
+          - "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${LambdaArn}/invocations"
+          - LambdaArn:
+              Fn::ImportValue: !Sub "${AuthLambdaStackName}-ChangeTemporaryPasswordFunctionArn"
+
+  ChangeTemporaryPasswordOptions:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      AuthorizationType: NONE
+      RestApiId: !Ref SmartOfficeApi
+      ResourceId: !Ref ChangeTemporaryPasswordResource
+      HttpMethod: OPTIONS
+      Integration:
+        Type: MOCK
+        RequestTemplates:
+          application/json: '{"statusCode": 200}'
+        PassthroughBehavior: WHEN_NO_MATCH
+        IntegrationResponses:
+          - StatusCode: 200
+            ResponseParameters:
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,Accept,Origin,Referer,User-Agent'"
+              method.response.header.Access-Control-Allow-Methods: "'POST,OPTIONS'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+            ResponseTemplates:
+              application/json: "{}"
+      MethodResponses:
+        - StatusCode: 200
+          ResponseParameters:
+            method.response.header.Access-Control-Allow-Headers: true
+            method.response.header.Access-Control-Allow-Methods: true
+            method.response.header.Access-Control-Allow-Origin: true
+
+  # --------------------------------------------------------------------
+  # B. ADMIN METHODS (RPC STYLE)
+  # --------------------------------------------------------------------
+
+  # 1. CREATE OFFICE
+  CreateOfficeManagerPost:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      RestApiId: !Ref SmartOfficeApi
+      ResourceId: !Ref OfficeWithManagerResource
+      HttpMethod: POST
+      AuthorizationType: COGNITO_USER_POOLS
+      AuthorizerId: !Ref CognitoAuthorizer
+      Integration:
+        Type: AWS_PROXY
+        IntegrationHttpMethod: POST
+        Uri: !Sub
+          - "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${LambdaArn}/invocations"
+          - LambdaArn:
+              Fn::ImportValue: !Sub "${CrudLambdaStackName}-CreateOfficeAndManagerFunctionArn"
+
+  OfficeManagerOptions:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      AuthorizationType: NONE
+      RestApiId: !Ref SmartOfficeApi
+      ResourceId: !Ref OfficeWithManagerResource
+      HttpMethod: OPTIONS
+      Integration:
+        Type: MOCK
+        RequestTemplates:
+          application/json: '{"statusCode": 200}'
+        PassthroughBehavior: WHEN_NO_MATCH
+        IntegrationResponses:
+          - StatusCode: 200
+            ResponseParameters:
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,Accept,Origin,Referer,User-Agent'"
+              method.response.header.Access-Control-Allow-Methods: "'POST,OPTIONS'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+            ResponseTemplates:
+              application/json: "{}"
+      MethodResponses:
+        - StatusCode: 200
+          ResponseParameters:
+            method.response.header.Access-Control-Allow-Headers: true
+            method.response.header.Access-Control-Allow-Methods: true
+            method.response.header.Access-Control-Allow-Origin: true
+
+  # 2. LIST OFFICE
+  ListOfficeGet:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      RestApiId: !Ref SmartOfficeApi
+      ResourceId: !Ref ListOfficeResource
+      HttpMethod: GET
+      AuthorizationType: COGNITO_USER_POOLS
+      AuthorizerId: !Ref CognitoAuthorizer
+      Integration:
+        Type: AWS_PROXY
+        IntegrationHttpMethod: POST
+        Uri: !Sub
+          - "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${LambdaArn}/invocations"
+          - LambdaArn:
+              Fn::ImportValue: !Sub "${ReadOnlyLambdaStackName}-ListOfficeAndManagerFunctionArn"
+
+  ListOfficeOptions:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      AuthorizationType: NONE
+      RestApiId: !Ref SmartOfficeApi
+      ResourceId: !Ref ListOfficeResource
+      HttpMethod: OPTIONS
+      Integration:
+        Type: MOCK
+        RequestTemplates:
+          application/json: '{"statusCode": 200}'
+        PassthroughBehavior: WHEN_NO_MATCH
+        IntegrationResponses:
+          - StatusCode: 200
+            ResponseParameters:
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,Accept,Origin,Referer,User-Agent'"
+              method.response.header.Access-Control-Allow-Methods: "'GET,OPTIONS'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+            ResponseTemplates:
+              application/json: "{}"
+      MethodResponses:
+        - StatusCode: 200
+          ResponseParameters:
+            method.response.header.Access-Control-Allow-Headers: true
+            method.response.header.Access-Control-Allow-Methods: true
+            method.response.header.Access-Control-Allow-Origin: true
+
+  # 3. OFFICE DETAIL
+  OfficeDetailGet:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      RestApiId: !Ref SmartOfficeApi
+      ResourceId: !Ref OfficeDetailResource
+      HttpMethod: GET
+      AuthorizationType: COGNITO_USER_POOLS
+      AuthorizerId: !Ref CognitoAuthorizer
+      Integration:
+        Type: AWS_PROXY
+        IntegrationHttpMethod: POST
+        Uri: !Sub
+          - "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${LambdaArn}/invocations"
+          - LambdaArn:
+              Fn::ImportValue: !Sub "${ReadOnlyLambdaStackName}-GetOfficeDetailFunctionArn"
+
+  OfficeDetailOptions:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      AuthorizationType: NONE
+      RestApiId: !Ref SmartOfficeApi
+      ResourceId: !Ref OfficeDetailResource
+      HttpMethod: OPTIONS
+      Integration:
+        Type: MOCK
+        RequestTemplates:
+          application/json: '{"statusCode": 200}'
+        PassthroughBehavior: WHEN_NO_MATCH
+        IntegrationResponses:
+          - StatusCode: 200
+            ResponseParameters:
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,Accept,Origin,Referer,User-Agent'"
+              method.response.header.Access-Control-Allow-Methods: "'GET,OPTIONS'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+            ResponseTemplates:
+              application/json: "{}"
+      MethodResponses:
+        - StatusCode: 200
+          ResponseParameters:
+            method.response.header.Access-Control-Allow-Headers: true
+            method.response.header.Access-Control-Allow-Methods: true
+            method.response.header.Access-Control-Allow-Origin: true
+
+  # 4. UPDATE OFFICE
+  UpdateOfficeManagerPut:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      RestApiId: !Ref SmartOfficeApi
+      ResourceId: !Ref UpdateOfficeResource
+      HttpMethod: PUT
+      AuthorizationType: COGNITO_USER_POOLS
+      AuthorizerId: !Ref CognitoAuthorizer
+      Integration:
+        Type: AWS_PROXY
+        IntegrationHttpMethod: POST
+        Uri: !Sub
+          - "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${LambdaArn}/invocations"
+          - LambdaArn:
+              Fn::ImportValue: !Sub "${CrudLambdaStackName}-UpdateOfficeAndManagerFunctionArn"
+
+  UpdateOfficeOptions:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      AuthorizationType: NONE
+      RestApiId: !Ref SmartOfficeApi
+      ResourceId: !Ref UpdateOfficeResource
+      HttpMethod: OPTIONS
+      Integration:
+        Type: MOCK
+        RequestTemplates:
+          application/json: '{"statusCode": 200}'
+        PassthroughBehavior: WHEN_NO_MATCH
+        IntegrationResponses:
+          - StatusCode: 200
+            ResponseParameters:
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,Accept,Origin,Referer,User-Agent'"
+              method.response.header.Access-Control-Allow-Methods: "'PUT,OPTIONS'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+            ResponseTemplates:
+              application/json: "{}"
+      MethodResponses:
+        - StatusCode: 200
+          ResponseParameters:
+            method.response.header.Access-Control-Allow-Headers: true
+            method.response.header.Access-Control-Allow-Methods: true
+            method.response.header.Access-Control-Allow-Origin: true
+
+  # 5. DELETE OFFICE
+  DeleteOfficeManagerDelete:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      RestApiId: !Ref SmartOfficeApi
+      ResourceId: !Ref DeleteOfficeResource
+      HttpMethod: DELETE
+      AuthorizationType: COGNITO_USER_POOLS
+      AuthorizerId: !Ref CognitoAuthorizer
+      Integration:
+        Type: AWS_PROXY
+        IntegrationHttpMethod: POST
+        Uri: !Sub
+          - "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${LambdaArn}/invocations"
+          - LambdaArn:
+              Fn::ImportValue: !Sub "${CrudLambdaStackName}-DeleteOfficeAndManagerFunctionArn"
+
+  DeleteOfficeOptions:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      AuthorizationType: NONE
+      RestApiId: !Ref SmartOfficeApi
+      ResourceId: !Ref DeleteOfficeResource
+      HttpMethod: OPTIONS
+      Integration:
+        Type: MOCK
+        RequestTemplates:
+          application/json: '{"statusCode": 200}'
+        PassthroughBehavior: WHEN_NO_MATCH
+        IntegrationResponses:
+          - StatusCode: 200
+            ResponseParameters:
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,Accept,Origin,Referer,User-Agent'"
+              method.response.header.Access-Control-Allow-Methods: "'DELETE,OPTIONS'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+            ResponseTemplates:
+              application/json: "{}"
+      MethodResponses:
+        - StatusCode: 200
+          ResponseParameters:
+            method.response.header.Access-Control-Allow-Headers: true
+            method.response.header.Access-Control-Allow-Methods: true
+            method.response.header.Access-Control-Allow-Origin: true
+
+  # 6. UPDATE PROFILE (Moved to Admin)
+  AdminProfileUpdatePost:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      RestApiId: !Ref SmartOfficeApi
+      ResourceId: !Ref AdminProfileUpdateResource
+      HttpMethod: POST
+      AuthorizationType: COGNITO_USER_POOLS
+      AuthorizerId: !Ref CognitoAuthorizer
+      Integration:
+        Type: AWS_PROXY
+        IntegrationHttpMethod: POST
+        Uri: !Sub
+          - "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${LambdaArn}/invocations"
+          - LambdaArn:
+              Fn::ImportValue: !Sub "${CrudLambdaStackName}-UpdateProfileFunctionArn"
+
+  AdminProfileUpdateOptions:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      AuthorizationType: NONE
+      RestApiId: !Ref SmartOfficeApi
+      ResourceId: !Ref AdminProfileUpdateResource
+      HttpMethod: OPTIONS
+      Integration:
+        Type: MOCK
+        RequestTemplates:
+          application/json: '{"statusCode": 200}'
+        PassthroughBehavior: WHEN_NO_MATCH
+        IntegrationResponses:
+          - StatusCode: 200
+            ResponseParameters:
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,Accept,Origin,Referer,User-Agent'"
+              method.response.header.Access-Control-Allow-Methods: "'POST,OPTIONS'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+            ResponseTemplates:
+              application/json: "{}"
+      MethodResponses:
+        - StatusCode: 200
+          ResponseParameters:
+            method.response.header.Access-Control-Allow-Headers: true
+            method.response.header.Access-Control-Allow-Methods: true
+            method.response.header.Access-Control-Allow-Origin: true
+  # --------------------------------------------------------------------
+  # C. MANAGER METHODS (RPC STYLE)
+  # --------------------------------------------------------------------
+
+  # 1. CONFIG ROOM (GET & POST) - /manager/config-room
+
+  # GET: Lấy thông tin cấu hình phòng (GetRoomConfig)
+  ManagerConfigRoomGet:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      RestApiId: !Ref SmartOfficeApi
+      ResourceId: !Ref ManagerConfigRoomResource
+      HttpMethod: GET
+      AuthorizationType: COGNITO_USER_POOLS
+      AuthorizerId: !Ref CognitoAuthorizer
+      Integration:
+        Type: AWS_PROXY
+        IntegrationHttpMethod: POST
+        Uri: !Sub
+          - "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${LambdaArn}/invocations"
+          - LambdaArn:
+              Fn::ImportValue: !Sub "${ReadOnlyLambdaStackName}-GetRoomConfigFunctionArn"
+
+  # POST: Cập nhật cấu hình phòng (UpdateRoomConfig)
+  ManagerConfigRoomPost:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      RestApiId: !Ref SmartOfficeApi
+      ResourceId: !Ref ManagerConfigRoomResource
+      HttpMethod: POST
+      AuthorizationType: COGNITO_USER_POOLS
+      AuthorizerId: !Ref CognitoAuthorizer
+      Integration:
+        Type: AWS_PROXY
+        IntegrationHttpMethod: POST
+        Uri: !Sub
+          - "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${LambdaArn}/invocations"
+          - LambdaArn:
+              Fn::ImportValue: !Sub "${IoTLambdaStackName}-UpdateRoomConfigFunctionArn"
+
+  ManagerConfigRoomOptions:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      AuthorizationType: NONE
+      RestApiId: !Ref SmartOfficeApi
+      ResourceId: !Ref ManagerConfigRoomResource
+      HttpMethod: OPTIONS
+      Integration:
+        Type: MOCK
+        RequestTemplates:
+          application/json: '{"statusCode": 200}'
+        PassthroughBehavior: WHEN_NO_MATCH
+        IntegrationResponses:
+          - StatusCode: 200
+            ResponseParameters:
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,Accept,Origin,Referer,User-Agent'"
+              method.response.header.Access-Control-Allow-Methods: "'GET,POST,OPTIONS'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+            ResponseTemplates:
+              application/json: "{}"
+      MethodResponses:
+        - StatusCode: 200
+          ResponseParameters:
+            method.response.header.Access-Control-Allow-Headers: true
+            method.response.header.Access-Control-Allow-Methods: true
+            method.response.header.Access-Control-Allow-Origin: true
+
+  # 2. CREATE ROOM CONFIG (POST) - /manager/create-room-config
+  ManagerCreateRoomPost:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      RestApiId: !Ref SmartOfficeApi
+      ResourceId: !Ref ManagerCreateRoomResource
+      HttpMethod: POST
+      AuthorizationType: COGNITO_USER_POOLS
+      AuthorizerId: !Ref CognitoAuthorizer
+      Integration:
+        Type: AWS_PROXY
+        IntegrationHttpMethod: POST
+        Uri: !Sub
+          - "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${LambdaArn}/invocations"
+          - LambdaArn:
+              Fn::ImportValue: !Sub "${IoTLambdaStackName}-CreateRoomConfigFunctionArn"
+
+  ManagerCreateRoomOptions:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      AuthorizationType: NONE
+      RestApiId: !Ref SmartOfficeApi
+      ResourceId: !Ref ManagerCreateRoomResource
+      HttpMethod: OPTIONS
+      Integration:
+        Type: MOCK
+        RequestTemplates:
+          application/json: '{"statusCode": 200}'
+        PassthroughBehavior: WHEN_NO_MATCH
+        IntegrationResponses:
+          - StatusCode: 200
+            ResponseParameters:
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,Accept,Origin,Referer,User-Agent'"
+              method.response.header.Access-Control-Allow-Methods: "'POST,OPTIONS'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+            ResponseTemplates:
+              application/json: "{}"
+      MethodResponses:
+        - StatusCode: 200
+          ResponseParameters:
+            method.response.header.Access-Control-Allow-Headers: true
+            method.response.header.Access-Control-Allow-Methods: true
+            method.response.header.Access-Control-Allow-Origin: true
+
+  # 3. LIST ROOM (GET) - /manager/list-room
+  ManagerListRoomGet:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      RestApiId: !Ref SmartOfficeApi
+      ResourceId: !Ref ManagerListRoomResource
+      HttpMethod: GET
+      AuthorizationType: COGNITO_USER_POOLS
+      AuthorizerId: !Ref CognitoAuthorizer
+      Integration:
+        Type: AWS_PROXY
+        IntegrationHttpMethod: POST
+        Uri: !Sub
+          - "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${LambdaArn}/invocations"
+          - LambdaArn:
+              Fn::ImportValue: !Sub "${ReadOnlyLambdaStackName}-ListRoomFunctionArn"
+
+  ManagerListRoomOptions:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      AuthorizationType: NONE
+      RestApiId: !Ref SmartOfficeApi
+      ResourceId: !Ref ManagerListRoomResource
+      HttpMethod: OPTIONS
+      Integration:
+        Type: MOCK
+        RequestTemplates:
+          application/json: '{"statusCode": 200}'
+        PassthroughBehavior: WHEN_NO_MATCH
+        IntegrationResponses:
+          - StatusCode: 200
+            ResponseParameters:
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,Accept,Origin,Referer,User-Agent'"
+              method.response.header.Access-Control-Allow-Methods: "'GET,OPTIONS'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+            ResponseTemplates:
+              application/json: "{}"
+      MethodResponses:
+        - StatusCode: 200
+          ResponseParameters:
+            method.response.header.Access-Control-Allow-Headers: true
+            method.response.header.Access-Control-Allow-Methods: true
+            method.response.header.Access-Control-Allow-Origin: true
+
+  # 4. SENSOR DATA (GET) - /manager/sensor-data
+  ManagerSensorDataGet:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      RestApiId: !Ref SmartOfficeApi
+      ResourceId: !Ref ManagerSensorDataResource
+      HttpMethod: GET
+      AuthorizationType: COGNITO_USER_POOLS
+      AuthorizerId: !Ref CognitoAuthorizer
+      Integration:
+        Type: AWS_PROXY
+        IntegrationHttpMethod: POST
+        Uri: !Sub
+          - "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${LambdaArn}/invocations"
+          - LambdaArn:
+              Fn::ImportValue: !Sub "${ReadOnlyLambdaStackName}-GetDataFunctionArn"
+
+  ManagerSensorDataOptions:
+    Type: AWS::ApiGateway::Method
+    Properties:
+      AuthorizationType: NONE
+      RestApiId: !Ref SmartOfficeApi
+      ResourceId: !Ref ManagerSensorDataResource
+      HttpMethod: OPTIONS
+      Integration:
+        Type: MOCK
+        RequestTemplates:
+          application/json: '{"statusCode": 200}'
+        PassthroughBehavior: WHEN_NO_MATCH
+        IntegrationResponses:
+          - StatusCode: 200
+            ResponseParameters:
+              method.response.header.Access-Control-Allow-Headers: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,Accept,Origin,Referer,User-Agent'"
+              method.response.header.Access-Control-Allow-Methods: "'GET,OPTIONS'"
+              method.response.header.Access-Control-Allow-Origin: "'*'"
+            ResponseTemplates:
+              application/json: "{}"
+      MethodResponses:
+        - StatusCode: 200
+          ResponseParameters:
+            method.response.header.Access-Control-Allow-Headers: true
+            method.response.header.Access-Control-Allow-Methods: true
+            method.response.header.Access-Control-Allow-Origin: true
+
+  # ====================================================================
+  # 3. PERMISSIONS (Allow API Gateway to invoke Lambda)
+  # ====================================================================
+
+  LoginPermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      FunctionName:
+        Fn::ImportValue: !Sub "${AuthLambdaStackName}-LoginFunctionArn"
+      Action: lambda:InvokeFunction
+      Principal: apigateway.amazonaws.com
+      SourceArn: !Sub "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${SmartOfficeApi}/*/*/*"
+
+  LogoutPermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      FunctionName:
+        Fn::ImportValue: !Sub "${AuthLambdaStackName}-LogoutFunctionArn"
+      Action: lambda:InvokeFunction
+      Principal: apigateway.amazonaws.com
+      SourceArn: !Sub "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${SmartOfficeApi}/*/*/*"
+
+  SignupPermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      FunctionName:
+        Fn::ImportValue: !Sub "${AuthLambdaStackName}-SignupFunctionArn"
+      Action: lambda:InvokeFunction
+      Principal: apigateway.amazonaws.com
+      SourceArn: !Sub "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${SmartOfficeApi}/*/*/*"
+
+  VerifySignupPermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      FunctionName:
+        Fn::ImportValue: !Sub "${AuthLambdaStackName}-VerifySignupFunctionArn"
+      Action: lambda:InvokeFunction
+      Principal: apigateway.amazonaws.com
+      SourceArn: !Sub "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${SmartOfficeApi}/*/*/*"
+
+  ResendCodePermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      FunctionName:
+        Fn::ImportValue: !Sub "${AuthLambdaStackName}-ResendCodeFunctionArn"
+      Action: lambda:InvokeFunction
+      Principal: apigateway.amazonaws.com
+      SourceArn: !Sub "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${SmartOfficeApi}/*/*/*"
+
+  ForgotPasswordPermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      FunctionName:
+        Fn::ImportValue: !Sub "${AuthLambdaStackName}-ForgotPasswordFunctionArn"
+      Action: lambda:InvokeFunction
+      Principal: apigateway.amazonaws.com
+      SourceArn: !Sub "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${SmartOfficeApi}/*/*/*"
+
+  ConfirmForgotPasswordPermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      FunctionName:
+        Fn::ImportValue: !Sub "${AuthLambdaStackName}-ConfirmPasswordFunctionArn"
+      Action: lambda:InvokeFunction
+      Principal: apigateway.amazonaws.com
+      SourceArn: !Sub "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${SmartOfficeApi}/*/*/*"
+
+  ChangeTemporaryPasswordPermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      FunctionName:
+        Fn::ImportValue: !Sub "${AuthLambdaStackName}-ChangeTemporaryPasswordFunctionArn"
+      Action: lambda:InvokeFunction
+      Principal: apigateway.amazonaws.com
+      SourceArn: !Sub "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${SmartOfficeApi}/*/*/*"
+
+  # Admin Permissions
+  CreateOfficeManagerPermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      FunctionName:
+        Fn::ImportValue: !Sub "${CrudLambdaStackName}-CreateOfficeAndManagerFunctionArn"
+      Action: lambda:InvokeFunction
+      Principal: apigateway.amazonaws.com
+      SourceArn: !Sub "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${SmartOfficeApi}/*/*/*"
+
+  ListOfficePermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      FunctionName:
+        Fn::ImportValue: !Sub "${ReadOnlyLambdaStackName}-ListOfficeAndManagerFunctionArn"
+      Action: lambda:InvokeFunction
+      Principal: apigateway.amazonaws.com
+      SourceArn: !Sub "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${SmartOfficeApi}/*/*/*"
+
+  OfficeDetailPermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      FunctionName:
+        Fn::ImportValue: !Sub "${ReadOnlyLambdaStackName}-GetOfficeDetailFunctionArn"
+      Action: lambda:InvokeFunction
+      Principal: apigateway.amazonaws.com
+      SourceArn: !Sub "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${SmartOfficeApi}/*/*/*"
+
+  UpdateOfficePermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      FunctionName:
+        Fn::ImportValue: !Sub "${CrudLambdaStackName}-UpdateOfficeAndManagerFunctionArn"
+      Action: lambda:InvokeFunction
+      Principal: apigateway.amazonaws.com
+      SourceArn: !Sub "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${SmartOfficeApi}/*/*/*"
+
+  DeleteOfficePermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      FunctionName:
+        Fn::ImportValue: !Sub "${CrudLambdaStackName}-DeleteOfficeAndManagerFunctionArn"
+      Action: lambda:InvokeFunction
+      Principal: apigateway.amazonaws.com
+      SourceArn: !Sub "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${SmartOfficeApi}/*/*/*"
+
+  AdminProfileUpdatePermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      FunctionName:
+        Fn::ImportValue: !Sub "${CrudLambdaStackName}-UpdateProfileFunctionArn"
+      Action: lambda:InvokeFunction
+      Principal: apigateway.amazonaws.com
+      SourceArn: !Sub "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${SmartOfficeApi}/*/*/*"
+
+  # Manager Permissions
+  ManagerGetRoomConfigPermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      FunctionName:
+        Fn::ImportValue: !Sub "${ReadOnlyLambdaStackName}-GetRoomConfigFunctionArn"
+      Action: lambda:InvokeFunction
+      Principal: apigateway.amazonaws.com
+      SourceArn: !Sub "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${SmartOfficeApi}/*/*/*"
+
+  ManagerUpdateRoomConfigPermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      FunctionName:
+        Fn::ImportValue: !Sub "${IoTLambdaStackName}-UpdateRoomConfigFunctionArn"
+      Action: lambda:InvokeFunction
+      Principal: apigateway.amazonaws.com
+      SourceArn: !Sub "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${SmartOfficeApi}/*/*/*"
+
+  ManagerCreateRoomConfigPermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      FunctionName:
+        Fn::ImportValue: !Sub "${IoTLambdaStackName}-CreateRoomConfigFunctionArn"
+      Action: lambda:InvokeFunction
+      Principal: apigateway.amazonaws.com
+      SourceArn: !Sub "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${SmartOfficeApi}/*/*/*"
+
+  ManagerListRoomPermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      FunctionName:
+        Fn::ImportValue: !Sub "${ReadOnlyLambdaStackName}-ListRoomFunctionArn"
+      Action: lambda:InvokeFunction
+      Principal: apigateway.amazonaws.com
+      SourceArn: !Sub "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${SmartOfficeApi}/*/*/*"
+
+  ManagerSensorDataPermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      FunctionName:
+        Fn::ImportValue: !Sub "${ReadOnlyLambdaStackName}-GetDataFunctionArn"
+      Action: lambda:InvokeFunction
+      Principal: apigateway.amazonaws.com
+      SourceArn: !Sub "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${SmartOfficeApi}/*/*/*"
+
+  # ====================================================================
+  # 4. DEPLOYMENT (FORCE UPDATE)
+  # ====================================================================
+
+  ApiDeploymentFinalV1:
+    Type: AWS::ApiGateway::Deployment
+    DependsOn:
+      # Auth
+      - LoginPost
+      - LoginOptions
+      - LogoutPost
+      - LogoutOptions
+      - SignupPost
+      - SignupOptions
+      - VerifySignupPost
+      - VerifySignupOptions
+      - ResendCodePost
+      - ResendCodeOptions
+      - ForgotPasswordPost
+      - ForgotPasswordOptions
+      - ConfirmForgotPasswordPost
+      - ConfirmForgotPasswordOptions
+      - ChangeTemporaryPasswordPost
+      - ChangeTemporaryPasswordOptions
+      # Admin
+      - CreateOfficeManagerPost
+      - OfficeManagerOptions
+      - ListOfficeGet
+      - ListOfficeOptions
+      - OfficeDetailGet
+      - OfficeDetailOptions
+      - UpdateOfficeManagerPut
+      - UpdateOfficeOptions
+      - DeleteOfficeManagerDelete
+      - DeleteOfficeOptions
+      - AdminProfileUpdatePost
+      - AdminProfileUpdateOptions
+      # Manager
+      - ManagerConfigRoomGet
+      - ManagerConfigRoomPost
+      - ManagerConfigRoomOptions
+      - ManagerCreateRoomPost
+      - ManagerCreateRoomOptions
+      - ManagerListRoomGet
+      - ManagerListRoomOptions
+      - ManagerSensorDataGet
+      - ManagerSensorDataOptions
+    Properties:
+      RestApiId: !Ref SmartOfficeApi
+
+  ApiStage:
+    Type: AWS::ApiGateway::Stage
+    Properties:
+      StageName: !Ref EnvironmentName
+      RestApiId: !Ref SmartOfficeApi
+      DeploymentId: !Ref ApiDeploymentFinalV1
+
+Outputs:
+  ApiEndpoint:
+    Description: "API Gateway Url"
+    Value: !Sub "https://${SmartOfficeApi}.execute-api.${AWS::Region}.amazonaws.com/${EnvironmentName}"
+    Export:
+      Name: !Sub "${AWS::StackName}-ApiEndpoint"

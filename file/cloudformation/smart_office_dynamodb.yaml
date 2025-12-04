@@ -1,0 +1,134 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: DynamoDB tables for Smart Office
+
+Parameters:
+  # Environment variables
+  EnvironmentName:
+    Type: String
+    Default: Dev
+    AllowedValues: [Dev, Prod]
+
+Resources:
+  # --- SmartOffice-Office Table ---
+
+  # Logical ID for table SmartOffice_Office
+  # Logical ID for resources in 1 file must be UNIQUE
+  OfficeTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      # Physical table name - show on AWS DynamoDB console
+      TableName: !Sub "${AWS::StackName}-Office"
+      # "PAY_PER_REQUEST": On-Demand
+      # "PROVISIONED": must set ReadCapacityUnits and WriteCapacityUnits, cheaper with large traffic
+      BillingMode: PAY_PER_REQUEST
+      # ONLY DECLARE KEY (Primary Key or Index Key)
+      # "AttributeType": S = String, N = Number
+      AttributeDefinitions:
+        - AttributeName: "orgAlias"
+          AttributeType: "S"
+        - AttributeName: "entityId"
+          AttributeType: "S"
+      # "KeyType": HASH = Partition, RANGE = Sort
+      KeySchema:
+        - AttributeName: "orgAlias"
+          KeyType: "HASH"
+        - AttributeName: "entityId"
+          KeyType: "RANGE"
+  # --- SmartOffice-RoomConfig Table ---
+  RoomConfigTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: !Sub "${AWS::StackName}-RoomConfig"
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: "roomId"
+          AttributeType: "S"
+        - AttributeName: "officeId"
+          AttributeType: "S"
+      KeySchema:
+        - AttributeName: "roomId"
+          KeyType: "HASH"
+        - AttributeName: "officeId"
+          KeyType: "RANGE"
+
+  # --- SmartOffice-RoomLog Table ---
+  RoomLogTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: !Sub "${AWS::StackName}-RoomLog"
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: "roomId"
+          AttributeType: "S"
+        - AttributeName: "timestamp"
+          AttributeType: "N"
+      KeySchema:
+        - AttributeName: "roomId"
+          KeyType: "HASH"
+        - AttributeName: "timestamp"
+          KeyType: "RANGE"
+      # For auto delete old log
+      TimeToLiveSpecification:
+        AttributeName: "expireAt"
+        Enabled: true
+
+  # --- SmartOffice-Manager Table---
+  ManagerTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: !Sub "${AWS::StackName}-Manager"
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: "orgAlias"
+          AttributeType: "S"
+        - AttributeName: "userId"
+          AttributeType: "S"
+      KeySchema:
+        - AttributeName: "orgAlias"
+          KeyType: "HASH"
+        - AttributeName: "userId"
+          KeyType: "RANGE"
+
+Outputs:
+  # --- OFFICE TABLE ---
+  OfficeTableName:
+    # "Ref": Use when you want to get the Identity (ID) of a resource or the value of a parameter (Parameter)
+    # In this case, it return table name
+    Value: !Ref OfficeTable
+    Export:
+      # "Sub": Use when you want to pair static text with variables
+      Name: !Sub "${AWS::StackName}-OfficeTableName"
+  OfficeTableArn:
+    Value: !GetAtt OfficeTable.Arn
+    Export:
+      Name: !Sub "${AWS::StackName}-OfficeTableArn"
+
+  # --- ROOM CONFIG TABLE ---
+  RoomConfigTableName:
+    Value: !Ref RoomConfigTable
+    Export:
+      Name: !Sub "${AWS::StackName}-RoomConfigTableName"
+  RoomConfigTableArn:
+    Value: !GetAtt RoomConfigTable.Arn
+    Export:
+      Name: !Sub "${AWS::StackName}-RoomConfigTableArn"
+
+  # --- ROOM LOG TABLE ---
+  RoomLogTableName:
+    Value: !Ref RoomLogTable
+    Export:
+      Name: !Sub "${AWS::StackName}-RoomLogTableName"
+  RoomLogTableArn:
+    Value: !GetAtt RoomLogTable.Arn
+    Export:
+      Name: !Sub "${AWS::StackName}-RoomLogTableArn"
+
+  # --- MANAGER TABLE ---
+  ManagerTableName:
+    Value: !Ref ManagerTable
+    Export:
+      Name: !Sub "${AWS::StackName}-ManagerTableName1"
+  ManagerTableArn:
+    Value: !GetAtt ManagerTable.Arn
+    Export:
+      Name: !Sub "${AWS::StackName}-ManagerTableArn1"
