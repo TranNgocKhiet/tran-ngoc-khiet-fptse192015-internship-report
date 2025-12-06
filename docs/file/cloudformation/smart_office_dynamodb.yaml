@@ -50,6 +50,8 @@ Resources:
           KeyType: "HASH"
         - AttributeName: "officeId"
           KeyType: "RANGE"
+      StreamSpecification:
+        StreamViewType: NEW_IMAGE
 
   # --- SmartOffice-RoomLog Table ---
   RoomLogTable:
@@ -132,3 +134,7 @@ Outputs:
     Value: !GetAtt ManagerTable.Arn
     Export:
       Name: !Sub "${AWS::StackName}-ManagerTableArn1"
+  RoomConfigTableStreamArn:
+    Value: !GetAtt RoomConfigTable.StreamArn
+    Export:
+      Name: !Sub "${AWS::StackName}-RoomConfigTableStreamArn"

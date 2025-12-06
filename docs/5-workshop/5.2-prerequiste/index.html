@@ -15,21 +15,21 @@
     <title>Prerequiste :: Internship Report</title>
 
     
-    <link href="../../css/nucleus.css?1764828500" rel="stylesheet">
-    <link href="../../css/fontawesome-all.min.css?1764828500" rel="stylesheet">
-    <link href="../../css/hybrid.css?1764828500" rel="stylesheet">
-    <link href="../../css/featherlight.min.css?1764828500" rel="stylesheet">
-    <link href="../../css/perfect-scrollbar.min.css?1764828500" rel="stylesheet">
-    <link href="../../css/auto-complete.css?1764828500" rel="stylesheet">
-    <link href="../../css/atom-one-dark-reasonable.css?1764828500" rel="stylesheet">
-    <link href="../../css/theme.css?1764828500" rel="stylesheet">
-    <link href="../../css/hugo-theme.css?1764828500" rel="stylesheet">
+    <link href="../../css/nucleus.css?1765041588" rel="stylesheet">
+    <link href="../../css/fontawesome-all.min.css?1765041588" rel="stylesheet">
+    <link href="../../css/hybrid.css?1765041588" rel="stylesheet">
+    <link href="../../css/featherlight.min.css?1765041588" rel="stylesheet">
+    <link href="../../css/perfect-scrollbar.min.css?1765041588" rel="stylesheet">
+    <link href="../../css/auto-complete.css?1765041588" rel="stylesheet">
+    <link href="../../css/atom-one-dark-reasonable.css?1765041588" rel="stylesheet">
+    <link href="../../css/theme.css?1765041588" rel="stylesheet">
+    <link href="../../css/hugo-theme.css?1765041588" rel="stylesheet">
     
-    <link href="../../css/theme-workshop.css?1764828500" rel="stylesheet">
+    <link href="../../css/theme-workshop.css?1765041588" rel="stylesheet">
     
     
 
-    <script src="../../js/jquery-3.3.1.min.js?1764828500"></script>
+    <script src="../../js/jquery-3.3.1.min.js?1765041588"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -88,14 +88,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="../../js/lunr.min.js?1764828500"></script>
-<script type="text/javascript" src="../../js/auto-complete.js?1764828500"></script>
+<script type="text/javascript" src="../../js/lunr.min.js?1765041588"></script>
+<script type="text/javascript" src="../../js/auto-complete.js?1765041588"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/tranngockhiet.github.io\/tran-ngoc-khiet-fptse192015-internship-report\/";
     
 </script>
-<script type="text/javascript" src="../../js/search.js?1764828500"></script>
+<script type="text/javascript" src="../../js/search.js?1765041588"></script>
  
   </div>
 
@@ -329,6 +329,24 @@
 >
   <a href="../../1-worklog/1.12-week12/">
      <b> 1.12. </b> Week 12 Worklog 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/1-worklog/1.13-week13/"
+  title="Week 13 Worklog"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../1-worklog/1.13-week13/">
+     <b> 1.13. </b> Week 13 Worklog 
     <i class="fas fa-check read-icon"></i>
     
   </a>
@@ -594,6 +612,24 @@
   </a>
    
 </li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.4-set-up-website/"
+  title="Set up website"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../5-workshop/5.4-set-up-website/">
+     <b> 5.4. </b> Set up website 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
      
   </ul>
   
@@ -827,9 +863,117 @@
 
 
 
-	<h4 id="iam-permissions">IAM permissions</h4>
-<p>Add the following IAM permission policy to your user account to deploy and cleanup this workshop.</p>
-<pre tabindex="0"><code></code></pre>
+	<h4 id="create-iam-user-for-this-workshop">Create IAM User for this workshop</h4>
+<ol>
+<li>In <strong>AWS Management Console</strong>, search and choose <strong>IAM</strong></li>
+</ol>
+<p><img src="../../images/5-Workshop/5.2-Prerequisite/iam_mangement_console.png" alt="iam_mangement_console"></p>
+<ol start="2">
+<li>Navigate to <strong>User</strong>, click <strong>Create user</strong></li>
+</ol>
+<p><img src="../../images/5-Workshop/5.2-Prerequisite/iam_create_user.png" alt="iam_create_user"></p>
+<ol start="3">
+<li>For <strong>User name</strong>, enter <code>admin-user</code></li>
+<li>Check <strong>Provide user access to the AWS Management Console - optional</strong></li>
+<li>For <strong>Console password</strong>, check <strong>Custom password</strong></li>
+<li>Enter password for your user</li>
+<li>Uncheck <strong>Users must create a new password at next sign-in - Recommended</strong> for easy operation</li>
+<li>Click <strong>Next</strong></li>
+</ol>
+<p><img src="../../images/5-Workshop/5.2-Prerequisite/iam_create_user_step_1.png" alt="iam_create_user_step_1"></p>
+<ol start="9">
+<li>For <strong>Permissions options</strong>, check <strong>Attach policies directly</strong></li>
+<li>Click <strong>Create policy</strong></li>
+</ol>
+<p><img src="../../images/5-Workshop/5.2-Prerequisite/iam_create_user_step_2_1.png" alt="iam_create_user_step_2_1"></p>
+<ol start="11">
+<li>You will be directed to <strong>Create policy</strong> page</li>
+<li>For <strong>Policy editor</strong>, switch to <strong>JSON</strong></li>
+<li>Copy and paste this policy</li>
+</ol>
+<pre tabindex="0"><code>{
+    &#34;Version&#34;: &#34;2012-10-17&#34;,
+    &#34;Statement&#34;: [
+        {
+            &#34;Sid&#34;: &#34;InfrastructureManagement&#34;,
+            &#34;Effect&#34;: &#34;Allow&#34;,
+            &#34;Action&#34;: [
+                &#34;cloudformation:*&#34;,
+                &#34;iam:*&#34;
+            ],
+            &#34;Resource&#34;: &#34;*&#34;
+        },
+        {
+            &#34;Sid&#34;: &#34;BackendComputeAndAPI&#34;,
+            &#34;Effect&#34;: &#34;Allow&#34;,
+            &#34;Action&#34;: [
+                &#34;lambda:*&#34;,
+                &#34;apigateway:*&#34;,
+                &#34;execute-api:*&#34;
+            ],
+            &#34;Resource&#34;: &#34;*&#34;
+        },
+        {
+            &#34;Sid&#34;: &#34;DatabaseAndAuth&#34;,
+            &#34;Effect&#34;: &#34;Allow&#34;,
+            &#34;Action&#34;: [
+                &#34;dynamodb:*&#34;,
+                &#34;cognito-idp:*&#34;,
+                &#34;cognito-identity:*&#34;
+            ],
+            &#34;Resource&#34;: &#34;*&#34;
+        },
+        {
+            &#34;Sid&#34;: &#34;IoTServices&#34;,
+            &#34;Effect&#34;: &#34;Allow&#34;,
+            &#34;Action&#34;: [
+                &#34;iot:*&#34; 
+            ],
+            &#34;Resource&#34;: &#34;*&#34;
+        },
+        {
+            &#34;Sid&#34;: &#34;StorageAndHosting&#34;,
+            &#34;Effect&#34;: &#34;Allow&#34;,
+            &#34;Action&#34;: [
+                &#34;s3:*&#34;,
+                &#34;cloudfront:*&#34;
+            ],
+            &#34;Resource&#34;: &#34;*&#34;
+        },
+        {
+            &#34;Sid&#34;: &#34;MonitoringAndLogging&#34;,
+            &#34;Effect&#34;: &#34;Allow&#34;,
+            &#34;Action&#34;: [
+                &#34;logs:*&#34;,
+                &#34;cloudwatch:*&#34;,
+                &#34;events:*&#34;
+            ],
+            &#34;Resource&#34;: &#34;*&#34;
+        }
+    ]
+}
+</code></pre><ol start="14">
+<li>Click <strong>Next</strong></li>
+</ol>
+<p><img src="../../images/5-Workshop/5.2-Prerequisite/iam_create_policy_step_1.png" alt="iam_create_policy_step_1"></p>
+<ol start="15">
+<li>For <strong>Policy name</strong>, enter your policy name (E.g. <code>SmartOfficeAdminFullAcccess</code>)</li>
+<li>Add <strong>Tags</strong> for cost and operation management (Key: <code>Project</code>, Value: <code>SmartOffice</code>; Key: <code>Environment</code>, Value: <code>Dev</code>)</li>
+<li>Click <strong>Create policy</strong></li>
+</ol>
+<p><img src="../../images/5-Workshop/5.2-Prerequisite/iam_create_policy_step_2.png" alt="iam_create_policy_step_2"></p>
+<ol start="18">
+<li>Go back to <strong>Step 2 Set permissions</strong> of <strong>Create user</strong></li>
+<li>Search and choose your policy name</li>
+<li>Click <strong>Next</strong></li>
+</ol>
+<p><img src="../../images/5-Workshop/5.2-Prerequisite/iam_create_user_step_2_2.png" alt="iam_create_user_step_2_2"></p>
+<ol start="21">
+<li>Add <strong>Tags</strong> for cost and operation management (Key: <code>Project</code>, Value: <code>SmartOffice</code>; Key: <code>Environment</code>, Value: <code>Dev</code>)</li>
+<li>Click <strong>Create user</strong></li>
+<li>Login with your User account to begin this workhop</li>
+</ol>
+
 
 
 
@@ -1074,9 +1218,6 @@
             
         
                     
-            
-        
-                    
                         
             
             
@@ -1093,34 +1234,6 @@
             
         
                     
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                        
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
             
         
                     
@@ -1136,25 +1249,6 @@
                     
                     
 
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
                     
             
         
@@ -1222,6 +1316,72 @@
             
         
                     
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
                         
             
             
@@ -1300,6 +1460,22 @@
                     
                         
                         
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
                     
                 
                 
@@ -1369,19 +1545,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="../../js/clipboard.min.js?1764828500"></script>
-    <script src="../../js/perfect-scrollbar.min.js?1764828500"></script>
-    <script src="../../js/perfect-scrollbar.jquery.min.js?1764828500"></script>
-    <script src="../../js/jquery.sticky.js?1764828500"></script>
-    <script src="../../js/featherlight.min.js?1764828500"></script>
-    <script src="../../js/highlight.pack.js?1764828500"></script>
+    <script src="../../js/clipboard.min.js?1765041588"></script>
+    <script src="../../js/perfect-scrollbar.min.js?1765041588"></script>
+    <script src="../../js/perfect-scrollbar.jquery.min.js?1765041588"></script>
+    <script src="../../js/jquery.sticky.js?1765041588"></script>
+    <script src="../../js/featherlight.min.js?1765041588"></script>
+    <script src="../../js/highlight.pack.js?1765041588"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="../../js/modernizr.custom-3.6.0.js?1764828500"></script>
-    <script src="../../js/learn.js?1764828500"></script>
-    <script src="../../js/hugo-learn.js?1764828500"></script>
+    <script src="../../js/modernizr.custom-3.6.0.js?1765041588"></script>
+    <script src="../../js/learn.js?1765041588"></script>
+    <script src="../../js/hugo-learn.js?1765041588"></script>
 
-    <link href="../../mermaid/mermaid.css?1764828500" rel="stylesheet" />
-    <script src="../../mermaid/mermaid.js?1764828500"></script>
+    <link href="../../mermaid/mermaid.css?1765041588" rel="stylesheet" />
+    <script src="../../mermaid/mermaid.js?1765041588"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

@@ -5,38 +5,43 @@ chapter: false
 pre: " <b> 7. </b> "
 ---
 
-> Here, you can freely share your personal opinions about your experience participating in the First Cloud Journey program. This will help the FCJ team improve any shortcomings based on the following aspects:
-
 ### Overall Evaluation
 
-**1. Working Environment**  
-The working environment is very friendly and open. FCJ members are always willing to help whenever I encounter difficulties, even outside working hours. The workspace is tidy and comfortable, helping me focus better. However, I think it would be nice to have more social gatherings or team bonding activities to strengthen relationships.
+**1. Working Environment**
+<br>The working environment is very friendly, tidy, and clean. Mentors are always available in the office to answer our questions.
 
-**2. Support from Mentor / Team Admin**  
-The mentor provides very detailed guidance, explains clearly when I don’t understand, and always encourages me to ask questions. The admin team supports administrative tasks, provides necessary documents, and creates favorable conditions for me to work effectively. I especially appreciate that the mentor allows me to try and solve problems myself instead of just giving the answer.
+**2. Support from Mentor / Team Admin**  
+<br>The mentors provide guidance and very detailed feedback on project structure and architecture diagrams. They are also super enthusiastic about suggesting ways to save costs and improve product performance.
 
-**3. Relevance of Work to Academic Major**  
-The tasks I was assigned align well with the knowledge I learned at university, while also introducing me to new areas I had never encountered before. This allowed me to both strengthen my foundational knowledge and gain practical skills.
+**3. Relevance of Work to Academic Major**  
+<br>Thanks to the sharing sessions from seniors, I've found a clearer direction for my development and am now pursuing the path to become a DevOps Engineer and Cloud Engineer.
 
-**4. Learning & Skill Development Opportunities**  
-During the internship, I learned many new skills such as using project management tools, teamwork skills, and professional communication in a corporate environment. The mentor also shared valuable real-world experiences that helped me better plan my career path.
+**4. Learning & Skill Development Opportunities**  
+<br>During the internship, I picked up a lot of new skills, such as using project management tools, time management, and how to communicate professionally in a corporate setting.
 
-**5. Company Culture & Team Spirit**  
-The company culture is very positive: everyone respects each other, works seriously but still keeps things enjoyable. When there are urgent projects, everyone works together and supports one another regardless of their position. This made me feel like a real part of the team, even as an intern.
+**5. Company Culture & Team Spirit**  
+<br>AWS culture is very open, always welcoming and updating the latest methods and technologies. Team members are always around and ready to support each other 24/7.
 
-**6. Internship Policies / Benefits**  
-The company provides an internship allowance and offers flexible working hours when needed. In addition, having the opportunity to join internal training sessions is a big plus.
+**6. Internship Policies / Benefits**  
+<br>The sharing sessions from industry seniors really helped a lot during the project implementation, and they were also valuable lessons for my personal growth and career path.
 
----
 
 ### Additional Questions
-- What did you find **most satisfying** during your internship?  
-- What do you think the company **should improve** for future interns?  
-- If recommending to a friend, would you **suggest they intern here**? Why or why not?  
+- What did you find **most satisfying** during your internship?  
+- There are many sharing sessions from industry seniors, and the mentors are incredibly supportive.
 
----
+- What do you think the company **should improve** for future interns?  
+- None.
+
+- If recommending to a friend, would you **suggest they intern here**? Why or why not?  
+- Yes, because Cloud Computing is currently the trend, and AWS is leading that trend.
 
 ### Suggestions & Expectations
-- Do you have any suggestions to improve the internship experience?  
-- Would you like to continue this program in the future?  
+- Do you have any suggestions to improve the internship experience?  
+- None.
+
+- Would you like to continue this program in the future?  
+- Not at the moment, as the team didn't quite meet my expectations for a long-term commitment, but I will definitely continue honing my AWS knowledge.
+
 - Any other comments (free sharing):
+- None.

@@ -19,12 +19,14 @@ pre: " <b> 1. </b> "
 
 **Tuần 7:** [Tính chi phí và chỉnh sửa sơ đồ kiến trúc](1.7-week7/)
 
-**Tuần 8:** [](1.8-week8/)
+**Tuần 8:** [Làm workshop cho DynamoDB và Cognito](1.8-week8/)
 
-**Tuần 9:** [](1.9-week9/)
+**Tuần 9:** [Học Python và Linux](1.9-week9/)
 
-**Tuần 10:** [](1.10-week10/)
+**Tuần 10:** [Học cách deploy website từ Gitlab và viết Lambda Functions cho website](1.10-week10/)
 
-**Tuần 11:** [](1.11-week11/)
+**Tuần 11:** [Học JavaScript, TypeScript và mở rộng vài chức năng của website](1.11-week11/)
 
-**Tuần 12:** [](1.12-week12/)
+**Tuần 12:** [Thiết lập CloudFormation templates cho workshop](1.12-week12/)
+
+**Tuần 13:** [Sửa lỗi, cập nhật API và viết chi tiết workshop ](1.12-week12/)

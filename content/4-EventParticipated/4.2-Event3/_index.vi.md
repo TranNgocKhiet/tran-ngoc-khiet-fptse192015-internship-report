@@ -9,12 +9,12 @@ pre: " <b> 4.3. </b> "
 
 ### Mục tiêu của sự kiện
 
-- Tư duy DevOps (DevOps Mindset)
-- Các dịch vụ DevOps của AWS – Quy trình CI/CD (CI/CD Pipeline)
+- Tư duy DevOps
+- Các dịch vụ DevOps của AWS – Quy trình CI/CD
 - Cơ sở hạ tầng dưới dạng mã (Infrastructure as Code - IaC)
 - Các dịch vụ Container trên AWS
 - Giám sát & Khả năng quan sát (Monitoring & Observability)
-- Các thực tiễn tốt nhất (Best Practices) và Nghiên cứu tình huống (Case Studies) về DevOps
+- Các Best Practices và Case Studies về DevOps
 
 ### Diễn giả
 
@@ -27,25 +27,25 @@ pre: " <b> 4.3. </b> "
 
 #### Tư duy DevOps
 
-- Hợp tác và chia sẻ trách nhiệm (Collaboration and shared responsibility)
-- Tự động hóa mọi thứ (Automation everything)
-- Học hỏi và thử nghiệm liên tục (Continuos learning and experimentaion)
-- Đo lường (Measurement)
+- Hợp tác và chia sẻ trách nhiệm
+- Tự động hóa mọi thứ
+- Học hỏi và thử nghiệm liên tục
+- Đo lường
 
 #### Hành trình DevOps
 
 - Nên làm (Do):
-<br>&emsp; + Bắt đầu với những kiến thức cơ bản (Start with fundamentals)
-<br>&emsp; + Học bằng cách xây dựng các dự án thực tế (Learn by building real projects)
-<br>&emsp; + Lập tài liệu cho mọi thứ (Document everything)
-<br>&emsp; + Thành thạo từng thứ một (Master one thing at a time)
-<br>&emsp; + Nâng cao kỹ năng mềm (Soft skills enhancement)
+<br>&emsp; + Bắt đầu với những kiến thức cơ bản
+<br>&emsp; + Học bằng cách xây dựng các dự án thực tế
+<br>&emsp; + Lập tài liệu cho mọi thứ
+<br>&emsp; + Thành thạo từng thứ một
+<br>&emsp; + Nâng cao kỹ năng mềm
 
 - Không nên làm (Don't):
-<br>&emsp; + Mắc kẹt trong "địa ngục hướng dẫn" (Stay in tutorial hell)
-<br>&emsp; + Sao chép-dán một cách mù quáng (Copy-paste blindly)
-<br>&emsp; + So sánh tiến độ của bản thân với người khác (Compare your progress to others)
-<br>&emsp; + Bỏ cuộc sau thất bại (Give up after failures)
+<br>&emsp; + Mắc kẹt trong "địa ngục hướng dẫn"
+<br>&emsp; + Sao chép-dán một cách mù quáng
+<br>&emsp; + So sánh tiến độ của bản thân với người khác
+<br>&emsp; + Bỏ cuộc sau thất bại
 
 ### Quy trình CI/CD
 
@@ -64,17 +64,17 @@ pre: " <b> 4.3. </b> "
 
 #### Giám sát & khả năng quan sát
 
-- Các thực tiễn tốt nhất với Amazon CloudWatch và Amazon X-Ray
+- Các Best Practices với Amazon CloudWatch và Amazon X-Ray
 
 ### Những gì học được
 
 #### Các chỉ số DevOps
 
-- Giám sát tình trạng triển khai (Monitoring deployment health)
-- Cải thiện sự linh hoạt (Improve agility)
-- Đảm bảo tính ổn định của hệ thống (Ensure system stability)
-- Tối ưu hóa trải nghiệm khách hàng (Optimize customer experience)
-- Chứng minh tính đúng đắn của các khoản đầu tư công nghệ (Justify technology investments)
+- Giám sát tình trạng triển khai
+- Cải thiện sự linh hoạt
+- Đảm bảo tính ổn định của hệ thống
+- Tối ưu hóa trải nghiệm khách hàng
+- Chứng minh tính đúng đắn của các khoản đầu tư công nghệ
 
 #### Tất cả các chữ "liên tục" (continuous) trong quy trình CI/CD
 
@@ -108,6 +108,13 @@ Tham dự workshop **“DevOps trên AWS”** là một trải nghiệm vô cùn
 
 #### Một số hình ảnh sự kiện
 
-
+![piture_1](/images/event-3/6f439ddc-9594-4811-a3ed-c017b9b5871c.jpeg)
+![piture_2](/images/event-3/7b2ee8f3-a6d6-4653-9e89-10331d75ccf6.jpeg)
+![piture_3](/images/event-3/46be61c4-2ded-46dd-84e9-1be5a0807aaa.jpeg)
+![piture_4](/images/event-3/143c6cad-e56d-43d4-9059-8ede5105e368.jpeg)
+![piture_5](/images/event-3/ab33db43-5ea5-430b-869a-c035a32e8010.jpeg)
+![piture_6](/images/event-3/c01e2abd-4c1a-4613-b4e7-fb3f906907b5.jpeg)
+![piture_7](/images/event-3/cec2e599-05df-4a69-bd06-e49a3807e98d.jpeg)
+![piture_8](/images/event-3/d734f981-3a15-4304-838e-3da06ae6c87c.jpeg)
 
 > Tổng thể, sự kiện đã cung cấp một cái nhìn toàn diện về sự nghiệp DevOps. Hơn nữa, nó còn đưa ra một số thực tiễn tốt nhất về cách áp dụng CI/CD, giám sát và khả năng quan sát.

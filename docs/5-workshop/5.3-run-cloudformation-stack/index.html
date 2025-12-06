@@ -15,21 +15,21 @@
     <title>Set up cloudformation :: Internship Report</title>
 
     
-    <link href="../../css/nucleus.css?1764828500" rel="stylesheet">
-    <link href="../../css/fontawesome-all.min.css?1764828500" rel="stylesheet">
-    <link href="../../css/hybrid.css?1764828500" rel="stylesheet">
-    <link href="../../css/featherlight.min.css?1764828500" rel="stylesheet">
-    <link href="../../css/perfect-scrollbar.min.css?1764828500" rel="stylesheet">
-    <link href="../../css/auto-complete.css?1764828500" rel="stylesheet">
-    <link href="../../css/atom-one-dark-reasonable.css?1764828500" rel="stylesheet">
-    <link href="../../css/theme.css?1764828500" rel="stylesheet">
-    <link href="../../css/hugo-theme.css?1764828500" rel="stylesheet">
+    <link href="../../css/nucleus.css?1765041588" rel="stylesheet">
+    <link href="../../css/fontawesome-all.min.css?1765041588" rel="stylesheet">
+    <link href="../../css/hybrid.css?1765041588" rel="stylesheet">
+    <link href="../../css/featherlight.min.css?1765041588" rel="stylesheet">
+    <link href="../../css/perfect-scrollbar.min.css?1765041588" rel="stylesheet">
+    <link href="../../css/auto-complete.css?1765041588" rel="stylesheet">
+    <link href="../../css/atom-one-dark-reasonable.css?1765041588" rel="stylesheet">
+    <link href="../../css/theme.css?1765041588" rel="stylesheet">
+    <link href="../../css/hugo-theme.css?1765041588" rel="stylesheet">
     
-    <link href="../../css/theme-workshop.css?1764828500" rel="stylesheet">
+    <link href="../../css/theme-workshop.css?1765041588" rel="stylesheet">
     
     
 
-    <script src="../../js/jquery-3.3.1.min.js?1764828500"></script>
+    <script src="../../js/jquery-3.3.1.min.js?1765041588"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -88,14 +88,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="../../js/lunr.min.js?1764828500"></script>
-<script type="text/javascript" src="../../js/auto-complete.js?1764828500"></script>
+<script type="text/javascript" src="../../js/lunr.min.js?1765041588"></script>
+<script type="text/javascript" src="../../js/auto-complete.js?1765041588"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/tranngockhiet.github.io\/tran-ngoc-khiet-fptse192015-internship-report\/";
     
 </script>
-<script type="text/javascript" src="../../js/search.js?1764828500"></script>
+<script type="text/javascript" src="../../js/search.js?1765041588"></script>
  
   </div>
 
@@ -329,6 +329,24 @@
 >
   <a href="../../1-worklog/1.12-week12/">
      <b> 1.12. </b> Week 12 Worklog 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
+    
+            
+<li
+  data-nav-id="/1-worklog/1.13-week13/"
+  title="Week 13 Worklog"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../1-worklog/1.13-week13/">
+     <b> 1.13. </b> Week 13 Worklog 
     <i class="fas fa-check read-icon"></i>
     
   </a>
@@ -594,6 +612,24 @@
   </a>
    
 </li>
+    
+            
+<li
+  data-nav-id="/5-workshop/5.4-set-up-website/"
+  title="Set up website"
+  class="dd-item 
+        
+        
+        
+        "
+>
+  <a href="../../5-workshop/5.4-set-up-website/">
+     <b> 5.4. </b> Set up website 
+    <i class="fas fa-check read-icon"></i>
+    
+  </a>
+   
+</li>
      
   </ul>
   
@@ -796,7 +832,16 @@
                 </div>
                 
                     <div class="progress">
-  <div class="wrapper"><nav id="TableOfContents"></nav></div>
+  <div class="wrapper"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#do-the-same-for-other-files-with-exactly-name">Do the same for other files with exactly name</a></li>
+  </ul>
+</nav></div>
 </div>
 
                 
@@ -819,9 +864,8 @@
 
 
 
-	<ol>
-<li>Download these CloudFormation Stacks:</li>
-</ol>
+	<h4 id="download-resources">Download resources</h4>
+<p>Download these <strong>CloudFormation</strong> template files:</p>
 <ul>
 <li><a href="../../file/cloudformation/smart_office_budget.yaml">smart_office_budget.yaml</a></li>
 <li><a href="../../file/cloudformation/smart_office_s3_cloudfront.yaml">smart_office_s3_cloudfront.yaml</a></li>
@@ -834,6 +878,81 @@
 <li><a href="../../file/cloudformation/smart_office_iot_core.yaml">smart_office_iot_core.yaml</a></li>
 <li><a href="../../file/cloudformation/smart_office_api_gateway.yaml">smart_office_api_gateway.yaml</a></li>
 </ul>
+<h4 id="deploy-cloudformation-stacks">Deploy CloudFormation Stacks</h4>
+<ol>
+<li>In <strong>AWS Management Console</strong>, search and choose <strong>CloudFormation</strong></li>
+</ol>
+<p><img src="../../images/5-Workshop/5.3-CloudFormation/cloudformation_management_console.png" alt="cloudformation_management_console"></p>
+<ol start="2">
+<li>Click <strong>Create stack</strong></li>
+<li>For <strong>Prepare template</strong>, check <strong>Choose an existing template</strong></li>
+<li>For <strong>Template source</strong>, check <strong>Upload a template file</strong></li>
+<li>Click <strong>Choose file</strong></li>
+<li>Choose file <code>smart_office_budget.yaml</code></li>
+<li>Click <strong>Next</strong></li>
+</ol>
+<p><img src="../../images/5-Workshop/5.3-CloudFormation/cloudformation_step_1.png" alt="cloudformation_step_1.png"></p>
+<ol start="8">
+<li>For <strong>Stack name</strong>, enter <code>SmartOffice-Budget-Dev</code></li>
+<li>Click <strong>Next</strong></li>
+</ol>
+<p><img src="../../images/5-Workshop/5.3-CloudFormation/cloudformation_step_2.png" alt="cloudformation_step_2.png"></p>
+<ol start="10">
+<li>Add <strong>Tags</strong> for cost and operation management (Key: <code>Project</code>, Value: <code>SmartOffice</code>; Key: <code>Environment</code>, Value: <code>Dev</code>)</li>
+<li>For <strong>Stack failure options</strong>, check <strong>Preserve successfully provisioned resources</strong> (To keep created resource for debugging)</li>
+<li>Click <strong>Next</strong></li>
+</ol>
+<p><img src="../../images/5-Workshop/5.3-CloudFormation/cloudformation_step_3.png" alt="cloudformation_step_3.png"></p>
+<ol start="13">
+<li>Check again and click <strong>Submit</strong></li>
+</ol>
+<h2 id="do-the-same-for-other-files-with-exactly-name">Do the same for other files with exactly name</h2>
+<table>
+  <thead>
+      <tr>
+          <th>Template name</th>
+          <th>Stack name</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>smart_office_s3_cloudfront.yaml</td>
+          <td><code>SmartOffice-S3-CloudFront-Dev</code></td>
+      </tr>
+      <tr>
+          <td>smart_office_cognito.yaml</td>
+          <td><code>SmartOffice-Cognito-Dev</code></td>
+      </tr>
+      <tr>
+          <td>smart_office_dynamodb.yaml</td>
+          <td><code>SmartOffice-DynamoDB-Dev</code></td>
+      </tr>
+      <tr>
+          <td>smart_office_lambda_authenticate_with_dynamodb_cognito.yaml</td>
+          <td><code>SmartOffice-Authenticate-Lambda-Dev</code></td>
+      </tr>
+      <tr>
+          <td>smart_office_lambda_readonly_with_dynamodb.yaml</td>
+          <td><code>SmartOffice-ReadOnly-Lambda-Dev</code></td>
+      </tr>
+      <tr>
+          <td>smart_office_lambda_crud_with_dynamodb_cognito.yaml</td>
+          <td><code>SmartOffice-Crud-Lambda-Dev</code></td>
+      </tr>
+      <tr>
+          <td>smart_office_lambda_crud_with_dynamodb_iot.yaml</td>
+          <td><code>SmartOffice-IoT-Lambda-Dev</code></td>
+      </tr>
+      <tr>
+          <td>smart_office_iot_core.yaml</td>
+          <td><code>SmartOffice-IoT-Core-Dev</code></td>
+      </tr>
+      <tr>
+          <td>smart_office_api_gateway.yaml</td>
+          <td><code>SmartOffice-API-Gateway-Dev</code></td>
+      </tr>
+  </tbody>
+</table>
 
 
 
@@ -1079,9 +1198,6 @@
             
         
                     
-            
-        
-                    
                         
             
             
@@ -1098,34 +1214,6 @@
             
         
                     
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                        
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
             
         
                     
@@ -1141,25 +1229,6 @@
                     
                     
 
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
                     
             
         
@@ -1227,6 +1296,72 @@
             
         
                     
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
                         
             
             
@@ -1314,9 +1449,6 @@
             
         
                     
-            
-        
-                    
                         
             
             
@@ -1324,6 +1456,25 @@
                     
                         
                         
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
                     
                 
                 
@@ -1364,7 +1515,7 @@
 			<a class="nav nav-prev" href="../../5-workshop/5.2-prerequiste/" title="Prerequiste"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="../../6-self-evaluation/" title="Self-Assessment" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="../../5-workshop/5.4-set-up-website/" title="Set up website" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -1374,19 +1525,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="../../js/clipboard.min.js?1764828500"></script>
-    <script src="../../js/perfect-scrollbar.min.js?1764828500"></script>
-    <script src="../../js/perfect-scrollbar.jquery.min.js?1764828500"></script>
-    <script src="../../js/jquery.sticky.js?1764828500"></script>
-    <script src="../../js/featherlight.min.js?1764828500"></script>
-    <script src="../../js/highlight.pack.js?1764828500"></script>
+    <script src="../../js/clipboard.min.js?1765041588"></script>
+    <script src="../../js/perfect-scrollbar.min.js?1765041588"></script>
+    <script src="../../js/perfect-scrollbar.jquery.min.js?1765041588"></script>
+    <script src="../../js/jquery.sticky.js?1765041588"></script>
+    <script src="../../js/featherlight.min.js?1765041588"></script>
+    <script src="../../js/highlight.pack.js?1765041588"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="../../js/modernizr.custom-3.6.0.js?1764828500"></script>
-    <script src="../../js/learn.js?1764828500"></script>
-    <script src="../../js/hugo-learn.js?1764828500"></script>
+    <script src="../../js/modernizr.custom-3.6.0.js?1765041588"></script>
+    <script src="../../js/learn.js?1765041588"></script>
+    <script src="../../js/hugo-learn.js?1765041588"></script>
 
-    <link href="../../mermaid/mermaid.css?1764828500" rel="stylesheet" />
-    <script src="../../mermaid/mermaid.js?1764828500"></script>
+    <link href="../../mermaid/mermaid.css?1765041588" rel="stylesheet" />
+    <script src="../../mermaid/mermaid.js?1765041588"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

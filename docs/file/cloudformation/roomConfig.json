@@ -11,6 +11,7 @@
     "targetHumidity": 60,
     "targetLight": 300,
     "lastUpdate": "2025-10-16T14:05:00Z",
+    "autoControl": "ON",
     "autoOnTime": "18:00",
     "autoOffTime": "22:00",
     "thingName": "OFFICE-HCM_ROOM-202",

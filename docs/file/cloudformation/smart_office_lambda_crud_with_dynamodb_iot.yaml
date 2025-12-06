@@ -54,6 +54,14 @@ Resources:
                 Resource: "*"
               - Effect: Allow
                 Action:
+                  - dynamodb:GetRecords
+                  - dynamodb:GetShardIterator
+                  - dynamodb:DescribeStream
+                  - dynamodb:ListStreams
+                Resource:
+                  - Fn::ImportValue: !Sub "${DatabaseStackName}-RoomConfigTableStreamArn"
+              - Effect: Allow
+                Action:
                   - logs:CreateLogGroup
                   - logs:CreateLogStream
                   - logs:PutLogEvents
@@ -149,7 +157,7 @@ Resources:
           ROOM_LOG_TABLE:
             Fn::ImportValue: !Sub "${DatabaseStackName}-RoomLogTableName"
           ROOM_CONFIG_TABLE:
-            Fn::ImportValue: !Sub "${DatabaseStackName}-RoomConfigTableName"  
+            Fn::ImportValue: !Sub "${DatabaseStackName}-RoomConfigTableName"
       Code:
         ZipFile: |
           def lambda_handler(event, context):
@@ -160,6 +168,39 @@ Resources:
     Properties:
       LogGroupName: !Sub "/aws/lambda/${AWS::StackName}-HandleTelemetry"
       RetentionInDays: 3
+
+  # --- Stream Room Config (Trigger by DynamoDB Stream) ---
+  StreamRoomConfigFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: !Sub "${AWS::StackName}-StreamRoomConfig"
+      Description: "Triggered by DynamoDB Stream to push config changes to IoT Core"
+      Runtime: python3.14
+      Handler: StreamRoomConfig.lambda_handler
+      MemorySize: 128
+      Timeout: 10
+      Role: !GetAtt SmartOfficeIoTRole.Arn
+      Code:
+        ZipFile: |
+          def lambda_handler(event, context):
+              return "StreamRoomConfig Infrastructure created..."
+
+  StreamRoomConfigLogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: !Sub "/aws/lambda/${AWS::StackName}-StreamRoomConfig"
+      RetentionInDays: 3
+
+  # --- Event Source Mapping ---
+  StreamRoomConfigEventSource:
+    Type: AWS::Lambda::EventSourceMapping
+    Properties:
+      EventSourceArn:
+        Fn::ImportValue: !Sub "${DatabaseStackName}-RoomConfigTableStreamArn"
+      FunctionName: !Ref StreamRoomConfigFunction
+      StartingPosition: LATEST
+      BatchSize: 1
+      Enabled: true
 
 Outputs:
   CreateRoomConfigFunctionArn:
@@ -178,3 +219,7 @@ Outputs:
     Value: !GetAtt HandleTelemetryFunction.Arn
     Export:
       Name: !Sub "${AWS::StackName}-HandleTelemetryFunctionArn"
+  StreamRoomConfigFunctionArn:
+    Value: !GetAtt StreamRoomConfigFunction.Arn
+    Export:
+      Name: !Sub "${AWS::StackName}-StreamRoomConfigFunctionArn"

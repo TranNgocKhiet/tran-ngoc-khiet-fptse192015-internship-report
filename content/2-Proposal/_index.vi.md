@@ -71,7 +71,7 @@ Thiết kế kiến trúc và ước tính chi phí: Dựng sơ đồ cho văn p
 
 ### 6. Ước tính ngân sách  
 Có thể xem chi phí trên [AWS Pricing Calculator](https://calculator.aws/#/estimate?id=0db12150c448b012356e475becefd549c37094d8)  
-Hoặc tải [tệp ước tính ngân sách](/file/f8e2d281-aba2-48c2-adf8-d8ec828d2ec9.pdf).  
+Hoặc tải [tệp ước tính ngân sách](/file/proposal/smart_office_pricing_caculator.pdf).  
 
 #### Chi phí hạ tầng
 Dịch vụ AWS:
@@ -117,3 +117,7 @@ Tổng cộng: ≈ $1,81/tháng, hoặc $21,72/năm (trong giới hạn miễn p
 - Cung cấp nền tảng có thể tái sử dụng cho nghiên cứu và phát triển các giải pháp tòa nhà thông minh và tự động hóa IoT.
 - Cho phép phân tích dữ liệu để tối ưu hiệu suất năng lượng và điều kiện môi trường.
 - Minh chứng cho một kiến trúc AWS serverless hoàn chỉnh, chi phí thấp (dưới 2 USD mỗi tháng).
+
+## Proposal Link
+
+[Smart_Office_Proposal](/file/proposal/Smart_Office_Proposal.docx)

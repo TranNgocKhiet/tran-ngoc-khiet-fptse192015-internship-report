@@ -19,12 +19,14 @@ pre: " <b> 1. </b> "
 
 **Week 7:** [Caculate pricing and adjust architect diagram](1.7-week7/)
 
-**Week 8:** [](1.8-week8/)
+**Week 8:** [Doing workshop for DynamoDb and Cognito](1.8-week8/)
 
-**Week 9:** [](1.9-week9/)
+**Week 9:** [Learn Python and Linux](1.9-week9/)
 
-**Week 10:** [](1.10-week10/)
+**Week 10:** [Learn to deploy website from Gitlab and write Lambda Functions for website](1.10-week10/)
 
-**Week 11:** [](1.11-week11/)
+**Week 11:** [Learn JavaScript, TypeScript and expand some website functions](1.11-week11/)
 
-**Week 12:** [](1.12-week12/)
+**Week 12:** [Set up CloudFormation templates for workshop](1.12-week12/)
+
+**Week 13:** [Debug, update API and write workshop detail](1.13-week13/)

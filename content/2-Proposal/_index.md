@@ -73,7 +73,7 @@ The Smart Office system adopts a fully serverless AWS architecture optimized for
 
 ### 6. Budget Estimation
 You can find the budget estimation on the [AWS Pricing Calculator](https://calculator.aws/#/estimate?id=0db12150c448b012356e475becefd549c37094d8).  
-Or you can download the [Budget Estimation File](/file/pricing/f8e2d281-aba2-48c2-adf8-d8ec828d2ec9.pdf).
+Or you can download the [Budget Estimation File](/file/proposal/smart_office_pricing_caculator.pdf).
 
 ### Infrastructure Costs
 AWS Services:
@@ -119,3 +119,7 @@ Total: ≈ $1.81/month, or $21.72/year (within AWS Free Tier limits).
 - Provides a reusable foundation for smart building and IoT automation research.
 - Enables data-driven insights for energy efficiency and environmental optimization.
 - Demonstrates a fully serverless, low-cost AWS architecture (under $2/month).
+
+## Proposal Link
+
+[Smart_Office_Proposal](/file/proposal/Smart_Office_Proposal.docx)

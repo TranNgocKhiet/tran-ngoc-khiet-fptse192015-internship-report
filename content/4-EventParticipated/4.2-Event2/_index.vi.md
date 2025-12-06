@@ -91,6 +91,17 @@ Tham dự workshop **“AI/ML/GenAI trên AWS”** là một trải nghiệm vô
 
 #### Một số hình ảnh sự kiện
 
-
+![piture_1](/images/event-2/5d3f6bf4-c340-4bd1-bf47-b4f5bfa00d67.jpeg)
+![piture_2](/images/event-2/06e3b774-b827-47e8-98bc-26265ca75367.jpeg)
+![piture_3](/images/event-2/07ef0938-73fb-4c4e-8552-050f73a2b702.jpeg)
+![piture_4](/images/event-2/462c74a5-aeb4-4ff8-b7f2-eb7ee475bbb3.jpeg)
+![piture_5](/images/event-2/621ece22-631a-4c77-be70-d9c76d43c4b5.jpeg)
+![piture_6](/images/event-2/636a6506-06cf-44c8-bcfc-cb0b0a19f8e8.jpeg)
+![piture_7](/images/event-2/1008e889-059c-421e-a5ff-78b62049cdf6.jpeg)
+![piture_8](/images/event-2/85361809-fda8-44f4-87f3-94c21e2aee5e.jpeg)
+![piture_9](/images/event-2/a3e1752e-8f30-4a12-a80f-5bb07cc54a53.jpeg)
+![piture_10](/images/event-2/abe8f3c7-2b55-4735-b294-89c8c260b956.jpeg)
+![piture_11](/images/event-2/b0cd9220-8184-49c4-b7c5-2810b9a79a00.jpeg)
+![piture_12](/images/event-2/e257ab4a-4793-4a77-b3a0-512fd14300dd.jpeg)
 
 > Nhìn chung, sự kiện đã cung cấp cho tôi rất nhiều kiến thức về AI để áp dụng vào các dự án thực tế.

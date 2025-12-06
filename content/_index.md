@@ -12,7 +12,7 @@ chapter: false
 ### Student Information:
 &emsp; **Full Name:** Tran Ngoc Khiet
 
-&emsp; **Phone Number:** 0908171773 
+&emsp; **Phone Number:** 0964171773 
 
 &emsp; **Email:** tranngockhiet22062005@gmail.com
 
@@ -20,13 +20,13 @@ chapter: false
 
 &emsp; **Major:** Information Technology
 
-&emsp; **Class:** AWS082025
+&emsp; **Class:** AWS
 
 &emsp; **Internship Company:** Amazon Web Services Vietnam Co., Ltd.
 
-&emsp; **Internship Position:** FCJ Cloud Intern
+&emsp; **Internship Position:** FACJ Cloud Intern
 
-&emsp; **Internship Duration:** From 06/09/2025 to 14/12/2025
+&emsp; **Internship Duration:** From 09/06/2025 to 12/24/2025
 
 ![Your profile picture](/images/avatar.png)
 
