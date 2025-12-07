@@ -15,21 +15,21 @@
     <title>Giới thiệu :: Báo cáo thực tập</title>
 
     
-    <link href="../../../css/nucleus.css?1765041589" rel="stylesheet">
-    <link href="../../../css/fontawesome-all.min.css?1765041589" rel="stylesheet">
-    <link href="../../../css/hybrid.css?1765041589" rel="stylesheet">
-    <link href="../../../css/featherlight.min.css?1765041589" rel="stylesheet">
-    <link href="../../../css/perfect-scrollbar.min.css?1765041589" rel="stylesheet">
-    <link href="../../../css/auto-complete.css?1765041589" rel="stylesheet">
-    <link href="../../../css/atom-one-dark-reasonable.css?1765041589" rel="stylesheet">
-    <link href="../../../css/theme.css?1765041589" rel="stylesheet">
-    <link href="../../../css/hugo-theme.css?1765041589" rel="stylesheet">
+    <link href="../../../css/nucleus.css?1765089834" rel="stylesheet">
+    <link href="../../../css/fontawesome-all.min.css?1765089834" rel="stylesheet">
+    <link href="../../../css/hybrid.css?1765089834" rel="stylesheet">
+    <link href="../../../css/featherlight.min.css?1765089834" rel="stylesheet">
+    <link href="../../../css/perfect-scrollbar.min.css?1765089834" rel="stylesheet">
+    <link href="../../../css/auto-complete.css?1765089834" rel="stylesheet">
+    <link href="../../../css/atom-one-dark-reasonable.css?1765089834" rel="stylesheet">
+    <link href="../../../css/theme.css?1765089834" rel="stylesheet">
+    <link href="../../../css/hugo-theme.css?1765089834" rel="stylesheet">
     
-    <link href="../../../css/theme-workshop.css?1765041589" rel="stylesheet">
+    <link href="../../../css/theme-workshop.css?1765089834" rel="stylesheet">
     
     
 
-    <script src="../../../js/jquery-3.3.1.min.js?1765041589"></script>
+    <script src="../../../js/jquery-3.3.1.min.js?1765089834"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -88,14 +88,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="../../../js/lunr.min.js?1765041589"></script>
-<script type="text/javascript" src="../../../js/auto-complete.js?1765041589"></script>
+<script type="text/javascript" src="../../../js/lunr.min.js?1765089834"></script>
+<script type="text/javascript" src="../../../js/auto-complete.js?1765089834"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/tranngockhiet.github.io\/tran-ngoc-khiet-fptse192015-internship-report\/\/vi";
     
 </script>
-<script type="text/javascript" src="../../../js/search.js?1765041589"></script>
+<script type="text/javascript" src="../../../js/search.js?1765089834"></script>
  
   </div>
 
@@ -598,7 +598,7 @@
             
 <li
   data-nav-id="/vi/5-workshop/5.3-run-cloudformation-stack/"
-  title=""
+  title="Thiết lập CloudFormation"
   class="dd-item 
         
         
@@ -606,7 +606,7 @@
         "
 >
   <a href="../../../vi/5-workshop/5.3-run-cloudformation-stack/">
-     
+     <b> 5.3. </b> Thiết lập CloudFormation 
     <i class="fas fa-check read-icon"></i>
     
   </a>
@@ -616,7 +616,7 @@
             
 <li
   data-nav-id="/vi/5-workshop/5.4-set-up-website/"
-  title=""
+  title="Thiết lập website"
   class="dd-item 
         
         
@@ -624,7 +624,7 @@
         "
 >
   <a href="../../../vi/5-workshop/5.4-set-up-website/">
-     
+     <b> 5.4. </b> Thiết lập website 
     <i class="fas fa-check read-icon"></i>
     
   </a>
@@ -863,13 +863,13 @@
 
 
 
-	<h4 id="kiến-trúc-serverless--hướng-sự-kiện">Kiến trúc Serverless &amp; Hướng sự kiện</h4>
+	<h4 id="kiến-trúc-phi-máy-chủ--hướng-sự-kiện-serverless--event-driven-architecture">Kiến trúc Phi Máy Chủ &amp; Hướng Sự kiện (Serverless &amp; Event-Driven Architecture)</h4>
 <ul>
-<li><strong>Kiến trúc Serverless (Phi máy chủ)</strong>: Dự án này sử dụng các dịch vụ đám mây như AWS Lambda, API Gateway và DynamoDB. Mô hình này cho phép mã chạy để phản hồi các sự kiện mà không cần quản lý hoặc cấp phát máy chủ, vì AWS sẽ xử lý toàn bộ việc mở rộng quy mô và cơ sở hạ tầng.</li>
-<li><strong>Kiến trúc Hướng sự kiện (Event-Driven)</strong>: Cốt lõi của hệ thống là hướng sự kiện. Thay vì các dịch vụ liên tục thăm dò (polling) lẫn nhau, các sự kiện (như một thông số cảm biến hoặc một yêu cầu của người dùng) sẽ kích hoạt các quy trình xử lý. Điều này được quản lý bởi các dịch vụ như Amazon EventBridge, SQS và AWS IoT Core, tạo nên một hệ thống linh hoạt và có khả năng mở rộng.</li>
+<li><strong>Kiến trúc Phi Máy Chủ (Serverless Architecture)</strong>: Workshop này áp dụng mô hình gốc đám mây (cloud-native) với các dịch vụ như <strong>AWS Lambda</strong>, <strong>Amazon API Gateway</strong>, và <strong>Amazon DynamoDB</strong>. Cách tiếp cận này cho phép mã chạy để phản hồi các yêu cầu mà không cần cấp phát hay quản lý máy chủ, vì AWS sẽ xử lý tất cả việc tự động điều chỉnh quy mô và quản lý cơ sở hạ tầng.</li>
+<li><strong>Kiến trúc Hướng Sự kiện (Event-Driven Architecture)</strong>: Cốt lõi của hệ thống hoạt động trên cơ sở hướng sự kiện. Thay vì các dịch vụ liên tục thăm dò dữ liệu, các sự kiện cụ thể—như dữ liệu đọc từ cảm biến IoT hoặc các cuộc gọi API từ người dùng—sẽ kích hoạt các quy trình làm việc tiếp theo. Điều này được điều phối bởi <strong>AWS IoT Core</strong> và <strong>Amazon EventBridge</strong>, tạo ra một hệ thống có tính linh hoạt và khả năng mở rộng cao.</li>
 </ul>
-<h4 id="tổng-quan-về-workshop">Tổng quan về workshop</h4>
-<p>Trong workshop này, bạn sẽ triển khai một nền tảng dữ liệu serverless trên AWS để xử lý dữ liệu môi trường theo thời gian thực từ 8 phòng. Hệ thống sử dụng IoT Core, Lambda, DynamoDB, S3, EventBridge, và SNS. Dữ liệu từ thiết bị edge hoặc script mô phỏng được gửi lên AWS, lưu trong DynamoDB, xử lý bằng Lambda, và được EventBridge định tuyến để gửi cảnh báo hoặc kích hoạt các quy trình tự động. Kiến trúc này đảm bảo tính sẵn sàng cao, chi phí thấp, và mở rộng dễ dàng khi tăng thêm phòng hoặc cảm biến.</p>
+<h4 id="tổng-quan-về-workshop-workshop-overview">Tổng quan về Workshop (Workshop Overview)</h4>
+<p>Trong workshop này, bạn sẽ triển khai một nền tảng dữ liệu phi máy chủ toàn diện trên AWS để quản lý giám sát môi trường theo thời gian thực cho <strong>thiết lập văn phòng thông minh 8 phòng</strong>. Hệ thống tích hợp <strong>AWS IoT Core</strong>, <strong>Lambda</strong>, <strong>DynamoDB</strong>, <strong>S3</strong>, <strong>CloudFront</strong>, và <strong>Amazon Cognito</strong>. Dữ liệu cảm biến được chuyển tiếp từ thiết bị biên (hoặc tập lệnh mô phỏng), được đưa vào AWS, lưu trữ trong các bảng DynamoDB và được xử lý bởi các hàm Lambda để cập nhật bảng điều khiển quản lý. Các sự kiện quan trọng được định tuyến qua EventBridge để kích hoạt cảnh báo, thể hiện một kiến trúc có tính sẵn sàng cao, chi phí thấp và khả năng mở rộng liền mạch.</p>
 <p><img src="../../../images/5-Workshop/5.1-Workshop-overview/Smart-Office-Architect-Diagram.drawio.png" alt="overview"></p>
 
 
@@ -1440,19 +1440,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="../../../js/clipboard.min.js?1765041589"></script>
-    <script src="../../../js/perfect-scrollbar.min.js?1765041589"></script>
-    <script src="../../../js/perfect-scrollbar.jquery.min.js?1765041589"></script>
-    <script src="../../../js/jquery.sticky.js?1765041589"></script>
-    <script src="../../../js/featherlight.min.js?1765041589"></script>
-    <script src="../../../js/highlight.pack.js?1765041589"></script>
+    <script src="../../../js/clipboard.min.js?1765089834"></script>
+    <script src="../../../js/perfect-scrollbar.min.js?1765089834"></script>
+    <script src="../../../js/perfect-scrollbar.jquery.min.js?1765089834"></script>
+    <script src="../../../js/jquery.sticky.js?1765089834"></script>
+    <script src="../../../js/featherlight.min.js?1765089834"></script>
+    <script src="../../../js/highlight.pack.js?1765089834"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="../../../js/modernizr.custom-3.6.0.js?1765041589"></script>
-    <script src="../../../js/learn.js?1765041589"></script>
-    <script src="../../../js/hugo-learn.js?1765041589"></script>
+    <script src="../../../js/modernizr.custom-3.6.0.js?1765089834"></script>
+    <script src="../../../js/learn.js?1765089834"></script>
+    <script src="../../../js/hugo-learn.js?1765089834"></script>
 
-    <link href="../../../mermaid/mermaid.css?1765041589" rel="stylesheet" />
-    <script src="../../../mermaid/mermaid.js?1765041589"></script>
+    <link href="../../../mermaid/mermaid.css?1765089834" rel="stylesheet" />
+    <script src="../../../mermaid/mermaid.js?1765089834"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

@@ -78,25 +78,25 @@ You should replace ACCOUNT_ID with your AWS Account ID
 1. Navigate to the user
 2. In **Summary**, click **Create access key**
    
-![iam_create_access_key.png](/images/5-Workshop/5.3-Gitlab/iam_create_access_key.png)
+![iam_create_access_key.png](/images/5-Workshop/5.4-Gitlab/iam_create_access_key.png)
 
 4. For **Use case**, check **Command Line Interface (CLI)**
 5. Check **I understand the above recommendation and want to proceed to create an access key.**
 6. Click **Next**
    
-![iam_create_access_key_step_1.png](/images/5-Workshop/5.3-Gitlab/iam_create_access_key_step_1.png)
+![iam_create_access_key_step_1.png](/images/5-Workshop/5.4-Gitlab/iam_create_access_key_step_1.png)
 
 7. Click **Create access key**
 8. Click **Download .csv file**
 
-![iam_create_access_key_step_3.png](/images/5-Workshop/5.3-Gitlab/iam_create_access_key_step_3.png)
+![iam_create_access_key_step_3.png](/images/5-Workshop/5.4-Gitlab/iam_create_access_key_step_3.png)
 
 #### Config Gitlab variables
 
 1. Go to your **Gitlab** repository, click **Setting** > **Variables**
 2. Click **Add variable**
 
-![gitlab_variables.png](/images/5-Workshop/5.3-Gitlab/gitlab_variables.png)
+![gitlab_variables.png](/images/5-Workshop/5.4-Gitlab/gitlab_variables.png)
 
 3. For each **Key** and **Value** follow the table bellow to know where to get value
 

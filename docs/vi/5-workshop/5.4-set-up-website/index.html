@@ -12,24 +12,24 @@
 
     <link rel="icon" href="../../../images/favicon.png" type="image/png">
 
-    <title> :: Báo cáo thực tập</title>
+    <title>Thiết lập website :: Báo cáo thực tập</title>
 
     
-    <link href="../../../css/nucleus.css?1765041589" rel="stylesheet">
-    <link href="../../../css/fontawesome-all.min.css?1765041589" rel="stylesheet">
-    <link href="../../../css/hybrid.css?1765041589" rel="stylesheet">
-    <link href="../../../css/featherlight.min.css?1765041589" rel="stylesheet">
-    <link href="../../../css/perfect-scrollbar.min.css?1765041589" rel="stylesheet">
-    <link href="../../../css/auto-complete.css?1765041589" rel="stylesheet">
-    <link href="../../../css/atom-one-dark-reasonable.css?1765041589" rel="stylesheet">
-    <link href="../../../css/theme.css?1765041589" rel="stylesheet">
-    <link href="../../../css/hugo-theme.css?1765041589" rel="stylesheet">
+    <link href="../../../css/nucleus.css?1765089834" rel="stylesheet">
+    <link href="../../../css/fontawesome-all.min.css?1765089834" rel="stylesheet">
+    <link href="../../../css/hybrid.css?1765089834" rel="stylesheet">
+    <link href="../../../css/featherlight.min.css?1765089834" rel="stylesheet">
+    <link href="../../../css/perfect-scrollbar.min.css?1765089834" rel="stylesheet">
+    <link href="../../../css/auto-complete.css?1765089834" rel="stylesheet">
+    <link href="../../../css/atom-one-dark-reasonable.css?1765089834" rel="stylesheet">
+    <link href="../../../css/theme.css?1765089834" rel="stylesheet">
+    <link href="../../../css/hugo-theme.css?1765089834" rel="stylesheet">
     
-    <link href="../../../css/theme-workshop.css?1765041589" rel="stylesheet">
+    <link href="../../../css/theme-workshop.css?1765089834" rel="stylesheet">
     
     
 
-    <script src="../../../js/jquery-3.3.1.min.js?1765041589"></script>
+    <script src="../../../js/jquery-3.3.1.min.js?1765089834"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -88,14 +88,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="../../../js/lunr.min.js?1765041589"></script>
-<script type="text/javascript" src="../../../js/auto-complete.js?1765041589"></script>
+<script type="text/javascript" src="../../../js/lunr.min.js?1765089834"></script>
+<script type="text/javascript" src="../../../js/auto-complete.js?1765089834"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/tranngockhiet.github.io\/tran-ngoc-khiet-fptse192015-internship-report\/\/vi";
     
 </script>
-<script type="text/javascript" src="../../../js/search.js?1765041589"></script>
+<script type="text/javascript" src="../../../js/search.js?1765089834"></script>
  
   </div>
 
@@ -598,7 +598,7 @@
             
 <li
   data-nav-id="/vi/5-workshop/5.3-run-cloudformation-stack/"
-  title=""
+  title="Thiết lập CloudFormation"
   class="dd-item 
         
         
@@ -606,7 +606,7 @@
         "
 >
   <a href="../../../vi/5-workshop/5.3-run-cloudformation-stack/">
-     
+     <b> 5.3. </b> Thiết lập CloudFormation 
     <i class="fas fa-check read-icon"></i>
     
   </a>
@@ -616,7 +616,7 @@
             
 <li
   data-nav-id="/vi/5-workshop/5.4-set-up-website/"
-  title=""
+  title="Thiết lập website"
   class="dd-item 
         
         active
@@ -624,7 +624,7 @@
         "
 >
   <a href="../../../vi/5-workshop/5.4-set-up-website/">
-     
+     <b> 5.4. </b> Thiết lập website 
     <i class="fas fa-check read-icon"></i>
     
   </a>
@@ -820,7 +820,7 @@
             
           
           
-            <a href='../../../vi/'>Báo cáo thực tập</a> > <a href='../../../vi/5-workshop/'>Workshop</a> > 
+            <a href='../../../vi/'>Báo cáo thực tập</a> > <a href='../../../vi/5-workshop/'>Workshop</a> > Thiết lập website
           
         
           
@@ -832,7 +832,15 @@
                 </div>
                 
                     <div class="progress">
-  <div class="wrapper"><nav id="TableOfContents"></nav></div>
+  <div class="wrapper"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
 </div>
 
                 
@@ -847,7 +855,7 @@
           
             <h1>
               
-              
+              Thiết lập website
             </h1>
           
 
@@ -855,7 +863,168 @@
 
 
 
-	
+	<h4 id="thiết-lập-gitlab-repository-để-triển-khai-website-và-lambda-code">Thiết lập Gitlab repository để triển khai website và lambda code</h4>
+<ol>
+<li>Truy cập <strong>Gitlab</strong> repository này: <a href="https://gitlab.com/tranngockhiet22062005/smart-office">https://gitlab.com/tranngockhiet22062005/smart-office</a></li>
+<li>Tải xuống và triển khai trên repository của riêng bạn</li>
+</ol>
+<h4 id="thiết-lập-role-cho-gitlab-để-triển-khai-website-lên-s3-và-triển-khai-code-lên-lambda-function">Thiết lập role cho Gitlab để triển khai website lên S3 và triển khai code lên Lambda Function</h4>
+<ol>
+<li>Tạo một IAM User với các thuộc tính sau (xem lại phần 5.2 nếu bạn quên)</li>
+</ol>
+<ul>
+<li><strong>User name</strong>: <code>smart-office-gitlab-ci</code></li>
+<li><strong>Policy</strong>:</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">&#34;Version&#34;</span>: <span style="color:#e6db74">&#34;2012-10-17&#34;</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#f92672">&#34;Statement&#34;</span>: [
+</span></span><span style="display:flex;"><span>		{
+</span></span><span style="display:flex;"><span>			<span style="color:#f92672">&#34;Sid&#34;</span>: <span style="color:#e6db74">&#34;S3ListBucketAccess&#34;</span>,
+</span></span><span style="display:flex;"><span>			<span style="color:#f92672">&#34;Effect&#34;</span>: <span style="color:#e6db74">&#34;Allow&#34;</span>,
+</span></span><span style="display:flex;"><span>			<span style="color:#f92672">&#34;Action&#34;</span>: [
+</span></span><span style="display:flex;"><span>				<span style="color:#e6db74">&#34;s3:ListBucket&#34;</span>,
+</span></span><span style="display:flex;"><span>				<span style="color:#e6db74">&#34;s3:GetBucketLocation&#34;</span>
+</span></span><span style="display:flex;"><span>			],
+</span></span><span style="display:flex;"><span>			<span style="color:#f92672">&#34;Resource&#34;</span>: [
+</span></span><span style="display:flex;"><span>				<span style="color:#e6db74">&#34;arn:aws:s3:::fcj-smart-office-frontend-ACCOUNT_ID-dev&#34;</span>,
+</span></span><span style="display:flex;"><span>				<span style="color:#e6db74">&#34;arn:aws:s3:::fcj-smart-office-lambda-ACCOUNT_ID-dev&#34;</span>
+</span></span><span style="display:flex;"><span>			]
+</span></span><span style="display:flex;"><span>		},
+</span></span><span style="display:flex;"><span>		{
+</span></span><span style="display:flex;"><span>			<span style="color:#f92672">&#34;Sid&#34;</span>: <span style="color:#e6db74">&#34;S3ReadWriteAccess&#34;</span>,
+</span></span><span style="display:flex;"><span>			<span style="color:#f92672">&#34;Effect&#34;</span>: <span style="color:#e6db74">&#34;Allow&#34;</span>,
+</span></span><span style="display:flex;"><span>			<span style="color:#f92672">&#34;Action&#34;</span>: [
+</span></span><span style="display:flex;"><span>				<span style="color:#e6db74">&#34;s3:PutObject&#34;</span>,
+</span></span><span style="display:flex;"><span>				<span style="color:#e6db74">&#34;s3:GetObject&#34;</span>,
+</span></span><span style="display:flex;"><span>				<span style="color:#e6db74">&#34;s3:DeleteObject&#34;</span>,
+</span></span><span style="display:flex;"><span>				<span style="color:#e6db74">&#34;s3:PutObjectAcl&#34;</span>
+</span></span><span style="display:flex;"><span>			],
+</span></span><span style="display:flex;"><span>			<span style="color:#f92672">&#34;Resource&#34;</span>: [
+</span></span><span style="display:flex;"><span>				<span style="color:#e6db74">&#34;arn:aws:s3:::fcj-smart-office-frontend-ACCOUNT_ID-dev/*&#34;</span>,
+</span></span><span style="display:flex;"><span>				<span style="color:#e6db74">&#34;arn:aws:s3:::fcj-smart-office-lambda-ACCOUNT_ID-dev/*&#34;</span>
+</span></span><span style="display:flex;"><span>			]
+</span></span><span style="display:flex;"><span>		},
+</span></span><span style="display:flex;"><span>		{
+</span></span><span style="display:flex;"><span>			<span style="color:#f92672">&#34;Sid&#34;</span>: <span style="color:#e6db74">&#34;LambdaUpdateAccess&#34;</span>,
+</span></span><span style="display:flex;"><span>			<span style="color:#f92672">&#34;Effect&#34;</span>: <span style="color:#e6db74">&#34;Allow&#34;</span>,
+</span></span><span style="display:flex;"><span>			<span style="color:#f92672">&#34;Action&#34;</span>: [
+</span></span><span style="display:flex;"><span>				<span style="color:#e6db74">&#34;lambda:UpdateFunctionCode&#34;</span>,
+</span></span><span style="display:flex;"><span>				<span style="color:#e6db74">&#34;lambda:GetFunction&#34;</span>,
+</span></span><span style="display:flex;"><span>				<span style="color:#e6db74">&#34;lambda:GetFunctionConfiguration&#34;</span>
+</span></span><span style="display:flex;"><span>			],
+</span></span><span style="display:flex;"><span>			<span style="color:#f92672">&#34;Resource&#34;</span>: <span style="color:#e6db74">&#34;arn:aws:lambda:*:*:function:SmartOffice-*&#34;</span>
+</span></span><span style="display:flex;"><span>		},
+</span></span><span style="display:flex;"><span>		{
+</span></span><span style="display:flex;"><span>			<span style="color:#f92672">&#34;Sid&#34;</span>: <span style="color:#e6db74">&#34;CloudFrontInvalidation&#34;</span>,
+</span></span><span style="display:flex;"><span>			<span style="color:#f92672">&#34;Effect&#34;</span>: <span style="color:#e6db74">&#34;Allow&#34;</span>,
+</span></span><span style="display:flex;"><span>			<span style="color:#f92672">&#34;Action&#34;</span>: [
+</span></span><span style="display:flex;"><span>				<span style="color:#e6db74">&#34;cloudfront:CreateInvalidation&#34;</span>,
+</span></span><span style="display:flex;"><span>				<span style="color:#e6db74">&#34;cloudfront:GetDistribution&#34;</span>
+</span></span><span style="display:flex;"><span>			],
+</span></span><span style="display:flex;"><span>			<span style="color:#f92672">&#34;Resource&#34;</span>: <span style="color:#e6db74">&#34;*&#34;</span>
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>	]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div>
+<div
+  class="notices warning"
+  
+>
+  Bạn nên thay thế ACCOUNT_ID bằng AWS Account ID của bạn
+</div>
+
+<ul>
+<li><strong>Policy name</strong>: <code>SmartOfficeGitlabAccess</code></li>
+</ul>
+<ol>
+<li>Điều hướng đến user đó</li>
+<li>Trong phần <strong>Summary</strong>, nhấp vào <strong>Create access key</strong></li>
+</ol>
+<p><img src="../../../images/5-Workshop/5.4-Gitlab/iam_create_access_key.png" alt="iam_create_access_key.png"></p>
+<ol start="4">
+<li>Tại mục <strong>Use case</strong>, tích chọn <strong>Command Line Interface (CLI)</strong></li>
+<li>Tích chọn <strong>I understand the above recommendation and want to proceed to create an access key.</strong></li>
+<li>Nhấp <strong>Next</strong></li>
+</ol>
+<p><img src="../../../images/5-Workshop/5.4-Gitlab/iam_create_access_key_step_1.png" alt="iam_create_access_key_step_1.png"></p>
+<ol start="7">
+<li>Nhấp <strong>Create access key</strong></li>
+<li>Nhấp <strong>Download .csv file</strong></li>
+</ol>
+<p><img src="../../../images/5-Workshop/5.4-Gitlab/iam_create_access_key_step_3.png" alt="iam_create_access_key_step_3.png"></p>
+<h4 id="cấu-hình-các-biến-gitlab">Cấu hình các biến Gitlab</h4>
+<ol>
+<li>Truy cập <strong>Gitlab</strong> repository của bạn, nhấp vào <strong>Setting</strong> &gt; <strong>Variables</strong></li>
+<li>Nhấp <strong>Add variable</strong></li>
+</ol>
+<p><img src="../../../images/5-Workshop/5.4-Gitlab/gitlab_variables.png" alt="gitlab_variables.png"></p>
+<ol start="3">
+<li>
+<p>Đối với mỗi <strong>Key</strong> và <strong>Value</strong>, hãy làm theo bảng dưới đây để biết nơi lấy giá trị</p>
+<table>
+  <thead>
+      <tr>
+          <th>Key</th>
+          <th>Value</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>AWS_ACCESS_KEY_ID</td>
+          <td>In your <code>smart-office-gitlab-ci_accessKeys.csv</code> you have downloaded</td>
+      </tr>
+      <tr>
+          <td>AWS_DEFAULT_REGION</td>
+          <td><code>ap-southeast-1</code> (or anywhere you deploy the workshop)</td>
+      </tr>
+      <tr>
+          <td>AWS_SECRET_ACCESS_KEY</td>
+          <td>In your <code>smart-office-gitlab-ci_accessKeys.csv</code> you have downloaded</td>
+      </tr>
+      <tr>
+          <td>CLOUDFRONT_DISTRIBUTION_ID</td>
+          <td><strong>CloudFront</strong> &gt; <strong>Distributions</strong> &gt; Your distribution ID</td>
+      </tr>
+      <tr>
+          <td>S3_BUCKET_FRONTEND</td>
+          <td><code>fcj-smart-office-frontend-ACCOUNT_ID-dev</code> (replace ACCOUNT_ID with your AWS Account ID)</td>
+      </tr>
+      <tr>
+          <td>S3_BUCKET_LAMBDA</td>
+          <td><code>fcj-smart-office-lambda-ACCOUNT_ID-dev</code> (replace ACCOUNT_ID with your AWS Account ID)</td>
+      </tr>
+      <tr>
+          <td>STACK_NAME_AUTH</td>
+          <td><code>SmartOffice-Authenticate-Lambda-Dev</code></td>
+      </tr>
+      <tr>
+          <td>STACK_NAME_CRUD</td>
+          <td><code>SmartOffice-Crud-Lambda-Dev</code></td>
+      </tr>
+      <tr>
+          <td>STACK_NAME_IOT</td>
+          <td><code>SmartOffice-IoT-Lambda-Dev</code></td>
+      </tr>
+      <tr>
+          <td>STACK_NAME_READONLY</td>
+          <td><code>SmartOffice-ReadOnly-Lambda-Dev</code></td>
+      </tr>
+      <tr>
+          <td>VITE_API_BASE_URL</td>
+          <td><strong>API Gateway</strong> &gt; <strong>SmartOffice-API-Gateway-Dev-Api</strong> &gt; <strong>Stages</strong> &gt; <strong>Invoke URL</strong></td>
+      </tr>
+  </tbody>
+</table>
+</li>
+<li>
+<p>Push code vào nhánh <code>init</code></p>
+</li>
+<li>
+<p>Merge các branch theo thứ tự sau: <code>init</code> -&gt; <code>dev</code>, <code>dev</code> -&gt; <code>main</code></p>
+</li>
+</ol>
+
 
 
 
@@ -1414,7 +1583,7 @@
 	 
 	 
 		
-			<a class="nav nav-prev" href="../../../vi/5-workshop/5.3-run-cloudformation-stack/" title=""> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="../../../vi/5-workshop/5.3-run-cloudformation-stack/" title="Thiết lập CloudFormation"> <i class="fa fa-chevron-left"></i></a>
 		
 		
 			<a class="nav nav-next" href="../../../vi/6-self-evaluation/" title="Tự đánh giá" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
@@ -1427,19 +1596,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="../../../js/clipboard.min.js?1765041589"></script>
-    <script src="../../../js/perfect-scrollbar.min.js?1765041589"></script>
-    <script src="../../../js/perfect-scrollbar.jquery.min.js?1765041589"></script>
-    <script src="../../../js/jquery.sticky.js?1765041589"></script>
-    <script src="../../../js/featherlight.min.js?1765041589"></script>
-    <script src="../../../js/highlight.pack.js?1765041589"></script>
+    <script src="../../../js/clipboard.min.js?1765089834"></script>
+    <script src="../../../js/perfect-scrollbar.min.js?1765089834"></script>
+    <script src="../../../js/perfect-scrollbar.jquery.min.js?1765089834"></script>
+    <script src="../../../js/jquery.sticky.js?1765089834"></script>
+    <script src="../../../js/featherlight.min.js?1765089834"></script>
+    <script src="../../../js/highlight.pack.js?1765089834"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="../../../js/modernizr.custom-3.6.0.js?1765041589"></script>
-    <script src="../../../js/learn.js?1765041589"></script>
-    <script src="../../../js/hugo-learn.js?1765041589"></script>
+    <script src="../../../js/modernizr.custom-3.6.0.js?1765089834"></script>
+    <script src="../../../js/learn.js?1765089834"></script>
+    <script src="../../../js/hugo-learn.js?1765089834"></script>
 
-    <link href="../../../mermaid/mermaid.css?1765041589" rel="stylesheet" />
-    <script src="../../../mermaid/mermaid.js?1765041589"></script>
+    <link href="../../../mermaid/mermaid.css?1765089834" rel="stylesheet" />
+    <script src="../../../mermaid/mermaid.js?1765089834"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

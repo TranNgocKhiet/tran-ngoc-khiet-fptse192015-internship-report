@@ -12,24 +12,24 @@
 
     <link rel="icon" href="../../../images/favicon.png" type="image/png">
 
-    <title> :: Báo cáo thực tập</title>
+    <title>Thiết lập CloudFormation :: Báo cáo thực tập</title>
 
     
-    <link href="../../../css/nucleus.css?1765041589" rel="stylesheet">
-    <link href="../../../css/fontawesome-all.min.css?1765041589" rel="stylesheet">
-    <link href="../../../css/hybrid.css?1765041589" rel="stylesheet">
-    <link href="../../../css/featherlight.min.css?1765041589" rel="stylesheet">
-    <link href="../../../css/perfect-scrollbar.min.css?1765041589" rel="stylesheet">
-    <link href="../../../css/auto-complete.css?1765041589" rel="stylesheet">
-    <link href="../../../css/atom-one-dark-reasonable.css?1765041589" rel="stylesheet">
-    <link href="../../../css/theme.css?1765041589" rel="stylesheet">
-    <link href="../../../css/hugo-theme.css?1765041589" rel="stylesheet">
+    <link href="../../../css/nucleus.css?1765089834" rel="stylesheet">
+    <link href="../../../css/fontawesome-all.min.css?1765089834" rel="stylesheet">
+    <link href="../../../css/hybrid.css?1765089834" rel="stylesheet">
+    <link href="../../../css/featherlight.min.css?1765089834" rel="stylesheet">
+    <link href="../../../css/perfect-scrollbar.min.css?1765089834" rel="stylesheet">
+    <link href="../../../css/auto-complete.css?1765089834" rel="stylesheet">
+    <link href="../../../css/atom-one-dark-reasonable.css?1765089834" rel="stylesheet">
+    <link href="../../../css/theme.css?1765089834" rel="stylesheet">
+    <link href="../../../css/hugo-theme.css?1765089834" rel="stylesheet">
     
-    <link href="../../../css/theme-workshop.css?1765041589" rel="stylesheet">
+    <link href="../../../css/theme-workshop.css?1765089834" rel="stylesheet">
     
     
 
-    <script src="../../../js/jquery-3.3.1.min.js?1765041589"></script>
+    <script src="../../../js/jquery-3.3.1.min.js?1765089834"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -88,14 +88,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="../../../js/lunr.min.js?1765041589"></script>
-<script type="text/javascript" src="../../../js/auto-complete.js?1765041589"></script>
+<script type="text/javascript" src="../../../js/lunr.min.js?1765089834"></script>
+<script type="text/javascript" src="../../../js/auto-complete.js?1765089834"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/tranngockhiet.github.io\/tran-ngoc-khiet-fptse192015-internship-report\/\/vi";
     
 </script>
-<script type="text/javascript" src="../../../js/search.js?1765041589"></script>
+<script type="text/javascript" src="../../../js/search.js?1765089834"></script>
  
   </div>
 
@@ -598,7 +598,7 @@
             
 <li
   data-nav-id="/vi/5-workshop/5.3-run-cloudformation-stack/"
-  title=""
+  title="Thiết lập CloudFormation"
   class="dd-item 
         
         active
@@ -606,7 +606,7 @@
         "
 >
   <a href="../../../vi/5-workshop/5.3-run-cloudformation-stack/">
-     
+     <b> 5.3. </b> Thiết lập CloudFormation 
     <i class="fas fa-check read-icon"></i>
     
   </a>
@@ -616,7 +616,7 @@
             
 <li
   data-nav-id="/vi/5-workshop/5.4-set-up-website/"
-  title=""
+  title="Thiết lập website"
   class="dd-item 
         
         
@@ -624,7 +624,7 @@
         "
 >
   <a href="../../../vi/5-workshop/5.4-set-up-website/">
-     
+     <b> 5.4. </b> Thiết lập website 
     <i class="fas fa-check read-icon"></i>
     
   </a>
@@ -820,7 +820,7 @@
             
           
           
-            <a href='../../../vi/'>Báo cáo thực tập</a> > <a href='../../../vi/5-workshop/'>Workshop</a> > 
+            <a href='../../../vi/'>Báo cáo thực tập</a> > <a href='../../../vi/5-workshop/'>Workshop</a> > Thiết lập CloudFormation
           
         
           
@@ -832,7 +832,16 @@
                 </div>
                 
                     <div class="progress">
-  <div class="wrapper"><nav id="TableOfContents"></nav></div>
+  <div class="wrapper"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#thực-hiện-tương-tự-cho-các-tệp-khác-với-tên-chính-xác-như-sau">Thực hiện tương tự cho các tệp khác với tên chính xác như sau</a></li>
+  </ul>
+</nav></div>
 </div>
 
                 
@@ -847,7 +856,7 @@
           
             <h1>
               
-              
+              Thiết lập CloudFormation
             </h1>
           
 
@@ -855,7 +864,96 @@
 
 
 
-	
+	<h4 id="tải-xuống-tài-nguyên">Tải xuống tài nguyên</h4>
+<p>Tải xuống các tệp mẫu <strong>CloudFormation</strong> này:</p>
+<ul>
+<li><a href="../../../file/cloudformation/smart_office_budget.yaml">smart_office_budget.yaml</a></li>
+<li><a href="../../../file/cloudformation/smart_office_s3_cloudfront.yaml">smart_office_s3_cloudfront.yaml</a></li>
+<li><a href="../../../file/cloudformation/smart_office_cognito.yaml">smart_office_cognito.yaml</a></li>
+<li><a href="../../../file/cloudformation/smart_office_dynamodb.yaml">smart_office_dynamodb.yaml</a></li>
+<li><a href="../../../file/cloudformation/smart_office_lambda_authenticate_with_dynamodb_cognito.yaml">smart_office_lambda_authenticate_with_dynamodb_cognito.yaml</a></li>
+<li><a href="../../../file/cloudformation/smart_office_lambda_readonly_with_dynamodb.yaml">smart_office_lambda_readonly_with_dynamodb.yaml</a></li>
+<li><a href="../../../file/cloudformation/smart_office_lambda_crud_with_dynamodb_cognito.yaml">smart_office_lambda_crud_with_dynamodb_cognito.yaml</a></li>
+<li><a href="../../../file/cloudformation/smart_office_lambda_crud_with_dynamodb_iot.yaml">smart_office_lambda_crud_with_dynamodb_iot.yaml</a></li>
+<li><a href="../../../file/cloudformation/smart_office_iot_core.yaml">smart_office_iot_core.yaml</a></li>
+<li><a href="../../../file/cloudformation/smart_office_api_gateway.yaml">smart_office_api_gateway.yaml</a></li>
+</ul>
+<h4 id="triển-khai-các-cloudformation-stack">Triển khai các CloudFormation Stack</h4>
+<ol>
+<li>Trong <strong>AWS Management Console</strong>, tìm kiếm và chọn <strong>CloudFormation</strong></li>
+</ol>
+<p><img src="../../../images/5-Workshop/5.3-CloudFormation/cloudformation_management_console.png" alt="cloudformation_management_console"></p>
+<ol start="2">
+<li>Nhấp vào <strong>Create stack</strong></li>
+<li>Tại mục <strong>Prepare template</strong>, tích chọn <strong>Choose an existing template</strong></li>
+<li>Tại mục <strong>Template source</strong>, tích chọn <strong>Upload a template file</strong></li>
+<li>Nhấp vào <strong>Choose file</strong></li>
+<li>Chọn tệp <code>smart_office_budget.yaml</code></li>
+<li>Nhấp vào <strong>Next</strong></li>
+</ol>
+<p><img src="../../../images/5-Workshop/5.3-CloudFormation/cloudformation_step_1.png" alt="cloudformation_step_1.png"></p>
+<ol start="8">
+<li>Tại mục <strong>Stack name</strong>, nhập <code>SmartOffice-Budget-Dev</code></li>
+<li>Nhấp vào <strong>Next</strong></li>
+</ol>
+<p><img src="../../../images/5-Workshop/5.3-CloudFormation/cloudformation_step_2.png" alt="cloudformation_step_2.png"></p>
+<ol start="10">
+<li>Thêm <strong>Tags</strong> để quản lý chi phí và vận hành (Key: <code>Project</code>, Value: <code>SmartOffice</code>; Key: <code>Environment</code>, Value: <code>Dev</code>)</li>
+<li>Tại mục <strong>Stack failure options</strong>, tích chọn <strong>Preserve successfully provisioned resources</strong> (Để giữ lại tài nguyên đã tạo phục vụ việc gỡ lỗi)</li>
+<li>Nhấp vào <strong>Next</strong></li>
+</ol>
+<p><img src="../../../images/5-Workshop/5.3-CloudFormation/cloudformation_step_3.png" alt="cloudformation_step_3.png"></p>
+<ol start="13">
+<li>Kiểm tra lại và nhấp vào <strong>Submit</strong></li>
+</ol>
+<h2 id="thực-hiện-tương-tự-cho-các-tệp-khác-với-tên-chính-xác-như-sau">Thực hiện tương tự cho các tệp khác với tên chính xác như sau</h2>
+<table>
+  <thead>
+      <tr>
+          <th>Tên Template</th>
+          <th>Tên Stack</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>smart_office_s3_cloudfront.yaml</td>
+          <td><code>SmartOffice-S3-CloudFront-Dev</code></td>
+      </tr>
+      <tr>
+          <td>smart_office_cognito.yaml</td>
+          <td><code>SmartOffice-Cognito-Dev</code></td>
+      </tr>
+      <tr>
+          <td>smart_office_dynamodb.yaml</td>
+          <td><code>SmartOffice-DynamoDB-Dev</code></td>
+      </tr>
+      <tr>
+          <td>smart_office_lambda_authenticate_with_dynamodb_cognito.yaml</td>
+          <td><code>SmartOffice-Authenticate-Lambda-Dev</code></td>
+      </tr>
+      <tr>
+          <td>smart_office_lambda_readonly_with_dynamodb.yaml</td>
+          <td><code>SmartOffice-ReadOnly-Lambda-Dev</code></td>
+      </tr>
+      <tr>
+          <td>smart_office_lambda_crud_with_dynamodb_cognito.yaml</td>
+          <td><code>SmartOffice-Crud-Lambda-Dev</code></td>
+      </tr>
+      <tr>
+          <td>smart_office_lambda_crud_with_dynamodb_iot.yaml</td>
+          <td><code>SmartOffice-IoT-Lambda-Dev</code></td>
+      </tr>
+      <tr>
+          <td>smart_office_iot_core.yaml</td>
+          <td><code>SmartOffice-IoT-Core-Dev</code></td>
+      </tr>
+      <tr>
+          <td>smart_office_api_gateway.yaml</td>
+          <td><code>SmartOffice-API-Gateway-Dev</code></td>
+      </tr>
+  </tbody>
+</table>
+
 
 
 
@@ -1417,7 +1515,7 @@
 			<a class="nav nav-prev" href="../../../vi/5-workshop/5.2-prerequiste/" title="Các bước chuẩn bị"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="../../../vi/5-workshop/5.4-set-up-website/" title="" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="../../../vi/5-workshop/5.4-set-up-website/" title="Thiết lập website" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -1427,19 +1525,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="../../../js/clipboard.min.js?1765041589"></script>
-    <script src="../../../js/perfect-scrollbar.min.js?1765041589"></script>
-    <script src="../../../js/perfect-scrollbar.jquery.min.js?1765041589"></script>
-    <script src="../../../js/jquery.sticky.js?1765041589"></script>
-    <script src="../../../js/featherlight.min.js?1765041589"></script>
-    <script src="../../../js/highlight.pack.js?1765041589"></script>
+    <script src="../../../js/clipboard.min.js?1765089834"></script>
+    <script src="../../../js/perfect-scrollbar.min.js?1765089834"></script>
+    <script src="../../../js/perfect-scrollbar.jquery.min.js?1765089834"></script>
+    <script src="../../../js/jquery.sticky.js?1765089834"></script>
+    <script src="../../../js/featherlight.min.js?1765089834"></script>
+    <script src="../../../js/highlight.pack.js?1765089834"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="../../../js/modernizr.custom-3.6.0.js?1765041589"></script>
-    <script src="../../../js/learn.js?1765041589"></script>
-    <script src="../../../js/hugo-learn.js?1765041589"></script>
+    <script src="../../../js/modernizr.custom-3.6.0.js?1765089834"></script>
+    <script src="../../../js/learn.js?1765089834"></script>
+    <script src="../../../js/hugo-learn.js?1765089834"></script>
 
-    <link href="../../../mermaid/mermaid.css?1765041589" rel="stylesheet" />
-    <script src="../../../mermaid/mermaid.js?1765041589"></script>
+    <link href="../../../mermaid/mermaid.css?1765089834" rel="stylesheet" />
+    <script src="../../../mermaid/mermaid.js?1765089834"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
