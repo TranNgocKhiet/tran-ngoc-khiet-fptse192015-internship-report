@@ -242,7 +242,7 @@
 	"title": "Test website and IoT connection",
 	"tags": [],
 	"description": "",
-	"content": "Download mock IoT device script main.py\nAdd data from your mock device ENDPOINT = \u0026#34;\u0026#34; CLIENT_ID = \u0026#34;\u0026#34; OFFICE_ID = \u0026#34;\u0026#34; ROOM_ID = \u0026#34;\u0026#34; PATH_TO_CERT = \u0026#34;\u0026#34; PATH_TO_KEY = \u0026#34;\u0026#34; PATH_TO_ROOT = \u0026#34;\u0026#34; Attribute Value ENDPOINT IoT Core \u0026gt; MQTT test client \u0026gt; Connection details \u0026gt; Endpoint CLIENT_ID ID of your office OFFICE_ID Name of your office ROOM_ID ID of your room PATH_TO_CERT Path to your device certificate PATH_TO_KEY Path to your device private key PATH_TO_ROOT Path to your Amazon root certifica "
+	"content": "Download mock IoT device script main.py\nAdd data from your mock device ENDPOINT = \u0026#34;\u0026#34; CLIENT_ID = \u0026#34;\u0026#34; OFFICE_ID = \u0026#34;\u0026#34; ROOM_ID = \u0026#34;\u0026#34; PATH_TO_CERT = \u0026#34;\u0026#34; PATH_TO_KEY = \u0026#34;\u0026#34; PATH_TO_ROOT = \u0026#34;\u0026#34; Attribute Value ENDPOINT Website manager page CLIENT_ID ID of your office OFFICE_ID Name of your office ROOM_ID ID of your room PATH_TO_CERT Path to your device certificate download when your create room PATH_TO_KEY Path to your device private key download when your create room PATH_TO_ROOT Path to your Amazon root certifica\tdownload when your create room Link video demo "
 },
 {
 	"uri": "https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/categories/",
