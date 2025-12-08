@@ -5,60 +5,52 @@ chapter: false
 pre: " <b> 4. </b> "
 ---
 
-### [Event 1](4.1-Event1/)
-&emsp;**Tên sự kiện:** AI-Driven Development Life Cycle: Reimagining Software Engineering
-
-&emsp;**Thời gian:** 14:00 ngày 03/10/2025
-
-&emsp;**Địa điểm:** Tầng 26, tòa nhà Bitexco, số 02 đường Hải Triều, phường Sài Gòn, thành phố Hồ Chí Minh
-
-&emsp;**Vai trò trong sự kiện:** Người tham dự 
-
-&emsp;**Mô tả ngắn gọn:** Giới thiệu cách các công cụ AI như Amazon Q Developer và Kiro thay đổi quy trình phát triển phần mềm. Trọng tâm vào hai phương pháp chính — AI-Driven Development Lifecycle (AI-DLC) nhấn mạnh tự động hóa, tốc độ và khả năng mở rộng, và Spec-Driven Development (SDD) với Kiro chú trọng độ chính xác và quy trình chặt chẽ. Trình bày vai trò mới của AI trong CNTT, nơi AI hỗ trợ hoặc quản lý quá trình phát triển trong khi con người vẫn giữ vai trò kiểm chứng.
-
-&emsp;**Kết quả:** Hiểu rõ hơn cách tích hợp AI vào quy trình phát triển phần mềm nhưng vẫn đảm bảo yếu tố kiểm chứng của con người. Nắm được ưu và nhược điểm của AI-DLC và SDD. Tiếp cận công cụ Amazon Q Developer và Kiro với khả năng ứng dụng thực tế nhằm nâng cao hiệu quả, chất lượng và tính đổi mới trong dự án.
+Trong quá trình thực tập, tôi tham gia ba hội thảo lớn từ Chuỗi AWS Cloud Mastery. Mỗi sự kiện cung cấp đào tạo kỹ thuật quý giá, những hiểu biết thực tế, và cơ hội kết nối với các chuyên gia ngành.
 
 ---
 
-### [Event 2](4.2-Event2/)
-&emsp;**Tên sự kiện:** AWS Cloud Mastery Series #1: AI/ML/GenAI on AWS
+### [Sự kiện 1](4.1-Event1/)
 
-&emsp;**Thời gian:** 8:30 ngày 15/11/2025
+**Tên sự kiện:** AWS Cloud Mastery Series #1: AI/ML/GenAI trên AWS
 
-&emsp;**Địa điểm:** Tầng 26, tòa nhà Bitexco, số 02 đường Hải Triều, phường Sài Gòn, thành phố Hồ Chí Minh
+**Thời gian:** 08:30, ngày 15 tháng 11 năm 2025
 
-&emsp;**Vai trò trong sự kiện:** Người tham dự 
+**Địa điểm:** Tầng 26, tòa nhà Bitexco, số 02 đường Hải Triều, phường Sài Gòn, Thành phố Hồ Chí Minh
 
-&emsp;**Mô tả ngắn gọn:** Giới thiệu về các Mô hình Nền tảng (Foundation Models) và khả năng của Generative AI sử dụng Amazon Bedrock. Buổi chia sẻ tập trung vào các kỹ thuật prompting hiệu quả (Chain of Thought) và kiến trúc RAG (Retrieval-Augmented Generation) để tích hợp cơ sở tri thức nội bộ. Khám phá chi tiết về vector embeddings với Amazon Titan và tổng quan về các dịch vụ AI khác nhau của AWS.
+**Vai trò:** Người tham dự
 
-&emsp;**Kết quả:** Có được kiến thức toàn diện về việc giảm thiểu ảo giác AI và nâng cao độ chính xác của phản hồi thông qua RAG và Embeddings. Học cách áp dụng các dịch vụ AI cụ thể của AWS và chiến lược prompting vào các dự án thực tế. Sự kiện cung cấp những hiểu biết giá trị về việc xây dựng AI agent và cơ hội kết nối với các diễn giả có chuyên môn.
+**Mô tả:** Giới thiệu về Mô hình Nền tảng và khả năng Generative AI sử dụng Amazon Bedrock. Hội thảo bao gồm Amazon SageMaker cho quy trình ML truyền thống, bao gồm chuẩn bị dữ liệu, huấn luyện & tinh chỉnh mô hình, và khả năng AutoML. Tập trung vào các kỹ thuật prompting hiệu quả (Chain of Thought), kiến trúc Retrieval-Augmented Generation (RAG) để tích hợp cơ sở tri thức nội bộ, vector embeddings với Amazon Titan, và Bedrock Agents cho quy trình công việc đa bước. Cũng đề cập đến các cơ chế an toàn bao gồm Guardrails của AWS và lọc nội dung.
 
----
-
-### [Event 3](4.3-Event3/)
-&emsp;**Tên sự kiện:** AWS Cloud Mastery Series #2: ​DevOps on AWS
-
-&emsp;**Thời gian:** 8:30 ngày 17/11/2025
-
-&emsp;**Địa điểm:** Tầng 26, tòa nhà Bitexco, số 02 đường Hải Triều, phường Sài Gòn, thành phố Hồ Chí Minh
-
-&emsp;**Vai trò trong sự kiện:** Người tham dự 
-
-&emsp;**Mô tả ngắn gọn:** Tổng quan toàn diện về tư duy DevOps, nhấn mạnh vào sự hợp tác, tự động hóa và chia sẻ trách nhiệm. Buổi chia sẻ bao gồm các dịch vụ AWS DevOps thiết yếu như quy trình CI/CD, Cơ sở hạ tầng dưới dạng mã (IaC) với CloudFormation và Terraform, cùng quản lý container sử dụng Amazon EKS và AppRunner. Hướng dẫn về những điều "Nên và Không nên" trong hành trình DevOps cùng các phương pháp giám sát tối ưu.
-
-&emsp;**Kết quả:** Có được lộ trình rõ ràng cho sự nghiệp DevOps và hiểu sâu hơn về vòng đời ứng dụng. Học cách triển khai quy trình CI/CD và sử dụng các mẫu IaC để giảm thiểu lỗi do con người. Có được cái nhìn sâu sắc về việc giám sát tình trạng triển khai và độ ổn định hệ thống thông qua các trường hợp thực tế và demo từ chuyên gia.
+**Kết quả:** Có được kiến thức toàn diện về cách giảm thiểu ảo giác AI và nâng cao độ chính xác phản ứng thông qua RAG và embeddings. Học cách áp dụng các dịch vụ AI cụ thể của AWS và chiến lược prompting vào các dự án thực tế. Hiểu được sự khác biệt giữa các trường hợp sử dụng ML truyền thống và AI tạo sinh. Sự kiện cung cấp những hiểu biết quý giá về xây dựng AI agents và cơ hội kết nối với 348 chuyên gia ngành.
 
 ---
 
-### [Event 4](4.4-Event4/)
-&emsp;**Tên sự kiện:** AWS Cloud Mastery Series #3: ​Theo AWS Well-Architected Security Pillar
+### [Sự kiện 2](4.2-Event2/)
 
-&emsp;**Thời gian:** 8:30 ngày 29/11/2025 
+**Tên sự kiện:** AWS Cloud Mastery Series #2: DevOps trên AWS
 
-&emsp;**Địa điểm:** Tầng 26, tòa nhà Bitexco, số 02 đường Hải Triều, phường Sài Gòn, thành phố Hồ Chí Minh
+**Thời gian:** 08:30, ngày 17 tháng 11 năm 2025
 
-&emsp;**Vai trò trong sự kiện:** Người tham dự 
+**Địa điểm:** Tầng 26, tòa nhà Bitexco, số 02 đường Hải Triều, phường Sài Gòn, Thành phố Hồ Chí Minh
 
-&emsp;**Mô tả ngắn gọn:** Đi sâu vào Trụ cột Bảo mật (Security Pillar) của AWS Well-Architected, bao gồm Quản lý Danh tính & Truy cập (IAM), Bảo vệ Cơ sở hạ tầng và Bảo vệ Dữ liệu. Buổi chia sẻ khám phá các biện pháp bảo mật nền tảng như Chính sách Kiểm soát Dịch vụ (SCPs), Ranh giới Phân quyền và MFA. Nêu bật các chiến lược nâng cao về "Phát hiện như Mã nguồn" (Detection-as-Code) bằng công cụ IaC và quy trình ứng phó sự cố tự động với Amazon EventBridge.
+**Vai trò:** Người tham dự
 
-&emsp;**Kết quả:** Học cách thực thi nguyên tắc đặc quyền tối thiểu một cách hiệu quả bằng SCP và ranh giới IAM. Có được kỹ năng thực tế trong việc thiết lập cảnh báo tự động và định tuyến sự kiện liên tài khoản để phát hiện mối đe dọa theo thời gian thực. Hiểu rõ quy trình ứng phó sự cố, nhấn mạnh vào phòng ngừa và tự động hóa để giảm thiểu thời gian ngừng hoạt động và rủi ro bảo mật.
+**Mô tả:** Hội thảo toàn ngày về các thực tiễn DevOps và tự động hóa CI/CD trên AWS. Phiên sáng bao gồm văn hóa DevOps với các số liệu DORA, hệ sinh thái AWS CodePipeline (CodeCommit, CodeBuild, CodeDeploy), chiến lược triển khai (Blue/Green, Canary, Rolling), và Cơ sở hạ tầng dưới dạng Mã với CloudFormation và AWS CDK. Phiên chiều khám phá các dịch vụ container (Docker, Amazon ECR, ECS vs. EKS, AWS App Runner) và khả năng quan sát với CloudWatch, AWS X-Ray, và các phương pháp giám sát toàn diện.
+
+**Kết quả:** Có được lộ trình DevOps rõ ràng và hiểu sâu hơn về quản lý vòng đời ứng dụng. Học cách triển khai quy trình CI/CD giảm thiểu lỗi của con người thông qua tự động hóa. Có được kỹ năng thực tế về các mẫu cơ sở hạ tầng dưới dạng mã đảm bảo tính nhất quán và giảm cấu hình thủ công. Hiểu được giám sát và khả năng quan sát là những thành phần quan trọng cho tình trạng triển khai và độ ổn định hệ thống. Kết nối với 316 chuyên gia DevOps và có được những hiểu biết từ các nghiên cứu trường hợp thực tế.
+
+---
+
+### [Sự kiện 3](4.3-Event3/)
+
+**Tên sự kiện:** AWS Cloud Mastery Series #3: Trụ cột Bảo mật Well-Architected
+
+**Thời gian:** 08:30, ngày 29 tháng 11 năm 2025
+
+**Địa điểm:** Tầng 26, tòa nhà Bitexco, số 02 đường Hải Triều, phường Sài Gòn, Thành phố Hồ Chí Minh
+
+**Vai trò:** Người tham dự
+
+**Mô tả:** Tìm hiểu sâu về bảo mật đám mây thông qua Trụ cột Bảo mật của AWS Well-Architected Framework bao gồm năm lĩnh vực chính. Quản lý Danh tính & Truy cập: kiến trúc IAM, vai trò dịch vụ, thông tin đăng nhập tạm thời, AWS IAM Identity Center, Chính sách Kiểm soát Dịch vụ, Ranh giới Quyền, và các tùy chọn MFA. Phát hiện & Giám sát Liên tục: CloudTrail, GuardDuty, Security Hub, ghi nhật ký đa lớp (VPC Flow Logs, nhật ký ALB, nhật ký truy cập S3), tự động hóa EventBridge, và Phát hiện dưới dạng Mã. Bảo vệ Cơ sở hạ tầng: phân đoạn VPC, Security Groups vs. NACLs, AWS WAF, bảo vệ DDoS với Shield, Network Firewall, và bảo mật container. Bảo vệ Dữ liệu: mã hóa khi đang lưu trữ (S3, RDS, EBS, DynamoDB), mã hóa khi đang truyền, quản lý khóa AWS KMS, Secrets Manager, và các mô hình xoay vòng tự động. Phản ứng Sự cố: vòng đời IR, sổ tay sự cố, và quy trình phản ứng.
+
+**Kết quả:** Học cách thực thi nguyên tắc đặc quyền tối thiểu một cách hiệu quả bằng cách sử dụng SCP và ranh giới IAM. Có được kỹ năng thực tế trong thiết lập cảnh báo tự động và định tuyến sự kiện liên tài khoản để phát hiện mối đe dọa theo thời gian thực. Hiểu rõ quy trình phản ứng sự cố nhấn mạnh phòng ngừa và tự động hóa để giảm thiểu thời gian ngừng hoạt động và rủi ro bảo mật. Hiểu được ghi nhật ký và giám sát toàn diện là cơ sở cho kiến trúc bảo mật hiện đại. Kết nối với 355+ chuyên gia bảo mật và chuyên gia ngành để thảo luận về các mối đe dọa mới nổi và các phương pháp hay nhất.

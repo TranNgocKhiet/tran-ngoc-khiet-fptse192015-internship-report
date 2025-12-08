@@ -5,23 +5,25 @@ chapter: false
 pre: " <b> 5. </b> "
 ---
 
-# Secure Hybrid Access to S3 using VPC Endpoints
+# Serverless Smart Office IoT Platform
 
 #### Overview
 
-**AWS PrivateLink** provides private connectivity to AWS services from VPCs and your on-premises networks, without exposing your traffic to the Public Internet.
+This workshop demonstrates how to build a **comprehensive serverless data platform** on AWS for real-time environmental monitoring. The system implements a modern **event-driven and serverless architecture** utilizing cloud-native AWS services.
 
-In this lab, you will learn how to create, configure, and test VPC endpoints that enable your workloads to reach AWS services without traversing the Public Internet.
+**Key Architecture Principles:**
++ **Serverless Architecture** - Uses **AWS Lambda**, **Amazon API Gateway**, and **Amazon DynamoDB** to run code without provisioning servers. AWS automatically handles scaling and infrastructure management.
++ **Event-Driven Architecture** - Instead of continuous polling, specific events (IoT sensor readings, user API calls) trigger workflows. **AWS IoT Core** and **Amazon EventBridge** orchestrate these events for flexibility and scalability.
 
-You will create two types of endpoints to access Amazon S3: a Gateway VPC endpoint, and an Interface VPC endpoint. These two types of VPC endpoints offer different benefits depending on if you are accessing Amazon S3 from the cloud or your on-premises location
-+ **Gateway** - Create a gateway endpoint to send traffic to Amazon S3 or DynamoDB using private IP addresses.You route traffic from your VPC to the gateway endpoint using route tables.
-+ **Interface** - Create an interface endpoint to send traffic to endpoint services that use a Network Load Balancer to distribute traffic. Traffic destined for the endpoint service is resolved using DNS.
+**System Components:**
+The platform manages an **smart office setup** that integrates **AWS IoT Core** for sensor data ingestion, **Lambda** functions for processing, **DynamoDB** for storage, **S3** and **CloudFront** for website hosting, and **Amazon Cognito** for authentication. Sensor data flows from edge devices into AWS, gets stored and processed, updates the management dashboard, and routes critical events through EventBridge for alerting.
 
 #### Content
 
-1. [Workshop overview](5.1-Workshop-overview)
-2. [Prerequiste](5.2-Prerequiste/)
-3. [Access S3 from VPC](5.3-S3-vpc/)
-4. [Access S3 from On-premises](5.4-S3-onprem/)
-5. [VPC Endpoint Policies (Bonus)](5.5-Policy/)
-6. [Clean up](5.6-Cleanup/)
+1. [Workshop overview](5.1-Workshop-overview/)
+2. [Prerequisites](5.2-Prerequiste/)
+3. [Run CloudFormation stack](5.3-Run-cloudformation-stack/)
+4. [Set up website](5.4-Set-up-website/)
+5. [EventBridge and Lambda Setup](5.5-Event-Bridge/)
+6. [SNS Setup](5.6-SNS/)
+7. [Test website and IoT connection](5.7-Test-website-iot-connection/)

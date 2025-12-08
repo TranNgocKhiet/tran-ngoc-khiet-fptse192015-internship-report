@@ -1,28 +1,25 @@
 ---
 title: "Week 10 Worklog"
-weight: 2
+weight: 10
 chapter: false
-pre: " <b> 1.10. </b> "
+pre: " <b> 1.8. </b> "
 ---
 
 ### Week 10 Objectives:
-
-* Learn Gitlab
-* Config AWS Lambda Functions for web client
-* Deploy web client from Gitlab
+* Configure AWS IoT Rules Engine.
+* Integrate IoT Core with EventBridge.
+* Filter incoming data.
 
 ### Tasks to be carried out this week:
-| Day | Task                                                                        | Start Date | Completion Date | Reference Material                            |
-| --- | --------------------------------------------------------------------------- | ---------- | --------------- | --------------------------------------------- |
-| 2   | - Learn to use GitLab and Gitlab Pipeline                                   | 11/10/2025 | 11/10/2025      | <https://www.youtube.com/watch?v=bnF7f1zGpo4> |
-| 3   | - Migrate workshop client website repository from GitHub to GitLab          | 11/11/2025 | 11/11/2025      |                                               |
-| 4   | - Configure Lambda policies, Lambda role and Lambda function for web client | 11/12/2025 | 11/12/2025      |                                               |
-| 5   | - Finish and test Lambda function                                           | 11/13/2025 | 11/13/2025      |                                               |
-| 6   | - Adjust Gitlab CI to auto push to S3 Bucket                                | 11/14/2025 | 11/14/2025      |                                               |
-
+| Day | Task | Start Date | Completion Date | Reference Material |
+| --- | --- | --- | --- | --- |
+| 2   | - **Project:** IoT Rules <br> - **Practice:** <br>&emsp; + Write SQL statement to select data: <br> e.g `SELECT * FROM 'office/+/temp'` | 11/10/2025 | 11/10/2025 | <https://docs.aws.amazon.com/iot/latest/developerguide/iot-sql-reference.html> |
+| 3   | - **Project:** Create Rule <br> - **Practice:** <br>&emsp; + Create an IoT Rule in Console <br>&emsp; + Set Action: "Send a message to EventBridge" | 11/11/2025 |11/11/2025  | <https://docs.aws.amazon.com/iot/latest/developerguide/eventbridge-rule.html> |
+| 4   | - **Project:** EventBridge Setup <br> - **Practice:** <br>&emsp; + Go to EventBridge, check for incoming events | 11/12/2025 | 11/12/2025 | <https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-iot-event.html> |
+| 5   | - **Project:** Event Pattern <br> - **Practice:** <br>&emsp; + Create an EventBridge Rule with a pattern to match High Temp (> 40C) | 11/13/2025 | 11/13/2025 | <https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-event-patterns.html> |
+| 6   | - **Project:** Testing Integration <br> - **Practice:** <br>&emsp; + Publish high temp data via Python script <br>&emsp; + Verify Rule metric count increases | 11/14/2025 | 11/14/2025 | <https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-monitoring.html> |
 
 ### Week 10 Achievements:
-
-* Know how to use Gitlab and config Gitlab pipeline
-* Finish Lambda Function for client
-* Summarize knowledge to a note website <https://programming-note-fawn.vercel.app/>
+* Configured IoT SQL Rules to filter message traffic.
+* Established a direct integration between IoT Core and EventBridge.
+* Defined EventBridge patterns to detect "High Temperature" anomalies.

@@ -5,7 +5,7 @@ chapter: false
 pre: " <b> 2. </b> "
 ---
 
-# IoT Weather Platform for Lab Research
+# Smart Office Management Console
 ## A Unified AWS Serverless Solution for Real-Time Weather Monitoring
 
 ### 1. Executive Summary

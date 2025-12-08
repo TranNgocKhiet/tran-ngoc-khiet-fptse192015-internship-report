@@ -1,28 +1,26 @@
 ---
 title: "Week 6 Worklog"
-weight: 1
+weight: 6
 chapter: false
 pre: " <b> 1.6. </b> "
 ---
 
 ### Week 6 Objectives:
-
-* Synthesize knowledge about AWS to mindmap for mid-term test
-* Brainstorm idea for workshop
-* Draw architect diagram for workshop
+* **PROJECT START: Smart Office IoT**
+* Set up AWS IoT Core Environment.
+* Register IoT Things (Simulated Devices).
 
 ### Tasks to be carried out this week:
-| Day | Task                                                                                                                                                 | Start Date | Completion Date | Reference Material                        |
-| --- | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- | --------------- | ----------------------------------------- |
-| 2   | - Synthesize **theory** knowledge of **<i>Module 1</i>** and **<i>Module 2</i>** <br> - Draw mindmap for **<i>Module 1</i>** and **<i>Module 2</i>** | 10/13/2025 | 10/13/2025      | <https://www.youtube.com/playlist?list=PLahN4TLWtox2a3vElknwzU_urND8hLn1i> <br> <https://drive.google.com/file/d/1jlnUWvbaxQmmhaDT4eMMyFaZNcN3qlxt/view?usp=drive_link> |
-| 3   | - Synthesize **theory** knowledge of **<i>Module 3</i>** and **<i>Module 4</i>** <br> - Draw mindmap for **<i>Module 3</i>** and **<i>Module 4</i>** | 10/14/2025 | 10/14/2025      | <https://www.youtube.com/playlist?list=PLahN4TLWtox2a3vElknwzU_urND8hLn1i> <br> <https://drive.google.com/file/d/1jlnUWvbaxQmmhaDT4eMMyFaZNcN3qlxt/view?usp=drive_link> |
-| 4   | - Synthesize **theory** knowledge of **<i>Module 5</i>** and **<i>Module 6</i>** <br> - Draw mindmap for **<i>Module 5</i>** and **<i>Module 6</i>** | 10/15/2025 | 10/15/2025      | <https://www.youtube.com/playlist?list=PLahN4TLWtox2a3vElknwzU_urND8hLn1i> <br> <https://drive.google.com/file/d/1jlnUWvbaxQmmhaDT4eMMyFaZNcN3qlxt/view?usp=drive_link> |
-| 5   | - Brainstorm idea for workshop                                                                                                                       | 10/16/2025 | 10/16/2025      | <https://drive.google.com/file/d/1QV5zNEUsXdX9vLxQRzBingVShyj8AHY0/view?usp=sharing>                                                                                    |
-| 6   | - Draw architect diagram for workshop                                                                                                                | 10/17/2025 | 10/17/2025      | <https://drive.google.com/file/d/1QV5zNEUsXdX9vLxQRzBingVShyj8AHY0/view?usp=sharing>                                                                                    |
-
+| Day | Task | Start Date | Completion Date | Reference Material |
+| --- | --- | --- | --- | --- |
+| 2   | - **Project:** Introduction to AWS IoT Core <br> - **Practice:** <br>&emsp; + Log into AWS Console -> IoT Core <br>&emsp; + Create a "Thing Type" for Smart Sensors | 10/13/2025 | 10/13/2025 | <https://docs.aws.amazon.com/iot/latest/developerguide/iot-thing-management.html> |
+| 3   | - **Project:** Register "Things" <br> - **Practice:** <br>&emsp; + Create a single Thing (e.g., "OfficeTempSensor1") <br>&emsp; + Download certificates and keys | 10/14/2025 | 10/14/2025 | <https://docs.aws.amazon.com/iot/latest/developerguide/create-iot-resources.html> |
+| 4   | - **Project:** IoT Policies <br> - **Practice:** <br>&emsp; + Create an IoT Policy allowing Connect, Publish, Subscribe <br>&emsp; + Attach Policy to the Certificate | 10/15/2025 | 10/15/2025 | <https://docs.aws.amazon.com/iot/latest/developerguide/iot-policies.html> |
+| 5   | - **Project:** Device Connection Test <br> - **Practice:** <br>&emsp; + Use MQTT Test Client in Console to simulate a device connecting | 10/16/2025 | 10/16/2025 | <https://docs.aws.amazon.com/iot/latest/developerguide/view-mqtt-messages.html> |
+| 6   | - **Project:** Documentation <br> - **Practice:** <br>&emsp; + Document the Thing ARN and Certificate IDs in project notes | 10/17/2025 | 10/17/2025 |  |
 
 ### Week 6 Achievements:
-
-* Have a mindmap to summarize knowledge of AWS
-* Brainstorm idea for workshop
-* Draw architect diagram of workshop
+* Successfully initialized AWS IoT Core environment.
+* Registered "Thing" representation for office sensors.
+* Created and attached secure IoT Policies.
+* Verified basic connectivity using MQTT Test Client.

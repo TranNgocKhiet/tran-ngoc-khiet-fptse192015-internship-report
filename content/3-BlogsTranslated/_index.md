@@ -5,14 +5,62 @@ chapter: false
 pre: " <b> 3. </b> "
 ---
 
-###  [Blog 1 - Jumpstart your cloud career with AWS SimuLearn](3.1-Blog1/)
-The blog post “Jumpstart your cloud career with AWS SimuLearn” introduces AWS SimuLearn, an interactive learning platform that combines Generative AI with realistic customer simulations. It allows learners to build both technical and communication skills in a safe, feedback-driven environment, with training tailored by role or industry. Through the stories of Hetvi, Karishma, and Kattie, the post highlights how SimuLearn helps users strengthen customer engagement skills, deepen technical expertise, and gain industry-specific knowledge in areas like healthcare. With over 200 training modules and simulations, AWS SimuLearn empowers early-career cloud professionals to grow their AWS knowledge, boost confidence, and accelerate their cloud career readiness.
+## Overview of Translated Technical Blogs
 
-###  [Blog 2 - How to Set Up Automated Alerts for Newly Purchased AWS Savings Plans](3.2-Blog2/)
-The blog post “How to Set Up Automated Alerts for Newly Purchased AWS Savings Plans” explains how to implement an automated monitoring and alerting system for newly purchased AWS Savings Plans with low utilization. The solution leverages AWS CloudFormation to create Step Functions, SNS topics, EventBridge schedulers, and necessary IAM roles. The deployment is split into two parts:
-- Member Account: hosts a Step Function that checks Savings Plans purchased within the last 7 days and the current month, sending email alerts if utilization is below a defined threshold.
-- Management Account: provides IAM roles and access so the Step Function can analyze Savings Plans across the organization.
-Users can configure thresholds, scheduling frequency, and alert recipients. Upon receiving alerts, FinOps teams should review utilization data and consider returning underused Savings Plans if eligible. This solution helps FinOps teams proactively manage cloud costs, detect underutilized commitments, and improve overall Savings Plans utilization efficiency across AWS environments.
+This section contains curated translations of three AWS technical blog posts covering advanced topics in cloud computing, performance optimization, and security. Each blog provides practical insights and real-world implementations relevant to modern cloud architecture.
 
-###  [Blog 3 - Operating BYOL Windows Server Workloads Effectively on AWS](3.3-Blog3/)
-This AWS blog explains how to effectively operate Bring Your Own License (BYOL) Windows Server workloads on AWS to reduce costs. It covers eligibility requirements for BYOL licenses, preparing Windows Server images using VM Import/Export and Migration Hub Orchestrator, and managing license type conversions with AWS License Manager. The post also shows how to detect configuration issues using AWS Config custom rules and analyze cost data with AWS Cost and Usage Reports (CUR). By following these best practices, organizations can optimize Windows Server costs, ensure license compliance, and improve operational efficiency on AWS.
+---
+
+### [Blog 1 - Risk Management Analytics: Turning Uncertainty into Opportunity](3.1-Blog1/)
+
+This comprehensive blog explores how financial services organizations are transforming their risk management capabilities through digital innovation on AWS. The article discusses how sophisticated enterprises are moving beyond reactive compliance approaches to leverage analytics-driven methodologies.
+
+**Key Topics Covered:**
+- Navigating regulatory complexity in financial services with adaptive governance frameworks
+- Real-world case studies demonstrating customer success:
+  - **Toyota Financial Services Italia**: Implemented SAS Viya to centralize fragmented customer data, enabling predictive customer churn models and achieving improved personalization
+  - **Global Financial Services Company**: Consolidated compliance operations with Smarsh Enterprise Platform, achieving $7 million in annual cost savings and 70% reduction in false positives
+  - **Fortitude Re**: Built comprehensive risk management with Numerix, reducing intraday hedging mismatches through cloud-native infrastructure
+- Cloud-native solutions eliminating infrastructure overhead while maintaining security standards
+- Strategic insights from practitioners on executive support, compliance balance, and risk value demonstration
+
+**Takeaway:** AWS Marketplace provides access to proven risk management solutions that enable financial institutions to transform compliance from a cost center into a competitive advantage through centralized data analytics and real-time insights.
+
+---
+
+### [Blog 2 - Optimizing AWS Lambda Cold Start Performance using SnapStart and Priming Strategies](3.2-Blog2/)
+
+This technical deep dive explores advanced performance optimization techniques for AWS Lambda functions, particularly for latency-sensitive serverless applications. The blog demonstrates how to achieve sub-second startup times for Spring Boot applications running on Lambda.
+
+**Key Topics Covered:**
+- **SnapStart Technology**: Lambda feature introduced at re:Invent 2022 that reduces cold start latency from several seconds to sub-second by snapshotting initialized execution environments
+- **Priming Techniques** for further optimization:
+  - **Invoke Priming**: Pre-execute code paths during INIT phase to ensure JIT compilation and class loading occur before snapshot
+  - **Class Priming**: Proactively load classes using Java's `forName()` method without executing methods, providing safer alternative for state-sensitive applications
+- **Real Performance Results**: Sample Spring Boot application achieved 4.3x reduction in cold start time (6.1s → 1.4s) with SnapStart, with additional gains possible through priming
+- **Implementation Walkthrough**: Step-by-step guide using Spring Boot 3, CRaC runtime hooks, RDS Proxy connectivity, and AWS Lambda environments
+- **Best Practices**: Ensuring priming operations are idempotent and don't modify application state
+
+**Takeaway:** Combining SnapStart with strategic priming techniques enables development teams to build highly responsive, production-grade serverless applications that meet strict latency requirements without significant code refactoring.
+
+---
+
+### [Blog 3 - Introducing Just-in-Time Node Access using AWS Systems Manager](3.3-Blog3/)
+
+This announcement blog introduces a game-changing security feature for managing access to EC2, on-premises, and multicloud infrastructure. Just-in-time (JIT) node access eliminates the need for long-standing credentials while enabling rapid incident response.
+
+**Key Topics Covered:**
+- **Security Challenge Addressed**: Long-term credentials create vulnerabilities; traditional approaches force trade-offs between security and operational efficiency
+- **JIT Node Access Solution**: Policy-based dynamic, time-bound access across AWS Organizations with:
+  - **Three Role Model**: Administrator (policy management), Operator (access requests), Approver (authorization)
+  - **Flexible Approval Options**: Manual multi-level approvals or Cedar policy language for condition-based auto-approval
+  - **Integration Capabilities**: Slack, Microsoft Teams (via Amazon Q Developer), email notifications, and EventBridge for audit trail integration
+- **Practical Implementation**:
+  - Setting up unified Systems Manager console for organization-wide control
+  - Creating approval policies targeting specific node tags (e.g., `Workload:Application01`)
+  - Operators submitting justified access requests with automatic expiration
+  - One-click browser-based shell, AWS CLI, or RDP access without inbound port management
+- **Compliance & Monitoring**: Full audit trails, session logging, command recording, and RDP session recordings
+- **Pricing Model**: Free trial period (remainder of current billing + full next period), then pay-as-you-go with detailed usage-based pricing
+
+**Takeaway:** Just-in-time node access implements least-privilege access at scale, allowing organizations to eliminate long-term credentials while maintaining rapid incident response capabilities and comprehensive audit compliance.

@@ -1,195 +1,150 @@
 ---
 title: "Blog 3"
-weight: 1
+weight: 3
 chapter: false
 pre: " <b> 3.3. </b> "
 ---
 
-# Vận hành hiệu quả khối lượng công việc Windows Server BYOL trên AWS
+# Giới thiệu just-in-time node access, một tính năng của AWS Systems Manager
 
-Tác giả: Ali Alzand, Jon Madison, và Mike Gupta | ngày 01 tháng 7, 2025 | trong [Amazon EC2](https://aws.amazon.com/blogs/modernizing-with-aws/category/compute/amazon-ec2/), [AWS Config](https://aws.amazon.com/blogs/modernizing-with-aws/category/management-tools/aws-config/), [AWS Cost and Usage Report](https://aws.amazon.com/blogs/modernizing-with-aws/category/aws-cloud-financial-management/aws-cost-and-usage-report/), [AWS License Manager](https://aws.amazon.com/blogs/modernizing-with-aws/category/management-tools/aws-license-manager/), [AWS Migration Hub](https://aws.amazon.com/blogs/modernizing-with-aws/category/migration/aws-migration-hub/), [Technical How-to](https://aws.amazon.com/blogs/modernizing-with-aws/category/post-types/technical-how-to/), [Windows on AWS](https://aws.amazon.com/blogs/modernizing-with-aws/category/aws-on-windows/) | [Permalink](https://aws.amazon.com/blogs/modernizing-with-aws/operating-byol-windows-server-workloads-effectively-on-aws/)
+Tác giả: Chetan Makvana, Anthony Verleysen, và Mark Brealey | Ngày đăng: 29 tháng 4 năm 2025 | Danh mục: [Announcements](https://aws.amazon.com/blogs/mt/category/post-types/announcements/), [AWS Systems Manager](https://aws.amazon.com/blogs/mt/category/management-tools/aws-systems-manager/), [Management Tools](https://aws.amazon.com/blogs/mt/category/management-tools/), [Security](https://aws.amazon.com/blogs/mt/category/security-identity-compliance/security/) | [Permalink](https://aws.amazon.com/blogs/mt/introducing-just-in-time-node-access-using-aws-systems-manager/) | Share
 
-Một trong những cách mà khách hàng chạy [khối lượng công việc Microsoft trên Amazon Web Services (AWS)](https://aws.amazon.com/microsoft/) có thể giảm chi phí là tận dụng mô hình Bring Your Own License (BYOL) cho các giấy phép đủ điều kiện mà họ sở hữu. Trong bài viết này, chúng tôi sẽ chia sẻ một số thực hành tốt nhất giúp bạn tối ưu hóa việc vận hành các khối lượng công việc Windows Server BYOL trên AWS.
+Hôm nay, chúng tôi vui mừng thông báo về việc phát hành rộng rãi [just-in-time node access](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-just-in-time-node-access.html), một tính năng (capability) trong [AWS Systems Manager](https://aws.amazon.com/systems-manager/). Just-in-time node access cho phép truy cập một cách linh hoạt (dynamic) và có giới hạn thời gian (time-bound) đến các node [Amazon Elastic Compute Cloud (Amazon EC2)](https://aws.amazon.com/ec2/), hạ tầng tại chỗ (on-premises), và đa đám mây (multicloud) được quản lý bởi AWS Systems Manager. Tính năng này sử dụng một quy trình phê duyệt dựa trên chính sách (policy), cho phép bạn loại bỏ các quyền truy cập dài hạn trong khi vẫn duy trì hiệu quả vận hành và nâng cao bảo mật.
 
-## Giới thiệu
+Các tổ chức mở rộng hoạt động lên đến hàng nghìn node đòi hỏi các quyền (permissions) chi tiết dựa trên danh tính (identity) để hỗ trợ các mục tiêu về kiểm toán (audit) và tuân thủ (compliance). Họ muốn loại bỏ hoàn toàn các thông tin xác thực dài hạn (long-term credentials). Việc sử dụng thông tin xác thực dài hạn để truy cập node tạo ra các lỗ hổng bảo mật, làm tăng nguy cơ bị truy cập trái phép và các sự cố xâm nhập tiềm tàng.
 
-Một cách phổ biến để chạy khối lượng công việc Windows Server của bạn trên [Amazon Elastic Compute Cloud (Amazon EC2)](https://aws.amazon.com/ec2/) là sử dụng tùy chọn “license included” (bao gồm giấy phép). Tùy chọn này có lợi vì bạn không cần phải mua hoặc quản lý giấy phép riêng, đồng thời tận hưởng tính linh hoạt trong việc tính phí theo giây. Tuy nhiên, nếu bạn đã sở hữu giấy phép đủ điều kiện sử dụng trên AWS, việc mang chúng lên sẽ giúp giảm chi phí vận hành đáng kể.
+Trước đây, khách hàng phải đối mặt với sự đánh đổi khó khăn giữa bảo mật và hiệu quả vận hành. Thay vì xác định cẩn thận ai cần truy cập vào tài nguyên nào, các đội ngũ IT thường cấp các quyền (permissions) vượt mức cần thiết cho các nhóm người dùng lớn. Thực trạng này làm gia tăng nguy cơ xảy ra lỗi vận hành vô ý và tạo cơ hội cho các tác nhân xấu (bad actors), xuất phát từ nhu cầu tiện lợi trong vận hành. Họ phải lựa chọn giữa việc duy trì thông tin xác thực dài hạn (long-term credentials), làm tăng nguy cơ bị xâm phạm bảo mật, hoặc triển khai các biện pháp kiểm soát truy cập nghiêm ngặt làm chậm quá trình ứng phó sự cố. Các giải pháp tự xây dựng (custom-built) thì phức tạp để bảo trì và mở rộng; trong khi đó, các công cụ không phải của AWS sử dụng tác nhân (agent) lại yêu cầu danh tính (identity) và quyền (permissions) để truy cập vào các node.
 
-Chúng tôi sẽ xem xét một số kỹ thuật cụ thể để giúp bạn trong quá trình chạy Windows Server BYOL trên AWS, bao gồm:
+## Tổng Quan
 
-- Chuẩn bị máy chủ on-premises để nhập vào AWS dưới dạng [Amazon Machine Image (AMI)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html).
-- Chuyển đổi và quản lý giấy phép Windows giữa BYOL và license included khi cần thiết.
-- Phát hiện lỗi cấu hình bằng [AWS Config](https://aws.amazon.com/config/) custom rule.
-- Hiểu dữ liệu liên quan đến các phiên bản BYOL trong [AWS Cost and Usage Report](https://aws.amazon.com/aws-cost-management/aws-cost-and-usage-reporting/) (AWS CUR).
+Just-in-time node access giúp bạn triển khai nguyên tắc truy cập đặc quyền tối thiểu (least-privilege access) trong khi vẫn đảm bảo các đội ngũ vận hành có thể phản ứng nhanh chóng với các sự cố. Nó hoạt động liền mạch trên toàn bộ [AWS Organization](https://aws.amazon.com/organizations/) của bạn, cho phép bạn thiết lập các cơ chế kiểm soát truy cập nhất quán dù bạn đang quản lý một tài khoản (account) hay nhiều tài khoản. Tính năng mới này cho phép quản trị viên (administrator) định nghĩa các quyền kiểm soát truy cập chính xác thông qua các chính sách phê duyệt (approval policies) chỉ định rõ ai có thể truy cập node nào và trong điều kiện nào. Các tổ chức có thể lựa chọn giữa quy trình phê duyệt thủ công (manual approval) với nhiều người phê duyệt (approver) hoặc các chính sách tự động phê duyệt (auto-approval policies) dựa trên điều kiện (condition-based), mang lại sự linh hoạt để đáp ứng các yêu cầu bảo mật của họ.
 
-## BYOL cho Windows trên AWS
+Ví dụ, các quản trị viên (administrator) có thể thiết lập chính sách tự động phê duyệt (auto-approval policy) để nhanh chóng cấp quyền truy cập cho các kỹ sư trực (on-call engineer) trong các sự cố, chỉ cấp quyền cho những người vận hành (operator) thuộc một nhóm (group) on-call trong [AWS IAM Identity Center](https://aws.amazon.com/iam/identity-center/). Thông qua just-in-time node access, những người vận hành (operator) có thể yêu cầu quyền truy cập vào các node khi họ cần. Dựa trên các chính sách phê duyệt (approval policy) được cấu hình sẵn, họ sẽ nhận được quyền truy cập tạm thời và sẽ tự động hết hạn sau một khoảng thời gian xác định. Sau khi được phê duyệt, họ có thể truy cập trực tiếp vào các node này thông qua shell trên trình duyệt bằng một cú nhấp chuột (one-click browser-based shell), [AWS Command Line Interface (AWS CLI)](https://aws.amazon.com/cli/) hoặc Remote Desktop Protocol (RDP) được Systems Manager hỗ trợ, mà không cần phải mở cổng inbound (inbound port) hay quản lý khóa SSH (SSH key).
 
-Để tận dụng BYOL, bạn cần xác nhận rằng giấy phép của mình đủ điều kiện. AWS cung cấp [hướng dẫn Microsoft Licensing trong AWS](https://aws.amazon.com/windows/resources/licensing/). Khi xác định tính đủ điều kiện, hãy lưu ý:
+Để đơn giản hóa quy trình phê duyệt, just-in-time node access tích hợp với các công cụ như Slack và Microsoft Teams thông qua [Amazon Q Developer](https://aws.amazon.com/q/developer/), và email để thông báo cho những người phê duyệt (approver) về các yêu cầu đang chờ xử lý. Systems Manager cũng phát ra các sự kiện (event) tới [Amazon EventBridge](https://aws.amazon.com/eventbridge/) để cập nhật trạng thái của các yêu cầu truy cập phiên (session) just-in-time. Các sự kiện này có thể được chuyển đến [Amazon Simple Notification Service (Amazon SNS)](https://aws.amazon.com/sns/) để gửi thông báo hoặc tích hợp với các hệ thống nội bộ của bạn, cho phép các nhóm của bạn theo dõi và phản hồi các yêu cầu truy cập thông qua các luồng công việc (workflow) hiện có. Điều này cho phép bạn giám sát các yêu cầu truy cập và duy trì dấu vết kiểm toán (audit trail) trên toàn tổ chức. Hơn nữa, just-in-time node access có thể cung cấp khả năng quan sát sâu hơn vào các hoạt động của người vận hành (operator) bằng cách ghi lại (logging) các lệnh được chạy trong các phiên (session) và ghi lại hành động của họ trong các phiên RDP (RDP session).
 
-- Giấy phép phải là vĩnh viễn (perpetual) và được mua trước ngày 1 tháng 10 năm 2019, hoặc là một phần true-up trong Enterprise Agreement (EA) còn hiệu lực tại thời điểm đó.
-- Phiên bản Windows phải là Windows Server 2019 hoặc cũ hơn.
+Systems Manager cung cấp một bản dùng thử miễn phí (free trial) cho just-in-time node access trên mỗi tài khoản (account) mỗi Khu vực (Region), cho phép bạn khám phá và đánh giá đầy đủ tính năng này cho tổ chức của mình. Giai đoạn dùng thử này bao gồm phần còn lại của kỳ thanh toán (billing period) mà bạn bật tính năng, cộng với toàn bộ kỳ thanh toán (billing period) tiếp theo. Trong thời gian dùng thử này, bạn sẽ có quyền truy cập vào tất cả các chức năng, cho phép bạn kiểm tra các cấu hình và chính sách truy cập (access policies) mà không phải trả thêm bất kỳ khoản phí nào. Sau khi kết thúc dùng thử, just-in-time node access sẽ trở thành một dịch vụ trả phí, với chi phí dựa trên mô hình sử dụng của bạn. Để biết thông tin chi tiết về giá cả và phân tích chi phí, vui lòng tham khảo trang [AWS Systems Manager Pricing](https://aws.amazon.com/systems-manager/pricing/).
 
-Nếu đáp ứng điều kiện này, bạn có thể sử dụng giấy phép trên AWS. Dù có hay không có Software Assurance, Windows Server không đủ điều kiện cho [License Mobility](https://aws.amazon.com/windows/resources/licensemobility/). Điều này có nghĩa là các giấy phép phải được áp dụng trên phần cứng chuyên dụng dành riêng cho bạn. [Amazon EC2 Dedicated Hosts](https://aws.amazon.com/ec2/dedicated-hosts/) là giải pháp đáp ứng yêu cầu này — cung cấp cho bạn trải nghiệm quen thuộc khi chạy các phiên bản EC2 mà không cần quản lý phần cứng hoặc hypervisor. [AWS License Manager](https://aws.amazon.com/license-manager/) là dịch vụ giúp quản lý giấy phép trong AWS và là trọng tâm của chiến lược BYOL hiệu quả. 
+## Sử dụng Just-in-Time Node Access
 
-Việc tính phí cho các phiên bản Amazon EC2 Windows của bạn được xác định dựa trên trường [usage operation](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/billing-info-fields.html#billing-info) mà phiên bản đó kế thừa từ AMI nguồn. Các phiên bản Windows chạy với giấy phép bao gồm sẵn (license included) — bất kể loại tenancy nào — sẽ sử dụng usage operation: **RunInstances:0002**. Tuy nhiên, khi bạn sử dụng giấy phép riêng (BYOL) cho một phiên bản Windows chạy trên Dedicated Hosts, thì cần sử dụng usage operation: **RunInstances:0800**. Bài viết [how to create an Amazon EC2 AMI usage and billing information report](https://aws.amazon.com/blogs/modernizing-with-aws/how-to-create-an-amazon-ec2-ami-usage-and-billing-information-report/) sẽ giúp bạn tạo báo cáo về usage operation cho các phiên bản trong tổ chức của mình.
+Khi bạn triển khai just-in-time node access, bạn sẽ làm việc với ba vai trò riêng biệt: Quản trị viên (Administrator), Người vận hành (Operator), và Người phê duyệt (Approver). Quản trị viên thiết lập và duy trì các chính sách phê duyệt (approval policy). Người vận hành khởi tạo các yêu cầu truy cập đến các node cụ thể. Và người phê duyệt xem xét và cấp phép cho các yêu cầu truy cập.
 
-## Chuẩn bị images của bạn cho BYOL
+Hãy cùng xem qua cách bạn có thể thiết lập và sử dụng tính năng này, thông qua một kịch bản nơi một kỹ sư trực (on-call engineer) của bạn cần truy cập vào một hệ thống sản phẩm (production), cụ thể là một phiên bản (instance) có tên là 'r2d2-app-01' từ nhóm các instance bên dưới như trong hình 1.
 
-Một yêu cầu để sử dụng giấy phép Windows riêng của bạn trên AWS là bạn phải cung cấp AMI riêng của bạn, thay vì sử dụng AMI được tạo bởi AWS. Khi mang image riêng của bạn lên AWS, bạn có nhiều lựa chọn để tạo chúng. Nếu đích đến cho server Windows của bạn là BYOL trên dedicated hosts, các công cụ sau sẽ giúp bạn đảm bảo AMI sẵn sàng để sử dụng.
+![Amazon EC2 console showing list of EC2 instances](/images/blog-3/ec2-instances.png)
 
-[VM Import/Export](https://aws.amazon.com/ec2/vm-import/) (VMIE) là công cụ giúp bạn nhập các image máy ảo từ nền tảng ảo hóa hiện có của bạn thành Amazon Machine Images. Bước đầu tiên là xuất máy ảo của bạn sử dụng [định dạng](https://docs.aws.amazon.com/vm-import/latest/userguide/prerequisites.html#vmimport-image-formats) tiêu chuẩn như Open Virtual Appliance (OVA), ESX Virtual Machine Disk (VMDK), hoặc Virtual Hard Disk (VHD/VHDX). Sau đó, tải image lên một bucket [Amazon Simple Storage Service](https://aws.amazon.com/s3/) (S3) để chuẩn bị cho quá trình chuyển đổi.
+*Hình 1: Giao diện console của Amazon EC2 hiển thị danh sách các EC2 instance*
 
-Để sử dụng VMIE, bạn dùng [các hướng dẫn](https://docs.aws.amazon.com/vm-import/latest/userguide/required-permissions.html#vmimport-role) này để tạo một [AWS Identity and Access Management](https://aws.amazon.com/iam/) (IAM) role tên “vmimport” mà dịch vụ sẽ sử dụng để thực hiện các thao tác thay bạn.
+Chúng ta sẽ khám phá cách một kỹ sư trực (on-call engineer) (vai trò Người vận hành – Operator) có thể yêu cầu quyền truy cập vào hệ thống sản phẩm (production), với trưởng nhóm DevOps (DevOps lead) (vai trò Người phê duyệt – Approver) quản lý việc phê duyệt, tất cả đều nằm trong khuôn khổ chính sách phê duyệt (approval policy) được định nghĩa bởi Quản trị viên (Administrator).
 
-Khi sử dụng [AWS Command Line Interface](https://aws.amazon.com/cli/) (AWS CLI) để [nhập một Windows image](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_ImportImage.html) mà bạn dự định sử dụng cho BYOL trên dedicated hosts, bạn cần chỉ định license type để thiết lập usage operation đúng cho AMI kết quả. Ví dụ, để nhập một image OVA từ bucket S3, bạn có thể dùng lệnh:
+## Thiết lập Just-in-time node access với vai trò Quản trị viên (Administrator)
 
-```
-aws ec2 import-image –usage-operation RunInstances:0800 –disk-containers Format=OVA,Url=s3://<<my-bucket>>/<<my-image-name>>.ova
-```
+### Bước 1 – Bật Just-in-Time Node Access
 
-Lệnh này sẽ khởi tạo một job nhập mà khi hoàn tất, sẽ tạo ra một AMI với mã usage đúng cho Windows BYOL.
+Trong hướng dẫn này, chúng ta sẽ bật just-in-time node access cho AWS Organization. Để bắt đầu, trước tiên bạn phải thiết lập [Systems Manager unified console](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-setting-up-organizations.html). Sau khi unified console được thiết lập, bạn có thể bật just-in-time node access trong Systems Manager.
 
-[Migration Hub Orchestrator](https://docs.aws.amazon.com/migrationhub/latest/ug/gs-orchestrator.html) là một công cụ cho phép bạn tạo workflow để tự động hóa các tác vụ và đơn giản hóa quy trình di chuyển. Một trong các mẫu workflow mà Orchestrator cung cấp là “Import virtual machine images to AWS”. Sử dụng mẫu workflow này để nhập image cho Windows BYOL.
+Sau đó, bạn có thể chọn các Đơn vị Tổ chức (Organization Units – OUs) và Khu vực (Region) AWS nào để triển khai. Điều này cho phép bạn kiểm soát chính xác nơi giải pháp được thực thi, dù là trên toàn bộ tổ chức của bạn hay trong các khu vực cụ thể như trong hình 2.
 
-1. Mở console AWS và điều hướng đến [Migration Hub Console](https://console.aws.amazon.com/migrationhub/home).
-2. Chọn **Workflows** trong menu **Orchestrate**.
-3. Chọn **Create Workflow**. (Hình 1)
+![AWS System Manager console to enable just-in-time node access for Organizational Units and Regions](/images/blog-3/onboarding.png)
 
-![A screenshot to create a workflow for the Migration hub console](/images/blog-3/Picture1v2.png)
+*Hình 2: Bật just-in-time node access*
 
-<div style="text-align:center;">Hình 1: Tạo Workflow</div>
+### Bước 2 – Tạo approval policy
 
-4. Chọn mẫu **Import virtual machine images to AWS** (Hình 2) và nhấn **Next**.
+Sau khi bật tính năng, bước quan trọng tiếp theo là tạo các chính sách phê duyệt (approval policies). Các chính sách phê duyệt (approval policy) quyết định cách người dùng có được quyền truy cập vào các node. Các chính sách này có ba loại: tự động phê duyệt (auto-approval), phê duyệt thủ công (manual approval), và từ chối truy cập (deny-access). Chính sách tự động phê duyệt (Auto-approval policy) định nghĩa node nào người dùng có thể kết nối tự động. Chính sách phê duyệt thủ công (Manual approval policy) định nghĩa số lượng và các cấp phê duyệt thủ công phải được cung cấp để truy cập vào các node bạn chỉ định. Chính sách từ chối truy cập (Deny-access policy) ngăn chặn một cách tường minh việc tự động phê duyệt các yêu cầu truy cập đến các node bạn chỉ định.
 
-![A screenshot to select the template that import a virtual machine image to AWS](/images/blog-3/Picture2-18.png)
+Trong ví dụ của chúng ta, chúng ta sẽ tập trung vào việc tạo một chính sách phê duyệt thủ công (manual approval policy) cho các node được gắn thẻ (tag) Workload:Application01, bao gồm cả node 'r2d2-app-01' của chúng ta.
 
-<div style="text-align:center;">Hình 2: Chọn mẫu import virtual machine</div>
+Để tạo policy, hãy điều hướng đến [AWS Systems Manager console](https://console.aws.amazon.com/systems-manager/home), chọn just-in-time node access trong thanh điều hướng (navigation pane), chọn tab Approval policies, và chọn Create manual policy. Việc cấu hình policy đòi hỏi một số thành phần chính.
 
-5. Trên trang **Configure your workflow**, nhập **Tên** cho workflow và (tuỳ chọn) **Mô tả**.
-6. Trong phần **Source environment configuration**, điền trường **Disk container**, đó là bucket S3 nơi bạn đã lưu image từ on-premises. Tên phải tuân theo yêu cầu của tài liệu [Migration Hub Orchestrator](https://docs.aws.amazon.com/migrationhub-orchestrator/latest/userguide/import-vm-images.html#source-env-config-import-vm-images).
+Đầu tiên, trong mục Approval policy details, hãy cung cấp tên và mô tả cho chính sách phê duyệt (approval policy), cùng với việc thiết lập thời lượng truy cập tối đa (maximum access duration) như trong hình 3. Thời hạn này quyết định quyền truy cập đã được phê duyệt sẽ có hiệu lực trong bao lâu trước khi tự động hết hạn.
 
-![A screenshot to populate the Disk container field](/images/blog-3/Picture3v2.png)
+![Create manual approval policy page to enter Approval policy details](/images/blog-3/approval-policy-details-section.png)
 
-<div style="text-align:center;">Hình 3: Cấu hình môi trường nguồn</div>
+*Hình 3: Trang manual approval policy*
 
-7. Trong phần **Target environment configuration**, chọn hệ điều hành và giấy phép cho các máy ảo được tạo với AMI kết quả. Chọn **Windows Server BYOL without SQL Server**.
+Trong mục Targets, sử dụng các cặp khóa-giá trị (key-value) của thẻ (tag) để định nghĩa policy này sẽ áp dụng cho những node nào. Trong ví dụ này, chúng ta sẽ nhắm mục tiêu các node được gắn thẻ (tag) Workload:Application01, bao gồm cả node 'r2d2-app-01' của chúng ta. Cách tiếp cận này đảm bảo policy được áp dụng cho tất cả các node liên quan đến Application01 như trong hình 4.
 
-![A screenshot to select the target Operating system and application license](/images/blog-3/Picture4-14.png)
+![Specifying targets for a manual approval policy](/images/blog-3/manual-policy-targets.png)
 
-<div style="text-align:center;">Hình 4: Chọn mô hình giấy phép</div>
+*Hình 4: Mục tiêu của manual approval policy*
 
-8. Sử dụng các trường còn lại để tuỳ chỉnh AMI của bạn theo yêu cầu — bao gồm boot mode, [AWS Key Management Service](https://aws.amazon.com/kms/) (KMS), thẻ và license specification (để phân tích trường hợp kinh doanh). Bạn cũng có thể để mặc định.
-9. Trên trang **Review and submit**, chọn Run workflow để khởi chạy workflow.
-    
-Sau khi tải image lên và tạo workflow, nó đã sẵn sàng để chạy bằng cách chọn **Run workflow**
+Trong mục Access request approvers, bạn sẽ chỉ định các cá nhân hoặc nhóm được ủy quyền để phê duyệt các yêu cầu truy cập. Trong kịch bản của chúng ta, chúng ta sẽ gán vai trò DevOps lead làm người phê duyệt. Người phê duyệt yêu cầu truy cập có thể là người dùng (user) và nhóm (group) của IAM Identity Center hoặc người dùng (user), nhóm (group), và vai trò (role) của IAM như trong hình 5.
 
-![A screenshot to run the  workflow for the Migration hub console](/images/blog-3/Picture5-15.png)
+![Create manual approval policy page to enter Access request approvals](/images/blog-3/access-requests-approvals.png)
 
-<div style="text-align:center;">Hình 5: Chạy Workflow</div>
+*Hình 5: Phê duyệt yêu cầu truy cập*
 
-## Quản lý chuyển đổi giấy phép hợp lý
+Bạn cũng có thể định nghĩa các quy tắc truy cập tự động bằng [Cedar policy language](https://www.cedarpolicy.com/en), loại bỏ nhu cầu phê duyệt thủ công trong các kịch bản đáng tin cậy. Hãy xem các chính sách tự động phê duyệt (auto-approval policy) như là một bộ quy tắc truy cập đã được phê duyệt trước của tổ chức bạn. Các chính sách này chỉ định node nào người dùng có thể truy cập tự động, dựa trên các điều kiện và mức độ tin cậy được định sẵn. Để biết thêm thông tin, hãy xem [Create an auto-approval policy for just-in-time node access](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-just-in-time-node-access-create-auto-approval-policies.html) và [Statement structure and built-in operators for auto-approval and deny-access policies](https://docs.aws.amazon.com/systems-manager/latest/userguide/auto-approval-deny-access-policy-statement-structure.html).
 
-Có các tình huống mà bạn cần chuyển đổi các instance Amazon EC2 từ mô hình giấy phép BYOL sang license included và ngược lại. Những tình huống này bao gồm (nhưng không giới hạn):
+Ví dụ, bạn có thể tạo một chính sách tự động phê duyệt (auto-approval policy) mà tự động cho phép các thành viên của nhóm (group) "DevOpsTeam" truy cập vào các node được gắn thẻ (tag) Environment: Development bằng cách sử dụng Cedar policy sau:
 
-- Nâng cấp hệ điều hành của instance Amazon EC2 lên Windows Server 2022, phiên bản không đủ điều kiện BYOL, bất kể tenancy.
-- Di chuyển một instance Amazon EC2 ra khỏi dedicated host để chạy nó trên shared tenancy EC2, điều này không đủ điều kiện BYOL.
-- Di chuyển một instance Amazon EC2 đủ điều kiện BYOL từ shared tenancy sang dedicated host.
-
-Khi bạn cần chuyển đổi mô hình giấy phép của một instance Amazon EC2, hãy sử dụng tính năng [License type conversion](https://docs.aws.amazon.com/license-manager/latest/userguide/license-conversion.html) trong AWS License Manager. License type conversion cho phép bạn thay đổi usage operation. Xem hướng dẫn về [các loại giấy phép đủ điều kiện cho Windows và SQL Server trong License Manager](https://docs.aws.amazon.com/license-manager/latest/userguide/conversion-types-windows.html).
-
-## Phát hiện vấn đề cấu hình với AWS Config
-
-[AWS Config](https://aws.amazon.com/config/) là một dịch vụ giúp bạn đánh giá, kiểm toán và đánh giá cấu hình của các tài nguyên AWS. Bằng cách tận dụng một quy tắc tùy chỉnh của AWS Config, bạn có thể phát hiện cấu hình giấy phép tiềm ẩn sai cho các instance chạy trên dedicated hosts, từ đó tránh chi phí giấy phép không cần thiết.
-
-[Kho aws-config-rules](https://github.com/awslabs/aws-config-rules) chứa các quy tắc AWS Config tùy chỉnh để triển khai vào tài khoản AWS của bạn bằng [AWS Config Rules Development Kit (RDK)](https://github.com/awslabs/aws-config-rdk). Sử dụng quy tắc tùy chỉnh [EC2_INSTANCE_LICENSE_INCLUDED_DEDICATED_HOST](https://github.com/awslabs/aws-config-rules/tree/master/python/EC2_INSTANCE_LICENSE_INCLUDED_DEDICATED_HOST) để phát hiện các instance chạy Windows Server “license included” (usage operation RunInstances:0002) trên Dedicated Hosts.
-
-Sử dụng [AWS CloudShell](https://aws.amazon.com/cloudshell/) để chạy RDK và thử triển khai các quy tắc AWS Config. Để cài đặt quy tắc tùy chỉnh, mở CloudShell trong [AWS Console](https://aws.amazon.com/console/) ở vùng mong muốn, và thực hiện các lệnh sau:
-
-```Bash                                                   
-pip install rdk  
-rdk init  
-git clone https://github.com/awslabs/aws-config-rules  
-cd aws-config-rules/python  
-rdk deploy EC2_INSTANCE_LICENSE_INCLUDED_DEDICATED_HOST
+```cedar
+// Policy to permit access to Development nodes for members of the DevOpsTeam IDC group
+permit (
+    principal in AWS::IdentityStore::Group::"911b8590-7041-70fa-d20b-12345EXAMPLE",
+    action == AWS::SSM::Action::"getTokenForInstanceAccess", 
+    resource)
+  when {
+    resource.hasTag("Environment") && 
+    resource.getTag("Environment") == "Development"
+  };
 ```
 
-Khi quy tắc đã được triển khai, bạn có thể xem nó trong [AWS Config console](https://console.aws.amazon.com/config/home). Với các instance có giấy phép cấu hình sai, bạn hoặc di chuyển chúng sang Shared tenancy, hoặc làm theo [quy trình License Conversion](https://aws.amazon.com/vi/blogs/modernizing-with-aws/operating-byol-windows-server-workloads-effectively-on-aws/#manage-license) tương ứng.
+## Yêu cầu quyền truy cập với vai trò Operator
 
-![A screenshot for the custom AWS config rule](/images/blog-3/Picture6-10.png)
+Khi bạn cần truy cập một node được bảo vệ (protected node) với vai trò là người vận hành (operator), bạn sẽ thấy một quy trình yêu cầu được tinh gọn. Thay vì được truy cập ngay lập tức, bạn sẽ được yêu cầu gửi một yêu cầu truy cập (access request) khi cố gắng kết nối thông qua Session Manager. Bạn sẽ cần cung cấp lý do (justification) cho việc truy cập như trong hình 6.
 
-<div style="text-align:center;">Hình 6: Quy tắc tùy chỉnh AWS Config</div>
+![Operator raising a request to access the node](/images/blog-3/access-request-1.gif)
 
-## Hiểu dữ liệu CUR cho các instance BYOL
+*Hình 6: Operator tạo một yêu cầu để truy cập node*
 
-[AWS Cost and Usage Reports (CUR)](https://docs.aws.amazon.com/cur/latest/userguide/what-is-cur.html) chứa bộ dữ liệu chi phí và sử dụng toàn diện nhất. Sử dụng [Amazon Athena](https://aws.amazon.com/athena/) để [truy vấn dữ liệu CUR](https://docs.aws.amazon.com/cur/latest/userguide/cur-query-athena.html) của bạn. Truy vấn sau đây hiển thị các giấy phép mà các instance của bạn đang bị tính phí:
+Sau khi gửi yêu cầu, bạn có thể theo dõi trạng thái của nó thông qua tab Access Requests như trong hình 7. Bạn sẽ có thể theo dõi yêu cầu của mình qua suốt quy trình phê duyệt và biết chính xác khi nào bạn có quyền truy cập. Bạn sẽ nhận được thông báo qua kênh liên lạc ưa thích của mình, có thể là email, Slack, Microsoft Teams hoặc một nền tảng tích hợp (integrated platform) khác. Để biết thêm thông tin, hãy xem [Configure notifications for just-in-time access requests](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-just-in-time-node-access-notifications.html).
 
-```SQL
-select  
-    line_item_resource_id,  
-    line_item_operation,  
-    line_item_line_item_type,  
-    month,  
-    year,  
-    line_item_unblended_cost,  
-    line_item_blended_cost,  
-    line_item_usage_type,  
-    line_item_usage_account_id,  
-    line_item_line_item_description  
-from  
-    customer_all  
-where  
-    line_item_usage_account_id = '[ACCOUNT NUMBER]'  
-    and line_item_line_item_type = 'Usage'  
-    and line_item_operation like '%RunInstances:%'
-```
+![Just-in-time node access page showing list of access requests raised by operator](/images/blog-3/requests-for-me-page.png)
 
-Dựa trên kết quả truy vấn trên, trường line_item_operation cho bạn biết bạn đang bị [tính phí](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/billing-info-fields.html#billing-info) cho gì.
+*Hình 7: Trang danh sách các yêu cầu truy cập*
 
-![A screenshot for the output of the AWS CUR query](/images/blog-3/Image-from-iOS.jpg)
+## Quản lý các phê duyệt
 
-<div style="text-align:center;">Hình 7: Kết quả AWS CUR</div>
+Với vai trò là người phê duyệt (approver), bạn sẽ nhận được thông báo về các yêu cầu truy cập đang chờ xử lý thông qua kênh thông báo (notification channel) đã cấu hình của mình. Bạn có thể phê duyệt các yêu cầu một cách có lập trình bằng cách sử dụng [AWS Command Line Interface](https://aws.amazon.com/cli/) (AWS CLI), hoặc [SDK](https://aws.amazon.com/developer/tools/) ưa thích của bạn. Hoặc bạn có thể xem xét các yêu cầu này trong Systems Manager console dưới tab Requests for me như trong hình 8.
+
+![Just-in-time node access page showing list of access requests pending for approval by the approver](/images/blog-3/requests-approval.png)
+
+*Hình 8: Danh sách các yêu cầu truy cập đang chờ phê duyệt*
+
+Sau khi xem xét yêu cầu, bạn có thể phê duyệt hoặc từ chối yêu cầu và tùy chọn thêm một bình luận liên quan đến quyết định của mình.
+
+## Hoàn thành chu trình truy cập
+
+Một khi yêu cầu được phê duyệt, với vai trò là người vận hành (operator), bạn sẽ nhận được thông báo rằng quyền truy cập của bạn đã được cấp. Sau đó, bạn có thể kết nối với node bằng AWS Management console hoặc AWS CLI trong khoảng thời gian được quy định trong chính sách phê duyệt (approval policy) như trong hình 9.
+
+![Operator accessing the managed node](/images/blog-3/access-approval.gif)
+
+*Hình 9: Operator truy cập vào managed node*
 
 ## Kết luận
 
-Việc triển khai BYOL cho các khối lượng công việc Windows Server thành công trên AWS đòi hỏi chú ý cẩn trọng tới tính đủ điều kiện giấy phép, cấu hình và quản lý liên tục. Bằng cách hiểu các yêu cầu then chốt — từ ngày mua giấy phép và phiên bản Windows Server, đến mã usage operation đúng trên dedicated hosts — các tổ chức có thể hiệu quả giảm chi phí hạ tầng đám mây trong khi vẫn đảm bảo tuân thủ giấy phép. Thành công phụ thuộc vào ba yếu tố chính:
+Trong blog này, chúng tôi đã giới thiệu [just-in-time node access](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-just-in-time-node-access.html), một tính năng mới trong AWS Systems Manager. Just-in-time node access giải quyết thách thức trong việc cân bằng giữa hiệu quả vận hành và các yêu cầu bảo mật bằng cách loại bỏ các đặc quyền thường trực (standing privileges), đồng thời đảm bảo quyền truy cập nhanh chóng đến các node Amazon EC2, tại chỗ (on-premises), và đa đám mây (multicloud). Thông qua phương pháp tiếp cận linh hoạt dựa trên chính sách (policy), và hỗ trợ cả phê duyệt thủ công (manual approval) lẫn tự động (automatic approval), giờ đây bạn có thể triển khai nguyên tắc không có đặc quyền thường trực (zero standing privileges) mà không ảnh hưởng đến khả năng vận hành.
 
-1. Đánh giá giấy phép đúng — xác định giấy phép đủ điều kiện dựa vào ngày mua và phiên bản Windows Server
-2. Cấu hình chính xác — đảm bảo mã usage operation đúng để tránh tính phí trùng lặp trên dedicated hosts
-3. Giám sát liên tục — duy trì đánh giá thường xuyên về sử dụng và chi phí
+Systems Manager cung cấp một bản dùng thử miễn phí (free trial) cho just-in-time node access, cho phép bạn khám phá và đánh giá đầy đủ tính năng này cho tổ chức của mình.
 
-Bằng cách tuân theo các thực hành này, các tổ chức có thể tối ưu chi phí triển khai Windows Server của họ đồng thời đảm bảo tuân thủ giấy phép trên AWS.
+Để tìm hiểu thêm, hãy xem [Just-in-time node access using Systems Manager](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-just-in-time-node-access.html) để biết thêm chi tiết.
 
-Sẵn sàng bắt đầu tối ưu chi phí Windows Server trên AWS? Hãy yêu cầu một [AWS Optimization and Licensing Assessment](https://aws.amazon.com/optimization-and-licensing-assessment/) để bắt đầu đánh giá các cơ hội giấy phép và tiềm năng tiết kiệm chi phí.
+Hãy xem [bản demo tương tác (interactive demo)](https://aws-cloudops.storylane.io/share/qazsu1mgqiho) này để có một chuyến tham quan trực quan đầy đủ về trải nghiệm just-in-time node access.
 
----
+TAGS: [AWS Systems Manager](https://aws.amazon.com/blogs/mt/tag/aws-system-manager/), [Security](https://aws.amazon.com/blogs/mt/tag/security/)
 
-AWS có nhiều dịch vụ và tính năng hơn bất kỳ nhà cung cấp đám mây nào khác, giúp bạn dễ dàng, nhanh chóng và tiết kiệm chi phí hơn trong việc di chuyển các ứng dụng hiện có lên đám mây và xây dựng hầu như bất cứ thứ gì bạn có thể tưởng tượng. Hãy cung cấp cho các ứng dụng Microsoft của bạn cơ sở hạ tầng cần thiết để thúc đẩy kết quả kinh doanh mong muốn. Truy cập các blog [.NET on AWS](https://aws.amazon.com/blogs/dotnet/) và [AWS Database](https://aws.amazon.com/blogs/database/) để biết thêm hướng dẫn và tùy chọn cho khối lượng công việc Microsoft của bạn. [Liên hệ với chúng tôi](https://pages.awscloud.com/MAP-windows-contact-us.html) để bắt đầu hành trình di chuyển và hiện đại hóa ngay hôm nay.
+## Về tác giả:
 
-TAGS: [Amazon EC2](https://aws.amazon.com/blogs/modernizing-with-aws/tag/amazon-ec2/), [AWS License Manager](https://aws.amazon.com/blogs/modernizing-with-aws/tag/aws-license-manager/), [Cost Savings](https://aws.amazon.com/blogs/modernizing-with-aws/tag/cost-savings/), [Microsoft](https://aws.amazon.com/blogs/modernizing-with-aws/tag/microsoft/), [Windows On AWS](https://aws.amazon.com/blogs/modernizing-with-aws/tag/windows-on-aws/), [Windows Server](https://aws.amazon.com/blogs/modernizing-with-aws/tag/windows-server/)
+**Chetan Makvana**
 
-<div style="display: flex; align-items: center;">
-  <img src="/images/blog-3/aaalzand-400.jpg" alt="Ali Alzand" style="width:120px; border-radius:8px; margin-right:16px;">
-  <p>
-    <strong>Ali Alzand</strong><br>
-    Ali là Kiến trúc sư Giải pháp Chuyên biệt về Microsoft (Microsoft Specialist Solutions Architect) tại Amazon Web Services (AWS), người giúp các khách hàng toàn cầu khai mở sức mạnh của đám mây thông qua việc di chuyển (migrating), hiện đại hóa (modernizing) và tối ưu hóa (optimizing) các khối lượng công việc Microsoft của họ.
-    Anh chuyên về vận hành đám mây (cloud operations) — tận dụng các dịch vụ AWS như Systems Manager, Amazon EC2 Windows, và EC2 Image Builder để thúc đẩy quá trình chuyển đổi đám mây. Ngoài công việc, Ali thích khám phá thiên nhiên, nướng thịt barbecue cùng bạn bè vào cuối tuần, và thưởng thức những món ăn đa dạng, độc đáo mà ẩm thực mang lại.
-  </p>
-</div>
+Chetan Makvana là Kiến trúc sư Giải pháp Doanh nghiệp (Enterprise Solutions Architect) tại Amazon Web Services. Anh hỗ trợ các khách hàng doanh nghiệp thiết kế những giải pháp cấp doanh nghiệp (enterprise grade) có khả năng mở rộng (scalable), ổn định (resilient), bảo mật (secured) và hiệu quả về chi phí (cost effective) bằng cách sử dụng các dịch vụ của AWS. Anh là người đam mê công nghệ và là một "builder" (người kiến tạo), với các lĩnh vực quan tâm chính bao gồm AI tạo sinh (generative AI), serverless, hiện đại hóa ứng dụng (app modernization) và DevOps. Ngoài công việc, anh thích "cày phim" (binge-watching), du lịch và âm nhạc.
 
-<div style="display: flex; align-items: center; margin-bottom: 24px;">
-  <img src="/images/blog-3/Screenshot-2025-06-30-at-8.26.18-AM.png" alt="Jon Madison" style="width:120px; border-radius:8px; margin-right:16px;">
-  <p>
-    <strong>Jon Madison</strong><br>
-    Jon Madison là Chuyên gia Tư vấn Triển khai Cấp cao (Principal Delivery Consultant) trong Nhóm Năng lượng (Energy Team) thuộc AWS Professional Services (ProServe). Anh có nền tảng về Hạ tầng đám mây (Cloud Infrastructure), Bảo mật (Security) và DevOps, đồng thời đam mê hỗ trợ khách hàng trong việc chuyển đổi sang điện toán đám mây và xây dựng các giải pháp, quy trình có khả năng mở rộng. Trong thời gian rảnh, Jon thích nấu ăn, chơi game, và dành thời gian bên gia đình cùng bạn bè.
-  </p>
-</div>
+**Anthony Verleysen**
 
-<div style="display: flex; align-items: center;">
-  <img src="/images/blog-3/MikeGupta.jpg" alt="Mike Gupta" style="width:120px; border-radius:8px; margin-right:16px;">
-  <p>
-    <strong>Mike Gupta</strong><br>
-    Mike Gupta là Quản lý Tài khoản Kỹ thuật Cấp cao (Senior Technical Account Manager) tại AWS, làm việc tại Thành phố New York. Trong vai trò của mình, anh cung cấp hướng dẫn kỹ thuật mang tính chiến lược, giúp khách hàng áp dụng các thực hành tốt nhất của AWS để lập kế hoạch và xây dựng các giải pháp. Anh tận tâm hỗ trợ khách hàng phát triển kiến trúc có khả năng mở rộng, khả năng phục hồi cao và tiết kiệm chi phí. Trong thời gian rảnh, Mike thích dành thời gian bên vợ và gia đình, khám phá lịch sử địa phương, và thử các nhà hàng mới.
-  </p>
-</div>
+Anthony Verleysen là Giám đốc Sản phẩm Kỹ thuật Cấp cao (Senior Product Manager – Technical) thuộc nhóm AWS Systems Manager. Anh chịu trách nhiệm quản lý sản phẩm cho Patch Manager và Distributor. Ngoài công việc, Anthony là một người đam mê chơi bóng đá và tennis.
 
+**Mark Brealey**
 
+Mark Brealey là Kiến trúc sư Giải pháp Di chuyển Cấp cao (Senior Migration Solutions Architect). Anh hỗ trợ các đối tác xây dựng các kiến trúc đám mây (cloud architectures) vững chắc (robust), bảo mật và hiệu quả. Anh chuyên thiết kế các giải pháp có khả năng mở rộng (scalable) nhằm giúp các tổ chức tối ưu hóa (maximize) cơ sở hạ tầng AWS của họ, đồng thời đảm bảo vận hành xuất sắc (operational excellence).

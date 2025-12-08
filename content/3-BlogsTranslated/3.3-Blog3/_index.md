@@ -1,192 +1,154 @@
 ---
 title: "Blog 3"
-weight: 1
+weight: 3
 chapter: false
 pre: " <b> 3.3. </b> "
 ---
 
-# Operating BYOL Windows Server Workloads Effectively on AWS
+# Introducing Just-in-time node access using AWS Systems Manager
 
-by Ali Alzand, Jon Madison, and Mike Gupta | on 01 JUL 2025 | in [Amazon EC2](https://aws.amazon.com/blogs/modernizing-with-aws/category/compute/amazon-ec2/), [AWS Config](https://aws.amazon.com/blogs/modernizing-with-aws/category/management-tools/aws-config/), [AWS Cost and Usage Report](https://aws.amazon.com/blogs/modernizing-with-aws/category/aws-cloud-financial-management/aws-cost-and-usage-report/), [AWS License Manager](https://aws.amazon.com/blogs/modernizing-with-aws/category/management-tools/aws-license-manager/), [AWS Migration Hub](https://aws.amazon.com/blogs/modernizing-with-aws/category/migration/aws-migration-hub/), [Technical How-to](https://aws.amazon.com/blogs/modernizing-with-aws/category/post-types/technical-how-to/), [Windows on AWS](https://aws.amazon.com/blogs/modernizing-with-aws/category/aws-on-windows/) | [Permalink](https://aws.amazon.com/blogs/modernizing-with-aws/operating-byol-windows-server-workloads-effectively-on-aws/) | Share
+by Chetan Makvana, Anthony Verleysen, and Mark Brealey | on 29 APR 2025 | in [Announcements](https://aws.amazon.com/blogs/mt/category/post-types/announcements/), [AWS Systems Manager](https://aws.amazon.com/blogs/mt/category/management-tools/aws-systems-manager/), [Management Tools](https://aws.amazon.com/blogs/mt/category/management-tools/), [Security](https://aws.amazon.com/blogs/mt/category/security-identity-compliance/security/) | [Permalink](https://aws.amazon.com/blogs/mt/introducing-just-in-time-node-access-using-aws-systems-manager/) | Share
 
-One way that customers running [Microsoft Workloads on Amazon Web Services (AWS)](https://aws.amazon.com/microsoft/) may reduce costs is taking advantage of **Bring Your Own License** (BYOL) for eligible licenses they own. In this blog post, we are going to share a few practices to help you optimize your operation of BYOL Windows Server workloads on AWS.
+Today, we're excited to announce the general availability of [just-in-time node access](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-just-in-time-node-access.html), a new capability in [AWS Systems Manager](https://aws.amazon.com/systems-manager/). Just-in-time node access enables dynamic, time-bound access to [Amazon Elastic Compute Cloud (Amazon EC2)](https://aws.amazon.com/ec2/), on-premises, and multicloud nodes managed by AWS Systems Manager. It uses a policy-based approval process, allowing you to remove long-standing access while maintaining operational efficiency and enhancing security.
 
-## Introduction
+Organizations expanding their operations to thousands of nodes require identity driven granular permissions to support their audit and compliance objectives. They want to eliminate long term credentials entirely. The practice of using long-term credentials for node access creates security vulnerabilities, increasing the risk of unauthorized access and potential breaches.
 
-A common way to run your Windows Server workloads on [Amazon Elastic Compute Cloud (Amazon EC2)](https://aws.amazon.com/ec2/) is to use the “license included” option. This has the benefit of not having to purchase or manage your own licenses and the flexibility of per-second billing. However, if you have already purchased licenses and they are eligible for use on AWS, then it makes sense to bring them and reduce your costs accordingly.
+Previously, customers faced a challenging trade-off between security and operational efficiency. Rather than carefully determining who needed access to specific resources, IT teams would grant excessive permissions to large groups of users. This practice created increased risk of accidental operator errors, and opportunity for bad actors, driven by the need for operational convenience. They either maintained long term credentials, which increased risk of compromised security, or implemented restrictive access controls that slowed incident response. Custom-built solutions proved complex to maintain and scale; whereas non-AWS tools using agents require identity and permissions to access nodes.
 
-We will review several specific techniques to help you when running BYOL Windows Server workloads on AWS. They are:
+## Overview
 
-- Preparing your on-premises servers for import to AWS as [Amazon Machine Images (AMIs)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIs.html).
-- Transition and manage your Windows licenses from BYOL to license included when appropriate.
-- Detecting configuration issues using an [AWS Config](https://aws.amazon.com/config/) custom rule.
-- Understanding data related to your BYOL Windows instances in the [AWS Cost and Usage Report](https://aws.amazon.com/aws-cost-management/aws-cost-and-usage-reporting/) (AWS CUR).
-  
-## BYOL for Windows on AWS
+Just-in-time node access helps you implement least-privilege access while ensuring operational teams can quickly respond to issues. It works seamlessly across your [AWS Organization](https://aws.amazon.com/organizations/), allowing you to set up consistent access controls whether you're managing a single account or multiple accounts. This new capability allows administrators to define precise access controls through approval policies that specify who can access which nodes and under what conditions. Organizations can choose between manual approval processes with multiple approvers or condition-based auto-approval policies, providing flexibility to match their security requirements.
 
-To take advantage of BYOL, you need to confirm that they are eligible. AWS provides [guidance for Microsoft Licensing on AWS](https://aws.amazon.com/windows/resources/licensing/). When determining if your Windows licenses are eligible for BYOL on AWS, consider:
+For example, administrators can establish auto-approval policy to quickly provide on-call engineers access during incidents, granting access only to operators in an on-call [AWS IAM Identity Center](https://aws.amazon.com/iam/identity-center/) group. Through just-in-time node access, operators can request access to nodes when they need it. Based on pre-configured approval policies, they receive temporary access that automatically expire after a defined time window. Upon approval, they can directly access these nodes via a one-click browser-based shell, [AWS Command Line Interface (AWS CLI)](https://aws.amazon.com/cli/) or Remote Desktop Protocol (RDP) supported by Systems Manager, without the need to open inbound ports or manage SSH keys.
 
-- Licenses must be perpetual, and purchased before October 1, 2019, or as a true-up on an Enterprise Agreement (EA) that was active at that time.
-- The Windows version must be Windows Server 2019 or earlier.
-  
-If your licenses are eligible, then you can use them on AWS. Regardless of whether or not you have Software Assurance on your licenses, Windows Server is not eligible for [License Mobility](https://aws.amazon.com/windows/resources/licensemobility/). This means that the licenses will need to apply to hardware dedicated to you alone. [Amazon EC2 Dedicated Hosts](https://aws.amazon.com/ec2/dedicated-hosts/) are a solution that fulfills this requirement. Dedicated Hosts provide you with a familiar experience for running your Amazon EC2 instances, without the need to manage hardware or a hypervisor. [AWS License Manager](https://aws.amazon.com/license-manager/) is a service used to manage licenses in AWS, and it is key to an effective BYOL Windows strategy.
+To simplify the approval process, just-in-time node access integrates with tools like Slack and Microsoft Teams through [Amazon Q Developer](https://aws.amazon.com/q/developer/), and email to notify approvers of pending requests. Systems Manager also emits events to [Amazon EventBridge](https://aws.amazon.com/eventbridge/) for status updates to just-in-time node session access request. These events can be routed to [Amazon Simple Notification Service (Amazon SNS)](https://aws.amazon.com/sns/) for notifications or integrated with your internal systems, allowing your teams to track and respond to access requests through your existing workflows. This enables you to monitor access requests and maintain audit trails across your organization. Furthermore, just-in-time node access can provide additional visibility into operator activities by logging commands run during sessions and recording their actions during RDP sessions.
 
-The billing for your Amazon EC2 Windows instances is determined from the [usage operation](https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/billing-info-fields.html#billing-info) field that the instance inherits from its source AMI. Windows instances that run with the license included, regardless of tenancy, use the usage operation of **RunInstances:0002**. However, when you use your own license for a Windows instance on dedicated hosts, the usage operation of **RunInstances:0800** is required. The [how to create an Amazon EC2 AMI usage and billing information report](https://aws.amazon.com/blogs/modernizing-with-aws/how-to-create-an-amazon-ec2-ami-usage-and-billing-information-report/) blog post will help you generate the usage operation for the instances in your organization.
+Systems Manager offers a free trial of just-in-time node access per account per Region, allowing you to fully explore and evaluate the feature for your organization. This trial period includes the remainder of the billing period in which you enable the feature, plus the entire next billing period. During this trial period, you'll have access to all capabilities, enabling you to test configurations and access policies without any additional charges. After the trial concludes, just-in-time node access becomes a paid service, with charges based on your usage patterns. For detailed pricing information and cost breakdowns, please refer to [AWS Systems Manager Pricing](https://aws.amazon.com/systems-manager/pricing/).
 
-## Preparing your images for BYOL
+## Using Just-in-Time Node Access
 
-One requirement for using your own Windows licenses on AWS is to supply your own AMI, rather than using one created by AWS. When bringing your own image to AWS, you have different options to produce them. If the destination for your Windows server is BYOL on dedicated hosts, these tools will help you ensure your AMI is ready for use.
+When you implement just-in-time node access, you'll work with three distinct roles: Administrator, Operator, and Approver. Administrator establishes and maintains approval policies. Operator initiates access requests for specific nodes. And approver reviews and authorizes access requests.
 
-[VM Import/Export](https://aws.amazon.com/ec2/vm-import/) (VMIE) is a tool that helps you to import virtual machine images from your existing virtualization platform as Amazon Machine Images. The first step is to export your virtual machine using a standard [format](https://docs.aws.amazon.com/vm-import/latest/userguide/prerequisites.html#vmimport-image-formats) such as Open Virtual Appliance (OVA), ESX Virtual Machine Disk (VMDK), or Virtual Hard Disk (VHD/VHDX). Then, upload the image to an [Amazon Simple Storage Service](https://aws.amazon.com/s3/) (S3) bucket in anticipation of the conversion process.
+Let's walk through how you can set up and use this feature, using a scenario where your on-call engineer needs access to a production system, specifically to an instance named 'r2d2-app-01' from the below fleet of instances as shown in figure 1.
 
-To use VMIE, use [these instructions](https://docs.aws.amazon.com/vm-import/latest/userguide/required-permissions.html#vmimport-role) to create an [AWS Identity and Access Management](https://aws.amazon.com/iam/) (IAM) role named “vmimport” that the service will use to perform operations on your behalf.
+![Amazon EC2 console showing list of EC2 instances](/images/blog-3/ec2-instances.png)
 
-When using the [AWS Command Line Interface](https://aws.amazon.com/cli/) (AWS CLI) to [import a Windows image](https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_ImportImage.html) that you are planning on using for BYOL on dedicated hosts, it is necessary to specify the license type to set the usage operation correctly on the resultant AMI. To import an image, a command such as the following can be used (in this case for an OVA image in an S3 bucket):
+*Figure 1: Amazon EC2 console showing list of EC2 instances*
 
-```
-aws ec2 import-image –usage-operation RunInstances:0800 –disk-containers Format=OVA,Url=s3://<<my-bucket>>/<<my-image-name>>.ova
-```
+We will explore how an on-call engineer (Operator) can request access to production system, with the DevOps lead (Approver) managing the approval, all within the approval policy defined by the Administrator.
 
-This will start an import job that, once completed, will yield an AMI with the proper usage code for Windows BYOL.
+## Setting up Just-in-time node access as an Administrator
 
-[Migration Hub Orchestrator](https://docs.aws.amazon.com/migrationhub/latest/ug/gs-orchestrator.html) is a tool that lets you create workflows to automate tasks and simplify the migration process. One of the workflow templates that Orchestrator provides is “Import virtual machine images to AWS”. Use this workflow to import an image for Windows BYOL.
+### Step 1 – Enabling Just-in-Time Node Access
 
-1. Open the AWS console and navigate to the [Migration Hub Console](https://console.aws.amazon.com/migrationhub/home).
-2. Choose **Workflows** in the **Orchestrate** side menu.
-3. Choose **Create Workflow** (Figure 1)
+In this walk-through, we are going to enable just-in-time node access for the AWS Organization. To get started, you must first set up the [Systems Manager unified console](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-setting-up-organizations.html). Once the unified console is setup, you can then enable just-in-time node access in Systems Manager.
 
-![A screenshot to create a workflow for the Migration hub console](/images/blog-3/Picture1v2.png)
+You can then choose which Organization Units (OUs) and AWS Regions to target for deployment. This lets you precisely control where the solution is implemented, whether across your entire organization or in specific areas as shown in figure 2.
 
-<div style="text-align:center;">Figure 1: Create Workflow</div>
+![AWS System Manager console to enable just-in-time node access for Organizational Units and Regions](/images/blog-3/onboarding.png)
 
-4. Select the **Import virtual machine images to AWS** template (Figure 2) and choose **Next**
+*Figure 2: Enable just-in-time node access*
 
-![A screenshot to select the template that import a virtual machine image to AWS](/images/blog-3/Picture2-18.png)
+### Step 2 – Creating approval policies
 
-<div style="text-align:center;">Figure 2: Select the import virtual machine template</div>
+After enabling the feature, the next crucial step is creating approval policies. Approval policies determine how users gain access to nodes. These policies come in three types: auto-approval, manual approval, and deny-access policies. Auto-approval policy defines which nodes users can connect to automatically. Manual approval policy defines the number and levels of manual approvals that must be provided to access the nodes you specify. Deny-access policy explicitly prevents the auto-approval of access requests to the nodes you specify.
 
-5. On the **Configure your workflow** page, enter a **Name** for the workflow, and optionally enter a **Description**.
-6. In the **Source environment configuration** section, populate the **Disk container** field, which is the S3 bucket where you stored your image from on premises. The name must conform to the requirements from the [Migration Hub Orchestrator documentation](https://docs.aws.amazon.com/migrationhub-orchestrator/latest/userguide/import-vm-images.html#source-env-config-import-vm-images).
-   
-![A screenshot to populate the Disk container field](/images/blog-3/Picture3v2.png)
+In our example, we will focus on creating a manual approval policy for nodes tagged with `Workload:Application01`, which includes our 'r2d2-app-01' node.
 
-<div style="text-align:center;">Figure 3: Configure source environment</div>
+To create the policy, navigate to the [AWS Systems Manager console](https://console.aws.amazon.com/systems-manager/home), choose just-in-time node access in the navigation pane, select the Approval policies tab, and choose Create manual policy. The policy configuration requires several key components.
 
-7. In the **Target environment configuration** section, select the operating system and license for the virtual machines created with the resultant AMI. Choose **Windows Server BYOL without SQL Server**.
-   
-![A screenshot to select the target Operating system and application license](/images/blog-3/Picture4-14.png)
+First, in the Approval policy details section, provide a name and description for the approval policy, along with setting the maximum access duration as shown in figure 3. This duration determines how long approved access remains valid before automatically expiring.
 
-<div style="text-align:center;">Figure 4: Choose the licensing model</div>
+![Create manual approval policy page to enter Approval policy details](/images/blog-3/approval-policy-details-section.png)
 
-8. Use the rest of the fields to further customize your AMI based on your requirements. These include the boot mode, [AWS Key Management Service](https://aws.amazon.com/kms/) (KMS) encryption key, tags and license specification (for business case analysis). You also have the option to leave these with their default values. Choose
-9. On the **Review and submit** page, choose
-    
-After uploading an image and creating your workflow, it is ready to run by choosing **Run workflow**.
+*Figure 3: Manual approval policy page*
 
-![A screenshot to run the  workflow for the Migration hub console](/images/blog-3/Picture5-15.png)
+In the Targets section, use tag key-value pairs to define which nodes the policy applies to. For this example, we'll target nodes tagged with `Workload:Application01`, which includes our 'r2d2-app-01' node. This approach ensures the policy applies to all nodes associated with `Application01` as shown in figure 4.
 
-<div style="text-align:center;">Figure 5: Run Workflow</div>
+![Specifying targets for a manual approval policy](/images/blog-3/manual-policy-targets.png)
 
-## Managing license conversion properly
+*Figure 4: Manual approval policy targets*
 
-There are scenarios in which you will need to switch Amazon EC2 instances from the BYOL licensing model to license included and vice versa. These include (but are not limited to):
+In the Access request approvers section, you'll designate individuals or groups authorized to approve access requests. In our scenario, we'll assign the DevOps lead role as the approver. Access requests approvers can be IAM Identity Center users and groups or IAM users, groups, and roles as shown in figure 5.
 
-- Upgrading the operating system of the Amazon EC2 instance to Windows Server 2022, which is not eligible for BYOL, regardless of tenancy.
-- Moving an Amazon EC2 instance off a dedicated host to run it on shared tenancy EC2, which is not eligible for BYOL.
-- Moving an Amazon EC2 instance that is eligible for BYOL from shared tenancy to a dedicated host.
-  
-When you need to switch the licensing model of an Amazon EC2 instance, use the [License type conversion](https://docs.aws.amazon.com/license-manager/latest/userguide/license-conversion.html) feature in AWS License Manager. License type conversion lets you change the usage operation. See our guide for [eligible license types for Windows and SQL Server in License Manager](https://docs.aws.amazon.com/license-manager/latest/userguide/conversion-types-windows.html).
+![Create manual approval policy page to enter Access request approvals](/images/blog-3/access-requests-approvals.png)
 
-## Detecting configuration issues with AWS Config
+*Figure 5: Access requests approval*
 
-[AWS Config](https://aws.amazon.com/config/) is a service that helps you assess, audit, and evaluate the configuration of your AWS resources. By leveraging a custom AWS Config Rule, you can detect potential license misconfiguration in instances running on dedicated hosts, saving unnecessary licensing costs.
+You can also define automated access rules using the [Cedar policy language](https://www.cedarpolicy.com/en), eliminating the need for manual approvals in trusted scenarios. Think of auto-approval policies as your organization's pre-approved access rulebook. These policies specify which nodes users can access automatically, based on predefined conditions and trust levels. For more information, see [Create an auto-approval policy for just-in-time node access](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-just-in-time-node-access-create-auto-approval-policies.html) and [Statement structure and built-in operators for auto-approval and deny-access policies](https://docs.aws.amazon.com/systems-manager/latest/userguide/auto-approval-deny-access-policy-statement-structure.html).
 
-The [aws-config-rules repository](https://github.com/awslabs/aws-config-rules) contains custom AWS Config Rules to deploy to your AWS account using the [AWS Config Rules Development Kit (RDK)](https://github.com/awslabs/aws-config-rdk). Use the custom AWS Config Rule called [EC2_INSTANCE_LICENSE_INCLUDED_DEDICATED_HOST](https://github.com/awslabs/aws-config-rules/tree/master/python/EC2_INSTANCE_LICENSE_INCLUDED_DEDICATED_HOST) to detect instances with license-included Windows Server (usage operation RunInstances:0002) running on Dedicated Hosts.
+For example, you can create an auto-approval policy that automatically allows members of the "DevOpsTeam" group to access nodes tagged with `Environment: Development` using the following Cedar policy:
 
-Use [AWS CloudShell](https://aws.amazon.com/cloudshell/) to run the RDK and test the AWS Config rules deployment. To install the custom rule, open CloudShell in the [AWS Console](https://aws.amazon.com/console/) in the desired AWS Region, and run the following commands:
-
-```Bash
-pip install rdk
-rdk init
-git clone https://github.com/awslabs/aws-config-rules
-cd aws-config-rules/python
-rdk deploy EC2_INSTANCE_LICENSE_INCLUDED_DEDICATED_HOST
+```cedar
+// Policy to permit access to Development nodes for members of the DevOpsTeam IDC group
+permit (
+    principal in AWS::IdentityStore::Group::"911b8590-7041-70fa-d20b-12345EXAMPLE",
+    action == AWS::SSM::Action::"getTokenForInstanceAccess", 
+    resource)
+  when {
+    resource.hasTag("Environment") && 
+    resource.getTag("Environment") == "Development"
+  };
 ```
 
-Once the rule has completed deployment, view the rule in the [AWS Config console](https://console.aws.amazon.com/config/home). For instances with mis-configured licenses, either move them to Shared tenancy or follow the [License Conversion process](https://aws.amazon.com/vi/blogs/modernizing-with-aws/operating-byol-windows-server-workloads-effectively-on-aws/#manage-license) accordingly.
+## Requesting access as an Operator
 
-![A screenshot for the custom AWS config rule](/images/blog-3/Picture6-10.png)
+When you need to access a protected node as an operator, you'll see a streamlined request process. Instead of immediate access, you'll be prompted to submit an access request when attempting to connect through Session Manager. You'll need to provide a justification for access as shown in figure 6.
 
-<div style="text-align:center;">Figure 6: Custom Config rule</div>
+![Operator raising a request to access the node](/images/blog-3/access-request-1.gif)
 
-## Understanding CUR data for BYOL instances
+*Figure 6: Operator raising a request to access the node*
 
-[AWS Cost and Usage Reports (CUR)](https://docs.aws.amazon.com/cur/latest/userguide/what-is-cur.html) contains the most comprehensive set of cost and usage data available. Use [Amazon Athena](https://aws.amazon.com/athena/) to [query your CUR data](https://docs.aws.amazon.com/cur/latest/userguide/cur-query-athena.html). The following query shows the licenses your instances are being billed for:
+After submitting your request, you can monitor its status through the Access Requests tab as shown in figure 7. You'll be able to track your request through the approval process and know exactly when your access becomes available. You'll receive notifications via your preferred communication channel, whether that's email, Slack, Microsoft Teams, or another integrated platform. For more information, see [Configure notifications for just-in-time access requests](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-just-in-time-node-access-notifications.html).
 
-```SQL
-select
-    line_item_resource_id,
-    line_item_operation,
-    line_item_line_item_type,
-    month,
-    year,
-    line_item_unblended_cost,
-    line_item_blended_cost,
-    line_item_usage_type,
-    line_item_usage_account_id,
-    line_item_line_item_description
-from
-    customer_all
-where
-        line_item_usage_account_id = '[ACCOUNT NUMBER]'
-    and line_item_line_item_type = 'Usage'
-    and line_item_operation like '%RunInstances:%'
-```
+![Just-in-time node access page showing list of access requests raised by operator](/images/blog-3/requests-for-me-page.png)
 
-Based on the results of the above Query, the line_item_operation field shows what you’re being [billed](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/billing-info-fields.html#billing-info) for.
- 
-![A screenshot for the output of the AWS CUR query](/images/blog-3/Image-from-iOS.jpg)
+*Figure 7: List of access request page*
 
-<div style="text-align:center;">Figure 7: AWS CUR output</div>
+## Managing approvals
+
+As an approver, you'll receive notifications of pending access requests through your configured notification channel. You can programmatically approve requests using the [AWS Command Line Interface](https://aws.amazon.com/cli/) (AWS CLI), or your preferred [SDK](https://aws.amazon.com/developer/tools/). Or you can review these requests in the Systems Manager console under the Requests for me tab as shown in figure 8.
+
+![Just-in-time node access page showing list of access requests pending for approval by the approver](/images/blog-3/requests-approval.png)
+
+*Figure 8: List of access requests pending for approval*
+
+After reviewing the request, you can either approve or reject the request and optionally add a comment related to the decision.
+
+## Completing the access cycle
+
+Once request is approved, as an operator, you receive notification that your access has been granted. You can then connect to the node using the AWS Management console or AWS CLI for the duration in the approval policy as shown in figure 9.
+
+![Operator accessing the managed node](/images/blog-3/access-approval.gif)
+
+*Figure 9: Operator accessing the managed node*
 
 ## Conclusion
 
-Implementing BYOL for Windows Server workloads on AWS successfully, requires careful attention to license eligibility, configuration, and ongoing management. By understanding the key requirements – from license purchase dates and Windows Server versions to proper usage operation codes on dedicated hosts – organizations can effectively reduce their cloud infrastructure costs while maintaining compliance. Success depends on three key elements:
+In this blog, we introduced [just-in-time node access](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-just-in-time-node-access.html), a new capability in AWS Systems Manager. Just-in-time node access solves the challenge of balancing operational efficiency with security requirements by eliminating standing privileges while ensuring swift access to Amazon EC2, on-premises, and multicloud nodes. Through its flexible policy-based approach, and support for both manual and automatic approvals, you can now implement zero standing privileges without compromising operational capabilities.
 
-1. Proper license evaluation – identifying eligible licenses based on purchase date and Windows Server version
-2. Accurate configuration – ensuring correct usage operation codes to avoid double-billing on dedicated hosts
-3. Ongoing monitoring – maintaining regular assessment of usage and costs
+Systems Manager offers a free trial of just-in-time node access, allowing you to fully explore and evaluate the feature for your organization.
 
-By following these practices, organizations can optimize their Windows Server deployment costs while maintaining licensing compliance on AWS.
+To learn more, see [Just-in-time node access using Systems Manager](https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-just-in-time-node-access.html) for more details.
 
-Ready to start optimizing your Windows Server costs on AWS? Request an [AWS Optimization and Licensing Assessment](https://aws.amazon.com/optimization-and-licensing-assessment/) to begin evaluating your licensing opportunities and potential cost savings.
+Check out this [interactive demo](https://aws-cloudops.storylane.io/share/qazsu1mgqiho) for a full visual tour of the just-in-time node access experience.
 
----
+## About the authors
 
-AWS has significantly more services, and more features within those services, than any other cloud provider, making it faster, easier, and more cost effective to move your existing applications to the cloud and build nearly anything you can imagine. Give your Microsoft applications the infrastructure they need to drive the business outcomes you want. Visit our [.NET on AWS](https://aws.amazon.com/blogs/dotnet/) and [AWS Database](https://aws.amazon.com/blogs/database/) blogs for additional guidance and options for your Microsoft workloads. [Contact us](https://pages.awscloud.com/MAP-windows-contact-us.html) to start your migration and modernization journey today.
+![Chetan Makvana](/images/blog-3/Chetan-Makvana.jpeg)
 
-TAGS: [Amazon EC2](https://aws.amazon.com/blogs/modernizing-with-aws/tag/amazon-ec2/), [AWS License Manager](https://aws.amazon.com/blogs/modernizing-with-aws/tag/aws-license-manager/), [Cost Savings](https://aws.amazon.com/blogs/modernizing-with-aws/tag/cost-savings/), [Microsoft](https://aws.amazon.com/blogs/modernizing-with-aws/tag/microsoft/), [Windows On AWS](https://aws.amazon.com/blogs/modernizing-with-aws/tag/windows-on-aws/), [Windows Server](https://aws.amazon.com/blogs/modernizing-with-aws/tag/windows-server/)
+### Chetan Makvana
 
-<div style="display: flex; align-items: center;">
-  <img src="/images/blog-3/aaalzand-400.jpg" alt="Ali Alzand" style="width:120px; border-radius:8px; margin-right:16px;">
-  <p>
-    <strong>Ali Alzand</strong><br>
-    Ali is a Microsoft Specialist Solutions Architect at Amazon Web Services who helps global customers unlock the power of the cloud by migrating, modernizing, and optimizing their Microsoft workloads. He specializes in cloud operations — leveraging AWS services like Systems Manager, Amazon EC2 Windows, and EC2 Image Builder to drive cloud transformation. Outside of work, Ali enjoys exploring the outdoors, firing up the grill on weekends for barbecue with friends, and sampling all the eclectic food has to offer.
-  </p>
-</div>
+Chetan Makvana is an Enterprise Solutions Architect at Amazon Web Services. He helps enterprise customers in designing scalable, resilient, secured and cost effective enterprise grade solution using AWS services. He is a technology enthusiast and a builder with a core area of interest on generative AI, serverless, app modernization and DevOps. Outside of work, he enjoys binge-watching, traveling and music.
 
-<div style="display: flex; align-items: center; margin-bottom: 24px;">
-  <img src="/images/blog-3/Screenshot-2025-06-30-at-8.26.18-AM.png" alt="Jon Madison" style="width:120px; border-radius:8px; margin-right:16px;">
-  <p>
-    <strong>Jon Madison</strong><br>
-    Jon Madison is a Pr. Delivery Consultant on the AWS Professional Services (ProServe) Energy Team. He has a background in Cloud Infrastructure, Security, and DevOps, and is passionate about helping customers with cloud adoption and building scalable solutions and processes. In his free time Jon enjoys cooking, gaming, and spending time with his family and friends.
-  </p>
-</div>
+![Anthony Verleysen](/images/blog-3/Anthony-Headshot.jpg)
 
-<div style="display: flex; align-items: center;">
-  <img src="/images/blog-3/MikeGupta.jpg" alt="Mike Gupta" style="width:120px; border-radius:8px; margin-right:16px;">
-  <p>
-    <strong>Mike Gupta</strong><br>
-    Mike Gupta is a Senior Technical Account Manager at AWS based out of New York City. In his role, he provides strategic technical guidance to help customers use AWS best practices to plan and build solutions. He’s dedicated to empower customers to develop scalable, resilient, and cost-effective architectures. In his free time, Mike enjoys spending time with his wife and family, exploring local history and trying new restaurants.
-  </p>
-</div>
+### Anthony Verleysen
+
+Anthony Verleysen is a Senior Product Manager - Technical within the AWS Systems Manager team. He is the the product manager for Patch Manager and Distributor. Outside of work, Anthony is an avid soccer and tennis player.
+
+![Mark Brealey](/images/blog-3/brealeym.jpg)
+
+### Mark Brealey
+
+Mark Brealey is a Senior Migration Solutions Architect, he empowers partners to build robust, secure, and efficient cloud architectures. He specializes in designing scalable solutions that help organizations maximize their AWS infrastructure while ensuring operational excellence.

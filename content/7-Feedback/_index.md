@@ -8,40 +8,38 @@ pre: " <b> 7. </b> "
 ### Overall Evaluation
 
 **1. Working Environment**
-<br>The working environment is very friendly, tidy, and clean. Mentors are always available in the office to answer our questions.
+<br> The working environment (Bitexco Financial Tower 26th Floor) is very spacious and cool, offering me and my peers a suitable environment to conduct team discussions.
 
-**2. Support from Mentor / Team Admin**  
-<br>The mentors provide guidance and very detailed feedback on project structure and architecture diagrams. They are also super enthusiastic about suggesting ways to save costs and improve product performance.
+**2. Support from Mentor**  
+<br>Mentors in FCJ provide thorough explainations for each step we need to do in this internship program. They are hospitable, and ready to answer any question I have during the internship's span.
 
-**3. Relevance of Work to Academic Major**  
-<br>Thanks to the sharing sessions from seniors, I've found a clearer direction for my development and am now pursuing the path to become a DevOps Engineer and Cloud Engineer.
+**3. School program relevancy.**  
+<br>As a major in Information Assurance, finding out about all the security aspects of the AWS platform have been a great delight. This program provide me clear guidance through Community-made labs to help me practices security measures.
 
-**4. Learning & Skill Development Opportunities**  
-<br>During the internship, I picked up a lot of new skills, such as using project management tools, time management, and how to communicate professionally in a corporate setting.
+**4.Skill Acquisition**  
+<br> I have a stronger grasp to the cloud architecture and can think deeper about how to build a good and resilient application.
 
-**5. Company Culture & Team Spirit**  
-<br>AWS culture is very open, always welcoming and updating the latest methods and technologies. Team members are always around and ready to support each other 24/7.
+**5. Company Culture**  
+<br>Everyone in this program is very supportive of each other, they do not shy away from giving constructive critisim and love to partake in various community events. Overall, this is a very healthy environment.
 
-**6. Internship Policies / Benefits**  
-<br>The sharing sessions from industry seniors really helped a lot during the project implementation, and they were also valuable lessons for my personal growth and career path.
 
 
 ### Additional Questions
-- What did you find **most satisfying** during your internship?  
-- There are many sharing sessions from industry seniors, and the mentors are incredibly supportive.
+What did you find **most satisfying** during your internship?  
+- The working environment, and my supportive mentors and teammates.
 
-- What do you think the company **should improve** for future interns?  
-- None.
+What do you think the company **should improve** for future interns?  
+- I am satisfied.
 
-- If recommending to a friend, would you **suggest they intern here**? Why or why not?  
-- Yes, because Cloud Computing is currently the trend, and AWS is leading that trend.
+If recommending to a friend, would you **suggest they intern here**? Why or why not?  
+- Yes, a very welcoming environment.
 
 ### Suggestions & Expectations
-- Do you have any suggestions to improve the internship experience?  
-- None.
+Do you have any suggestions to improve the internship experience?  
+- Create more exams.
 
-- Would you like to continue this program in the future?  
-- Not at the moment, as the team didn't quite meet my expectations for a long-term commitment, but I will definitely continue honing my AWS knowledge.
+Would you like to continue this program in the future?  
+- It is unclear to me at the moment.
 
-- Any other comments (free sharing):
-- None.
+Any other comments (free sharing):
+- No

@@ -5,23 +5,25 @@ chapter: false
 pre: " <b> 5. </b> "
 ---
 
-# Đảm bảo truy cập Hybrid an toàn đến S3 bằng cách sử dụng VPC endpoint
+# Nền tảng IoT Văn phòng Thông minh không máy chủ
 
 #### Tổng quan
 
-**AWS PrivateLink** cung cấp kết nối riêng tư đến các dịch vụ aws từ VPCs hoặc trung tâm dữ liệu (on-premise) mà không làm lộ lưu lượng truy cập ra ngoài public internet.
+Workshop này trình bày cách xây dựng một **nền tảng dữ liệu không máy chủ toàn diện** trên AWS để giám sát môi trường thời gian thực. Hệ thống triển khai một **kiến trúc hướng sự kiện và không máy chủ** hiện đại sử dụng các dịch vụ AWS gốc đám mây.
 
-Trong bài lab này, chúng ta sẽ học cách tạo, cấu hình, và kiểm tra VPC endpoints để cho phép workload của bạn tiếp cận các dịch vụ AWS mà không cần đi qua Internet công cộng.
+**Các nguyên tắc kiến trúc chính:**
++ **Kiến trúc không máy chủ** - Sử dụng **AWS Lambda**, **Amazon API Gateway**, và **Amazon DynamoDB** để chạy mã mà không cần cấp phát máy chủ. AWS tự động xử lý việc mở rộng quy mô và quản lý cơ sở hạ tầng.
++ **Kiến trúc hướng sự kiện** - Thay vì bẻ phi phiếu liên tục, các sự kiện cụ thể (đọc cảm biến IoT, lệnh gọi API của người dùng) kích hoạt các quy trình. **AWS IoT Core** và **Amazon EventBridge** điều phối các sự kiện này để đạt được tính linh hoạt và khả năng mở rộng.
 
-Chúng ta sẽ tạo hai loại endpoints để truy cập đến Amazon S3: gateway vpc endpoint và interface vpc endpoint. Hai loại vpc endpoints này mang đến nhiều lợi ích tùy thuộc vào việc bạn truy cập đến S3 từ môi trường cloud hay từ trung tâm dữ liệu (on-premise).
-+ **Gateway** - Tạo gateway endpoint để gửi lưu lượng đến Amazon S3 hoặc DynamoDB using private IP addresses. Bạn điều hướng lưu lượng từ VPC của bạn đến gateway endpoint bằng các bảng định tuyến (route tables)
-+ **Interface** - Tạo interface endpoint để gửi lưu lượng đến các dịch vụ điểm cuối (endpoints) sử dụng Network Load Balancer để phân phối lưu lượng. Lưu lượng dành cho dịch vụ điểm cuối được resolved bằng DNS.
+**Các thành phần hệ thống:**
+Nền tảng quản lý một **thiết lập văn phòng thông minh 8 phòng** tích hợp **AWS IoT Core** để nhập liệu cảm biến, các hàm **Lambda** để xử lý, **DynamoDB** để lưu trữ, **S3** và **CloudFront** để lưu trữ trang web, và **Amazon Cognito** để xác thực. Dữ liệu cảm biến từ các thiết bị biên chạy vào AWS, được lưu trữ và xử lý, cập nhật bảng điều khiển quản lý, và định tuyến các sự kiện quan trọng qua EventBridge để cảnh báo.
 
 #### Nội dung
 
 1. [Tổng quan về workshop](5.1-Workshop-overview/)
-2. [Chuẩn bị](5.2-Prerequiste/)
-3. [Truy cập đến S3 từ VPC](5.3-S3-vpc/)
-4. [Truy cập đến S3 từ TTDL On-premises](5.4-S3-onprem/)
-5. [VPC Endpoint Policies (làm thêm)](5.5-Policy/)
-6. [Dọn dẹp tài nguyên](5.6-Cleanup/)
+2. [Điều kiện tiên quyết](5.2-Prerequiste/)
+3. [Chạy ngăn xếp CloudFormation](5.3-Run-cloudformation-stack/)
+4. [Thiết lập trang web](5.4-Set-up-website/)
+5. [Thiết lập EventBridge và Lambda](5.5-Event-Bridge/)
+6. [Thiết lập SNS](5.6-SNS/)
+7. [Kiểm tra trang web và kết nối IoT](5.7-Test-website-iot-connection/)

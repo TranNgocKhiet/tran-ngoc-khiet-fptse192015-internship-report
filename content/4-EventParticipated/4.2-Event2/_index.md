@@ -5,106 +5,194 @@ chapter: false
 pre: " <b> 4.2. </b> "
 ---
 
-# Summary Report: "AWS Cloud Mastery Series #1: AI/ML/GenAI on AWS"
+# Workshop Report: AWS Cloud Mastery Series #2 — DevOps on AWS
 
-### Event Objectives
+**Date:** Monday, November 17, 2025  
+**Time:** 8:30 AM – 5:00 PM  
+**Location:** Bitexco Financial Tower, Ho Chi Minh City  
+**Host:** Kha Van  
+**Attendees:** 316 participants
 
-- Introduce to Foundation Model
-- ​Prompting techniques guide
-- Explore Generative AI with Amazon Bedrock
-- ​Retrieval-Augmented Generation (RAG): Architecture & Knowledge Base integration
+## Overview
 
-### Speakers
+The second workshop in the AWS Cloud Mastery Series delivered a comprehensive, full-day deep dive into DevOps practices on AWS. The session spanned CI/CD automation, infrastructure-as-code, containerization, and monitoring, with live demonstrations and real-world case studies.
 
-- Danh Hoang Hieu Nghi 
-- Lam Truong Kiet
-- Dinh Le Hoang Anh
+## Morning Session: Culture & CI/CD Pipeline (8:30 AM – 12:00 PM)
 
-### Key Highlights
+### 8:30 – 9:00 AM | Welcome & DevOps Mindset
 
-#### Prompting Techniques
+The session began with a recap of the previous AI/ML workshop and introduced DevOps culture and principles. Key metrics discussed:
+- **DORA Metrics:** Deployment frequency, lead time, mean time to recovery (MTTR), change failure rate
+- **DevOps Benefits:** Faster delivery, reduced risk, improved team collaboration
 
-- Effective prompting techniques for better and accurate result
+### 9:00 – 10:30 AM | AWS DevOps Services – CI/CD Pipeline
 
-#### RAG (Retrieval-Augmented Generation)
+A comprehensive walkthrough of the AWS CodePipeline ecosystem:
 
-- AI with embedded data source to response with more accurate, real-time and included internal data result
-  
-#### Embedding
+#### Source Control
+- **AWS CodeCommit:** Native Git repositories with IAM integration
+- **Git Strategies:** GitFlow vs. Trunk-based development (tradeoffs and when to use each)
 
-- Numerical representation of text (vectors) that captures semantics and relationships betwwen words
-- Embedding models capture features and nuances of the text
-- Rich embedding models can be used to compare text similarity
-- Multilingual Text Embeddings can identify mearing in different languages
+#### Build & Test
+- **CodeBuild Configuration:** Docker-based build environments, caching, artifact management
+- **Testing Pipelines:** Unit tests, integration tests, and security scanning
 
-#### Some AWS AI Service
+#### Deployment
+- **CodeDeploy Strategies:**
+  - **Blue/Green:** Zero-downtime deployments with instant rollback
+  - **Canary:** Gradual rollout to a percentage of traffic
+  - **Rolling:** Sequential instance updates
+- **Target Instances:** EC2, On-premises, Lambda
 
-- Amazon Rekognition
-- Amazon Translate
-- Amazon Textract
-- Amazon Transcribe
-- Amazon Polly
-- Amazon Comprehend
-- Amazon Kendra
-- Amazon Lookout
-- Aamzon Personalize
+#### Orchestration
+- **CodePipeline Automation:** Connecting source → build → deploy stages
+- **Approval Gates:** Manual review steps for production deployments
 
-### Key Takeaways
+#### Live Demo
+A full CI/CD pipeline walkthrough, showing:
+1. Code commit triggering CodeBuild
+2. Automated tests running and reporting
+3. Artifact storage in S3
+4. CodeDeploy executing blue/green deployment
+5. Automatic rollback on failed health checks
 
-#### Prompting Techniques - Chain of thought
+### 10:30 – 10:45 AM | Break
 
-- Providing AI with an example case
-- Explain for AI step-by-step to handle your problem
+### 10:45 AM – 12:00 PM | Infrastructure as Code (IaC)
 
-#### RAG use cases
+Two dominant IaC approaches on AWS were compared:
 
-- Reducing hallucinations and connecting with recent knowledge including enterprise data
-- Enchance chatbox capabilities by integrating with real-time data
-- Searching base on user previous search history and persona
-- Retrieving and summarizing transactional data from data 
+#### AWS CloudFormation
+- **Templates & Stacks:** JSON/YAML templates defining complete environments
+- **Drift Detection:** Monitoring infrastructure changes outside CloudFormation
+- **Stack Policies:** Preventing accidental updates to critical resources
 
-#### Amazon Titan Embedding
+#### AWS CDK (Cloud Development Kit)
+- **Constructs:** Reusable, composable infrastructure building blocks
+- **Language Support:** TypeScript, Python, Java, .NET
+- **Higher Abstraction:** Write infrastructure like application code
 
-- Translate text inputs (words, phrases) into numerical representations (embeddings)
-- Comparing embeddings produces more relevant and contextual responses than word matching
-- Max Tokens: 8000
-- Output Vectors: 256,512,1024
-- Language: Multilingual (100+ languages in preview)
+#### Comparison & Selection
+- CloudFormation: Lower-level control, JSON/YAML syntax, mature ecosystem
+- CDK: Higher productivity, familiar programming languages, abstraction
 
-### Applying to Work
+#### Live Demo
+Deploying infrastructure using both CloudFormation and CDK, highlighting:
+1. CloudFormation template structure and parameters
+2. CDK construct hierarchy and reuse
+3. Deployment timings and rollback behavior
 
-- Explore more AI Services to apply for future project
+## Afternoon Session: Containers & Observability (1:00 PM – 5:00 PM)
 
-### Event Experience
+### 1:00 – 2:30 PM | Container Services on AWS
 
-Attending the **“AI/ML/GenAI on AWS”** workshop was extremely valuable. I had the opportunity to learn new knowlegde and connect with IT professionals. Key experiences included:
+#### Docker Fundamentals
+- **Microservices & Containerization:** Breaking monoliths, independent scaling
+- **Image Layering:** Optimizing image size and build cache
 
-#### Learning from highly skilled speakers
+#### Amazon ECR (Elastic Container Registry)
+- **Image Storage & Scanning:** Vulnerability detection for container images
+- **Lifecycle Policies:** Automatic cleanup of old or unused images
+- **IAM Integration:** Fine-grained access to registries
 
-- Experts from FACJ shared **best practices** in applying AI in real project
-- Through real-world case studies, I gained a deeper understanding of applying prompting techniques
+#### Amazon ECS vs. EKS
+- **ECS:** Simpler orchestration, AWS-native, lower learning curve
+- **EKS:** Kubernetes compatibility, multi-cloud options, richer ecosystem
+- **Deployment Strategies:** Task placement, auto-scaling, service discovery
 
-#### Explores AWS AI Service
+#### AWS App Runner
+- **Simplified Container Deployment:** No cluster management required
+- **Ideal for:** Stateless web applications, APIs, microservices
+- **Automatic Scaling:** Based on traffic or custom metrics
 
-- Through the demo of speakers, I learn how AWS AI service work and their real life use case
+#### Demo & Case Study
+A microservices deployment comparing:
+1. ECS deployment with task definitions and services
+2. EKS deployment with pod manifests and operators
+3. App Runner deployment for a simple REST API
+4. Auto-scaling behavior under load
 
-#### Building agents guide
+### 2:30 – 2:45 PM | Break
 
-- Receiving experience and knowlege when start to build AI Agent
+### 2:45 – 4:00 PM | Monitoring & Observability
 
-#### Some event photos
+#### CloudWatch
+- **Metrics & Logs:** Centralized collection from AWS services
+- **Alarms & Dashboards:** Real-time visualization and alerting
+- **Log Insights:** Query logs with SQL-like syntax
 
-![piture_1](/images/event-2/5d3f6bf4-c340-4bd1-bf47-b4f5bfa00d67.jpeg)
-![piture_2](/images/event-2/06e3b774-b827-47e8-98bc-26265ca75367.jpeg)
-![piture_3](/images/event-2/07ef0938-73fb-4c4e-8552-050f73a2b702.jpeg)
-![piture_4](/images/event-2/462c74a5-aeb4-4ff8-b7f2-eb7ee475bbb3.jpeg)
-![piture_5](/images/event-2/621ece22-631a-4c77-be70-d9c76d43c4b5.jpeg)
-![piture_6](/images/event-2/636a6506-06cf-44c8-bcfc-cb0b0a19f8e8.jpeg)
-![piture_7](/images/event-2/1008e889-059c-421e-a5ff-78b62049cdf6.jpeg)
-![piture_8](/images/event-2/85361809-fda8-44f4-87f3-94c21e2aee5e.jpeg)
-![piture_9](/images/event-2/a3e1752e-8f30-4a12-a80f-5bb07cc54a53.jpeg)
-![piture_10](/images/event-2/abe8f3c7-2b55-4735-b294-89c8c260b956.jpeg)
-![piture_11](/images/event-2/b0cd9220-8184-49c4-b7c5-2810b9a79a00.jpeg)
-![piture_12](/images/event-2/e257ab4a-4793-4a77-b3a0-512fd14300dd.jpeg)
+#### AWS X-Ray
+- **Distributed Tracing:** Track requests across microservices
+- **Service Map:** Visual representation of application architecture
+- **Performance Insights:** Identify bottlenecks and latency contributors
 
-> Overall, the event have give me a lot of knowlegde about AI to apply for real life project.
+#### Full-Stack Observability Setup
+- Integrating CloudWatch, X-Ray, and application logs
+- Correlation IDs for tracking requests end-to-end
+- Setting appropriate alarm thresholds (avoiding alert fatigue)
+
+#### Best Practices
+- **Alerting:** Alert on symptoms (latency, error rates) not just raw metrics
+- **Dashboards:** Task-specific dashboards for oncall engineers
+- **On-Call Processes:** Escalation policies, runbooks, incident postmortems
+
+#### Demo
+Building a complete observability solution:
+1. CloudWatch agent collecting metrics from EC2 instances
+2. Application logs flowing to CloudWatch Logs
+3. X-Ray tracing a multi-tier application
+4. Creating dashboards and alarms for key metrics
+
+### 4:00 – 4:45 PM | DevOps Best Practices & Case Studies
+
+#### Deployment Strategies
+- **Feature Flags:** Decoupling deployment from release
+- **A/B Testing:** Experimentation with subsets of traffic
+- **Dark Launches:** Running new infrastructure in parallel
+
+#### Automated Testing & CI/CD Integration
+- **Test Pyramid:** Unit, integration, and end-to-end tests
+- **Test as Code:** Keeping tests in version control
+- **Performance Testing:** Catching regressions before production
+
+#### Incident Management
+- **Postmortems:** Blameless reviews focusing on system improvements
+- **Runbooks:** Documented procedures for common incidents
+- **On-Call Rotation:** Fair distribution and escalation policies
+
+#### Real-World Case Studies
+- **Startup:** From monolith to microservices, scaling from 10 to 1M users
+- **Enterprise:** Legacy system modernization while maintaining 99.99% uptime
+
+### 4:45 – 5:00 PM | Q&A & Wrap-up
+
+**DevOps Career Pathways:** AWS certification roadmap (Developer Associate, Solutions Architect Pro, DevOps Professional)
+
+## Personal Reflections
+
+### What I Learned
+
+The breadth of the AWS DevOps ecosystem became clear—there's a purpose-built service for each stage of the deployment pipeline. Rather than gluing together disparate tools, DevOps teams on AWS benefit from deep integration.
+
+The contrast between ECS and EKS highlighted a key decision: simplified management vs. portability. For most use cases, ECS suffices; Kubernetes complexity pays off only when multi-cloud or complex orchestration is required.
+
+### Key Insights
+
+1. **Automation is non-negotiable:** Manual deployments are error-prone and slow; CI/CD is table stakes.
+2. **Observability beats monitoring:** Recording what happened (logs/traces) is more valuable than just metrics.
+3. **Infrastructure as Code is mandatory:** Version-controlled, reviewable infrastructure reduces operational risk.
+4. **DevOps is a culture, not a job title:** Success requires collaboration between developers, ops, and security.
+5. **Pick the right tool:** ECS for simplicity, EKS for portability, App Runner for ease-of-use.
+
+### Next Steps
+
+- Set up a basic CI/CD pipeline using CodePipeline for my team's projects
+- Migrate an application to containers and deploy via ECS
+- Implement CloudWatch dashboards and X-Ray tracing for existing services
+- Design infrastructure templates using CDK for reproducible deployments
+
+## Some pictures from the event
+
+![event-picture-1](/images/event-2/IMG_20251117_121134%20(2).jpg)
+
+> This full-day workshop equipped me with practical DevOps knowledge and demonstrated that AWS provides end-to-end solutions for the entire deployment lifecycle. The emphasis on automation, observability, and culture resonates across all team sizes.

@@ -5,59 +5,52 @@ chapter: false
 pre: " <b> 4. </b> "
 ---
 
-During my internship, I participated in two events. Each one was a memorable experience that provided new, interesting, and useful knowledge, along with gifts and wonderful moments.
-
-### [Event 1](4.1-Event1/)  
-&emsp;**Event Name:** AI-Driven Development Life Cycle: Reimagining Software Engineering
-
-&emsp;**Date & Time:** 14:00, October 03, 2025  
-
-&emsp;**Location:** 26th Floor, Bitexco Tower, 02 Hai Trieu Street, Saigon Ward, Ho Chi Minh City  
-
-&emsp;**Role:** Attendee  
-
-&emsp;**Description:** Introduction to how AI tools such as Amazon Q Developer and Kiro transform the software development process. Focus on two key methodologies — AI-Driven Development Lifecycle (AI-DLC) emphasizing automation, speed, and scalability, and Spec-Driven Development (SDD) with Kiro emphasizing precision and structure. Presentation of the evolving role of AI in IT, where AI assists or manages development tasks while human validation remains essential.
-
-&emsp;**Outcome:** Better understanding of integrating AI into software engineering while maintaining human-centered validation. Clear insight into the strengths and limitations of AI-DLC and SDD. Exposure to tools like Amazon Q Developer and Kiro, with practical applications for improving efficiency, quality, and innovation in real-world projects.
+During my internship, I participated in three major workshops from the AWS Cloud Mastery Series. Each event provided valuable technical training, practical insights, and networking opportunities with industry experts.
 
 ---
 
-### [Event 2](4.2-Event2/)  
-&emsp;**Event Name:** AWS Cloud Mastery Series #1: AI/ML/GenAI on AWS
+### [Event 1](4.1-Event1/)
 
-&emsp;**Date & Time:** 08:30, November 15, 2025
+**Event Name:** AWS Cloud Mastery Series #1: AI/ML/GenAI on AWS
 
-&emsp;**Location:** 26th Floor, Bitexco Tower, 02 Hai Trieu Street, Saigon Ward, Ho Chi Minh City  
+**Date & Time:** 08:30, November 15, 2025
 
-&emsp;**Role:** Attendee  
+**Location:** 26th Floor, Bitexco Tower, 02 Hai Trieu Street, Saigon Ward, Ho Chi Minh City
 
-&emsp;**Description:** Introduction to Foundation Models and Generative AI capabilities using Amazon Bedrock. The talk focused on effective prompting techniques (Chain of Thought) and the architecture of Retrieval-Augmented Generation (RAG) for integrating internal knowledge bases. Detailed exploration of vector embeddings with Amazon Titan and an overview of various AWS AI services.
+**Role:** Attendee
 
-&emsp;**Outcome:** Gained comprehensive knowledge on reducing AI hallucinations and enhancing response accuracy through RAG and Embeddings. Learned how to apply specific AWS AI services and prompting strategies to real-world projects. The event provided valuable insights into building AI agents and offered opportunities to network with skilled speakers and industry experts.
+**Description:** Introduction to Foundation Models and Generative AI capabilities using Amazon Bedrock. The workshop covered Amazon SageMaker for traditional ML workflows, including data preparation, model training & tuning, and AutoML capabilities. Focused on effective prompting techniques (Chain of Thought), Retrieval-Augmented Generation (RAG) architecture for integrating internal knowledge bases, vector embeddings with Amazon Titan, and Bedrock Agents for multi-step workflows. Also covered safety mechanisms including AWS Guardrails and content filtering.
+
+**Outcome:** Gained comprehensive knowledge on reducing AI hallucinations and enhancing response accuracy through RAG and embeddings. Learned how to apply specific AWS AI services and prompting strategies to real-world projects. Understood the distinction between traditional ML and generative AI use cases. The event provided valuable insights into building AI agents and offered opportunities to network with skilled speakers and 348 industry professionals.
 
 ---
 
-### [Event 3](4.3-Event3/)  
-&emsp;**Event Name:** AWS Cloud Mastery Series #2: ​DevOps on AWS
+### [Event 2](4.2-Event2/)
 
-&emsp;**Date & Time:** 08:30, November 17, 2025
-&emsp;**Location:** 26th Floor, Bitexco Tower, 02 Hai Trieu Street, Saigon Ward, Ho Chi Minh City   
+**Event Name:** AWS Cloud Mastery Series #2: DevOps on AWS
 
-&emsp;**Role:** Attendee  
+**Date & Time:** 08:30, November 17, 2025
 
-&emsp;**Description:** Comprehensive overview of the DevOps mindset, emphasizing collaboration, automation, and shared responsibility. The session covered essential AWS DevOps services including CI/CD pipelines, Infrastructure as Code (IaC) with CloudFormation and Terraform, and container management using Amazon EKS and AppRunner. It also provided a guide on the "Do's and Don'ts" of the DevOps journey and best practices for monitoring and observability.
+**Location:** 26th Floor, Bitexco Tower, 02 Hai Trieu Street, Saigon Ward, Ho Chi Minh City
 
-&emsp;**Outcome:** Gained a clear roadmap for a DevOps career and a deeper understanding of the application life cycle. Learned to implement CI/CD pipelines and utilize IaC templates to minimize human errors. Acquired insights into monitoring deployment health and system stability through real-world case studies and expert demonstrations.
+**Role:** Attendee
 
-### [Event 4](4.4-Event4/)  
-&emsp;**Event Name:** AWS Cloud Mastery Series #3: ​Theo AWS Well-Architected Security Pillar
+**Description:** Comprehensive full-day workshop on DevOps practices and CI/CD automation on AWS. Morning session covered DevOps culture with DORA metrics, AWS CodePipeline ecosystem (CodeCommit, CodeBuild, CodeDeploy), deployment strategies (Blue/Green, Canary, Rolling), and Infrastructure as Code with CloudFormation and AWS CDK. Afternoon session explored container services (Docker, Amazon ECR, ECS vs. EKS, AWS App Runner) and observability with CloudWatch, AWS X-Ray, and comprehensive monitoring best practices.
 
-&emsp;**Date & Time:** 08:30, November 29, 2025
+**Outcome:** Gained clear DevOps roadmap and deeper understanding of application lifecycle management. Learned to implement CI/CD pipelines that minimize human errors through automation. Acquired practical skills in infrastructure-as-code templates ensuring consistency and reducing manual configuration. Understood monitoring and observability as critical components for deployment health and system stability. Networked with 316 DevOps professionals and gained insights into real-world case studies.
 
-&emsp;**Location:** 26th Floor, Bitexco Tower, 02 Hai Trieu Street, Saigon Ward, Ho Chi Minh City  
+---
 
-&emsp;**Role:** Attendee  
+### [Event 3](4.3-Event3/)
 
-&emsp;**Description:** Dive into the AWS Well-Architected Security Pillar, which include Identity & Access Management, Infrastructure Protection, and Data Protection. The session explored foundational security measures like Service Control Policies (SCPs), Permission Boundaries, and MFA. It also highlighted advanced strategies for "Detection-as-Code" using IaC tools and automated incident response workflows with Amazon EventBridge.
+**Event Name:** AWS Cloud Mastery Series #3: Well-Architected Security Pillar
 
-&emsp;**Outcome:** Learned how to enforce least privilege principles effectively using SCPs and IAM boundaries. Gained practical skills in setting up automated alerting and cross-account event routing for real-time threat detection. Acquired valuable insights into incident response processes, emphasizing prevention and automation to minimize downtime and security risks.
+**Date & Time:** 08:30, November 29, 2025
+
+**Location:** 26th Floor, Bitexco Tower, 02 Hai Trieu Street, Saigon Ward, Ho Chi Minh City
+
+**Role:** Attendee
+
+**Description:** Deep dive into cloud security through AWS Well-Architected Framework's Security Pillar covering five key domains. Identity & Access Management: IAM architecture, service roles, temporary credentials, AWS IAM Identity Center, Service Control Policies, Permission Boundaries, and MFA options. Detection & Continuous Monitoring: CloudTrail, GuardDuty, Security Hub, multi-layer logging (VPC Flow Logs, ALB logs, S3 access logs), EventBridge automation, and Detection-as-Code. Infrastructure Protection: VPC segmentation, Security Groups vs. NACLs, AWS WAF, DDoS protection with Shield, Network Firewall, and container security. Data Protection: encryption at-rest (S3, RDS, EBS, DynamoDB), in-transit encryption, AWS KMS key management, Secrets Manager, and automated rotation patterns. Incident Response: IR lifecycle, incident playbooks, and response procedures.
+
+**Outcome:** Learned how to enforce least privilege principles effectively using SCPs and IAM boundaries. Gained practical skills in setting up automated alerting and cross-account event routing for real-time threat detection. Acquired valuable insights into incident response processes emphasizing prevention and automation to minimize downtime and security risks. Understood comprehensive logging and monitoring as foundational to modern security architecture. Connected with 355+ security professionals and industry experts to discuss emerging threats and best practices.

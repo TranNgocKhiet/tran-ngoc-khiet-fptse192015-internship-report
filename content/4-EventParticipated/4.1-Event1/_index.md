@@ -5,82 +5,96 @@ chapter: false
 pre: " <b> 4.1. </b> "
 ---
 
-# Summary Report: “AI-Driven Development Life Cycle: Reimagining Software Engineering”
+# Workshop Report: AWS Cloud Mastery Series #1 — AI/ML/GenAI on AWS
 
-### Event Objectives
+**Date:** Saturday, November 15, 2025  
+**Time:** 8:30 AM – 12:00 PM  
+**Location:** Bitexco Financial Tower, Ho Chi Minh City  
+**Host:** Kha Van  
+**Attendees:** 348 participants
 
-- Explores AI-Driven Development using Amazon Q Developer
-- Explores Spec-Driven Development using Kiro
+## Overview
 
-### Speakers
+The first session of the AWS Cloud Mastery Series introduced modern machine learning and generative AI approaches on AWS, with a focus on practical applications and hands-on demonstrations. The workshop covered both SageMaker for traditional ML workflows and Amazon Bedrock for building with foundation models.
 
-- **Toan Huynh** – SA
-- **My Nguyen** – ISV Account Director
+## Session Breakdown
 
-### Key Highlights
+### 8:30 – 9:00 AM | Welcome & Introduction
 
-#### The Role of AI in IT
+The session opened with participant registration and networking, followed by an overview of the AI/ML landscape in Vietnam. The organizers set expectations for the day's learning objectives and conducted an ice-breaker activity to encourage collaboration among the 348 attendees.
 
-- **2023**: AI acted as an assistant, helping developers minimize workload, recommend code, and check errors
-- **2024**: AI became embedded in IDEs, enabling system design and automated workflows
-- **2025**: Software engineers with strong AI skills can develop products in minimal time
+### 9:00 – 10:30 AM | AWS AI/ML Services Overview
 
-#### Developing Products with AI While Keeping Humans at the Center
+This segment introduced Amazon SageMaker as a comprehensive end-to-end ML platform:
 
-- Developers can use AI to generate code but they still must validate its correctness and effectiveness
-- The owner of AI-generated code is the developer, since they are responsible for validating it before implementation
-- Coding with AI usually leads to two paths:
-  * **AI-Assistant**: Developers see AI as a co-worker who suggests code and solutions
-  * **AI-Manager**: AI takes full responsibility for designing systems, generating and implementing code, and maintaining the product
-  
-#### AI-Driven Development Lifecycle (AI-DLC)
+- **Data Preparation & Labeling:** Techniques for preparing datasets and labeling for supervised learning
+- **Model Training & Tuning:** Hyperparameter optimization and AutoML capabilities
+- **Deployment:** Moving trained models to production with integrated MLOps support
+- **Live Demo:** A hands-on walkthrough of SageMaker Studio, showing how to launch experiments and monitor training jobs
 
-- AI acts as an assistant that helps to develop the requirements and specifications
-- AI supports developers by writing code in small units step-by-step, waiting for validation before moving on to the next task
-- It requires developers to minimize the scope and provide a specified prompt for AI  
-- Mob programming is recommended for this methodology since it reduces product development time
+Key takeaway: SageMaker eliminates the need to manage underlying infrastructure while providing full control over model training and deployment.
 
-#### Spec-Driven Development Lifecycle with Kiro
+### 10:30 – 10:45 AM | Coffee Break
 
-- Kiro is an IDE that supports developers by taking specifications and developing step-by-step tasks to implement them into code
-- Kiro provides a log of all the actions and prompts, allowing developers to track progress
-- Kiro is suitable for projects that need to have accurate specifications before starting to write code
- 
-### Key Takeaways
+### 10:45 AM – 12:00 PM | Generative AI with Amazon Bedrock
 
-#### Developer Mindset
+The second half focused on building with foundation models using Amazon Bedrock:
 
-- **Human-centric**: AI can design systems and write code, but developers remain responsible for validating the results
-- **Ready for changes**: With powerful AI tools like Amazon Q Developer and Kiro emerging, developers should continuously prepare for new technologies
+#### Foundation Models Overview
+- **Claude, Llama, Titan Comparison:** Different models for different use cases (reasoning, creative, multilingual)
+- **Model Selection Guide:** How to choose the right model based on latency, cost, and accuracy requirements
 
-#### Pros and Cons
+#### Prompt Engineering Techniques
+- **Chain-of-Thought Reasoning:** Breaking down complex problems into step-by-step workflows
+- **Few-Shot Learning:** Using examples to guide model behavior
+- **Advanced Prompting:** Patterns for extracting structured data and controlling output format
 
-- Using Ai-Driven or Spec-Driven Development Lifecycle depends on the scope and purpose of the project
-- Each method has pros and cons that affect the development team as well as the product
-- **Pros**
-  * **AI-Driven Development Lifecycle** is good for projects that need the speed, reusability, cost efficiency, and scalability
-  * **Spec-Driven Development Lifecycle** is good for projects that need narrative quality, consistency, and predictability
-- **Cons**
-  * **AI-Driven Development Lifecycle** may result in inconsistent quality, ethical/IP concerns, or maintenance challenges
-  * **Spec-Driven Development Lifecycle** may result in slower production cycles, higher costs, or limited content
+#### Retrieval-Augmented Generation (RAG)
+- **Architecture & Integration:** Connecting external knowledge bases to Bedrock
+- **Knowledge Base Integration:** Keeping models up-to-date with proprietary data
+- **Reducing Hallucinations:** Using retrieval to ground model responses in facts
 
-### Applying to Work
+#### Bedrock Agents
+- **Multi-Step Workflows:** Automating complex business processes
+- **Tool Integration:** Connecting models to databases, APIs, and other services
+- **Error Handling:** Graceful degradation and retry logic
 
-- **Apply AI-DLC or SDD** to current projects
-- **Learn new technologies** like Amazon Q Developer or Kiro
+#### Safety & Compliance
+- **Guardrails:** AWS's content filtering and safety mechanisms
+- **Output Filtering:** Preventing harmful or inappropriate responses
 
-### Event Experience
+#### Live Demo: Building a Generative AI Chatbot
+The instructors demonstrated a complete RAG-powered chatbot on Bedrock, showing:
+1. Document upload and knowledge base indexing
+2. Query processing with retrieval
+3. Model inference with guardrails applied
+4. Real-time response generation
 
-Attending the **“AI-Driven Development Life Cycle: Reimagining Software Engineering”** workshop was extremely valuable. I had the opportunity to learn new methodologies and connect with IT professionals. Key experiences included:
+## Personal Reflections
 
-#### Learning from highly skilled speakers
+### What I Learned
 
-- Learning from experts how they handle errors in coding and product development
-- Experiencing real-world use cases of the methodologies
+The workshop clarified the distinction between traditional ML (SageMaker) and generative AI (Bedrock). Traditional ML remains essential for classification, regression, and time-series forecasting, while Bedrock excels at text understanding, generation, and reasoning tasks.
 
-#### Leveraging modern tools
+The practical emphasis on prompt engineering and RAG resonated particularly—these techniques are immediately applicable and require no machine learning expertise to implement.
 
-- Explored **Amazon Q Developer**, an AI tool that supports AI-DLC
-- Observed a demonstration of how Kiro is used in the Spec-Driven Development Lifecycle
+### Key Insights
 
-> Overall, the event not only provided technical knowledge but also introduced to new tools that can support development lifecycle
+1. **Foundation models are production-ready:** AWS has invested heavily in security, compliance, and scaling for enterprise workloads.
+2. **RAG is essential for enterprise AI:** Organizations cannot rely on foundation models alone; knowledge integration is critical for accuracy.
+3. **Prompt engineering is a real skill:** Well-crafted prompts and few-shot examples can dramatically improve model output quality.
+4. **Vietnam's AI landscape is growing:** With 348 participants, there's clear momentum in the local AI community.
+
+### Next Steps
+
+- Experiment with Bedrock's prompt playground for internal projects
+- Design a RAG architecture for our team's knowledge base
+- Evaluate which use cases benefit from foundation models vs. traditional ML
+- Consider AWS's SageMaker Canvas for low-code model building
+
+## Some pictures from the event
+
+![event-picture-1](/images/event-1/IMG_20251115_100905.jpg)
+![event-picture-2](/images/event-1/IMG_20251115_101516%20(2).jpg)
+
+> This workshop was an excellent foundation for understanding modern AI on AWS. The combination of theory, live demos, and hands-on exploration created a comprehensive introduction to both traditional ML and generative AI workflows.

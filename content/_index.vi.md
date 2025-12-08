@@ -6,11 +6,11 @@ chapter: false
 
 # Báo cáo thực tập
 ### Thông tin sinh viên:
-&emsp; **Họ và tên:** Trần Ngọc Khiết
+&emsp; **Họ và tên:** Võ An Khang
 
-&emsp; **Số điện thoại:** 0964171773
+&emsp; **Số điện thoại:** 0966497517
 
-&emsp; **Email:** tranngockhiet22062005@gmail.com
+&emsp; **Email:** voankhangpt@gmail.com
 
 &emsp; **Trường:** Đại học FPT cơ sở Hồ Chí Minh
 
@@ -24,7 +24,7 @@ chapter: false
 
 &emsp; **Thời gian thực tập:** Từ ngày 06/09/2025 đến ngày 24/12/2025
 
-![Ảnh đại diện của bạn](/images/avatar.png)
+![Ảnh đại diện của bạn](/images/avatar_khang.png)
 
 ### Nội dung báo cáo
 

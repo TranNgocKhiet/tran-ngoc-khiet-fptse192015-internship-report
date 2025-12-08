@@ -10,15 +10,15 @@ chapter: false
 
 
 ### Student Information:
-&emsp; **Full Name:** Tran Ngoc Khiet
+&emsp; **Full Name:** Vo An Khang
 
-&emsp; **Phone Number:** 0964171773 
+&emsp; **Phone Number:** 0966497517
 
-&emsp; **Email:** tranngockhiet22062005@gmail.com
+&emsp; **Email:** voankhangpt@gmail.com
 
 &emsp; **University:** FPT University Ho Chi Minh Campus
 
-&emsp; **Major:** Information Technology
+&emsp; **Major:** Information Assurance
 
 &emsp; **Class:** AWS
 
@@ -28,7 +28,7 @@ chapter: false
 
 &emsp; **Internship Duration:** From 09/06/2025 to 12/24/2025
 
-![Your profile picture](/images/avatar.png)
+![Your profile picture](/images/avatar_khang.png)
 
 ### Report Content
 

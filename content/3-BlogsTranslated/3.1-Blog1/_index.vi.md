@@ -5,52 +5,100 @@ chapter: false
 pre: " <b> 3.1. </b> "
 ---
 
-# Khởi đầu sự nghiệp đám mây của bạn với AWS SimuLearn
+# Phân tích dữ liệu trong quản lý rủi ro: Biến bất ổn thành cơ hội
 
-Tác giả: Denee McCloud, Hetvi Parsana, Karishma Damania, và Kattie Sepehri | ngày 25 tháng 6, 2025 | trong [Amazon API Gateway](https://aws.amazon.com/blogs/training-and-certification/category/application-services/amazon-api-gateway-application-services/), [Amazon Bedrock](https://aws.amazon.com/blogs/training-and-certification/category/artificial-intelligence/amazon-machine-learning/amazon-bedrock/), [Amazon DynamoDB](https://aws.amazon.com/blogs/training-and-certification/category/database/amazon-dynamodb/), [Amazon SageMaker](https://aws.amazon.com/blogs/training-and-certification/category/artificial-intelligence/sagemaker/), [AWS Config](https://aws.amazon.com/blogs/training-and-certification/category/management-tools/aws-config/), [AWS Lambda](https://aws.amazon.com/blogs/training-and-certification/category/compute/aws-lambda/), [Best Practices](https://aws.amazon.com/blogs/training-and-certification/category/post-types/best-practices/), [Generative AI](https://aws.amazon.com/blogs/training-and-certification/category/artificial-intelligence/generative-ai/), [Healthcare](https://aws.amazon.com/blogs/training-and-certification/category/industries/healthcare/) | Permalink
+Tác giả: Shaheen Kanda | Ngày đăng: 29 tháng 04 năm 2025 | Danh mục: [AWS Marketplace](https://aws.amazon.com/blogs/awsmarketplace/category/software/aws-marketplace/), [AWS Partner Network](https://aws.amazon.com/blogs/awsmarketplace/category/aws-partner-network/), [Case Study](https://aws.amazon.com/blogs/awsmarketplace/category/case-study/), [Customer Solutions](https://aws.amazon.com/blogs/awsmarketplace/category/post-types/customer-solutions/), [Financial Services](https://aws.amazon.com/blogs/awsmarketplace/category/industries/financial-services/), [Industries](https://aws.amazon.com/blogs/awsmarketplace/category/industries/), [Intermediate (200)](https://aws.amazon.com/blogs/awsmarketplace/category/learning-levels/intermediate-200/), [Partner solutions](https://aws.amazon.com/blogs/awsmarketplace/category/post-types/partner-solutions/) | [Permalink](https://aws.amazon.com/blogs/awsmarketplace/risk-management-analytics-turning-uncertainty-into-opportunity/) | Share
 
-Đối với các chuyên gia đám mây ở giai đoạn đầu sự nghiệp, việc có được kinh nghiệm thực tế với các dự án khách hàng thật sự có thể là một thách thức. Ngay cả khi có cơ hội “học lỏm”, tính chất nhanh của các tương tác này hiếm khi cho phép ta tạm dừng, suy ngẫm và thực sự hiểu sâu các khái niệm phức tạp.
+Bối cảnh dịch vụ tài chính ngày nay đòi hỏi các phương pháp quản lý rủi ro doanh nghiệp tinh vi để giải quyết các quy định đang thay đổi, sự biến động của thị trường và kỳ vọng của khách hàng. Các hệ thống lỗi thời và dữ liệu rời rạc tạo ra rào cản đối với việc giám sát rủi ro hiệu quả, ngăn cản các tổ chức này có được cái nhìn toàn diện (comprehensive insights). Trong một hội thảo gần đây, [Risk management analytics: Turning uncertainty into opportunity](https://pages.awscloud.com/awsmp-gim-lurg-webinar-fin-risk-management-innovation.html?trk=47c2d705-a99b-466f-8acc-d379440414db&sc_channel=el_blog&source=webinar), chúng tôi đã khám phá cách các tổ chức tài chính đang hình dung lại việc phân tích rủi ro thông qua chuyển đổi kỹ thuật số với các giải pháp có sẵn trong [AWS Marketplace](https://aws.amazon.com/marketplace/). Chúng tôi cũng đã thảo luận về các chiến lược chuyển đổi chức năng rủi ro (risk functions) từ nhu cầu phòng thủ thành lợi thế cạnh tranh. Craig Vogel, Phó Chủ tịch, Cross Asset Derivatives Trader tại [Fortitude Re](https://fortitude-re.com/), và Arsen Arutyunov, Phó Chủ tịch Kinh doanh – khu vực Châu Mỹ (Americas) tại [Numerix](https://www.numerix.com/), đã chia sẻ kinh nghiệm của họ với các sáng kiến chuyển đổi rủi ro.
 
-[AWS SimuLearn](https://aws.amazon.com/training/digital/aws-simulearn/) giải quyết khoảng trống này bằng cách kết hợp các mô phỏng khách hàng được điều khiển bởi AI tạo sinh với các khóa đào tạo kỹ thuật thực hành. Được hỗ trợ bởi [Amazon Bedrock](https://aws.amazon.com/bedrock/), AWS SimuLearn mang đến một môi trường nhập vai, không rủi ro, nơi bạn có thể phát triển cả kỹ năng kỹ thuật và kỹ năng mềm thông qua các cuộc hội thoại khách hàng tương tác, video khái niệm giải pháp, phòng lab thực hành và các bài tập ứng dụng — tất cả đều theo tốc độ của riêng bạn.
+## Điều hướng sự phức tạp về quy định trong dịch vụ tài chính
 
-Trong bài viết này, chúng ta sẽ theo chân ba Kiến trúc sư Giải pháp AWS ở giai đoạn đầu sự nghiệp, những người đã sử dụng các kế hoạch học tập và mô phỏng theo vai trò để nâng cao chuyên môn đám mây và khả năng sẵn sàng tiếp xúc với khách hàng. Trải nghiệm của họ cho thấy cách thực hành có cấu trúc trong một môi trường được kiểm soát có thể thúc đẩy sự phát triển nghề nghiệp nhanh chóng.
+Các chuyên gia trong ngành từ Deloitte và Ernst & Young nhấn mạnh rằng các khuôn khổ rủi ro (risk framework) hiệu quả bắt đầu bằng công tác quản trị (governance) mạnh mẽ. Các nhà lãnh đạo này nhấn mạnh sự cần thiết của các công ty dịch vụ tài chính để phát triển các chiến lược thích ứng tích hợp các biện pháp an ninh mạng (cybersecurity) toàn diện, dự đoán kỳ vọng của khách hàng và tạo ra các phương pháp tiếp cận linh hoạt đối với những bất ổn của thị trường mới.
 
-## Câu chuyện của Hetvi: Học theo vai trò, tập trung vào AI tạo sinh
+Các tổ chức tiến bộ vượt ra ngoài các phương pháp phản ứng (reactive) bằng các phương pháp dựa trên phân tích (analytics-driven). Họ triển khai các giải pháp tích hợp giúp thống nhất các nguồn thông tin, cung cấp thông tin chi tiết kịp thời và tạo điều kiện cho việc thiết lập ra mô hình dự đoán. Sự thay đổi này xem quản lý rủi ro như một yếu tố tạo ra giá trị (value creator) chứ không chỉ đơn thuần là một chức năng tuân thủ (compliance function).
 
-Là một Kiến trúc sư Giải pháp mới, tôi đối mặt với một thách thức phổ biến: làm thế nào để truyền đạt hiệu quả các giải pháp kỹ thuật phức tạp đến các lãnh đạo doanh nghiệp. Dù tôi tự tin với kiến thức kỹ thuật của mình, việc chuyển đổi các khái niệm đám mây thành giá trị kinh doanh lại là một kỹ năng hoàn toàn khác.
+## Ví dụ thực tế về thành công của khách hàng
 
-AWS SimuLearn đã thay đổi cách tôi tiếp cận các cuộc trò chuyện với khách hàng. Thông qua các mô phỏng tương tác, tôi thực hành giao tiếp với khách hàng ảo cần các giải pháp AI tạo sinh cho những thách thức kinh doanh của họ.
+Trong hội thảo trên web, chúng tôi khám phá ba nghiên cứu tình huống (case studies) thuyết phục cho thấy các tổ chức dịch vụ tài chính đang chuyển đổi hoạt động của họ để cải thiện cách họ quản lý rủi ro.
 
-Một tình huống đáng nhớ là khi tôi giúp một khách hàng bán lẻ hiểu cách AI có thể cải thiện trải nghiệm của họ thông qua các đề xuất mua sắm được cá nhân hóa. Tôi nhận được phản hồi ngay lập tức về cả các khuyến nghị kỹ thuật và phong cách giao tiếp của mình. Tôi học cách thay thế biệt ngữ kỹ thuật bằng kết quả kinh doanh, tập trung vào ROI và cải thiện vận hành thay vì các chi tiết kiến trúc.
+### Nâng cao sự thấu hiểu khách hàng (customer intelligence) với SAS
 
-Điều khiến trải nghiệm này trở nên vô giá là khả năng lặp lại các cuộc hội thoại và thử nghiệm nhiều phương pháp khác nhau. Mỗi lần thử giúp tôi tinh chỉnh thông điệp và nâng cao sự tự tin trong việc xử lý các tương tác khách hàng phức tạp.
+[Toyota Financial Services Italia](https://www.toyota-fs.it/) nhận ra nhu cầu phải hình dung lại cách tiếp cận của họ đối với dữ liệu khách hàng, vốn trước đây bị mắc kẹt trong các silo rời rạc, hạn chế khả năng cá nhân hóa (personalize) trải nghiệm và quản lý rủi ro một cách hiệu quả. Họ đã tìm đến [SAS](https://www.sas.com/en_us/home.html) để được hỗ trợ. Bằng cách triển khai SAS Viya, Toyota Financial Services Italia đã tái tạo lại chiến lược dữ liệu (data strategy) của mình, tập trung hóa thông tin khách hàng bị rời rạc vào một kho lưu trữ thống nhất và an toàn. Cách tiếp cận mang tính chuyển đổi này cho phép họ hình dung lại hoàn toàn cách họ hiểu khách hàng của mình. Tận dụng khả năng học máy (machine learning) tiên tiến, bộ phận phân tích Công nghệ thông tin (CNTT) của họ đã tung ra các mô hình dự đoán (predictive models) để khám phá các hình mẫu ẩn (hidden pattern). Các mô hình này đã biến các điểm dữ liệu bị cô lập thành một nền tảng thông tin chi tiết toàn diện (comprehensive intelligence platform), cho phép đội ngũ chuyên gia hình dung lại tiềm năng của những hiểu biết sâu sắc về khách hàng.
 
-Ngày nay, tôi có thể tự tin kết nối giữa giải pháp kỹ thuật và giá trị kinh doanh — một kỹ năng đã chứng minh là thiết yếu trong vai trò Solutions Architect của tôi. Với bất kỳ ai muốn nâng cao kỹ năng giao tiếp khách hàng trong vai trò kỹ thuật, AWS SimuLearn mang lại một môi trường không rủi ro để thực hành và phát triển.
+Cách tiếp cận được hình dung lại đã mang lại kết quả ấn tượng:
 
-## Câu chuyện của Karishma: Xây dựng chiều sâu kỹ thuật
+- Cải thiện trải nghiệm của khách hàng thông qua cá nhân hóa dựa trên dữ liệu (data-driven personalization).
+- Các chiến lược giữ chân có mục tiêu (Targeted retention) dự đoán được sự rời bỏ của khách hàng (customer churn) với độ chính xác chưa từng có.
+- Nền tảng cho việc quản lý rủi ro toàn diện
+- Các con đường sáng tạo để giải quyết các yêu cầu tuân thủ (compliance) đang phát triển.
 
-Là một Solutions Architect, tôi nhận ra rằng chuyên môn kỹ thuật sâu là điều thiết yếu để thiết kế các giải pháp hiệu quả cho khách hàng. Để mở rộng chiều sâu kỹ thuật của mình, tôi đã kết hợp các chủ đề đào tạo riêng lẻ trong AWS SimuLearn để tạo nên một hành trình học tập có cấu trúc, phù hợp với các thách thức kỹ thuật thực tế.
+Toyota hiện đã sẵn sàng để tái tạo lại hệ thống thông minh kinh doanh (business intelligence) của mình, với kế hoạch phát triển các mô hình tiên tiến để dự báo rủi ro và phân bổ vốn (capital allocation). Họ đang xây dựng một văn hóa về dữ liệu có tầm nhìn, nơi những thông tin chính xác hỗ trợ mọi quyết định kinh doanh quan trọng thông qua nền tảng SAS Viya.
 
-Tôi bắt đầu với chủ đề bảo mật ở biên, sau đó tiếp tục qua các mô-đun về bảo mật mạng, mã hóa, quản lý danh tính và truy cập (IAM), và cuối cùng là các công nghệ serverless như [Amazon API Gateway](https://aws.amazon.com/api-gateway/), [AWS Lambda](https://aws.amazon.com/lambda/), và [Amazon DynamoDB](https://aws.amazon.com/dynamodb/). Mỗi mô-đun bao gồm các mô phỏng tương tác với khách hàng, nơi tôi thực hành thu thập yêu cầu và đề xuất giải pháp, tiếp theo là các lab thực hành để củng cố hiểu biết.
+### Cách mạng hóa quy trình tuân thủ với Smarsh
 
-Bằng cách kết hợp [các mô-đun đào tạo](https://skillbuilder.aws/search?searchText=%22AWS+SimuLearn%22&page=1&isValidSearchText=true), tôi có thể mô phỏng các quy trình làm việc cụ thể của khách hàng, giúp tôi hiểu sâu hơn về các thách thức của họ. Cách tiếp cận cá nhân hóa này không chỉ giúp tôi chuẩn bị cho các buổi trình bày trước khách hàng mà còn mang lại một khung học tập để liên tục nâng cao năng lực kỹ thuật của mình. Với AWS SimuLearn, tôi có thể nhanh chóng nâng cao kỹ năng trong các lĩnh vực chưa quen thuộc và tự tin thiết kế các giải pháp phù hợp với mục tiêu kinh doanh, khiến tôi trở thành một Kiến trúc sư Giải pháp hiệu quả hơn.
+Một công ty dịch vụ tài chính hàng đầu toàn cầu đã quản lý việc tuân thủ quy định với nhiều nhà cung cấp truyền thông điện tử. Cách tiếp cận này đã lãng phí thời gian và tiền bạc trong khi hạn chế khả năng trích xuất thông tin từ dữ liệu truyền thông. 
 
-## Câu chuyện của Kattie: Học theo ngành nghề
+Nền tảng doanh nghiệp [Smarsh](https://aws.amazon.com/marketplace/seller-profile?id=c5655549-02c5-4841-8048-6b42650aaafc) đã hợp nhất giải pháp của công ty họ và chuyển đổi các hoạt động tuân thủ (compliance). Bằng cách chuyển sang một nhà cung cấp (vendor) duy nhất, công ty đã đạt được những lợi ích đáng kể về tuân thủ (compliance), CNTT và đội điều tra.
 
-Tôi có nền tảng trong việc thiết kế và phát triển các công cụ phần mềm cho các nhóm nghiên cứu trong lĩnh vực Y tế và Khoa học Đời sống (HCLS). Mặc dù tôi quen thuộc với nhiều ngôn ngữ lập trình, kiến thức của tôi về điện toán đám mây chỉ ở mức của [AWS Certified Solutions Architect – Associate](https://aws.amazon.com/certification/certified-solutions-architect-associate/). Tôi muốn mở rộng kiến thức về cách AWS có thể được áp dụng trong ngành HCLS, đồng thời có hiểu biết sâu hơn về các dịch vụ AWS, trường hợp sử dụng, và tích hợp với phần mềm bên thứ ba.
+Việc triển khai đã mang lại kết quả ấn tượng:
 
-Kế hoạch học tập [AWS SimuLearn: Healthcare Learning Plan](https://explore.skillbuilder.aws/learn/public/learning_plan/view/2239/aws-simulearn-Healthcare) cung cấp một loạt các vấn đề kinh doanh giúp tôi có cơ hội thử nghiệm nhiều dịch vụ AWS khác nhau để tìm ra các giải pháp kỹ thuật phù hợp. Ví dụ, tôi đã thử nghiệm các dịch vụ liên quan đến tuân thủ HIPAA với [AWS Config](https://aws.amazon.com/config/) và [AWS Systems Manager](https://aws.amazon.com/systems-manager/), cùng với AI bằng [Amazon SageMaker](https://aws.amazon.com/sagemaker/). Ngoài ra, tôi cũng khám phá xử lý theo lô, phân tích, cơ sở dữ liệu và lưu trữ, bảng điều khiển với dữ liệu thời gian thực, IoT, và nhiều hơn nữa.
+- Tiết kiệm chi phí hàng năm 7 triệu đô la thông qua việc hợp nhất nhà cung cấp
+- Cải thiện đáng kể hiệu quả điều tra
+- Giảm 70% cảnh báo dương tính giả (false positive) thông qua giám sát được hỗ trợ bởi AI (AI-powered).
+- Mở rộng phạm vi phủ sóng ngôn ngữ nước ngoài cho công tác tuân thủ (compliance) toàn cầu.
+- Các cơ hội doanh thu mới từ những hiểu biết sâu sắc về dữ liệu truyền thông.
 
-Mỗi kế hoạch học tập có thể được bắt đầu bằng chế độ Open Dialogue hoặc chế độ Scripted. Ban đầu, tôi chọn Scripted vì nó ít thử thách hơn, nhưng sau khi xem qua một số cuộc hội thoại mô phỏng khác nhau, tôi cảm thấy tự tin hơn với chế độ Open Dialogue. Chế độ này cho phép tôi rèn luyện kỹ năng mềm thông qua các cuộc hội thoại khách hàng tương tác thời gian thực.
+Tìm thêm thông tin chi tiết và chiến lược trong webinar [Risk management analytics: Turning uncertainty into opportunity](https://pages.awscloud.com/awsmp-gim-lurg-webinar-fin-risk-management-innovation.html?trk=47c2d705-a99b-466f-8acc-d379440414db&sc_channel=el_blog&source=webinar) để giúp chuyển đổi hoạt động quản lý rủi ro của bạn.
 
-Trong quá trình đó, AWS SimuLearn cung cấp các gợi ý hữu ích để định hướng cuộc trò chuyện, cũng như một sơ đồ kiến trúc chưa hoàn thiện để tôi mở rộng trong cuộc thảo luận với khách hàng. Ngoài ra, tôi còn được đặt các câu hỏi về những dịch vụ khác nhau để nâng cao trải nghiệm học tập.
+### Chuyển đổi hoạt động giao dịch phái sinh với Numerix
 
-## Bắt đầu với AWS SimuLearn
+Fortitude Re đã xây dựng một hệ thống quản lý rủi ro toàn diện với Numerix trải rộng trên nhiều loại tài sản. Bắt đầu chỉ với ba nhân viên quản lý niên kim biến đổi (variable annuities), họ cần các phân tích vượt xa khả năng nội bộ của mình.
 
-Thông qua các cuộc hội thoại mô phỏng với khách hàng và học tập thực hành, AWS SimuLearn đã giúp ba chuyên gia giai đoạn đầu này trong hành trình phát triển của họ. Họ nhận được phản hồi theo thời gian thực để cải thiện kỹ năng mềm và kỹ năng kỹ thuật, đồng thời có kinh nghiệm trong môi trường console trực tiếp.
+"Bằng cách đưa (dữ liệu) nợ phải trả (liability) vào Numerix, chúng tôi có thể tạo ra một hàng rào phòng hộ (hedge) chặt chẽ hơn thay vì phòng hộ rủi ro ngay từ ngày đầu," Craig Vogel giải thích. "Tôi có thể phòng hộ rủi ro nợ phải trả của mình kể từ lúc 3 giờ EDT và giảm sự không khớp (mismatch) với độ chính xác cao."
 
-Với hơn 200 khóa đào tạo, bao gồm các lựa chọn học tập theo vai trò hoặc theo ngành, AWS SimuLearn cung cấp cho bạn một trải nghiệm học tập cá nhân hóa. Hình thức đào tạo theo hướng trò chơi với các mô phỏng giúp các chuyên gia mới xây dựng đồng thời chuyên môn kỹ thuật và kỹ năng giao tiếp khách hàng trong môi trường không rủi ro.
+Việc triển khai đã hợp nhất các hoạt động giao dịch và đảm bảo đồng bộ hóa dữ liệu chính xác trên các bộ phận giao dịch (front office) và bộ phận trung gian (middle office). Hiện tại nhóm đã có thể truy cập dữ liệu trong ngày để nhanh chóng đánh giá vị thế (positions) và thực hiện các biện pháp phòng hộ trong suốt giờ giao dịch.
 
-Sẵn sàng bắt đầu sự nghiệp đám mây của bạn? Hãy bắt đầu với [AWS SimuLearn: Cloud Practitioner Learning Plan](https://explore.skillbuilder.aws/learn/public/learning_plan/view/2226/aws-simulearn-cloud-practitioner) miễn phí và khám phá [thư viện đầy đủ các mô phỏng theo chủ đề](https://skillbuilder.aws/simulearn).
+### Tận dụng các giải pháp gốc đám mây để tăng cường bảo mật cơ sở hạ tầng
 
-Để tìm hiểu thêm về những cập nhật mới nhất trong AWS SimuLearn, hãy xem bài viết: [Introducing AWS SimuLearn: Generative AI Practitioner](https://aws.amazon.com/blogs/training-and-certification/introducing-aws-simulearn-generative-ai-practitioner/).
+Giải pháp gốc đám mây của Numerix trên [Amazon Web Services (AWS)](https://aws.amazon.com/) đã loại bỏ nhu cầu của Fortitude Re trong việc thuê 15-20 người để quản lý cơ sở hạ tầng. Cách tiếp cận Phần mềm dưới dạng Dịch vụ (SaaS) cung cấp một môi trường an toàn, được kiểm soát với các tiêu chuẩn bảo mật nghiêm ngặt phù hợp với các yêu cầu riêng của Fortitude Re. 
+
+Việc cung cấp SaaS đơn khách thuê (single-tenant SaaS) cung cấp các biện pháp kiểm soát nâng cao thông qua ma trận phê duyệt (approval matrix) hai người để xác minh giao dịch. Hệ thống này duy trì các quyền nghiêm ngặt và ngăn chặn việc thao túng trái phép, để đảm bảo tính toàn vẹn và bảo mật dữ liệu.
+
+"Từ quan điểm của họ, họ đang có được trải nghiệm người dùng liền mạch và vô cùng mạnh mẽ (immensely powerful)," Arsen Arutyunov giải thích. "Vì vậy, đối với họ, đó chỉ là một trải nghiệm tinh gọn (streamlined). Đó thực sự là mục tiêu của chúng tôi."
+
+Xem [Risk management analytics: Turning uncertainty into opportunity](https://pages.awscloud.com/awsmp-gim-lurg-webinar-fin-risk-management-innovation.html?trk=47c2d705-a99b-466f-8acc-d379440414db&sc_channel=el_blog&source=webinar) để tìm hiểu các chiến lược từ Fortitude Re và Numerix nhằm nâng cao hoạt động rủi ro của tổ chức bạn đồng thời giảm chi phí cơ sở hạ tầng.
+
+## Quan điểm của chuyên gia về chuyển đổi rủi ro
+
+Webinar có những chia sẻ từ các chuyên gia đã định hướng thành công quá trình hiện đại hóa quản lý rủi ro. Cuộc thảo luận của họ đã tiết lộ những bài học quý giá cho các tổ chức đang bắt tay vào những hành trình tương tự:
+
+- Vai trò quan trọng của sự hỗ trợ từ ban điều hành đối với các sáng kiến chuyển đổi
+- Các chiến lược thực tế để cân bằng đổi mới với tuân thủ quy định
+- Các phương pháp để duy trì bảo mật dữ liệu trong khi nâng cao khả năng phân tích
+- Các phương pháp tiếp cận để chứng minh giá trị của quản lý rủi ro
+
+Các chuyên gia này đã chia sẻ những quan điểm thẳng thắn về những thách thức và các yếu tố thành công để triển khai các giải pháp quản lý rủi ro có sẵn trong [AWS Marketplace](https://aws.amazon.com/marketplace/).
+
+## Kết luận
+
+Các tổ chức dịch vụ tài chính có được những lợi thế đáng kể khi họ hiện đại hóa các năng lực (capabilities) về rủi ro (risk) của mình. Các nghiên cứu tình huống của Toyota Financial Services Italia với SAS, một tổ chức tài chính toàn cầu với Smarsh, và Fortitude Re với Numerix đã chứng minh sức mạnh của phân tích. Các tổ chức này đã tập trung hóa dữ liệu, triển khai phân tích thời gian thực và tự động hóa các quy trình chính. Họ đã giảm chi phí đồng thời cải thiện chất lượng quyết định và có được cái nhìn rõ ràng (visibility) hơn về hiện trạng phơi nhiễm rủi ro (risk exposures). Quan trọng nhất, họ đã chuyển đổi quản lý rủi ro thành một chức năng chiến lược tạo ra giá trị kinh doanh.
+
+[AWS Marketplace](https://aws.amazon.com/marketplace/) cung cấp quyền truy cập vào những giải pháp quản lý rủi ro mạnh mẽ này và nhiều giải pháp khác, cho phép các tổ chức tài chính triển khai các công nghệ đã được chứng minh bằng cách sử dụng quy trình mua sắm hợp lý.
+
+## Giới thiệu về AWS Marketplace
+
+[AWS Marketplace](https://aws.amazon.com/marketplace) là một danh mục kỹ thuật số của phần mềm, dịch vụ và dữ liệu của bên thứ ba, giúp đơn giản hóa cách các tổ chức dịch vụ tài chính và bảo hiểm tìm kiếm, mua, triển khai và quản lý phần mềm trên AWS. Với hơn 20.000 gói cung cấp (offerings) của đối tác trên hơn 70 danh mục được triển khai tại 31 khu vực trên toàn cầu, AWS Marketplace giúp khách hàng chuyển đổi chuỗi cung ứng phần mềm của họ.
+
+AWS Marketplace cung cấp các tùy chọn giá linh hoạt bao gồm dùng thử miễn phí, trả tiền theo mức sử dụng và các chương trình giảm giá cho doanh nghiệp. Nhiều tùy chọn triển khai giúp tùy chỉnh việc cung cấp phần mềm để phù hợp với các chính sách bảo mật và điều khoản cấp phép. 
+
+Theo [Forrester](https://aws.amazon.com/blogs/awsmarketplace/total-economic-impact-aws-marketplace-commissioned-study-forrester-consulting/?trk=07194954-8b60-4856-aeff-ec37b897c4d6&sc_channel=el_blog&source=content), việc tìm kiếm, mua và triển khai các giải pháp thông qua AWS Marketplace mất khoảng một nửa thời gian so với các kênh bán hàng khác.
+
+Truy cập [Financial Services Solutions in AWS Marketplace](https://aws.amazon.com/marketplace/solutions/financial-services?ref_=mp_nav_solutions_fin) để khám phá nhiều giải pháp dịch vụ tài chính và bảo hiểm như các giải pháp đã được thảo luận từ [Numerix](https://aws.amazon.com/marketplace/seller-profile?id=seller-pzkzz32aac7qy), [SAS](https://aws.amazon.com/marketplace/seller-profile?id=304bf786-2bd9-4c7c-ae65-8564a4debd6a), và [Smarsh](https://aws.amazon.com/marketplace/seller-profile?id=c5655549-02c5-4841-8048-6b42650aaafc).
+
+Xem [Risk management analytics: Turning uncertainty into opportunity](https://pages.awscloud.com/awsmp-gim-lurg-webinar-fin-risk-management-innovation.html?trk=47c2d705-a99b-466f-8acc-d379440414db&sc_channel=el_blog&source=webinar) để tìm hiểu thêm về các chủ đề này hoặc khám phá thêm thông tin chi tiết từ cuộc thảo luận của hội đồng.
+
+## Về tác giả
+
+![Shaheen Kanda](/images/blog-1/Shaheen_2-150x150.jpg)
+
+Shaheen Kanda hiện là Lãnh đạo mảng Quan hệ Đối tác Công nghệ Dịch vụ Tài chính và Marketplace Liên ngành (Financial Services Technology Partnerships and Cross Industry Marketplace Leader) tại [AWS](https://aws.amazon.com/). Cô làm việc với các tổ chức dịch vụ tài chính để xác định và triển khai các giải pháp đổi mới nhằm giải quyết những thách thức đặc thù của họ, đặc biệt tập trung vào quản lý rủi ro, tuân thủ và chuyển đổi số. Trước khi gia nhập AWS, cô đã sáng lập hai công ty khởi nghiệp FinTech (Tài chính Công nghệ) và có một thập kỷ làm việc với tư cách là chuyên gia ngân hàng mảng tài chính đòn bẩy (leveraged finance) tại Thành phố New York.

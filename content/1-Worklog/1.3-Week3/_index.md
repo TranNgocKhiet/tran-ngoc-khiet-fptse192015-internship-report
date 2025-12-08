@@ -1,30 +1,26 @@
 ---
 title: "Week 3 Worklog"
-weight: 1
+weight: 3
 chapter: false
 pre: " <b> 1.3. </b> "
 ---
 
 ### Week 3 Objectives:
-
-* Watch videos from series First Cloud Journey Bootcamp - 2025 in Youtube Module 5.
+* Understand Database fundamentals (SQL vs NoSQL).
+* Learn JavaScript/Node.js basics (alternative for Lambda).
+* Deep dive into S3 Storage classes.
 
 ### Tasks to be carried out this week:
-| Day | Task                                                                                                                                                                                                                                        | Start Date | Completion Date | Reference Material                                                                                                                                         |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- | --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 2   | - Watch theory videos of **<i>Module 5</i>** <br> - Watch videos, read documents of **<i>Lab 18</i>** and **<i>Lab 22</i>** <br> - **Practice:** <br>&emsp; + Config Security Hub <br>&emsp; + Create and test Lambda Function              | 09/22/2025 | 09/22/2025      | <https://www.youtube.com/playlist?list=PLahN4TLWtox2a3vElknwzU_urND8hLn1i> <br> <https://000018.awsstudygroup.com> <br> <https://000022.awsstudygroup.com> |
-| 3   | - Watch videos, read documents of **<i>Lab 27</i>** and **<i>Lab 28</i>** <br> - **Practice:** <br>&emsp; + Create, manage Tag and Resource Group <br>&emsp; + Config Policies for Role <br>&emsp; + Test access EC2 with Tag through IAM   | 09/23/2025 | 09/23/2025      | <https://www.youtube.com/playlist?list=PLahN4TLWtox2a3vElknwzU_urND8hLn1i> <br> <https://000027.awsstudygroup.com> <br> <https://000028.awsstudygroup.com> |
-| 4   | - Watch videos, read documents of **<i>Lab 30</i>** and **<i>Lab 33</i>** <br> - **Practice:** <br>&emsp; + Upload and share encrypted data with S3 Bucket <br>&emsp; + Create and query Event History with Athena through CloudTrail table | 09/24/2025 | 08/24/2025      | <https://www.youtube.com/playlist?list=PLahN4TLWtox2a3vElknwzU_urND8hLn1i> <br> <https://000030.awsstudygroup.com> <br> <https://000033.awsstudygroup.com> |
-| 5   | - Watch videos, read documents of **<i>Lab 44</i>** and **<i>Lab 48</i>** <br> - **Practice:** <br>&emsp; + Config IAM Group, User and Role <br>&emsp; + Config Access Key and use IAM Role to access                                       | 09/25/2025 | 08/25/2025      | <https://www.youtube.com/playlist?list=PLahN4TLWtox2a3vElknwzU_urND8hLn1i> <br> <https://000044.awsstudygroup.com> <br> <https://000048.awsstudygroup.com> |
-| 6   | - Learn Coursera course Being a researcher (in Information Science and Technology) và Advanced Writing                                                                                                                                      | 09/26/2025 | 08/26/2025      | <https://www.coursera.org/learn/being-researcher> <br> <https://www.coursera.org/learn/advanced-writing?specialization=academic-english>                   |
-
+| Day | Task | Start Date | Completion Date | Reference Material |
+| --- | --- | --- | --- | --- |
+| 2   | - Watch **theory** videos on **<i>JavaScript/Node.js</i>** <br> - **Practice:** <br>&emsp; + Install Node.js on local machine or EC2 <br>&emsp; + Run a simple "Hello World" server | 09/22/2025 | 09/22/2025 | <https://www.udemy.com/course/nodejs-the-complete-guide/> |
+| 3   | - Watch videos of **<i>Module 4 (Storage)</i>** <br> - **Practice:** <br>&emsp; + Create S3 Bucket <br>&emsp; + Upload/Download objects via Console | 09/23/2025 | 09/23/2025 | <https://www.youtube.com/playlist?list=PLahN4TLWtox2a3vElknwzU_urND8hLn1i> <br> |
+| 4   | - Watch videos and practice labs on **<i>S3 Versioning & Lifecycle</i>** <br> - **Practice:** <br>&emsp; + Enable Bucket Versioning <br>&emsp; + Set up a lifecycle rule to move objects to Glacier | 09/24/2025 | 09/24/2025 | <https://www.youtube.com/playlist?list=PLahN4TLWtox2a3vElknwzU_urND8hLn1i> <br> <https://000057.awsstudygroup.com/vi/8-versioning/> |
+| 5   | - Learn about **<i>Databases (DynamoDB)</i>** <br> - **Practice:** <br>&emsp; + Create a simple DynamoDB table (Lab 60) <br>&emsp; + Add items to the table manually | 09/25/2025 | 09/25/2025 | <https://www.youtube.com/playlist?list=PLahN4TLWtox2a3vElknwzU_urND8hLn1i> <br> <https://000060.awsstudygroup.com/vi/> |
+| 6   | - Review **<i>Networking Protocols</i>** (HTTP vs MQTT) <br> - **Practice:** <br>&emsp; + Research MQTT protocol basics (essential for IoT) | 09/26/2025 | 09/26/2025 | <https://mqtt.org/> <br>  |
 
 ### Week 3 Achievements:
-
-- Know how to enable and config Security Hub
-- Know how to create and use Lambda Function
-- Know how to mange resource with Tag and Resource Group
-- Know how to attach Policies to Role
-- Know how to share encrypted data through S3 Bucket
-- Know how to query Event History with Athena through Cloudtrail table
-- Know how to mange User through Group, Role and Access key
+* Ran basic Node.js applications.
+* Managed S3 buckets with Versioning and Lifecycle policies.
+* Created and populated a NoSQL DynamoDB table.
+* Understood the difference between HTTP and MQTT protocols.
