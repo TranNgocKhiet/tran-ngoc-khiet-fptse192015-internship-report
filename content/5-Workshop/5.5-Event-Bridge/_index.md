@@ -1,75 +1,19 @@
 ---
-title : "EventBridge,Lambda and SNS set up"
+title : "EventBridge and Lambda Setup"
 weight : 5
 chapter : false
 pre : " <b> 5.5. </b> "
 ---
 
 #### Overview
-This section will guide you through setting up **Amazon EventBridge**, **Lambda** as well as **SNS** to route and react to events happening in **DynamoDB** and data anomalies.
+This section will guide you through setting up **Amazon EventBridge** and **Lambda** to route and react to events happening in **DynamoDB**. For SNS setup (used to send alerts), please refer to section **5.6 - SNS Setup**.
 
-
-#### Create SNS
-
-![sns.png](/images/5-Workshop/5.5-Event-Bridge/sns.png)
-
-1. Go to **Amazon SNS** Console
-2. Select **Topic** and name your **Topic**
-{{% notice warning %}}
-DON'T TURN ON ENCRYPTION
-{{% /notice %}}
-
-![subcription.png](/images/5-Workshop/5.5-Event-Bridge/subcription.png)
-
-After creating the topic, create one or more subscriptions so alerts are delivered to recipients or endpoints (in this case, **email**)
-
-4. Select **Subscription** in **SNS**
-
-5. Choose **email** protocol, select the **topic** you just created, and write down the email you want to test.
-
-
-![email.png](/images/5-Workshop/5.5-Event-Bridge/email.png)
-
-Email endpoints require confirmation before they receive messages.
-
----
-
-#### Create a rule and attach it to the SNS topic
-
-![rule_1.png](/images/5-Workshop/5.5-Event-Bridge/rule_1.png)
-
-1. Go to **Amazon EventBridge** Console 
-2. Select **Rules** and create a new **rule**
-
-![rule_2.png](/images/5-Workshop/5.5-Event-Bridge/rule_2.png)
-
-3. In step 2, we define the event pattern by choosing **Custom pattern**. Event patterns can match on `source`, `detail-type`.
-
-4. Use the following Json:
-
-```
-{
-  "source": ["com.smartoffice.iot"],
-  "detail-type": ["sensor.anomaly"]
-}
-```
-
-
-![rule_3.png](/images/5-Workshop/5.5-Event-Bridge/rule_3.png)
-
-5. In step 3, Select the target for the rule — choose the **SNS topic** you created earlier.
-
-![rule_4.png](/images/5-Workshop/5.5-Event-Bridge/rule_4.png)
-
-After creation, **EventBridge** will forward matching events to the **SNS topic** which will deliver to its subscriptions.
-
----
 
 #### Create AutomationSetup (Lambda + rules)
 
-![lambda_setup.png](/images/5-Workshop/5.5-Event-Bridge/lambda_setup.png)
-
 1. Create a Lambda function (**AutomationSetup**) whose job is to read automation configuration from **DynamoDB** and define two **EventBridge rules**: one to turn automation ON and another to turn it OFF.
+
+![lambda_setup.png](/images/5-Workshop/5.5-Event-Bridge/lambda_setup.png)
 
 ```
 import boto3
@@ -152,24 +96,25 @@ def lambda_handler(event, context):
     
     return {'statusCode': 200, 'body': 'Processed'}
 ```
-![trigger_1.png](/images/5-Workshop/5.5-Event-Bridge/trigger_1.png)
 
 2. Go to **Configuration** --> **Trigger** to configure the Lambda **triggers** — this will be used to invoke the lambda whenever there is any new stream from **DynamoDB**
 
-![trigger_2.png](/images/5-Workshop/5.5-Event-Bridge/trigger_2.png)
+![trigger_1.png](/images/5-Workshop/5.5-Event-Bridge/trigger_1.png)
 
 3. Select **Add Trigger**, Select **DynamoDB** and choose the table that contains rooms's config.
 
-![environment_var.png](/images/5-Workshop/5.5-Event-Bridge/environment_var.png)
+![trigger_2.png](/images/5-Workshop/5.5-Event-Bridge/trigger_2.png)
 
 4. In **Configuration** --> **Environment Variable**, add this key-value pair (replace accordingly with your personal information)
 
-![setup_role.png](/images/5-Workshop/5.5-Event-Bridge/setup_role.png)
+![environment_var.png](/images/5-Workshop/5.5-Event-Bridge/environment_var.png)
 
 5. Select **Configuration** -->**Role name**, and make sure you have those 3 policies: 
 - **AutomationSetup_RuleExecuiton** for creating **rules** in **EventBridge** 
 - **AWSLambdaBasicExecutionRole** for basic lambda execution permissions 
 - **AWSLambdaDynamoDBExecutionRole** for interacting with **DynamoDB**.
+
+![setup_role.png](/images/5-Workshop/5.5-Event-Bridge/setup_role.png)
 
 
 ```
@@ -239,17 +184,18 @@ Only for **AutomationSetup_RuleExecuiton**, select **Add permissions** --> **Cre
 ```
 **AWSLambdaDynamoDBExecutionRole**
 
-![2rule.png](/images/5-Workshop/5.5-Event-Bridge/2rule.png)
-
 These two **rules** correspond to the ON and OFF automation behaviours.
+
+![2rule.png](/images/5-Workshop/5.5-Event-Bridge/2rule.png)
 
 ---
 
 #### Create AutomationHandler (Lambda to forward events to AWS IoT Core)
 
+1. Create the **AutomationHandler** Lambda to receives events from **EventBridge** and forwards them to **AWS IoT Core**.
+
 ![handler.png](/images/5-Workshop/5.5-Event-Bridge/handler.png)
 
-1. Create the **AutomationHandler** Lambda to receives events from **EventBridge** and forwards them to **AWS IoT Core**.
 ```
 import boto3
 import json
@@ -308,16 +254,15 @@ def lambda_handler(event, context):
         raise e
 ```
 
-![handler_policy.png](/images/5-Workshop/5.5-Event-Bridge/handler_policy.png)
+2. Go to **Configuration** --> **Permissions** and add resource-based policy. (To allow **EventBridge** to access this lambda function)
 
+![handler_policy.png](/images/5-Workshop/5.5-Event-Bridge/handler_policy.png)
 
 ![handler_policy_detail.png](/images/5-Workshop/5.5-Event-Bridge/handler_policy_detail.png)
 
-2. Go to **Configuration** --> **Permissions** and add these 2 resource-based policies. (To allow **EventBridge** to access this lambda function)
+3. Add the 2 **rules** created by **AutomationSetup** as a trigger for this Lambda.
 
 ![handler_trigger.png](/images/5-Workshop/5.5-Event-Bridge/handler_trigger.png)
-
-3. Add the 2 **rules** created by **AutomationSetup** as a trigger for this Lambda.
 
 ---
 
