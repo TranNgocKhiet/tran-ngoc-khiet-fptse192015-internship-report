@@ -45,7 +45,7 @@ Hệ thống Smart Office áp dụng kiến trúc AWS hoàn toàn serverless đ�
 - **Sensor Hubs**: Các thiết bị hỗ trợ IoT (ESP32) trong mỗi phòng thu thập dữ liệu từ xa (nhiệt độ, độ ẩm, ánh sáng) và truyền đến **AWS IoT Core** vài phút một lần.
 - **Data Ingestion (Tiếp nhận dữ liệu)**: Các quy tắc **AWS IoT Core** kích hoạt **HandleTelemetry Lambda**, chức năng này xác thực dữ liệu và lưu vào **Amazon DynamoDB**.
 - **Configuration Management (Quản lý cấu hình)**: Quản trị viên sử dụng bảng điều khiển để cập nhật cài đặt phòng. **RoomConfigHandler Lambda** cập nhật DynamoDB và đẩy các thay đổi xuống thiết bị qua IoT Core Shadows hoặc MQTT.
-- **User Interaction (Tương tác người dùng)**: **Bảng điều khiển Web Next.js** (trên **S3/CloudFront**) trực quan hóa dữ liệu thời gian thực và cung cấp giao diện điều khiển.
+- **User Interaction (Tương tác người dùng)**: **Bảng điều khiển Web** (trên **S3/CloudFront**) trực quan hóa dữ liệu thời gian thực và cung cấp giao diện điều khiển.
 - **User Authentication (Xác thực người dùng)**: **Amazon Cognito** đảm bảo chỉ các thành viên phòng lab được ủy quyền mới có thể đăng nhập và truy cập dữ liệu phòng nhạy cảm.
 - **Monitoring & Reliability (Giám sát & Độ tin cậy)**: **Amazon CloudWatch** theo dõi hiệu suất hệ thống, đảm bảo tính sẵn sàng cao và khắc phục sự cố nhanh chóng.
 
@@ -101,7 +101,7 @@ Hoặc tải [tệp ước tính ngân sách](/file/proposal/smart_office_pricin
 
 #### Chiến lược giảm thiểu
 - **Kết nối**: Triển khai logic thử lại (retry) trên thiết bị biên và lưu đệm cục bộ.
-- **Chi phí**: Cấu hình AWS Budgets để cảnh báo khi chi tiêu vượt quá $1.00.
+- **Chi phí**: Cấu hình AWS Budgets để cảnh báo khi chi tiêu vượt quá $5.00.
 - **Bảo mật**: Thực thi các chính sách IAM nghiêm ngặt (Đặc quyền Tối thiểu) và yêu cầu xác thực cho tất cả truy cập API qua Cognito.
 - **Độ tin cậy**: Sử dụng CloudWatch Logs để truy vết lỗi trong thực thi Lambda ngay lập tức.
 

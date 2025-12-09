@@ -44,7 +44,7 @@ The Smart Office system adopts a fully serverless AWS architecture optimized for
 - **Sensor Hubs**: IoT-enabled devices (ESP32) in each room collect telemetry (temperature, humidity, light) and transmit it to **AWS IoT Core** every few minutes.
 - **Data Ingestion**: **AWS IoT Core** rules trigger the **HandleTelemetry Lambda**, which validates data and persists it to **Amazon DynamoDB**.
 - **Configuration Management**: Administrators use the dashboard to update room settings. The **RoomConfigHandler Lambda** updates DynamoDB and pushes changes to devices via IoT Core Shadows or MQTT.
-- **User Interaction**: The **Next.js Web Dashboard** (on **S3/CloudFront**) visualizes real-time data and provides a control interface.
+- **User Interaction**: The **Web Dashboard** (on **S3/CloudFront**) visualizes real-time data and provides a control interface.
 - **User Authentication**: **Amazon Cognito** ensures only authorized lab members can log in and access sensitive room data.
 - **Monitoring & Reliability**: **Amazon CloudWatch** tracks system performance, ensuring high availability and rapid troubleshooting.
 
@@ -100,7 +100,7 @@ Or you can download the [Budget Estimation File](/file/proposal/smart_office_pri
 
 #### Mitigation Strategies
 - **Connectivity**: Implement retry logic on edge devices and local buffering.
-- **Cost**: Configure AWS Budgets to alert when spending exceeds $1.00.
+- **Cost**: Configure AWS Budgets to alert when spending exceeds $5.00.
 - **Security**: Enforce strict IAM policies (Least Privilege) and require authentication for all API access via Cognito.
 - **Reliability**: Use CloudWatch Logs to trace errors in Lambda execution immediately.
 

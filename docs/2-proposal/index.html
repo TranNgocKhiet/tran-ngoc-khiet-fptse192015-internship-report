@@ -15,21 +15,21 @@
     <title>Proposal :: Internship Report</title>
 
     
-    <link href="../css/nucleus.css?1765263282" rel="stylesheet">
-    <link href="../css/fontawesome-all.min.css?1765263282" rel="stylesheet">
-    <link href="../css/hybrid.css?1765263282" rel="stylesheet">
-    <link href="../css/featherlight.min.css?1765263282" rel="stylesheet">
-    <link href="../css/perfect-scrollbar.min.css?1765263282" rel="stylesheet">
-    <link href="../css/auto-complete.css?1765263282" rel="stylesheet">
-    <link href="../css/atom-one-dark-reasonable.css?1765263282" rel="stylesheet">
-    <link href="../css/theme.css?1765263282" rel="stylesheet">
-    <link href="../css/hugo-theme.css?1765263282" rel="stylesheet">
+    <link href="../css/nucleus.css?1765263531" rel="stylesheet">
+    <link href="../css/fontawesome-all.min.css?1765263531" rel="stylesheet">
+    <link href="../css/hybrid.css?1765263531" rel="stylesheet">
+    <link href="../css/featherlight.min.css?1765263531" rel="stylesheet">
+    <link href="../css/perfect-scrollbar.min.css?1765263531" rel="stylesheet">
+    <link href="../css/auto-complete.css?1765263531" rel="stylesheet">
+    <link href="../css/atom-one-dark-reasonable.css?1765263531" rel="stylesheet">
+    <link href="../css/theme.css?1765263531" rel="stylesheet">
+    <link href="../css/hugo-theme.css?1765263531" rel="stylesheet">
     
-    <link href="../css/theme-workshop.css?1765263282" rel="stylesheet">
+    <link href="../css/theme-workshop.css?1765263531" rel="stylesheet">
     
     
 
-    <script src="../js/jquery-3.3.1.min.js?1765263282"></script>
+    <script src="../js/jquery-3.3.1.min.js?1765263531"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -88,14 +88,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="../js/lunr.min.js?1765263282"></script>
-<script type="text/javascript" src="../js/auto-complete.js?1765263282"></script>
+<script type="text/javascript" src="../js/lunr.min.js?1765263531"></script>
+<script type="text/javascript" src="../js/auto-complete.js?1765263531"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/tranngockhiet.github.io\/tran-ngoc-khiet-fptse192015-internship-report\/";
     
 </script>
-<script type="text/javascript" src="../js/search.js?1765263282"></script>
+<script type="text/javascript" src="../js/search.js?1765263531"></script>
  
   </div>
 
@@ -949,7 +949,7 @@
 <li><strong>Sensor Hubs</strong>: IoT-enabled devices (ESP32) in each room collect telemetry (temperature, humidity, light) and transmit it to <strong>AWS IoT Core</strong> every few minutes.</li>
 <li><strong>Data Ingestion</strong>: <strong>AWS IoT Core</strong> rules trigger the <strong>HandleTelemetry Lambda</strong>, which validates data and persists it to <strong>Amazon DynamoDB</strong>.</li>
 <li><strong>Configuration Management</strong>: Administrators use the dashboard to update room settings. The <strong>RoomConfigHandler Lambda</strong> updates DynamoDB and pushes changes to devices via IoT Core Shadows or MQTT.</li>
-<li><strong>User Interaction</strong>: The <strong>Next.js Web Dashboard</strong> (on <strong>S3/CloudFront</strong>) visualizes real-time data and provides a control interface.</li>
+<li><strong>User Interaction</strong>: The <strong>Web Dashboard</strong> (on <strong>S3/CloudFront</strong>) visualizes real-time data and provides a control interface.</li>
 <li><strong>User Authentication</strong>: <strong>Amazon Cognito</strong> ensures only authorized lab members can log in and access sensitive room data.</li>
 <li><strong>Monitoring &amp; Reliability</strong>: <strong>Amazon CloudWatch</strong> tracks system performance, ensuring high availability and rapid troubleshooting.</li>
 </ul>
@@ -1012,7 +1012,7 @@ Or you can download the <a href="../file/proposal/smart_office_pricing_caculator
 <h4 id="mitigation-strategies">Mitigation Strategies</h4>
 <ul>
 <li><strong>Connectivity</strong>: Implement retry logic on edge devices and local buffering.</li>
-<li><strong>Cost</strong>: Configure AWS Budgets to alert when spending exceeds $1.00.</li>
+<li><strong>Cost</strong>: Configure AWS Budgets to alert when spending exceeds $5.00.</li>
 <li><strong>Security</strong>: Enforce strict IAM policies (Least Privilege) and require authentication for all API access via Cognito.</li>
 <li><strong>Reliability</strong>: Use CloudWatch Logs to trace errors in Lambda execution immediately.</li>
 </ul>
@@ -1652,19 +1652,19 @@ Or you can download the <a href="../file/proposal/smart_office_pricing_caculator
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="../js/clipboard.min.js?1765263282"></script>
-    <script src="../js/perfect-scrollbar.min.js?1765263282"></script>
-    <script src="../js/perfect-scrollbar.jquery.min.js?1765263282"></script>
-    <script src="../js/jquery.sticky.js?1765263282"></script>
-    <script src="../js/featherlight.min.js?1765263282"></script>
-    <script src="../js/highlight.pack.js?1765263282"></script>
+    <script src="../js/clipboard.min.js?1765263531"></script>
+    <script src="../js/perfect-scrollbar.min.js?1765263531"></script>
+    <script src="../js/perfect-scrollbar.jquery.min.js?1765263531"></script>
+    <script src="../js/jquery.sticky.js?1765263531"></script>
+    <script src="../js/featherlight.min.js?1765263531"></script>
+    <script src="../js/highlight.pack.js?1765263531"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="../js/modernizr.custom-3.6.0.js?1765263282"></script>
-    <script src="../js/learn.js?1765263282"></script>
-    <script src="../js/hugo-learn.js?1765263282"></script>
+    <script src="../js/modernizr.custom-3.6.0.js?1765263531"></script>
+    <script src="../js/learn.js?1765263531"></script>
+    <script src="../js/hugo-learn.js?1765263531"></script>
 
-    <link href="../mermaid/mermaid.css?1765263282" rel="stylesheet" />
-    <script src="../mermaid/mermaid.js?1765263282"></script>
+    <link href="../mermaid/mermaid.css?1765263531" rel="stylesheet" />
+    <script src="../mermaid/mermaid.js?1765263531"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
