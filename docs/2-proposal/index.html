@@ -15,21 +15,21 @@
     <title>Proposal :: Internship Report</title>
 
     
-    <link href="../css/nucleus.css?1765187048" rel="stylesheet">
-    <link href="../css/fontawesome-all.min.css?1765187048" rel="stylesheet">
-    <link href="../css/hybrid.css?1765187048" rel="stylesheet">
-    <link href="../css/featherlight.min.css?1765187048" rel="stylesheet">
-    <link href="../css/perfect-scrollbar.min.css?1765187048" rel="stylesheet">
-    <link href="../css/auto-complete.css?1765187048" rel="stylesheet">
-    <link href="../css/atom-one-dark-reasonable.css?1765187048" rel="stylesheet">
-    <link href="../css/theme.css?1765187048" rel="stylesheet">
-    <link href="../css/hugo-theme.css?1765187048" rel="stylesheet">
+    <link href="../css/nucleus.css?1765263282" rel="stylesheet">
+    <link href="../css/fontawesome-all.min.css?1765263282" rel="stylesheet">
+    <link href="../css/hybrid.css?1765263282" rel="stylesheet">
+    <link href="../css/featherlight.min.css?1765263282" rel="stylesheet">
+    <link href="../css/perfect-scrollbar.min.css?1765263282" rel="stylesheet">
+    <link href="../css/auto-complete.css?1765263282" rel="stylesheet">
+    <link href="../css/atom-one-dark-reasonable.css?1765263282" rel="stylesheet">
+    <link href="../css/theme.css?1765263282" rel="stylesheet">
+    <link href="../css/hugo-theme.css?1765263282" rel="stylesheet">
     
-    <link href="../css/theme-workshop.css?1765187048" rel="stylesheet">
+    <link href="../css/theme-workshop.css?1765263282" rel="stylesheet">
     
     
 
-    <script src="../js/jquery-3.3.1.min.js?1765187048"></script>
+    <script src="../js/jquery-3.3.1.min.js?1765263282"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -88,14 +88,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="../js/lunr.min.js?1765187048"></script>
-<script type="text/javascript" src="../js/auto-complete.js?1765187048"></script>
+<script type="text/javascript" src="../js/lunr.min.js?1765263282"></script>
+<script type="text/javascript" src="../js/auto-complete.js?1765263282"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/tranngockhiet.github.io\/tran-ngoc-khiet-fptse192015-internship-report\/";
     
 </script>
-<script type="text/javascript" src="../js/search.js?1765187048"></script>
+<script type="text/javascript" src="../js/search.js?1765263282"></script>
  
   </div>
 
@@ -878,7 +878,7 @@
                     <div class="progress">
   <div class="wrapper"><nav id="TableOfContents">
   <ul>
-    <li><a href="#a-unified-aws-serverless-solution-for-real-time-weather-monitoring">A Unified AWS Serverless Solution for Real-Time Weather Monitoring</a>
+    <li><a href="#a-unified-aws-serverless-solution-for-real-time-monitoring--administration">A Unified AWS Serverless Solution for Real-Time Monitoring &amp; Administration</a>
       <ul>
         <li><a href="#1-executive-summary">1. Executive Summary</a></li>
         <li><a href="#2-problem-statement">2. Problem Statement</a></li>
@@ -916,121 +916,123 @@
 
 
 
-	<h1 id="iot-weather-platform-for-lab-research">IoT Weather Platform for Lab Research</h1>
-<h2 id="a-unified-aws-serverless-solution-for-real-time-weather-monitoring">A Unified AWS Serverless Solution for Real-Time Weather Monitoring</h2>
+	<h1 id="smart-office-management-system-for-lab-research">Smart Office Management System for Lab Research</h1>
+<h2 id="a-unified-aws-serverless-solution-for-real-time-monitoring--administration">A Unified AWS Serverless Solution for Real-Time Monitoring &amp; Administration</h2>
 <h3 id="1-executive-summary">1. Executive Summary</h3>
-<p>The Smart Office Management Console is designed base on the idea of weekly trip to AWS office at Ho Chi Minh city. It supports office with smart device like auto light, auto scensor window, auto air conditioner by collect, transmit and process data from IoT Sensor. By utilizing AWS Serverless services, data can transmit via MQTT and process every 5 minutes to support real-time monitoring, acting base on predictive weather and saving cost from unused devicesm with restricted to athenticated members via Amazon Cognito</p>
+<p>The Smart Office Management System is proposed by Team <strong>Skyscraper</strong> from <strong>FPTU HCM Campus</strong>, inspired by the operational excellence observed during a field trip to the AWS office in Ho Chi Minh City. Traditional office management lacks real-time visibility into room conditions (temperature, humidity, light) and relies heavily on manual oversight. To address this, we propose a centralized <strong>Management Console</strong> built on a fully <strong>AWS Serverless architecture</strong>. By leveraging services like AWS IoT Core, Lambda, and DynamoDB, the system collects sensor data every 2-5 minutes to support real-time monitoring and allows administrators to manage device configurations remotely. This project also serves as a strategic &ldquo;First Cloud AI Journey&rdquo;, enabling the team to bridge the gap between theoretical knowledge and practical application of Cloud Computing.</p>
 <h3 id="2-problem-statement">2. Problem Statement</h3>
 <h4 id="whats-the-problem">What’s the Problem?</h4>
-<p>Nowadays, offices require manual control for light, window, air conditioner, .etc. Most office turn on light and air conditioner thoughout there work hour (usually 8 a.m to 5 p.m), but this
-may not be necessary. For example, sunlight at 8 a.m may not be bright enough for worker to see clearly, but if the office is not very big, sunlight from 10 a.m to 3.pm can support light up very much. Additionally, in rainy season, some places have high humidity which can provide a cool environment similar to air conditioner environment. If we can control devices base on these condition, it will save energy for the world as well as money for organization.</p>
+<p>Nowadays, managing office environments in research labs requires manual intervention to check device statuses (lights, air conditioners) and environmental conditions. Managers often lack the data needed to make informed decisions about energy usage or room comfort. Operating devices on fixed schedules (e.g., 8 a.m. to 5 p.m.) without regarding actual room usage or environmental factors leads to energy waste. Furthermore, without a centralized dashboard, administrators cannot quickly detect anomalies or configure settings for multiple rooms efficiently.</p>
 <h4 id="the-solution">The Solution</h4>
-<p>The platform uses AWS IoT Core to ingest MQTT data, AWS Lambda and API Gateway for processing, DynamoDB for data storage, Amazon S3 for static website hosting and Amazon Cognito ensures secure access, AWS SNS to send notifications when system monitoring device or when supisious weather condition detect. Similar to Thingsboard and CoreIoT, users can register new devices and manage connections, though this platform operates on a smaller scale and is designed for private use. Key features include real-time monitoring, weather prediction, auto controlling and low operational costs.</p>
+<p>The platform uses <strong>AWS IoT Core</strong> to ingest MQTT data from room sensors, <strong>AWS Lambda</strong> and <strong>API Gateway</strong> for backend logic and processing, <strong>Amazon DynamoDB</strong> for storing sensor logs and room configurations, and <strong>Amazon S3</strong> combined with <strong>CloudFront</strong> to host the web management dashboard. Access is strictly secured via <strong>Amazon Cognito</strong>. <strong>Amazon EventBridge</strong> is utilized to handle scheduled automation tasks, while <strong>Amazon SNS</strong> ensures timely notifications for system alerts. This solution replaces manual tracking with a digital, real-time management console capable of monitoring multiple rooms simultaneously.</p>
 <h4 id="benefits-and-return-on-investment">Benefits and Return on Investment</h4>
-<p>The Smart Office system enhances automation, monitoring, and energy efficiency across office environments, providing a reliable platform for research, expansion, and real-world IoT application development. It serves as a foundational resource for lab members and developers to build advanced smart environment solutions, while offering a centralized system that reduces manual configuration, improves data reliability, and simplifies maintenance.</p>
-<p>Monthly operating costs are estimated at $1.81 USD, including DynamoDB ($0.09), IoT Core ($0.18), CloudFront ($1.27), CloudWatch ($0.25) and SNS ($0.02), totaling $21.72 USD per year. As IoT hardware is already deployed, there are no additional equipment expenses. The system achieves a break-even period of 6–12 months through significant time savings and reduced manual operation, offering long-term scalability and cost efficiency.</p>
+<p>The Smart Office Management System enhances operational efficiency by providing a single pane of glass for monitoring and configuration. It empowers lab managers to control devices remotely and make data-driven decisions. Beyond operational improvements, the project provides a reusable serverless foundation for future IoT research at the university.</p>
+<p>Monthly operating costs are estimated at <strong>$1.81 USD</strong>, utilizing the AWS Free Tier for services like Lambda, API Gateway, and DynamoDB. Major costs include CloudFront ($1.27) and CloudWatch ($0.25), totaling approximately <strong>$21.72 USD per year</strong>. Since the system leverages existing ESP32 hardware and sensors, there are no additional capital expenditures. The system offers immediate value through time savings and reduced management effort.</p>
 <h3 id="3-solution-architecture">3. Solution Architecture</h3>
-<p>The Smart Office system adopts a fully serverless AWS architecture optimized for cost efficiency and scalability. Data from multiple sensor hubs is transmitted to AWS IoT Core, processed by Lambda functions, and stored in DynamoDB for real-time monitoring and configuration management. EventBridge automates scheduled device actions and anomaly detection, while SNS handles system notifications. The web dashboard is hosted on S3 and delivered securely via CloudFront, with user authentication managed through Amazon Cognito. This architecture minimizes operational overhead and ensures high reliability for smart environment control.</p>
+<p>The Smart Office system adopts a fully serverless AWS architecture optimized for cost efficiency and scalability. Data from multiple sensor hubs is transmitted to AWS IoT Core, processed by Lambda functions, and stored in DynamoDB for real-time monitoring and configuration management. EventBridge automates scheduled device actions, while SNS handles system notifications. The web dashboard is hosted on S3 and delivered securely via CloudFront, with user authentication managed through Amazon Cognito. This architecture minimizes operational overhead and ensures high reliability for smart environment control.</p>
 <p><img src="../images/2-Proposal/Smart-Office-Architect-Diagram.drawio.png" alt="Smart Office Architecture"></p>
 <h4 id="aws-services-used">AWS Services Used</h4>
 <ul>
-<li><strong>AWS IoT Core</strong>: Ingests and manages MQTT data from eight smart room hubs, enabling near real-time monitoring and automation.</li>
-<li><strong>AWS Lambda</strong>: Handles sensor data processing, configuration updates, and automation triggers (four primary functions).</li>
-<li><strong>Amazon API Gateway</strong>: Connects the web client to backend services through secure RESTful APIs.</li>
-<li><strong>Amazon DynamoDB</strong>: Stores user profiles, office and room configurations, and recent sensor logs for fast access.</li>
-<li><strong>Amazon EventBridge</strong>: Triggers scheduled automation events and anomaly detection workflows.</li>
-<li><strong>Amazon SNS</strong>: Delivers alerts and notifications when anomalies or threshold events occur.</li>
-<li><strong>Amazon S3</strong>: Hosts the web dashboard and static assets for the Smart Office application.</li>
-<li><strong>Amazon CloudFront</strong>: Distributes the web dashboard globally with secure HTTPS access and low latency.</li>
-<li><strong>Amazon Cognito</strong>: Manages authentication and authorization for users interacting with the system.</li>
-<li><strong>Amazon CloudWatch</strong>: Monitors metrics and stores operational logs for debugging and performance optimization.</li>
+<li><strong>AWS IoT Core</strong>: Ingests and manages MQTT data from smart room hubs, enabling secure communication between edge devices and the cloud.</li>
+<li><strong>AWS Lambda</strong>: Executes backend logic for processing sensor telemetry, handling API requests, and executing management commands (Serverless Compute).</li>
+<li><strong>Amazon API Gateway</strong>: Exposes secure RESTful endpoints for the web dashboard to interact with the backend services.</li>
+<li><strong>Amazon DynamoDB</strong>: Provides fast, NoSQL storage for room configurations, device states, and historical sensor logs.</li>
+<li><strong>Amazon EventBridge</strong>: Orchestrates event-driven workflows, such as scheduled configuration updates or heartbeat checks.</li>
+<li><strong>Amazon SNS</strong>: Sends email notifications to administrators regarding system alerts or critical updates.</li>
+<li><strong>Amazon S3</strong>: Hosts the frontend static assets (HTML, CSS, JS) for the Management Dashboard.</li>
+<li><strong>Amazon CloudFront</strong>: Delivers the web application globally with low latency and SSL security.</li>
+<li><strong>Amazon Cognito</strong>: Manages user identity, authentication, and access control for the Management Console.</li>
+<li><strong>Amazon CloudWatch</strong>: Collects logs and metrics to monitor system health and debug Lambda executions.</li>
 </ul>
 <h4 id="component-design">Component Design</h4>
 <ul>
-<li><strong>Sensor Hubs</strong>: Each IoT-enabled room device collects environmental data (temperature, humidity, light, etc.) and sends it to <strong>AWS IoT Core</strong> every two minutes.</li>
-<li><strong>Data Ingestion</strong>: <strong>AWS IoT Core</strong> routes incoming MQTT messages to the <strong>SensorProcessor Lambda</strong>, which validates and logs the data into <strong>Amazon DynamoDB</strong>.</li>
-<li><strong>Configuration Management</strong>: The <strong>RoomConfigHandler Lambda</strong> updates room settings (auto/manual modes, thresholds, timers) in DynamoDB when users make changes through the dashboard.</li>
-<li><strong>Automation Control</strong>: <strong>AutomationSetup Lambda</strong> listens to <strong>DynamoDB Streams</strong> for configuration updates and registers automation events in <strong>Amazon EventBridge</strong>.</li>
-<li><strong>Event Handling</strong>: <strong>EventBridge</strong> triggers <strong>AutomationHandler Lambda</strong> at scheduled times or when anomalies are detected, sending alerts via <strong>Amazon SNS</strong> if needed.</li>
-<li><strong>User Interaction</strong>: The <strong>web dashboard</strong> (hosted on <strong>Amazon S3</strong> and delivered via <strong>CloudFront</strong>) allows users to view sensor data and manage configurations.</li>
-<li><strong>User Authentication</strong>: <strong>Amazon Cognito</strong> secures user access with sign-up, sign-in, and token-based authorization integrated through <strong>API Gateway</strong>.</li>
-<li><strong>Monitoring &amp; Reliability</strong>: <strong>Amazon CloudWatch</strong> collects logs and metrics from all Lambda functions, with <strong>SQS</strong> queues as DLQs to capture failed executions for debugging.</li>
+<li><strong>Sensor Hubs</strong>: IoT-enabled devices (ESP32) in each room collect telemetry (temperature, humidity, light) and transmit it to <strong>AWS IoT Core</strong> every few minutes.</li>
+<li><strong>Data Ingestion</strong>: <strong>AWS IoT Core</strong> rules trigger the <strong>HandleTelemetry Lambda</strong>, which validates data and persists it to <strong>Amazon DynamoDB</strong>.</li>
+<li><strong>Configuration Management</strong>: Administrators use the dashboard to update room settings. The <strong>RoomConfigHandler Lambda</strong> updates DynamoDB and pushes changes to devices via IoT Core Shadows or MQTT.</li>
+<li><strong>User Interaction</strong>: The <strong>Next.js Web Dashboard</strong> (on <strong>S3/CloudFront</strong>) visualizes real-time data and provides a control interface.</li>
+<li><strong>User Authentication</strong>: <strong>Amazon Cognito</strong> ensures only authorized lab members can log in and access sensitive room data.</li>
+<li><strong>Monitoring &amp; Reliability</strong>: <strong>Amazon CloudWatch</strong> tracks system performance, ensuring high availability and rapid troubleshooting.</li>
 </ul>
 <h3 id="4-technical-implementation">4. Technical Implementation</h3>
 <p><strong>Implementation Phases</strong></p>
 <ul>
-<li>Build Theory and Research AWS Services: Study core AWS components (IoT Core, Lambda, S3, API Gateway, EventBridge, CloudFront, Cognito) and learn their integration for IoT data handling and automation (7 weeks).</li>
-<li>Design Architecture and Estimate Costs: Create the serverless architecture diagram for an 8-room smart office and use the AWS Pricing Calculator to forecast monthly expenses (1 week).</li>
-<li>Develop and Optimize Solution: Implement scripts that simulate IoT sensor data to send to AWS IoT Core, build Lambda functions for automation and anomaly detection, and connect the web dashboard with API Gateway and DynamoDB (3 weeks).</li>
-<li>Testing and Deployment: Deploy all AWS services, test system reliability and rule triggers, validate message flows from IoT Core through EventBridge and Lambda, and monitor real-time results on the hosted dashboard (1 week).</li>
+<li><strong>Research &amp; Foundation (Weeks 1-7)</strong>: Study core AWS services (IoT Core, Lambda, DynamoDB, S3, API Gateway, Cognito) and understand Serverless design patterns.</li>
+<li><strong>Architecture Design &amp; Estimation (Week 8)</strong>: Finalize the solution diagram for an 8-room setup and use the AWS Pricing Calculator to forecast the budget.</li>
+<li><strong>Development (Weeks 9-11)</strong>:
+<ul>
+<li>Implement firmware/scripts for IoT data simulation.</li>
+<li>Develop Backend: Lambda functions, DynamoDB tables, and API Gateway resources using CloudFormation/CDK.</li>
+<li>Develop Frontend: Build the Management Dashboard and integrate with APIs.</li>
+</ul>
+</li>
+<li><strong>Testing &amp; Deployment (Week 12)</strong>: Perform end-to-end testing, validate data flow from sensors to the dashboard, and deploy the system to the production environment.</li>
 </ul>
 <p><strong>Technical Requirements</strong></p>
 <ul>
-<li>Sensor Hub Network: Each room includes a Sensor Hub with temperature, humidity, and light sensors, controlled by an ESP32 or similar microcontroller. Hubs send sensor data every 2 minutes via MQTT to AWS IoT Core when in auto mode.</li>
-<li>Smart Office Platform: Implements a serverless AWS architecture using AWS IoT Core (data ingestion and rule engine), AWS Lambda (data processing and automation logic), Amazon DynamoDB (device configuration and user data), Amazon S3 (web hosting), Amazon API Gateway (REST API), Amazon EventBridge (scheduled automation and anomaly detection), Amazon SNS (notifications), Amazon CloudFront (content delivery), and Amazon Cognito (user authentication).</li>
-<li>Deployment and Tools: All services are provisioned via AWS CDK/SDK. The web dashboard, built with Next.js and hosted on S3 + CloudFront, allows configuration, real-time monitoring, and automation scheduling while minimizing backend Lambda execution time.</li>
+<li><strong>Hardware Layer</strong>: ESP32-based Sensor Hubs monitoring environmental metrics.</li>
+<li><strong>Cloud Layer</strong>: A fully serverless stack on AWS (IoT Core, Lambda, DynamoDB, API Gateway, S3, CloudFront, Cognito, EventBridge, SNS).</li>
+<li><strong>DevOps</strong>: Infrastructure as Code (IaC) using AWS CloudFormation for reproducible deployments.</li>
+<li><strong>Interface</strong>: A responsive web dashboard allowing real-time monitoring and configuration updates.</li>
 </ul>
 <h3 id="5-timeline--milestones">5. Timeline &amp; Milestones</h3>
 <p><strong>Project Timeline</strong></p>
 <ul>
-<li>Weeks 1–7: Study and research AWS services including IoT Core, Lambda, DynamoDB, S3, API Gateway, and Cognito.</li>
-<li>Week 8: Design the full architecture and estimate costs using the AWS Pricing Calculator.</li>
-<li>Weeks 9–11: Develop and integrate all system components — data simulation scripts, Lambda functions, database setup, and web dashboard.</li>
-<li>Week 12: Test, debug, and deploy the system to production.</li>
+<li><strong>Weeks 1–7</strong>: Deep dive into AWS services and complete &ldquo;First Cloud AI Journey&rdquo; fundamental training.</li>
+<li><strong>Week 8</strong>: Design the system architecture and finalize cost estimation.</li>
+<li><strong>Weeks 9–11</strong>: Core development phase (Backend logic, Database schema, Frontend UI integration).</li>
+<li><strong>Week 12</strong>: System integration testing, debugging, and final Go-Live presentation.</li>
 </ul>
 <h3 id="6-budget-estimation">6. Budget Estimation</h3>
 <p>You can find the budget estimation on the <a href="https://calculator.aws/#/estimate?id=0db12150c448b012356e475becefd549c37094d8">AWS Pricing Calculator</a>.<br>
 Or you can download the <a href="../file/proposal/smart_office_pricing_caculator.pdf">Budget Estimation File</a>.</p>
 <h3 id="infrastructure-costs">Infrastructure Costs</h3>
-<p>AWS Services:</p>
+<p><strong>AWS Services:</strong></p>
 <ul>
-<li>Amazon DynamoDB: Free (0.00208 GB/month)</li>
-<li>AWS Lambda: Free (119,000 requests/month, 13,386.25 GB/s)</li>
-<li>AWS IoT Core: $0.18/month (8 devices, 13,000 messages/month)</li>
-<li>AWS API Gateway: Free (720 requests/month)</li>
-<li>Amazon Simple Storage Service (S3): Free (0.01 GB)</li>
-<li>Amazon CloudFront: $1.27/month (10,000 requests/month)</li>
-<li>Amazon EventBridge: Free (2600 events/month)</li>
-<li>Amazon Simple Queue Service (SQS): Free (2600 requests/month)</li>
-<li>Amazon CloudWatch: $0.25/month (0,3612736 GB/month) (set retention 3 days)</li>
-<li>Amazon Amazon Simple Notification Service (SNS): $0.02/month (2100 requests/month, 2100 emails/month)</li>
-<li>Amazon Cognito: Free (3 MAU/month)
-Hardware: Existing smart office sensors and hubs — no additional cost.
-Total: ≈ $1.81/month, or $21.72/year (within AWS Free Tier limits).</li>
+<li><strong>Amazon DynamoDB</strong>: Free (Always Free Tier: 25GB Storage).</li>
+<li><strong>AWS Lambda</strong>: Free (Always Free Tier: 1M requests/month).</li>
+<li><strong>AWS IoT Core</strong>: $0.18/month (8 devices, sending data every 2 mins).</li>
+<li><strong>Amazon API Gateway</strong>: Free (Free Tier: 1M calls/month for 12 months).</li>
+<li><strong>Amazon S3</strong>: Free (Standard storage &lt; 5GB).</li>
+<li><strong>Amazon CloudFront</strong>: $1.27/month (Based on est. data transfer and requests).</li>
+<li><strong>Amazon EventBridge</strong>: Free (Free Tier events).</li>
+<li><strong>Amazon SNS</strong>: $0.02/month (Email notifications).</li>
+<li><strong>Amazon CloudWatch</strong>: $0.25/month (Log ingestion and storage).</li>
+<li><strong>Amazon Cognito</strong>: Free (Free Tier: 50,000 MAUs).</li>
 </ul>
+<p><strong>Hardware:</strong> Mock script
+<strong>Total:</strong> ≈ <strong>$1.81/month</strong>, or <strong>$21.72/year</strong> (optimized within AWS Free Tier).</p>
 <h3 id="7-risk-assessment">7. Risk Assessment</h3>
 <h4 id="risk-matrix">Risk Matrix</h4>
 <ul>
-<li>IoT Connectivity Issues: Medium impact, medium probability.</li>
-<li>Sensor Hub Malfunction: High impact, low probability.</li>
-<li>Unexpected AWS Charges: Medium impact, low probability.</li>
-<li>Data Inconsistency or Delay: Medium impact, medium probability.</li>
+<li><strong>IoT Connectivity Issues</strong>: Medium impact, medium probability.</li>
+<li><strong>Sensor Data Inaccuracy</strong>: Medium impact, low probability.</li>
+<li><strong>Unexpected AWS Charges</strong>: Low impact, low probability (due to strict budget alerts).</li>
+<li><strong>Security Misconfiguration</strong>: High impact, low probability.</li>
 </ul>
 <h4 id="mitigation-strategies">Mitigation Strategies</h4>
 <ul>
-<li>Connectivity: Implement message buffering at Sensor Hub; retry on reconnect.</li>
-<li>Hardware: Keep spare hubs and perform periodic health checks.</li>
-<li>Cost: Use AWS Budgets and Cost Explorer to monitor spending within Free Tier.</li>
-<li>Data Reliability: Validate incoming IoT data via Lambda before storing in DynamoDB.</li>
+<li><strong>Connectivity</strong>: Implement retry logic on edge devices and local buffering.</li>
+<li><strong>Cost</strong>: Configure AWS Budgets to alert when spending exceeds $1.00.</li>
+<li><strong>Security</strong>: Enforce strict IAM policies (Least Privilege) and require authentication for all API access via Cognito.</li>
+<li><strong>Reliability</strong>: Use CloudWatch Logs to trace errors in Lambda execution immediately.</li>
 </ul>
 <h4 id="contingency-plans">Contingency Plans</h4>
 <ul>
-<li>Switch to manual operation if IoT service disruption occurs.</li>
-<li>Enable CloudWatch alerts for early issue detection.</li>
-<li>Use AWS CloudFormation or CDK rollback for quick recovery and cost control.</li>
+<li>Enable manual override controls if the cloud system becomes unavailable.</li>
+<li>Maintain a backup of the CloudFormation templates for rapid redeployment.</li>
 </ul>
 <h3 id="8-expected-outcomes">8. Expected Outcomes</h3>
 <h4 id="technical-improvements">Technical Improvements:</h4>
 <ul>
-<li>Real-time monitoring and automation replace manual room control.</li>
-<li>Centralized platform enhances data accuracy and consistency.</li>
-<li>Scalable architecture supports future expansion to more rooms or other IoT devices.</li>
+<li>Replaces manual checks with <strong>real-time digital monitoring</strong>.</li>
+<li>Provides a <strong>centralized platform</strong> for managing configurations across multiple rooms.</li>
+<li>Establishes a <strong>scalable architecture</strong> capable of supporting more devices in the future.</li>
 </ul>
 <h4 id="long-term-value">Long-term Value:</h4>
 <ul>
-<li>Provides a reusable foundation for smart building and IoT automation research.</li>
-<li>Enables data-driven insights for energy efficiency and environmental optimization.</li>
-<li>Demonstrates a fully serverless, low-cost AWS architecture (under $2/month).</li>
+<li>Serves as a practical <strong>learning hub</strong> for students to master AWS Serverless technologies.</li>
+<li>Provides data insights that can lead to better energy usage policies in the lab.</li>
+<li>Demonstrates a cost-effective, production-ready cloud solution.</li>
 </ul>
 <h2 id="proposal-link">Proposal Link</h2>
 <p><a href="../file/proposal/Smart_Office_Proposal.docx">Smart_Office_Proposal</a></p>
@@ -1650,19 +1652,19 @@ Total: ≈ $1.81/month, or $21.72/year (within AWS Free Tier limits).</li>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="../js/clipboard.min.js?1765187048"></script>
-    <script src="../js/perfect-scrollbar.min.js?1765187048"></script>
-    <script src="../js/perfect-scrollbar.jquery.min.js?1765187048"></script>
-    <script src="../js/jquery.sticky.js?1765187048"></script>
-    <script src="../js/featherlight.min.js?1765187048"></script>
-    <script src="../js/highlight.pack.js?1765187048"></script>
+    <script src="../js/clipboard.min.js?1765263282"></script>
+    <script src="../js/perfect-scrollbar.min.js?1765263282"></script>
+    <script src="../js/perfect-scrollbar.jquery.min.js?1765263282"></script>
+    <script src="../js/jquery.sticky.js?1765263282"></script>
+    <script src="../js/featherlight.min.js?1765263282"></script>
+    <script src="../js/highlight.pack.js?1765263282"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="../js/modernizr.custom-3.6.0.js?1765187048"></script>
-    <script src="../js/learn.js?1765187048"></script>
-    <script src="../js/hugo-learn.js?1765187048"></script>
+    <script src="../js/modernizr.custom-3.6.0.js?1765263282"></script>
+    <script src="../js/learn.js?1765263282"></script>
+    <script src="../js/hugo-learn.js?1765263282"></script>
 
-    <link href="../mermaid/mermaid.css?1765187048" rel="stylesheet" />
-    <script src="../mermaid/mermaid.js?1765187048"></script>
+    <link href="../mermaid/mermaid.css?1765263282" rel="stylesheet" />
+    <script src="../mermaid/mermaid.js?1765263282"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

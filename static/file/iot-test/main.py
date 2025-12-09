@@ -7,15 +7,15 @@ from awsiot import mqtt_connection_builder, iotshadow
 # ======================================================
 # 1. CẤU HÌNH
 # ======================================================
-ENDPOINT = "a18g0l0koofjed-ats.iot.ap-southeast-1.amazonaws.com"
-CLIENT_ID = "HoChiMinh_Room1"
-OFFICE_ID = "37e90376-84a7-412a-95e0-0f3393bd9f22"
-ROOM_ID = "Room1"
+ENDPOINT = ""
+CLIENT_ID = ""
+OFFICE_ID = ""
+ROOM_ID = ""
 THING_NAME = CLIENT_ID 
 
-PATH_TO_CERT = "certs/device-cert.pem.crt"
-PATH_TO_KEY = "certs/private.pem.key"
-PATH_TO_ROOT = "certs/AmazonRootCA1.pem"
+PATH_TO_CERT = "device-cert.pem.crt"
+PATH_TO_KEY = "private.pem.key"
+PATH_TO_ROOT = "AmazonRootCA1.pem"
 
 TOPIC_TELEMETRY = f"office/{OFFICE_ID}/room/{ROOM_ID}/telemetry"
 TOPIC_CONFIG = f"office/{OFFICE_ID}/room/{ROOM_ID}/config"
