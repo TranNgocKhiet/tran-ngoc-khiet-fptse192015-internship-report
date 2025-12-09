@@ -1,5 +1,5 @@
 ---
-title: "Sự kiện 3"
+title: "Event 3"
 weight: 3
 chapter: false
 pre: " <b> 4.3. </b> "
