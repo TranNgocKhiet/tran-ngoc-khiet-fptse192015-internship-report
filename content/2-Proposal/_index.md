@@ -52,11 +52,11 @@ The Smart Office system adopts a fully serverless AWS architecture optimized for
 **Implementation Phases**
 - **Research & Foundation (Weeks 1-7)**: Study core AWS services (IoT Core, Lambda, DynamoDB, S3, API Gateway, Cognito) and understand Serverless design patterns.
 - **Architecture Design & Estimation (Week 8)**: Finalize the solution diagram for an 8-room setup and use the AWS Pricing Calculator to forecast the budget.
-- **Development (Weeks 9-11)**:
+- **Development (Weeks 9-12)**:
     - Implement firmware/scripts for IoT data simulation.
     - Develop Backend: Lambda functions, DynamoDB tables, and API Gateway resources using CloudFormation/CDK.
     - Develop Frontend: Build the Management Dashboard and integrate with APIs.
-- **Testing & Deployment (Week 12)**: Perform end-to-end testing, validate data flow from sensors to the dashboard, and deploy the system to the production environment.
+- **Testing & Deployment (Week 13)**: Perform end-to-end testing, validate data flow from sensors to the dashboard, and deploy the system to the production environment.
 
 **Technical Requirements**
 - **Hardware Layer**: ESP32-based Sensor Hubs monitoring environmental metrics.
@@ -68,8 +68,8 @@ The Smart Office system adopts a fully serverless AWS architecture optimized for
 **Project Timeline**
 - **Weeks 1–7**: Deep dive into AWS services and complete "First Cloud AI Journey" fundamental training.
 - **Week 8**: Design the system architecture and finalize cost estimation.
-- **Weeks 9–11**: Core development phase (Backend logic, Database schema, Frontend UI integration).
-- **Week 12**: System integration testing, debugging, and final Go-Live presentation.
+- **Weeks 9–12**: Core development phase (Backend logic, Database schema, Frontend UI integration).
+- **Week 13**: System integration testing, debugging, and final Go-Live presentation.
 
 ### 6. Budget Estimation
 You can find the budget estimation on the [AWS Pricing Calculator](https://calculator.aws/#/estimate?id=0db12150c448b012356e475becefd549c37094d8).  

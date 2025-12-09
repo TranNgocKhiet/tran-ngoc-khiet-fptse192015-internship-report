@@ -53,11 +53,11 @@ Hệ thống Smart Office áp dụng kiến trúc AWS hoàn toàn serverless đ�
 #### Giai đoạn triển khai
 - **Nghiên cứu & Nền tảng (Tuần 1-7)**: Nghiên cứu các dịch vụ AWS cốt lõi (IoT Core, Lambda, DynamoDB, S3, API Gateway, Cognito) và hiểu các mô hình thiết kế Serverless.
 - **Thiết kế Kiến trúc & Dự toán (Tuần 8)**: Hoàn thiện sơ đồ giải pháp cho thiết lập 8 phòng và sử dụng AWS Pricing Calculator để dự báo ngân sách.
-- **Phát triển (Tuần 9-11)**:
+- **Phát triển (Tuần 9-12)**:
     - Triển khai firmware/kịch bản mô phỏng dữ liệu IoT.
     - Phát triển Backend: Các hàm Lambda, bảng DynamoDB và tài nguyên API Gateway sử dụng CloudFormation/CDK.
     - Phát triển Frontend: Xây dựng Bảng điều khiển Quản lý và tích hợp với các API.
-- **Kiểm thử & Triển khai (Tuần 12)**: Thực hiện kiểm thử toàn diện (end-to-end), xác thực luồng dữ liệu từ cảm biến đến bảng điều khiển và triển khai hệ thống lên môi trường production.
+- **Kiểm thử & Triển khai (Tuần 13)**: Thực hiện kiểm thử toàn diện (end-to-end), xác thực luồng dữ liệu từ cảm biến đến bảng điều khiển và triển khai hệ thống lên môi trường production.
 
 #### Yêu cầu kỹ thuật
 - **Tầng Phần cứng**: Các Sensor Hub dựa trên ESP32 giám sát các chỉ số môi trường.
@@ -69,8 +69,8 @@ Hệ thống Smart Office áp dụng kiến trúc AWS hoàn toàn serverless đ�
 #### Lộ trình
 - **Tuần 1–7**: Tìm hiểu sâu về các dịch vụ AWS và hoàn thành khóa đào tạo cơ bản "First Cloud AI Journey".
 - **Tuần 8**: Thiết kế kiến trúc hệ thống và hoàn thiện dự toán chi phí.
-- **Tuần 9–11**: Giai đoạn phát triển cốt lõi (Logic Backend, Lược đồ Database, Tích hợp giao diện Frontend).
-- **Tuần 12**: Kiểm thử tích hợp hệ thống, gỡ lỗi và trình bày Go-Live cuối cùng.
+- **Tuần 9–12**: Giai đoạn phát triển cốt lõi (Logic Backend, Lược đồ Database, Tích hợp giao diện Frontend).
+- **Tuần 13**: Kiểm thử tích hợp hệ thống, gỡ lỗi và trình bày Go-Live cuối cùng.
 
 ### 6. Ước tính ngân sách  
 Có thể xem chi phí trên [AWS Pricing Calculator](https://calculator.aws/#/estimate?id=0db12150c448b012356e475becefd549c37094d8)  
