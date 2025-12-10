@@ -1,26 +1,28 @@
 ---
-title: "Worklog Tuần 12"
+title: "Worklog Tuần 13"
 weight: 2
 chapter: false
-pre: " <b> 1.12 </b> "
+pre: " <b> 1.13 </b> "
 ---
 
-### Mục tiêu tuần 12:
+### Mục tiêu tuần 13:
 
-* 
+* Điều chỉnh CloudFormation 
+* Cập nhật API
+* Viết chi tiết workshop
 
 ### Các công việc cần triển khai trong tuần này:
-| Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 11/08/2025   | 11/08/2025      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 12/08/2025   | 12/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 13/08/2025   | 13/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 14/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 15/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
+| Thứ | Công việc                                                                    | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
+| --- | ---------------------------------------------------------------------------- | ------------ | --------------- | -------------- |
+| 2   | - Cập nhật API để liên kết với giao diện người dùng                          | 11/08/2025   | 11/08/2025      |                |
+| 3   | - Kiểm tra và sửa lỗi trang web                                              | 12/08/2025   | 12/08/2025      |                |
+| 4   | - Viết script gửi và nhận dữ liệu bằng cách mocking thiết bị IoT bằng Laptop | 13/08/2025   | 13/08/2025      |                |
+| 5   | - Viết chi tiết workshop                                                     | 14/08/2025   | 15/08/2025      |                |
+| 6   | - Hoàn thành workshop                                                        | 15/08/2025   | 15/08/2025      |                |
 
 
-### Kết quả đạt được tuần 12:
+### Kết quả đạt được tuần 13:
 
-* 
+* Hoàn thành workshop
 
 
