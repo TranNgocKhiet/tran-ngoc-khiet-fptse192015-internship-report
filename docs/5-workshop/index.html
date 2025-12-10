@@ -15,21 +15,21 @@
     <title>Workshop :: Internship Report</title>
 
     
-    <link href="../css/nucleus.css?1765346336" rel="stylesheet">
-    <link href="../css/fontawesome-all.min.css?1765346336" rel="stylesheet">
-    <link href="../css/hybrid.css?1765346336" rel="stylesheet">
-    <link href="../css/featherlight.min.css?1765346336" rel="stylesheet">
-    <link href="../css/perfect-scrollbar.min.css?1765346336" rel="stylesheet">
-    <link href="../css/auto-complete.css?1765346336" rel="stylesheet">
-    <link href="../css/atom-one-dark-reasonable.css?1765346336" rel="stylesheet">
-    <link href="../css/theme.css?1765346336" rel="stylesheet">
-    <link href="../css/hugo-theme.css?1765346336" rel="stylesheet">
+    <link href="../css/nucleus.css?1765346762" rel="stylesheet">
+    <link href="../css/fontawesome-all.min.css?1765346762" rel="stylesheet">
+    <link href="../css/hybrid.css?1765346762" rel="stylesheet">
+    <link href="../css/featherlight.min.css?1765346762" rel="stylesheet">
+    <link href="../css/perfect-scrollbar.min.css?1765346762" rel="stylesheet">
+    <link href="../css/auto-complete.css?1765346762" rel="stylesheet">
+    <link href="../css/atom-one-dark-reasonable.css?1765346762" rel="stylesheet">
+    <link href="../css/theme.css?1765346762" rel="stylesheet">
+    <link href="../css/hugo-theme.css?1765346762" rel="stylesheet">
     
-    <link href="../css/theme-workshop.css?1765346336" rel="stylesheet">
+    <link href="../css/theme-workshop.css?1765346762" rel="stylesheet">
     
     
 
-    <script src="../js/jquery-3.3.1.min.js?1765346336"></script>
+    <script src="../js/jquery-3.3.1.min.js?1765346762"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -88,14 +88,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="../js/lunr.min.js?1765346336"></script>
-<script type="text/javascript" src="../js/auto-complete.js?1765346336"></script>
+<script type="text/javascript" src="../js/lunr.min.js?1765346762"></script>
+<script type="text/javascript" src="../js/auto-complete.js?1765346762"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/tranngockhiet.github.io\/tran-ngoc-khiet-fptse192015-internship-report\/";
     
 </script>
-<script type="text/javascript" src="../js/search.js?1765346336"></script>
+<script type="text/javascript" src="../js/search.js?1765346762"></script>
  
   </div>
 
@@ -907,23 +907,24 @@
 
 
 
-	<h1 id="secure-hybrid-access-to-s3-using-vpc-endpoints">Secure Hybrid Access to S3 using VPC Endpoints</h1>
+	<h1 id="smart-office-management-system-workshop">Smart Office Management System Workshop</h1>
 <h4 id="overview">Overview</h4>
-<p><strong>AWS PrivateLink</strong> provides private connectivity to AWS services from VPCs and your on-premises networks, without exposing your traffic to the Public Internet.</p>
-<p>In this lab, you will learn how to create, configure, and test VPC endpoints that enable your workloads to reach AWS services without traversing the Public Internet.</p>
-<p>You will create two types of endpoints to access Amazon S3: a Gateway VPC endpoint, and an Interface VPC endpoint. These two types of VPC endpoints offer different benefits depending on if you are accessing Amazon S3 from the cloud or your on-premises location</p>
+<p><strong>Smart Office Management System</strong> provides a real-time environmental monitoring and management solution for offices, built entirely on <strong>AWS Serverless</strong> architecture to optimize costs and scalability.</p>
+<p>In this lab, you will learn how to deploy, configure, and test a full-stack IoT system, allowing sensor devices to transmit data to the cloud and enabling administrators to control devices via a Web Dashboard.</p>
+<p>You will work with two main architectural models to operate the Smart Office system:</p>
 <ul>
-<li><strong>Gateway</strong> - Create a gateway endpoint to send traffic to Amazon S3 or DynamoDB using private IP addresses.You route traffic from your VPC to the gateway endpoint using route tables.</li>
-<li><strong>Interface</strong> - Create an interface endpoint to send traffic to endpoint services that use a Network Load Balancer to distribute traffic. Traffic destined for the endpoint service is resolved using DNS.</li>
+<li><strong>Serverless Architecture</strong> - Uses <strong>AWS Lambda</strong>, <strong>API Gateway</strong>, and <strong>DynamoDB</strong> to handle logic and data storage. This model allows code to run in response to requests without managing servers.</li>
+<li><strong>Event-Driven Architecture</strong> - Uses <strong>AWS IoT Core</strong>, <strong>EventBridge</strong>, and <strong>SNS</strong>. The system operates based on events, where data from sensors or user actions trigger automation workflows and send alert notifications.</li>
 </ul>
 <h4 id="content">Content</h4>
 <ol>
 <li><a href="../5-workshop/5.1-workshop-overview/">Workshop overview</a></li>
-<li><a href="../5-workshop/5.2-prerequiste/">Prerequiste</a></li>
-<li><a href="5.3-S3-vpc/">Access S3 from VPC</a></li>
-<li><a href="5.4-S3-onprem/">Access S3 from On-premises</a></li>
-<li><a href="5.5-Policy/">VPC Endpoint Policies (Bonus)</a></li>
-<li><a href="5.6-Cleanup/">Clean up</a></li>
+<li><a href="../5-workshop/5.2-prerequiste/">Prerequisite</a></li>
+<li><a href="../5-workshop/5.3-run-cloudformation-stack/">Run CloudFormation Stack</a></li>
+<li><a href="../5-workshop/5.4-set-up-website/">Set up website</a></li>
+<li><a href="../5-workshop/5.5-event-bridge/">Event Bridge</a></li>
+<li><a href="../5-workshop/5.6-sns/">SNS</a></li>
+<li><a href="../5-workshop/5.7-test-website-iot-connection/">Test website IoT connection</a></li>
 </ol>
 
 
@@ -1541,19 +1542,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="../js/clipboard.min.js?1765346336"></script>
-    <script src="../js/perfect-scrollbar.min.js?1765346336"></script>
-    <script src="../js/perfect-scrollbar.jquery.min.js?1765346336"></script>
-    <script src="../js/jquery.sticky.js?1765346336"></script>
-    <script src="../js/featherlight.min.js?1765346336"></script>
-    <script src="../js/highlight.pack.js?1765346336"></script>
+    <script src="../js/clipboard.min.js?1765346762"></script>
+    <script src="../js/perfect-scrollbar.min.js?1765346762"></script>
+    <script src="../js/perfect-scrollbar.jquery.min.js?1765346762"></script>
+    <script src="../js/jquery.sticky.js?1765346762"></script>
+    <script src="../js/featherlight.min.js?1765346762"></script>
+    <script src="../js/highlight.pack.js?1765346762"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="../js/modernizr.custom-3.6.0.js?1765346336"></script>
-    <script src="../js/learn.js?1765346336"></script>
-    <script src="../js/hugo-learn.js?1765346336"></script>
+    <script src="../js/modernizr.custom-3.6.0.js?1765346762"></script>
+    <script src="../js/learn.js?1765346762"></script>
+    <script src="../js/hugo-learn.js?1765346762"></script>
 
-    <link href="../mermaid/mermaid.css?1765346336" rel="stylesheet" />
-    <script src="../mermaid/mermaid.js?1765346336"></script>
+    <link href="../mermaid/mermaid.css?1765346762" rel="stylesheet" />
+    <script src="../mermaid/mermaid.js?1765346762"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

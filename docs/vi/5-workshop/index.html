@@ -15,21 +15,21 @@
     <title>Workshop :: Báo cáo thực tập</title>
 
     
-    <link href="../../css/nucleus.css?1765346337" rel="stylesheet">
-    <link href="../../css/fontawesome-all.min.css?1765346337" rel="stylesheet">
-    <link href="../../css/hybrid.css?1765346337" rel="stylesheet">
-    <link href="../../css/featherlight.min.css?1765346337" rel="stylesheet">
-    <link href="../../css/perfect-scrollbar.min.css?1765346337" rel="stylesheet">
-    <link href="../../css/auto-complete.css?1765346337" rel="stylesheet">
-    <link href="../../css/atom-one-dark-reasonable.css?1765346337" rel="stylesheet">
-    <link href="../../css/theme.css?1765346337" rel="stylesheet">
-    <link href="../../css/hugo-theme.css?1765346337" rel="stylesheet">
+    <link href="../../css/nucleus.css?1765346763" rel="stylesheet">
+    <link href="../../css/fontawesome-all.min.css?1765346763" rel="stylesheet">
+    <link href="../../css/hybrid.css?1765346763" rel="stylesheet">
+    <link href="../../css/featherlight.min.css?1765346763" rel="stylesheet">
+    <link href="../../css/perfect-scrollbar.min.css?1765346763" rel="stylesheet">
+    <link href="../../css/auto-complete.css?1765346763" rel="stylesheet">
+    <link href="../../css/atom-one-dark-reasonable.css?1765346763" rel="stylesheet">
+    <link href="../../css/theme.css?1765346763" rel="stylesheet">
+    <link href="../../css/hugo-theme.css?1765346763" rel="stylesheet">
     
-    <link href="../../css/theme-workshop.css?1765346337" rel="stylesheet">
+    <link href="../../css/theme-workshop.css?1765346763" rel="stylesheet">
     
     
 
-    <script src="../../js/jquery-3.3.1.min.js?1765346337"></script>
+    <script src="../../js/jquery-3.3.1.min.js?1765346763"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -88,14 +88,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="../../js/lunr.min.js?1765346337"></script>
-<script type="text/javascript" src="../../js/auto-complete.js?1765346337"></script>
+<script type="text/javascript" src="../../js/lunr.min.js?1765346763"></script>
+<script type="text/javascript" src="../../js/auto-complete.js?1765346763"></script>
 <script type="text/javascript">
     
         var baseurl = "https:\/\/tranngockhiet.github.io\/tran-ngoc-khiet-fptse192015-internship-report\/\/vi";
     
 </script>
-<script type="text/javascript" src="../../js/search.js?1765346337"></script>
+<script type="text/javascript" src="../../js/search.js?1765346763"></script>
  
   </div>
 
@@ -907,23 +907,24 @@
 
 
 
-	<h1 id="đảm-bảo-truy-cập-hybrid-an-toàn-đến-s3-bằng-cách-sử-dụng-vpc-endpoint">Đảm bảo truy cập Hybrid an toàn đến S3 bằng cách sử dụng VPC endpoint</h1>
-<h4 id="tổng-quan">Tổng quan</h4>
-<p><strong>AWS PrivateLink</strong> cung cấp kết nối riêng tư đến các dịch vụ aws từ VPCs hoặc trung tâm dữ liệu (on-premise) mà không làm lộ lưu lượng truy cập ra ngoài public internet.</p>
-<p>Trong bài lab này, chúng ta sẽ học cách tạo, cấu hình, và kiểm tra VPC endpoints để cho phép workload của bạn tiếp cận các dịch vụ AWS mà không cần đi qua Internet công cộng.</p>
-<p>Chúng ta sẽ tạo hai loại endpoints để truy cập đến Amazon S3: gateway vpc endpoint và interface vpc endpoint. Hai loại vpc endpoints này mang đến nhiều lợi ích tùy thuộc vào việc bạn truy cập đến S3 từ môi trường cloud hay từ trung tâm dữ liệu (on-premise).</p>
+	<h1 id="smart-office-management-system-workshop">Smart Office Management System Workshop</h1>
+<h4 id="tổng-quan-overview">Tổng quan (Overview)</h4>
+<p><strong>Smart Office Management System</strong> cung cấp giải pháp giám sát và quản lý môi trường thời gian thực cho văn phòng, được xây dựng hoàn toàn trên nền tảng <strong>AWS Serverless</strong> giúp tối ưu hóa chi phí và khả năng mở rộng.</p>
+<p>Trong bài lab này, bạn sẽ học cách triển khai, cấu hình và kiểm thử một hệ thống IoT full-stack, cho phép các thiết bị cảm biến gửi dữ liệu lên đám mây và người quản trị có thể điều khiển thiết bị thông qua Web Dashboard.</p>
+<p>Bạn sẽ làm việc với hai mô hình kiến trúc chính để vận hành hệ thống Smart Office:</p>
 <ul>
-<li><strong>Gateway</strong> - Tạo gateway endpoint để gửi lưu lượng đến Amazon S3 hoặc DynamoDB using private IP addresses. Bạn điều hướng lưu lượng từ VPC của bạn đến gateway endpoint bằng các bảng định tuyến (route tables)</li>
-<li><strong>Interface</strong> - Tạo interface endpoint để gửi lưu lượng đến các dịch vụ điểm cuối (endpoints) sử dụng Network Load Balancer để phân phối lưu lượng. Lưu lượng dành cho dịch vụ điểm cuối được resolved bằng DNS.</li>
+<li><strong>Serverless Architecture</strong> - Sử dụng <strong>AWS Lambda</strong>, <strong>API Gateway</strong>, và <strong>DynamoDB</strong> để xử lý logic và lưu trữ dữ liệu. Mô hình này cho phép mã chạy để phản hồi các yêu cầu mà không cần quản lý máy chủ.</li>
+<li><strong>Event-Driven Architecture</strong> - Sử dụng <strong>AWS IoT Core</strong>, <strong>EventBridge</strong>, và <strong>SNS</strong>. Hệ thống hoạt động dựa trên sự kiện, nơi dữ liệu từ cảm biến hoặc hành động của người dùng sẽ kích hoạt các quy trình tự động hóa và gửi thông báo cảnh báo.</li>
 </ul>
-<h4 id="nội-dung">Nội dung</h4>
+<h4 id="nội-dung-content">Nội dung (Content)</h4>
 <ol>
-<li><a href="../../vi/5-workshop/5.1-workshop-overview/">Tổng quan về workshop</a></li>
-<li><a href="../../vi/5-workshop/5.2-prerequiste/">Chuẩn bị</a></li>
-<li><a href="5.3-S3-vpc/">Truy cập đến S3 từ VPC</a></li>
-<li><a href="5.4-S3-onprem/">Truy cập đến S3 từ TTDL On-premises</a></li>
-<li><a href="5.5-Policy/">VPC Endpoint Policies (làm thêm)</a></li>
-<li><a href="5.6-Cleanup/">Dọn dẹp tài nguyên</a></li>
+<li><a href="../../vi/5-workshop/5.1-workshop-overview/">Giới thiệu</a></li>
+<li><a href="../../vi/5-workshop/5.2-prerequiste/">Các bước chuẩn bị</a></li>
+<li><a href="../../vi/5-workshop/5.3-run-cloudformation-stack/">Thiết lập CloudFormation</a></li>
+<li><a href="../../vi/5-workshop/5.4-set-up-website/">Thiết lập website</a></li>
+<li><a href="../../vi/5-workshop/5.5-event-bridge/">Thiết lập EventBridge và Lambda</a></li>
+<li><a href="../../vi/5-workshop/5.6-sns/">Thiết lập SNS</a></li>
+<li><a href="../../vi/5-workshop/5.7-test-website-iot-connection/">Kiểm thử kết nối giữa website và thiết bị IoT</a></li>
 </ol>
 
 
@@ -1541,19 +1542,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="../../js/clipboard.min.js?1765346337"></script>
-    <script src="../../js/perfect-scrollbar.min.js?1765346337"></script>
-    <script src="../../js/perfect-scrollbar.jquery.min.js?1765346337"></script>
-    <script src="../../js/jquery.sticky.js?1765346337"></script>
-    <script src="../../js/featherlight.min.js?1765346337"></script>
-    <script src="../../js/highlight.pack.js?1765346337"></script>
+    <script src="../../js/clipboard.min.js?1765346763"></script>
+    <script src="../../js/perfect-scrollbar.min.js?1765346763"></script>
+    <script src="../../js/perfect-scrollbar.jquery.min.js?1765346763"></script>
+    <script src="../../js/jquery.sticky.js?1765346763"></script>
+    <script src="../../js/featherlight.min.js?1765346763"></script>
+    <script src="../../js/highlight.pack.js?1765346763"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="../../js/modernizr.custom-3.6.0.js?1765346337"></script>
-    <script src="../../js/learn.js?1765346337"></script>
-    <script src="../../js/hugo-learn.js?1765346337"></script>
+    <script src="../../js/modernizr.custom-3.6.0.js?1765346763"></script>
+    <script src="../../js/learn.js?1765346763"></script>
+    <script src="../../js/hugo-learn.js?1765346763"></script>
 
-    <link href="../../mermaid/mermaid.css?1765346337" rel="stylesheet" />
-    <script src="../../mermaid/mermaid.js?1765346337"></script>
+    <link href="../../mermaid/mermaid.css?1765346763" rel="stylesheet" />
+    <script src="../../mermaid/mermaid.js?1765346763"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>
