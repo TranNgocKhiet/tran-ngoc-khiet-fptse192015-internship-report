@@ -1,0 +1,52 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: Setup AWS Budget to alert when cost exceeds threshold
+
+Parameters:
+  EmailAddress:
+    Type: String
+    Default: tranngockhiet22062005@gmail.com
+    Description: "Email to receive budget alarm"
+
+  MonthlyBudgetAmount:
+    Type: Number
+    Default: 5
+    Description: "Cost threshold per month"
+
+Resources:
+  SmartOfficeBudget:
+    Type: AWS::Budgets::Budget
+    Properties:
+      Budget:
+        BudgetName: !Sub "SmartOffice-Budget-${MonthlyBudgetAmount}USD"
+        BudgetType: COST
+        TimeUnit: MONTHLY
+        BudgetLimit:
+          Amount: !Ref MonthlyBudgetAmount
+          Unit: USD
+
+      # --- Notifications ---
+      NotificationsWithSubscribers:
+        # Notify when cost reach 80% budget
+        - Notification:
+            NotificationType: ACTUAL
+            ComparisonOperator: GREATER_THAN
+            Threshold: 80
+            ThresholdType: PERCENTAGE
+          Subscribers:
+            - SubscriptionType: EMAIL
+              Address: !Ref EmailAddress
+
+        # Notify when cost is predicted to over budget
+        - Notification:
+            NotificationType: FORECASTED
+            ComparisonOperator: GREATER_THAN
+            Threshold: 100
+            ThresholdType: PERCENTAGE
+          Subscribers:
+            - SubscriptionType: EMAIL
+              Address: !Ref EmailAddress
+
+Outputs:
+  BudgetName:
+    Value: !Ref SmartOfficeBudget
+    Description: "Budget alarm for Smart Office"

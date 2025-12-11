@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Báo cáo thực tập</title><link>https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/vi/</link><description>Recent content on Báo cáo thực tập</description><generator>Hugo</generator><language>vi</language><atom:link href="https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/vi/index.xml" rel="self" type="application/rss+xml"/><item><title>Kiểm thử kết nối giữa website và thiết bị IoT</title><link>https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/vi/5-workshop/5.7-test-website-iot-connection/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/vi/5-workshop/5.7-test-website-iot-connection/</guid><description>&lt;h4 id="tải-kịch-bản-giả-lập-thiết-bị-iot">Tải kịch bản giả lập thiết bị IoT&lt;/h4>
+&lt;p>&lt;a href="../file/iot-test/main.py">main.py&lt;/a>&lt;/p>
+&lt;h4 id="thêm-dữ-liệu-cho-thiết-bị-giả">Thêm dữ liệu cho thiết bị giả&lt;/h4>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ae81ff">ENDPOINT = &amp;#34;&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ae81ff">CLIENT_ID = &amp;#34;&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ae81ff">OFFICE_ID = &amp;#34;&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ae81ff">ROOM_ID = &amp;#34;&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ae81ff">PATH_TO_CERT = &amp;#34;&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ae81ff">PATH_TO_KEY = &amp;#34;&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ae81ff">PATH_TO_ROOT = &amp;#34;&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th style="text-align: left">Thuộc tính&lt;/th>
+ &lt;th style="text-align: left">Giá trị&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td style="text-align: left">ENDPOINT&lt;/td>
+ &lt;td style="text-align: left">Trên trang manager&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td style="text-align: left">CLIENT_ID&lt;/td>
+ &lt;td style="text-align: left">ID của office của bạn&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td style="text-align: left">OFFICE_ID&lt;/td>
+ &lt;td style="text-align: left">Tên office của bạn&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td style="text-align: left">ROOM_ID&lt;/td>
+ &lt;td style="text-align: left">ID phòng của bạn&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td style="text-align: left">PATH_TO_CERT&lt;/td>
+ &lt;td style="text-align: left">Đường dẫn tải xuống chứng chỉ thiết bị của bạn khi bạn tạo phòng&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td style="text-align: left">PATH_TO_KEY&lt;/td>
+ &lt;td style="text-align: left">Đường dẫn tải xuống khóa riêng của thiết bị khi bạn tạo phòng&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td style="text-align: left">PATH_TO_ROOT&lt;/td>
+ &lt;td style="text-align: left">Đường dẫn tải xuống chứng chỉ gốc Amazon của bạn khi bạn tạo phòng&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h2 id="link-video-demo">Link video demo&lt;/h2>
+&lt;p>&lt;a href="https://www.youtube.com/watch?v=k45jHjkKhuc">https://www.youtube.com/watch?v=k45jHjkKhuc&lt;/a>&lt;/p></description></item></channel></rss>

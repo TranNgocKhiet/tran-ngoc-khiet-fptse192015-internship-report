@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Workshop on Internship Report</title><link>https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/5-workshop/</link><description>Recent content in Workshop on Internship Report</description><generator>Hugo</generator><language>en</language><atom:link href="https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/5-workshop/index.xml" rel="self" type="application/rss+xml"/><item><title>Test website and IoT connection</title><link>https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/5-workshop/5.7-test-website-iot-connection/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://tranngockhiet.github.io/tran-ngoc-khiet-fptse192015-internship-report/5-workshop/5.7-test-website-iot-connection/</guid><description>&lt;h4 id="download-mock-iot-device-script">Download mock IoT device script&lt;/h4>
+&lt;p>&lt;a href="../file/iot-test/main.py">main.py&lt;/a>&lt;/p>
+&lt;h4 id="add-data-from-your-mock-device">Add data from your mock device&lt;/h4>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-yaml" data-lang="yaml">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ae81ff">ENDPOINT = &amp;#34;&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ae81ff">CLIENT_ID = &amp;#34;&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ae81ff">OFFICE_ID = &amp;#34;&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ae81ff">ROOM_ID = &amp;#34;&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ae81ff">PATH_TO_CERT = &amp;#34;&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ae81ff">PATH_TO_KEY = &amp;#34;&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ae81ff">PATH_TO_ROOT = &amp;#34;&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;table>
+ &lt;thead>
+ &lt;tr>
+ &lt;th style="text-align: left">Attribute&lt;/th>
+ &lt;th style="text-align: left">Value&lt;/th>
+ &lt;/tr>
+ &lt;/thead>
+ &lt;tbody>
+ &lt;tr>
+ &lt;td style="text-align: left">ENDPOINT&lt;/td>
+ &lt;td style="text-align: left">Website manager page&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td style="text-align: left">CLIENT_ID&lt;/td>
+ &lt;td style="text-align: left">ID of your office&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td style="text-align: left">OFFICE_ID&lt;/td>
+ &lt;td style="text-align: left">Name of your office&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td style="text-align: left">ROOM_ID&lt;/td>
+ &lt;td style="text-align: left">ID of your room&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td style="text-align: left">PATH_TO_CERT&lt;/td>
+ &lt;td style="text-align: left">Path to your device certificate download when your create room&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td style="text-align: left">PATH_TO_KEY&lt;/td>
+ &lt;td style="text-align: left">Path to your device private key download when your create room&lt;/td>
+ &lt;/tr>
+ &lt;tr>
+ &lt;td style="text-align: left">PATH_TO_ROOT&lt;/td>
+ &lt;td style="text-align: left">Path to your Amazon root certifica	download when your create room&lt;/td>
+ &lt;/tr>
+ &lt;/tbody>
+&lt;/table>
+&lt;h2 id="link-video-demo">Link video demo&lt;/h2>
+&lt;p>&lt;a href="https://www.youtube.com/watch?v=k45jHjkKhuc">https://www.youtube.com/watch?v=k45jHjkKhuc&lt;/a>&lt;/p></description></item></channel></rss>
